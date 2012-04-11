@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{Hammersley_Clifford_1971}
+J.~M. Hammersley and P.~E. Clifford.
+\newblock Markov random fields on finite graphs and lattices.
+\newblock {\em {\em Unpublished manuscript}}, 1971.
+
+\bibitem{mCRFs_2004}
+Xuming He, R.S. Zemel, and M.A. Carreira-Perpinan.
+\newblock Multiscale conditional random fields for image labeling.
+\newblock In {\em Computer Vision and Pattern Recognition, 2004. CVPR 2004.
+  Proceedings of the 2004 IEEE Computer Society Conference on}, volume~2, pages
+  II--695 -- II--702 Vol.2, june-2 july 2004.
+
+\bibitem{DRFs_2003}
+Sanjiv Kumar and Martial Hebert.
+\newblock Discriminative random fields: a discriminative framework for
+  contextual interaction in classification.
+\newblock In {\em Computer Vision, 2003. Proceedings. Ninth IEEE International
+  Conference on}, pages 1150 --1157 vol.2, oct. 2003.
+
+\bibitem{DRFs_2006}
+Sanjiv Kumar and Martial Hebert.
+\newblock Discriminative random fields.
+\newblock {\em International Journal of Computer Vision}, 68(2):179--202, 2006.
+
+\bibitem{CRF_2001}
+John~D. Lafferty, Andrew McCallum, and Fernando C.~N. Pereira.
+\newblock Conditional random fields: Probabilistic models for segmenting and
+  labeling sequence data.
+\newblock In Carla~E. Brodley and Andrea~Pohoreckyj Danyluk, editors, {\em
+  ICML}, pages 282--289. Morgan Kaufmann, 2001.
+
+\bibitem{Spitzer_1971}
+Frank Spitzer.
+\newblock Markov random fields and gibbs ensembles.
+\newblock {\em The American Mathematical Monthly}, 78(2):pp. 142--154, 1971.
+
+\bibitem{Wallach_2004}
+Hanna~M. Wallach.
+\newblock Conditional random fields: An introduction.
+\newblock Technical Report MS-CIS-04-21, University of Pennsylvania,
+  Philadelphia, 2004.
+
+\end{thebibliography}
