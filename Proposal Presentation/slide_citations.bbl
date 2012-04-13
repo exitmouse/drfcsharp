@@ -1,16 +1,11 @@
 \begin{thebibliography}{1}
 
-\bibitem{Hammersley_Clifford_1971}
-J.~M. Hammersley and P.~E. Clifford.
-\newblock Markov random fields on finite graphs and lattices.
-\newblock {\em {\em Unpublished manuscript}}, 1971.
-
-\bibitem{mCRFs_2004}
-Xuming He, R.S. Zemel, and M.A. Carreira-Perpinan.
-\newblock Multiscale conditional random fields for image labeling.
-\newblock In {\em Computer Vision and Pattern Recognition, 2004. CVPR 2004.
-  Proceedings of the 2004 IEEE Computer Society Conference on}, volume~2, pages
-  II--695 -- II--702 Vol.2, june-2 july 2004.
+\bibitem{Bellman}
+C.~J. Bellman and M.~R. Shortis.
+\newblock A machine learning approach to building recognition in aerial
+  photographs.
+\newblock In {\em International Archives of the Photogrammetry, Remote Sensing
+  and Spatial Information Sciences}, pages 50--54, 2002.
 
 \bibitem{DRFs_2003}
 Sanjiv Kumar and Martial Hebert.
@@ -31,15 +26,20 @@ John~D. Lafferty, Andrew McCallum, and Fernando C.~N. Pereira.
 \newblock In Carla~E. Brodley and Andrea~Pohoreckyj Danyluk, editors, {\em
   ICML}, pages 282--289. Morgan Kaufmann, 2001.
 
-\bibitem{Spitzer_1971}
-Frank Spitzer.
-\newblock Markov random fields and gibbs ensembles.
-\newblock {\em The American Mathematical Monthly}, 78(2):pp. 142--154, 1971.
+\bibitem{MontgomeryCounty}
+Maryland~GIS Montgomery~County, April 2012.
 
-\bibitem{Wallach_2004}
-Hanna~M. Wallach.
-\newblock Conditional random fields: An introduction.
-\newblock Technical Report MS-CIS-04-21, University of Pennsylvania,
-  Philadelphia, 2004.
+\bibitem{Shi}
+Fanhuai Shi, Yongjian Xi, Xiaoling Li, and Ye~Duan.
+\newblock Rooftop detection and 3d building modeling from aerial images.
+\newblock In George Bebis, Richard Boyle, Bahram Parvin, Darko Koracin,
+  Yoshinori Kuno, Junxian Wang, Renato Pajarola, Peter Lindstrom, André
+  Hinkenjann, Miguel Encarnação, Cláudio Silva, and Daniel Coming, editors,
+  {\em Advances in Visual Computing}, volume 5876 of {\em Lecture Notes in
+  Computer Science}, pages 817--826. Springer Berlin / Heidelberg, 2009.
+
+\bibitem{WikipediaOrthophoto}
+various.
+\newblock Wikipedia: Orthophoto, April 2012.
 
 \end{thebibliography}
