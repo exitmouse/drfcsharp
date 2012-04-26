@@ -26,8 +26,38 @@ namespace DRFCSharp
 		}
 		public Classification Classify()
 		{
-			//Divide into coding sets
+			//Eventually:
+			//Divide into coding sets (speedup is nice at runtime)
 			//Let the threads run
+			//Currently:
+			for(int n = 0; n < 3; n++)
+			{
+				for(int i = 0; i < ImageData.x_sites; i++)
+				{
+					for(int j = 0; j < ImageData.y_sites; j++)
+					{
+						//Set current_classification[i,j] to the maximally probable choice given the current state of its neighbors.
+						if(ConditionalProbability(img, i, j) > 0.5)
+							current_classification[i,j] = Label.ON;
+						else
+							current_classification[i,j] = Label.OFF;
+					}
+				}
+			}
+		}
+		public double ConditionalProbability(ImageData img, int i, int j)
+		{
+			double a_potential = AssociationPotential(img, i, j);
+			double i_potential = InteractionPotential(img, i, j);
+			return a_potential + beta*i_potential;
+		}
+		public double AssociationPotential(ImageData img, int i, int j)
+		{
+			// See equation 6 of the DRF paper.
+		}
+		public double InteractionPotential(ImageData img, int i, int j)
+		{
+			// See equation 8 of the DRF paper.
 		}
 	}
 }
