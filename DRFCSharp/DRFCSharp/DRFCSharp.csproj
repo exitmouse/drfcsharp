@@ -57,6 +57,7 @@
     <Compile Include="Model.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="Classification.cs" />
+    <Compile Include="ICMClassifier.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
