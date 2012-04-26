@@ -37,7 +37,7 @@ namespace DRFCSharp
 					for(int j = 0; j < ImageData.y_sites; j++)
 					{
 						//Set current_classification[i,j] to the maximally probable choice given the current state of its neighbors.
-						if(ConditionalProbability(img, i, j) > 0.5)
+						if(ConditionalProbability(img, i, j, Label.ON) > ConditionalProbability(img, i, j, Label.OFF))
 							current_classification[i,j] = Label.ON;
 						else
 							current_classification[i,j] = Label.OFF;
@@ -45,17 +45,17 @@ namespace DRFCSharp
 				}
 			}
 		}
-		public double ConditionalProbability(ImageData img, int i, int j)
+		public double ConditionalProbability(ImageData img, int i, int j, Label label)
 		{
-			double a_potential = AssociationPotential(img, i, j);
-			double i_potential = InteractionPotential(img, i, j);
+			double a_potential = AssociationPotential(img, i, j, label);
+			double i_potential = SumOfInteractionPotentials(img, i, j, label);
 			return a_potential + beta*i_potential;
 		}
-		public double AssociationPotential(ImageData img, int i, int j)
+		public double AssociationPotential(ImageData img, int i, int j, Label label)
 		{
 			// See equation 6 of the DRF paper.
 		}
-		public double InteractionPotential(ImageData img, int i, int j)
+		public double SumOfInteractionPotentials(ImageData img, int i, int j, Label label)
 		{
 			// See equation 8 of the DRF paper.
 		}
