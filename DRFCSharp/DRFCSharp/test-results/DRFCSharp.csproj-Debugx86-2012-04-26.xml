@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Tests>
+    <TestRecord Name="DRFCSharp">
+      <Tests>
+        <TestRecord Name="FeatureTests">
+          <Tests>
+            <TestRecord Name="CrossFeatures">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-04-26T22:12:03</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>System.NotImplementedException : The method or operation is not implemented.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b) in c:\Users\Jesse\Documents\DiscriminativeRandomFields\Discriminative-Random-Fields\DRFCSharp\DRFCSharp\SiteFeatureSet.cs:line 40
+   at DRFCSharp.FeatureTests.CrossFeatures() in c:\Users\Jesse\Documents\DiscriminativeRandomFields\Discriminative-Random-Fields\DRFCSharp\DRFCSharp\FeatureTests.cs:line 16</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-04-26T22:19:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

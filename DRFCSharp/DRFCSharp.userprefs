@@ -1,14 +1,31 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DRFCSharp\Model.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DRFCSharp\SiteFeatureSet.cs">
     <Files>
-      <File FileName="DRFCSharp\Main.cs" Line="1" Column="1" />
+      <File FileName="DRFCSharp\Main.cs" Line="10" Column="18" />
       <File FileName="DRFCSharp\ImageData.cs" Line="12" Column="25" />
-      <File FileName="DRFCSharp\SiteFeatureSet.cs" Line="31" Column="60" />
-      <File FileName="DRFCSharp\Model.cs" Line="14" Column="4" />
-      <File FileName="DRFCSharp\Label.cs" Line="8" Column="10" />
-      <File FileName="DRFCSharp\Classification.cs" Line="17" Column="28" />
+      <File FileName="DRFCSharp\SiteFeatureSet.cs" Line="32" Column="4" />
+      <File FileName="DRFCSharp\Model.cs" Line="47" Column="1" />
+      <File FileName="DRFCSharp\Label.cs" Line="7" Column="10" />
+      <File FileName="DRFCSharp\Classification.cs" Line="7" Column="31" />
+      <File FileName="DRFCSharp\ICMClassifier.cs" Line="18" Column="15" />
+      <File FileName="DRFCSharp\ModifiedModel.cs" Line="24" Column="40" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="DRFCSharp" expanded="True" selected="True">
+            <Node name="References" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
