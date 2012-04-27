@@ -4,7 +4,7 @@ namespace DRFCSharp
 {
 	public enum Label
 	{
-		OFF = -1,
+		OFF = 0,
 		ON = 1,
 	}
 }

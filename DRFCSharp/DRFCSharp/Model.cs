@@ -38,7 +38,7 @@ namespace DRFCSharp
 			* \frac{d \ell}{d \beta},
 			* \frac{d \ell}{d \kappa}.
 			* 
-			* 
+			*/
 		}
 		
 	}

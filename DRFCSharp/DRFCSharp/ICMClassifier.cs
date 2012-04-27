@@ -21,8 +21,8 @@ namespace DRFCSharp
 			this.kappa = kappa;
 			this.img = img;
 			
-			current_classification = new Label[ImageData.x_sites, ImageData.y_sites]();
-			current_classification.Initialize();
+			//current_classification = new Label[ImageData.x_sites, ImageData.y_sites]();
+			//current_classification.Initialize();
 		}
 		public Classification Classify()
 		{
@@ -44,6 +44,7 @@ namespace DRFCSharp
 					}
 				}
 			}
+			return new Classification(current_classification);
 		}
 		public double ConditionalProbability(ImageData img, int i, int j, Label label)
 		{
@@ -54,10 +55,12 @@ namespace DRFCSharp
 		public double AssociationPotential(ImageData img, int i, int j, Label label)
 		{
 			// See equation 6 of the DRF paper.
+			throw new NotImplementedException();
 		}
 		public double SumOfInteractionPotentials(ImageData img, int i, int j, Label label)
 		{
 			// See equation 8 of the DRF paper.
+			throw new NotImplementedException();
 		}
 	}
 }
