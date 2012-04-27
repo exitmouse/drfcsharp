@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{fullpage, paralist}
+\usepackage{graphicx}      % specify `dvips' driver
+\usepackage{subfig}
+\usepackage[all]{xy}
+
+\CompileMatrices
+
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\C}{{\mathbb C}}
+
+\newcommand{\A}{{\mathcal A}}
+\newcommand{\I}{{\mathcal I}}
+\newcommand{\B}{{\mathcal B}}
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\F}{{\mathbb F}}
+
+\newcommand{\tmin}{\text{min}}
+\newcommand{\tmax}{\text{max}}
+\newcommand{\Spl}{\text{Spl}}
+
+\newcommand{\cov}{\textbf{cov}}
+\newcommand{\var}{\textbf{var}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\p}{\text{P}}
+
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newtheorem{thm}{Theorem}[section]
+
+\theoremstyle{remark}
+\newtheorem*{nnremark}{Remark}
+
+\begin{document}
+\title{Computer Science 74}
+\author{Jesse Selover}
+\markright{Jesse Selover}
+\maketitle
+
+We want
+\[
+\arg\max_\theta \sum_{m=1}^M \sum_{i \in S} \left[
+  \log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) + \sum_{j \in
+    \mathcal{N}_i} x_i x_j \vec{v}^\top \vec{\mu}_{ij}(\vec{y}) -
+  \log(z_i) \right] - \frac{1}{2\tau^2}\vec{v}^\top\vec{v}.
+\]
+We have
+\[
+\frac{\partial}{\partial w_k} \text{that} = \sum_{m=1}^M \sum_{i \in
+  S} \left[ x_i(\vec{h}_i(\vec{y}))_k(1-\sigma(x_i \vec{w}^\top
+  \vec{h}_i(\vec{y}))) - \frac{\frac{\partial}{\partial w_k} z_i}{z_i}
+\right].
+\]
+Computing the derivative of $z_i$,
+\[
+\frac{\partial}{\partial w_k} z_i = \sum_{x_i \in \{-1,1\}}
+\exp\left(\log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) +
+  \sum_{j \in \mathcal{N}_i} x_i x_j \vec{v}^\top
+  \vec{\mu}_{ij}(\vec{y})\right)\frac{x_i(\vec{h}_i(\vec{y}))_k}{\sigma(x_i\vec{w}^\top\vec{h}_i(\vec{y}))}
+\]
+Now for $v_k$
+\[
+\frac{\partial}{\partial v_k} = \sum_{m=1}^M \sum_{i \in S} \left[ \sum_{j \in \mathcal{N}_i} x_i x_j
+\]
+\end{document}
