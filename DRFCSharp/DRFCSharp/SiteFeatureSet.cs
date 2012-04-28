@@ -6,11 +6,11 @@ namespace DRFCSharp
 	public class SiteFeatureSet
 	{
 		public DenseVector features;
+		
 		public SiteFeatureSet (DenseVector features)
 		{
 			this.features = features;
 		}
-		
 		/// <summary>
 		/// We have features for two sites; we want a feature vector that describes their
 		/// cross-term for the interaction potential. This is the mu in Kumar & Hebert
