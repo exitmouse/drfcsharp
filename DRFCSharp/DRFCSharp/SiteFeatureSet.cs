@@ -7,22 +7,17 @@ namespace DRFCSharp
 	public class SiteFeatureSet
 	{
 		public DenseVector features;
-<<<<<<< HEAD
-		
-=======
 		public const int NUM_FEATURES = 5;
 		public SiteFeatureSet ()
 		{
 			this.features = new DenseVector(NUM_FEATURES,0d);
 		}
->>>>>>> 1695e08d72d263a7697bbd98dda118e333e0a96c
+
 		public SiteFeatureSet (DenseVector features)
 		{
 			if(features.Count != NUM_FEATURES) throw new ArgumentException("SiteFeatureSets have "+NUM_FEATURES.ToString()+" features, not "+features.Count.ToString()+".");
 			this.features = features;
 		}
-<<<<<<< HEAD
-=======
 
 		public override bool Equals (object obj)
 		{
@@ -42,7 +37,7 @@ namespace DRFCSharp
 				}
 			}
 		}
->>>>>>> 1695e08d72d263a7697bbd98dda118e333e0a96c
+
 		/// <summary>
 		/// We have features for two sites; we want a feature vector that describes their
 		/// cross-term for the interaction potential. This is the mu in Kumar & Hebert

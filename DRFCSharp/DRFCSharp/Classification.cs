@@ -5,7 +5,6 @@ namespace DRFCSharp
 	public class Classification
 	{
 		public Label[,] site_labels;
-		
 		public Classification(Label[,] site_labels)
 		{
 			if(site_labels.GetLength(0) != ImageData.x_sites || site_labels.GetLength(1) != ImageData.y_sites)
