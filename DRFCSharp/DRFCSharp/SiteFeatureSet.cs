@@ -7,10 +7,17 @@ namespace DRFCSharp
 	public class SiteFeatureSet
 	{
 		public DenseVector features;
+		public const int NUM_FEATURES = 5;
+		public SiteFeatureSet ()
+		{
+			this.features = new DenseVector(NUM_FEATURES,0d);
+		}
 		public SiteFeatureSet (DenseVector features)
 		{
+			if(features.Count != NUM_FEATURES) throw new ArgumentException("SiteFeatureSets have "+NUM_FEATURES.ToString()+" features, not "+features.Count.ToString()+".");
 			this.features = features;
 		}
+
 		public override bool Equals (object obj)
 		{
 			if(obj is SiteFeatureSet)
@@ -18,6 +25,16 @@ namespace DRFCSharp
 				return features.Equals((obj as SiteFeatureSet).features);
 			}
 			else return false;
+		}
+		public static void Init(SiteFeatureSet[,] sitesarray)
+		{
+			for(int i = 0; i < sitesarray.GetLength(0); i++)
+			{
+				for(int j = 0; j < sitesarray.GetLength(1); j++)
+				{
+					sitesarray[i,j] = new SiteFeatureSet();
+				}
+			}
 		}
 		/// <summary>
 		/// We have features for two sites; we want a feature vector that describes their
