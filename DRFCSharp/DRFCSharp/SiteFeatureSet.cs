@@ -48,6 +48,16 @@ namespace DRFCSharp
 			ba.CopyTo(z,aa.Length+1);
 			return new DenseVector(z);
 		}
+		//h_i in modified DRFs 2006
+		public static DenseVector TransformedFeatureVector(SiteFeatureSet a)
+		{
+			DenseVector af = a.features;
+			double[] aa = af.ToArray();
+			double[] z = new double[aa.Length + 1];
+			z[0] = 1;
+			aa.CopyTo(z,1);
+			return new DenseVector(z);
+		}
 	}
 }
 
