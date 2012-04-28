@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DRFCSharp
@@ -6,11 +7,42 @@ namespace DRFCSharp
 	public class SiteFeatureSet
 	{
 		public DenseVector features;
+<<<<<<< HEAD
 		
+=======
+		public const int NUM_FEATURES = 5;
+		public SiteFeatureSet ()
+		{
+			this.features = new DenseVector(NUM_FEATURES,0d);
+		}
+>>>>>>> 1695e08d72d263a7697bbd98dda118e333e0a96c
 		public SiteFeatureSet (DenseVector features)
 		{
+			if(features.Count != NUM_FEATURES) throw new ArgumentException("SiteFeatureSets have "+NUM_FEATURES.ToString()+" features, not "+features.Count.ToString()+".");
 			this.features = features;
 		}
+<<<<<<< HEAD
+=======
+
+		public override bool Equals (object obj)
+		{
+			if(obj is SiteFeatureSet)
+			{
+				return features.Equals((obj as SiteFeatureSet).features);
+			}
+			else return false;
+		}
+		public static void Init(SiteFeatureSet[,] sitesarray)
+		{
+			for(int i = 0; i < sitesarray.GetLength(0); i++)
+			{
+				for(int j = 0; j < sitesarray.GetLength(1); j++)
+				{
+					sitesarray[i,j] = new SiteFeatureSet();
+				}
+			}
+		}
+>>>>>>> 1695e08d72d263a7697bbd98dda118e333e0a96c
 		/// <summary>
 		/// We have features for two sites; we want a feature vector that describes their
 		/// cross-term for the interaction potential. This is the mu in Kumar & Hebert
@@ -30,8 +62,25 @@ namespace DRFCSharp
 		/// </exception>
 		public static DenseVector CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
 		{
-			throw new NotImplementedException();
-			return new DenseVector(5);
+			DenseVector af = a.features;
+			DenseVector bf = b.features;
+			double[] aa = af.ToArray();
+			double[] ba = bf.ToArray();
+			double[] z = new double[aa.Length + ba.Length + 1];
+			z[0] = 1;
+			aa.CopyTo(z,1);
+			ba.CopyTo(z,aa.Length+1);
+			return new DenseVector(z);
+		}
+		//h_i in modified DRFs 2006
+		public static DenseVector TransformedFeatureVector(SiteFeatureSet a)
+		{
+			DenseVector af = a.features;
+			double[] aa = af.ToArray();
+			double[] z = new double[aa.Length + 1];
+			z[0] = 1;
+			aa.CopyTo(z,1);
+			return new DenseVector(z);
 		}
 	}
 }

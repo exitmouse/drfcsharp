@@ -21,7 +21,7 @@ namespace DRFCSharp
 			this.kappa = kappa;
 			this.img = img;
 			
-			//current_classification = new Label[ImageData.x_sites, ImageData.y_sites]();
+			//current_classification = new Label[ImageData.x_sites, ImageData.y_sites];
 			//current_classification.Initialize();
 		}
 		public Classification Classify()

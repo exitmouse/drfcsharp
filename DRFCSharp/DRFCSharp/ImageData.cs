@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace DRFCSharp
 {
@@ -18,6 +19,22 @@ namespace DRFCSharp
 			get{
 				return this.site_features[value1,value2];
 			}
+		}
+		public static List<Tuple<int,int>> GetNeighbors(int x, int y)
+		{
+			List<Tuple<int,int>> toReturn = new List<Tuple<int, int>>();
+			for(int horz = -1; horz <=1; horz++)
+				for(int vert = -1; vert <=1; vert++)
+					if(Math.Abs(horz+vert)==1) //Hacky way of ensuring precisely one of the components is nonzero.
+						if(InBounds(x+horz,y+vert))
+							toReturn.Add(Tuple.Create<int,int>(x+horz,y+vert));
+			return toReturn;
+		}
+		public static bool InBounds(int x, int y)
+		{
+			if(x >= 0 && x < x_sites && y >= 0 && y < y_sites)
+				return true;
+			return false;
 		}
 	}
 }
