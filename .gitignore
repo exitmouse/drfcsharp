@@ -1,2 +1,5 @@
 .DS_Store*
 DRFCSharp/DRFCSharp.sln
+DRFCSharp/DRFCSharp.userprefs
+DRFCSharp/DRFCSharp/bin/*
+DRFCSharp/DRFCSharp/DRFCSharp.csproj
