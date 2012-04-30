@@ -5,10 +5,10 @@ using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DRFCSharp
 {
-	[TestFixture()]
+	[TestFixture]
 	public class FeatureTests
 	{
-		[Test()]
+		[Test]
 		public void CrossFeatures ()
 		{
 			DenseVector f1 = new DenseVector(new double[5]{1.2,3,7,2.4,-1.3});
@@ -16,7 +16,7 @@ namespace DRFCSharp
 			DenseVector expected_result = new DenseVector(new double[11]{1,1.2,3,7,2.4,-1.3,2,-3.8,7.6,100,5});
 			Assert.AreEqual(SiteFeatureSet.CrossFeatures(new SiteFeatureSet(f1),new SiteFeatureSet(f2)),expected_result);
 		}
-		[Test()]
+		[Test]
 		public void TransformedFeatureVectors ()
 		{
 			DenseVector f1 = new DenseVector(new double[5]{1.2,3,7,2.4,-1.3});
@@ -24,30 +24,37 @@ namespace DRFCSharp
 			Assert.AreEqual(SiteFeatureSet.TransformedFeatureVector(new SiteFeatureSet(f1)),expected_result);
 	
 		}
-		[Test()]
+		[Test]
 		public void GetNeighborsSanity ()
 		{
 			List<Tuple<int,int>> test = ImageData.GetNeighbors(1,1);
 			Assert.Contains(Tuple.Create<int,int>(0,1),test);
 		}
-		[Test()]
+		[Test]
 		public void GetNeighborsCorners ()
 		{
 			List<Tuple<int,int>> test = ImageData.GetNeighbors(1,1);
 			Assert.IsFalse(test.Contains(Tuple.Create<int,int>(0,0)));
 		}
-		[Test()]
+		[Test]
 		public void GetNeighborsEdges ()
 		{
 			List<Tuple<int,int>> test = ImageData.GetNeighbors(ImageData.x_sites - 1,0);
 			Assert.IsFalse(test.Contains(Tuple.Create<int,int>(ImageData.x_sites,0)));
 		}
-		[Test()]
+		[Test]
+		public void GetNewConnectionsSanity ()
+		{
+			List<Tuple<int,int>> test = ImageData.GetNewConnections(1,1);
+			Assert.IsFalse(test.Contains(Tuple.Create<int,int>(0,1)));
+			Assert.Contains(Tuple.Create<int,int>(2,1),test);
+		}
+		[Test]
 		public void InBoundsFarEdge ()
 		{
 			Assert.IsFalse(ImageData.InBounds(ImageData.x_sites,0));
 		}
-		[Test()]
+		[Test]
 		public void SiteFeatureSetInitialization ()
 		{
 			SiteFeatureSet[,] sitesarray = new SiteFeatureSet[3,3];

@@ -4,26 +4,26 @@ using System.Collections.Generic;
 
 namespace DRFCSharp
 {
-	[TestFixture()]
+	[TestFixture]
 	public class ModelTests
 	{
-		[Test()]
+		[Test]
 		public void SigmaOfZero ()
 		{
 			Assert.GreaterOrEqual(ModifiedModel.Sigma(0),0.49d);
 			Assert.LessOrEqual(ModifiedModel.Sigma(0),0.51d);
 		}
-		[Test()]
+		[Test]
 		public void SigmaOfOneHundred ()
 		{
 			Assert.LessOrEqual(ModifiedModel.Sigma(100),0.00001d);
 		}
-		[Test()]
+		[Test]
 		public void SigmaOfNegativeOneHundred ()
 		{
 			Assert.GreaterOrEqual(ModifiedModel.Sigma(-100),0.99999d);
 		}
-		[Test()]
+		[Test]
 		public void ModelTrainingConverges ()
 		{
 			SiteFeatureSet[,] sitesarray = new SiteFeatureSet[ImageData.x_sites,ImageData.y_sites];
@@ -33,6 +33,18 @@ namespace DRFCSharp
 			Classification cfc = new Classification(labels);
 			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(new ImageData[1]{img},new Classification[1]{cfc},1d);
 			Assert.AreNotEqual(mfm.time_to_converge, ModifiedModel.MAX_ITERS);
+		}
+		[Test]
+		public void CanClassify ()
+		{
+			SiteFeatureSet[,] sitesarray = new SiteFeatureSet[ImageData.x_sites,ImageData.y_sites];
+			SiteFeatureSet.Init(sitesarray);
+			ImageData img = new ImageData(sitesarray);
+			Label[,] labels = new Label[ImageData.x_sites,ImageData.y_sites];
+			Classification cfc = new Classification(labels);
+			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(new ImageData[1]{img},new Classification[1]{cfc},1d);
+			Classification inferred = mfm.MaximumAPosterioriInfer(img);
+			Assert.IsNotNull(inferred);
 		}
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DRFCSharp
@@ -23,8 +24,62 @@ namespace DRFCSharp
 		
 		public Classification MaximumAPosterioriInfer(ImageData test_input)
 		{
-			throw new NotImplementedException();
+			Vertex[,] site_nodes = new Vertex[ImageData.x_sites,ImageData.y_sites];
+			for(int i = 0; i < ImageData.x_sites; i++) for(int j = 0; j < ImageData.y_sites; j++)
+			{
+				site_nodes[i,j] = new Vertex();
+			}
+			Vertex source = new Vertex();
+			Vertex target = new Vertex();
 			
+			for(int i = 0; i < ImageData.x_sites; i++) for(int j = 0; j < ImageData.y_sites; j++)
+			{
+				Vertex t = site_nodes[i,j];
+				//Add the edge with capacity lambda_t from the source, or the edge with capacity -lambda_t to the target.
+				//Lambda_t is the log-likelihood ratio: log( p(y | x = 1) / p(y | x = 0) ).
+				//Using Bayes' law, we have
+				//Posterior Odds = P(x = 1 | y)/P(x = 0 | y) = Likelihood Ratio * Prior Odds = (P(y | x = 1) / P(y | x = 0))*(P(x=1)/P(x=0)) = e^(lambda_t)*1
+				//So lambda_t should be log(Posterior Odds) = log(P(x=1|y))-log(P(x=0|y))
+				
+				//Now, P(x=1|y) is modeled as sigma(w^T * h(y)), so this should be
+				//log(sigma(w^T * h(y))) - log(1-sigma(w^T * h(y))).
+				//However, all these calculations were done at roughly 5:50 AM and I hadn't slept yet, so...
+				//I could totally be wrong.
+				//-Jesse Selover
+				double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
+				double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one);
+				if(lambda > 0)
+				{
+					Edge.AddEdge(source,t,lambda,0);
+				}
+				else
+				{
+					Edge.AddEdge(t,target,-lambda,0);
+				}
+				
+				foreach(Tuple<int,int> other in ImageData.GetNewConnections(i,j))
+				{
+					Vertex u = site_nodes[other.Item1,other.Item2];
+					//Add the edge with capacity Beta_{t,u} in both directions between t and u.
+					//DRFS (2006) says that the data dependent smoothing term is max(0,v^T * mu_{i,j}y
+					double capacity = Math.Max(0,v.DotProduct(SiteFeatureSet.CrossFeatures(test_input[i,j],test_input[other.Item1,other.Item2])));
+					Edge.AddEdge(t,u,capacity,capacity);
+				}
+			}
+			double flow_added = 0;
+			while(true)
+			{
+				flow_added = source.AddFlowTo(new List<Vertex>(), target, 400000000d);
+				if(flow_added <= 0.0000001d) break;
+			}; //Find the maximum flow
+			source.ResidualCapacityConnectedNodes(); //Find the source end of the minimum cut
+			
+			Label[,] toReturn = new Label[ImageData.x_sites,ImageData.y_sites];
+			for(int i = 0; i < ImageData.x_sites; i++) for(int j = 0; j < ImageData.y_sites; j++)
+			{
+				if(site_nodes[i,j].tagged_as_one) toReturn[i,j] = Label.ON;
+			}
+			return new Classification(toReturn);
 		}
 		
 		public static ModifiedModel PseudoLikelihoodTrain(ImageData[] training_inputs, Classification[] training_outputs, double tau)

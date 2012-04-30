@@ -36,6 +36,17 @@ namespace DRFCSharp
 				return true;
 			return false;
 		}
+		private static bool IsEarlier(int x1, int y1, int x2, int y2)
+		{
+			if(y1 == y2) return x1 < x2;
+			else return y1 < y2;
+		}
+		public static List<Tuple<int,int>> GetNewConnections(int x, int y)
+		{
+			List<Tuple<int,int>> toReturn = GetNeighbors(x,y);
+			toReturn.RemoveAll((t) => IsEarlier(t.Item1,t.Item2,x,y));
+			return toReturn;
+		}
 	}
 }
 

@@ -29,6 +29,14 @@ namespace DRFCSharp
 			this.flow_1_to_2 = 0.0;
 		}
 		
+		public static Edge AddEdge(Vertex v1, Vertex v2, double capacity_1_to_2, double capacity_2_to_1)
+		{
+			Edge toReturn = new Edge(v1,v2,capacity_1_to_2,capacity_2_to_1);
+			v1.AddEdge(toReturn);
+			v2.AddEdge(toReturn);
+			return toReturn;
+		}
+		
 		
 		public Vertex Traverse (Vertex origin_vertex)
 		{
