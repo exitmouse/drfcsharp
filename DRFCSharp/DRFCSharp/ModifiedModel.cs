@@ -24,6 +24,7 @@ namespace DRFCSharp
 		public Classification MaximumAPosterioriInfer(ImageData test_input)
 		{
 			throw new NotImplementedException();
+			
 		}
 		
 		public static ModifiedModel PseudoLikelihoodTrain(ImageData[] training_inputs, Classification[] training_outputs, double tau)
