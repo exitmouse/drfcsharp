@@ -6,5 +6,6 @@ DRFCSharp/DRFCSharp/DRFCSharp.userprefs
 DRFCSharp/DRFCSharp/DRFCSharp.csproj
 DRFCSharp/DRFCSharp/DRFCSharp.pidb
 DRFCSharp/DRFCSharp/bin/
-.project
-.pydevproject
+DataLabeler/.project
+DataLabeler/.pydevproject
+Dataset/tmp.jpg
