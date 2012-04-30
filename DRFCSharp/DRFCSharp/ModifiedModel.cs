@@ -229,7 +229,7 @@ namespace DRFCSharp
 				throw new NotFiniteNumberException("Sigma should be between 0 and 1");
 			}
 			if(result < EPSILON) return EPSILON;
-			return 1/(1+ Exp (x)); 
+			return result; 
 		}
 	}
 }
