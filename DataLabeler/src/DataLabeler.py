@@ -38,7 +38,7 @@ IMAGE_DIM = 256
 
 SITE_DIM = 16
 
-DATA_LABELER_DIR = os.path.split(os.path.abspath(__file__))[0]
+DATA_LABELER_DIR = os.path.split(os.path.abspath(sys.argv[0]))[0]
 DATASET_DIR = os.path.normpath(os.path.join(DATA_LABELER_DIR, '..\..\Dataset'))
 NUM_IMAGES = 300
 
