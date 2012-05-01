@@ -1,0 +1,33 @@
+%% LyX 1.6.7 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{babel}
+
+\begin{document}
+
+\title{Edge capacity derivation for MAP inference with min-cut }
+
+\maketitle
+\begin{align*}
+\lambda_{t} & =\log\left(\frac{P\left(y\mid x=1\right)}{P\left(y\mid x=0\right)}\right)\end{align*}
+Using Bayes' rule we have\begin{align*}
+\text{posterior odds} & =\text{likelihood ratio}\cdot\text{prior odds}\\
+\frac{P\left(x=1\mid y\right)}{P\left(x=0\mid y\right)} & =\frac{P\left(y\mid x=1\right)}{P\left(y\mid x=0\right)}\cdot\frac{P\left(x=1\right)}{P\left(x=0\right)}\end{align*}
+ So\begin{align*}
+\lambda_{t} & =\log\left(\frac{P\left(x=1\mid y\right)}{P\left(x=0\mid y\right)}\cdot\frac{P\left(x=0\right)}{P\left(x=1\right)}\right)\end{align*}
+
+
+We are currently assuming that the prior odds are fifty-fifty, so
+we get\begin{align*}
+\lambda_{t} & =\log\left(\frac{P\left(x=1\mid y\right)}{P\left(x=0\mid y\right)}\right)\\
+ & =\log\left(P\left(x=1\mid y\right)\right)-\log\left(P\left(x=0\mid y\right)\right)\end{align*}
+
+
+We are modeling $P\left(x=1\mid y\right)$ is modeled as $\sigma\left(w^{\top}h\left(y\right)\right)$,
+so we derive that \begin{align*}
+\lambda_{t} & =\log\left(\sigma\left(w^{\top}h\left(y\right)\right)\right)-\log\left(1-\sigma\left(w^{\top}h\left(y\right)\right)\right)\end{align*}
+
+\end{document}
