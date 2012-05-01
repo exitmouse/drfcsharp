@@ -8,6 +8,8 @@ This is our utility program for labeling photograph sites.  The commands are:
     esc to exit
     d to go to the next image
     a to go to the previous image
+    g to enter goto mode (in which to type the index of an image to goto), and g again
+        to actually go there
     left click to label a site as 1
     shift left click to label a site as 2
     right click to label a site as 3
@@ -24,11 +26,12 @@ import pygame
 from pygame.locals import *
 import csv
 
+COLOR_WHITE = (255, 255 , 255)
 COLOR_WHITISH = (200, 200 , 200)
 COLOR_BLACK = (0, 0 , 0)    
-COLOR_BLUISH = (200, 200 , 250)
-COLOR_ROSE = (250, 200 , 200)
-SITE_INDICATOR_OVERLAY_ALPHA = 100
+COLOR_BLUISH = (190, 190, 255)
+COLOR_ROSE = (255, 190, 190)
+SITE_INDICATOR_OVERLAY_ALPHA = 120
 
 LEFT_BUTTON = 1
 RIGHT_BUTTON = 3
@@ -173,10 +176,11 @@ def SiteCoordsToScreenCoords (coords):
     return (x, y)
 
 
-
 def main(index):
     ''' Initialize the current image index.'''
     current_image_index = index
+    goto_index = 0
+    goto_entry_mode = False
     
     
     assert IMAGE_DIM % SITE_DIM == 0, "We require that the sizes evenly partition the image." 
@@ -185,7 +189,7 @@ def main(index):
     
     pygame.init()
     screen = pygame.display.set_mode((IMAGE_ZOOM * IMAGE_DIM, IMAGE_ZOOM * IMAGE_DIM))
-    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (%d)' % current_image_index)
+    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index)
     
     background = LoadAerial(current_image_index, site_array)
     allsprites = pygame.sprite.RenderPlain((background))
@@ -215,6 +219,7 @@ def main(index):
     
     
     
+    
     ''' Main loop
     ***************************************************************************
     '''
@@ -230,9 +235,11 @@ def main(index):
             elif event.type == KEYDOWN:
                 '''
                 Keyboard controls are:
-                    esc to exit the labeler program
+                    esc to exit
                     d to go to the next image
                     a to go to the previous image
+                    g to enter goto mode (in which to type the index of an image to goto), and g again
+                        to actually go there
                 '''
                 if event.key == K_ESCAPE:
                     return
@@ -240,17 +247,47 @@ def main(index):
                     current_image_index = (current_image_index + 1) % NUM_IMAGES
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
-                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (%d)' % current_image_index)
+                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index)
                 elif event.key == K_a:
                     current_image_index = (current_image_index - 1) % NUM_IMAGES
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
-                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (%d)' % current_image_index)
-           
-            
+                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index)
+                elif event.key == K_g:
+                    goto_entry_mode = not goto_entry_mode
+                    if not goto_entry_mode:
+                        ''' We must have just finished entering the goto image index. '''
+                        current_image_index = goto_index % NUM_IMAGES
+                        goto_index = 0
+                        background = LoadAerial(current_image_index, site_array)
+                        allsprites = pygame.sprite.RenderPlain((background))
+                        pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index) 
+                elif goto_entry_mode and event.key == K_0:
+                    goto_index = goto_index * 10 + 0
+                elif goto_entry_mode and event.key == K_1:
+                    goto_index = goto_index * 10 + 1
+                elif goto_entry_mode and event.key == K_2:
+                    goto_index = goto_index * 10 + 2                    
+                elif goto_entry_mode and event.key == K_3:
+                    goto_index = goto_index * 10 + 3           
+                elif goto_entry_mode and event.key == K_4:
+                    goto_index = goto_index * 10 + 4
+                elif goto_entry_mode and event.key == K_5:
+                    goto_index = goto_index * 10 + 5
+                elif goto_entry_mode and event.key == K_6:
+                    goto_index = goto_index * 10 + 6                    
+                elif goto_entry_mode and event.key == K_7:
+                    goto_index = goto_index * 10 + 7           
+                elif goto_entry_mode and event.key == K_8:
+                    goto_index = goto_index * 10 + 8                   
+                elif goto_entry_mode and event.key == K_9:
+                    goto_index = goto_index * 10 + 9   
+                    
+                                         
+                    
+                                
             elif event.type == MOUSEBUTTONDOWN:
                 site_coords = ScreenCoordsToSiteCoords(event.pos)
-                print site_coords
                 '''
                 Mouse controls are:
                     left-click to label site as a 1 (blue tint)
@@ -267,7 +304,21 @@ def main(index):
                 elif event.button == RIGHT_BUTTON:
                     site_array[site_coords[0]][site_coords[1]] = 0
                     SaveAerial(current_image_index, site_array)
-            #elif event.type == MOUSEBUTTONUP:
+                    
+            elif event.type == MOUSEMOTION:
+                site_coords = ScreenCoordsToSiteCoords(event.pos)
+                left_button_pressed, center_button_pressed, right_button_pressed = pygame.mouse.get_pressed()
+                
+                if right_button_pressed:
+                    site_array[site_coords[0]][site_coords[1]] = 0
+                    SaveAerial(current_image_index, site_array)
+                elif left_button_pressed:
+                    if (pygame.key.get_mods() & KMOD_LSHIFT):
+                        site_array[site_coords[0]][site_coords[1]] = 2
+                        SaveAerial(current_image_index, site_array)
+                    else:    
+                        site_array[site_coords[0]][site_coords[1]] = 1
+                        SaveAerial(current_image_index, site_array)
             
         
         
@@ -281,6 +332,13 @@ def main(index):
                     screen.blit(box1, SiteCoordsToScreenCoords((i, j)))
                 elif site_array[i][j] == 2:
                     screen.blit(box2, SiteCoordsToScreenCoords((i, j)))
+       
+        if pygame.font and goto_entry_mode:
+            font = pygame.font.Font(None, 72)
+            text = font.render("#%d" % goto_index, 1, COLOR_WHITE)
+            textpos = text.get_rect(centerx=screen.get_width()/2)
+            screen.blit(text, textpos)
+        
         pygame.display.flip()
             
 
