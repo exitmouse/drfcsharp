@@ -1,4 +1,5 @@
 using System;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DRFCSharp
 {
@@ -17,6 +18,9 @@ namespace DRFCSharp
 					labels[i,j] = Label.ON;
 				}
 			}
+			labels[0,0] = Label.OFF;
+			img.site_features[0,0] = new SiteFeatureSet(new DenseVector(SiteFeatureSet.NUM_FEATURES,5d)); //Training _does not like it_ when the same features lead to different outcomes.
+			//Our features have double precision though, so we'll be fine.
 			Classification cfc = new Classification(labels);
 			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(new ImageData[1]{img},new Classification[1]{cfc},1d);
 			Console.WriteLine(mfm.time_to_converge);
