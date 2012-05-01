@@ -70,8 +70,7 @@ background sprite for the image.
 '''
 def LoadAerial(image_index, site_array):
     current_image_index_str = str(image_index).zfill(3)
-    current_image_name = current_image_index_str + '.jpg'
-    current_image_name2 = current_image_index_str + '.jpeg'
+    current_image_name = 'RandCropRotate' + current_image_index_str + '.jpg'
     current_data_name = current_image_index_str + '.txt'
     image_filename = os.path.join(DATASET_DIR, current_image_name)
     data_filename = os.path.join(DATASET_DIR, current_data_name)
@@ -81,8 +80,6 @@ def LoadAerial(image_index, site_array):
     Eventually, we will want to pre-crop and pre-rotate all of the images in
     our data set. '''
     im = Image.open(image_filename) #@UndefinedVariable
-    box = (0, 0, 0 + IMAGE_DIM, 0 + IMAGE_DIM)
-    im = im.crop(box)
     im = im.resize((IMAGE_ZOOM * IMAGE_DIM, IMAGE_ZOOM * IMAGE_DIM))
     savename = os.path.join(DATASET_DIR, 'tmp.jpg')
     im.save(savename)
