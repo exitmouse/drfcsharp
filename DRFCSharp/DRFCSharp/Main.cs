@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DRFCSharp
@@ -25,8 +26,13 @@ namespace DRFCSharp
 			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(new ImageData[1]{img},new Classification[1]{cfc},1d);
 			Console.WriteLine(mfm.time_to_converge);
 			Classification out_classed = mfm.MaximumAPosterioriInfer(img); //See what I did there?
-			for(int i = 0; i < 16; i++)
-				Console.WriteLine(out_classed[i,i]);
+			//for(int i = 0; i < 16; i++)
+			//	Console.WriteLine(out_classed[i,i]);
+			DenseVector[,] grads = ImageData.SmoothedGradientArray(new Bitmap("C:/test.bmp"));
+			for(int i = 0; i < grads.GetLength(0); i++)
+			{
+				Console.WriteLine(grads[i,i].ToString());
+			}
 		}
 	}
 }

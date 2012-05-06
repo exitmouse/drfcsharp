@@ -61,6 +61,20 @@ namespace DRFCSharp
 			SiteFeatureSet.Init(sitesarray);
 			Assert.IsNotNull(sitesarray[1,1]);
 		}
+		[Test]
+		public void GaussiansAreCorrectSize ()
+		{
+			DenseVector dv = ImageData.MakeGaussian();
+			Assert.AreEqual(dv.Count,3);
+		}
+		[Test]
+		public void GaussianMeanIsCentered ()
+		{
+			DenseVector dv = ImageData.MakeGaussian();
+			int midindex = dv.Count/2;
+			Assert.GreaterOrEqual(dv[midindex], dv[midindex-1]);
+			Assert.GreaterOrEqual(dv[midindex], dv[midindex+1]);
+		}
 	}
 }
 

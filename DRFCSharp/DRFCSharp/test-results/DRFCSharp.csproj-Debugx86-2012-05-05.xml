@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <UnitTestResult>
+      <TestDate>2012-05-05T15:39:35</TestDate>
+      <Status>Success</Status>
+      <TotalFailures>0</TotalFailures>
+      <TotalSuccess>23</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+    </UnitTestResult>
+  </Results>
+  <Tests>
+    <TestRecord Name="DRFCSharp">
+      <Results>
+        <UnitTestResult>
+          <TestDate>2012-05-05T15:39:35</TestDate>
+          <Status>Success</Status>
+          <TotalFailures>0</TotalFailures>
+          <TotalSuccess>23</TotalSuccess>
+          <TotalIgnored>0</TotalIgnored>
+          <Time />
+        </UnitTestResult>
+      </Results>
+      <Tests>
+        <TestRecord Name="FeatureTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-05T15:39:35</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>10</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="GaussiansAreCorrectSize">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:27:27</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Assert.Equals should not be used for Assertions</Message>
+                  <StackTrace>   at NUnit.Framework.Assert.Equals(Object a, Object b)
+   at DRFCSharp.FeatureTests.GaussiansAreCorrectSize() in c:\Users\Jesse\Documents\DiscriminativeRandomFields\Discriminative-Random-Fields\DRFCSharp\DRFCSharp\FeatureTests.cs:line 68</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:28:48</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:31:43</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GaussianMeanIsCentered">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:31:44</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="CrossFeatures">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsCorners">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNewConnectionsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="InBoundsFarEdge">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SiteFeatureSetInitialization">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="TransformedFeatureVectors">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="GraphTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-05T15:39:35</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>8</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="AddFlowCanWork">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowGoesBackwards">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowIsSane">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowMaximizes">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowRespectsMinimumCapacityInPath">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="EdgeAddBoth">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesDoesNotTravelSaturatedEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="ModelTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-05T15:39:35</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>5</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CanClassify">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.80ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ModelTrainingConverges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.67ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfNegativeOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfZero">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-05T15:39:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>
