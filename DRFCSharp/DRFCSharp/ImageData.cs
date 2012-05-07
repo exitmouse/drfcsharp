@@ -95,7 +95,14 @@ namespace DRFCSharp
 				//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
 				//However, we can't use the absolute location of the orientation because our images are distributed in a way that's rotationally
 				//invariant. Our images are not taken with upright cameras.
-				for(int i = 0; i < 3; i++) single_site_features[i]=Moment(smoothed_histogram,i);
+				for(int i = 0; i < 3; i++)
+				{
+					single_site_features[i]=Moment(smoothed_histogram,i);
+					if(double.IsNaN(single_site_features[i]))
+					{
+						throw new NotImplementedException();
+					}
+				}
 				single_site_features[3] = RightAngleFinder(smoothed_histogram);
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}

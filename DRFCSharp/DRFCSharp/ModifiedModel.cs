@@ -11,7 +11,7 @@ namespace DRFCSharp
 		public const int MAX_ITERS = 30000;
 		public const double CONVERGENCE_CONSTANT = 1;
 		public const double START_STEP_LENGTH = 200d;
-		public const double MIN_STEP_LENGTH = 0.000000000001d; //TODO all these small thingies are hacks
+		public const double MIN_STEP_LENGTH = 0.0000000000000001d; //TODO all these small thingies are hacks
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
 		
@@ -87,8 +87,8 @@ namespace DRFCSharp
 			if(tau <= 0) throw new ArgumentException("Tau must be positive");
 			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
 			
-			DenseVector w = new DenseVector(SiteFeatureSet.NUM_FEATURES + 1, 1d);
-			DenseVector v = new DenseVector(SiteFeatureSet.NUM_FEATURES*2 + 1, 1d);
+			DenseVector w = new DenseVector(SiteFeatureSet.NUM_FEATURES + 1, 0d);
+			DenseVector v = new DenseVector(SiteFeatureSet.NUM_FEATURES*2 + 1, 0d);
 			
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
@@ -116,11 +116,17 @@ namespace DRFCSharp
 	
 								//x_i
 								int x = (int)(training_outputs[m][horz,vert])*2 - 1;
-								
+								double hk = h[k];
+								if(double.IsNaN(hk)) throw new NotFiniteNumberException();
 								//sigma term that keeps reappearing
 								double sig = Sigma(x * w.DotProduct(h));
 								//x_i * h_i(y)_k * (1 - sigma(x_i * w^T h_i(y)))
+								double old = wgrad[k];
 								wgrad[k] += x*h[k]*(1 - sig);
+								if(double.IsNaN(wgrad[k])) 
+								{
+									throw new NotFiniteNumberException();
+								}
 								
 								//- ((d/(dw_k)) z_i) / z_i
 								double z = 0;
@@ -141,12 +147,14 @@ namespace DRFCSharp
 									double coeff = Exp(logofcoeff);
 									z += coeff;
 									dzdw += coeff * tempx*h[k]/Sigma(tempx * w.DotProduct(h));
+									if(double.IsNaN(dzdw)||double.IsNaN(z)||double.IsInfinity(dzdw)||double.IsInfinity(z)) throw new NotFiniteNumberException();
 								}
 								if(z <= 0d)
 								{
 									throw new NotFiniteNumberException();
 								}
 								wgrad[k] -= dzdw/z;
+								if(double.IsNaN(wgrad[k])) throw new NotFiniteNumberException();
 							}
 						}
 					}
