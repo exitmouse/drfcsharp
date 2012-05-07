@@ -121,14 +121,18 @@ namespace DRFCSharp
 					secondbestindex = i;
 				}
 			}
-			if(maxindex == secondbestindex)
+			if(maxindex == secondbestindex || secondbestindex == -1)
 			{
 				//My algorithm sucks
 				throw new NotImplementedException();
 			}
 			double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)maxindex);
 			double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)secondbestindex);
-			return Math.Abs(Math.Sin(ang1-ang2));
+			double ang = ang1-ang2;
+			double interim = Math.Sin(ang);
+			double toReturn = Math.Abs (interim);
+			if(toReturn < 0.0001d) toReturn += 0.001d; //Not sure if this will help. Hack; we only use the sine function to give better falloff anyway so I don't feel too guilty. But still.
+			return toReturn;
 		}
 		public static double Moment(double[] histogram, int p)
 		{
