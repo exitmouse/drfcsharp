@@ -7,7 +7,7 @@ namespace DRFCSharp
 	public class SiteFeatureSet
 	{
 		public DenseVector features;
-		public const int NUM_FEATURES = 5;
+		public const int NUM_FEATURES = 4;
 		public SiteFeatureSet ()
 		{
 			this.features = new DenseVector(NUM_FEATURES,0d);

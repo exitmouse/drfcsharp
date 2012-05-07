@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Drawing;
 using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra.Double;
@@ -10,6 +11,7 @@ namespace DRFCSharp
 		public const int x_sites = 16; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
 		public const int y_sites = 16;
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
+		public const int NUM_ORIENTATIONS = 8;
 		public SiteFeatureSet[,] site_features;
 		public ImageData (SiteFeatureSet[,] site_features)
 		{
@@ -54,7 +56,113 @@ namespace DRFCSharp
 		{
 			DenseVector[,] grads = SmoothedGradientArray(img);
 			SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[x_sites,y_sites];
-			throw new NotImplementedException();
+			int width_of_site = img.Width/x_sites;
+			int height_of_site = img.Height/y_sites;
+			for(int x = 0; x < x_sites; x++) for(int y = 0; y < y_sites; y++)
+			{
+				//Console.WriteLine("X = {0}, Y = {1}",x,y);
+				DenseVector single_site_features = new DenseVector(SiteFeatureSet.NUM_FEATURES);
+				double[] histogram_over_orientations = new double[NUM_ORIENTATIONS]; //TODO maybe refactor into a function
+				for(int u = x*width_of_site; u < x*width_of_site + width_of_site; u++)
+				{
+					for(int v = y*height_of_site; v < y*height_of_site + height_of_site; v++)
+					{
+						DenseVector g = grads[u,v];
+						//PREPARE FOR HACK
+						double angle = Math.Atan2 (g[1],g[0]);
+						if(angle < 0) angle += 2*Math.PI;
+						int orientation = (int)Math.Floor((((double)NUM_ORIENTATIONS)/(2*Math.PI))*angle);
+						orientation = orientation % 8; //Hack moar
+						double magnitude = g.Norm(2);
+						histogram_over_orientations[orientation] += magnitude;
+					}
+				}
+				double[] smoothed_histogram = new double[NUM_ORIENTATIONS];
+				for(int i = 0; i < NUM_ORIENTATIONS; i++)
+				{
+					double numerator = 0;
+					double denom = 0;
+					for(int j = 0; j < NUM_ORIENTATIONS; j++)
+					{
+						//Many things are wrong with this. It seems this should work _badly_.
+						//Possibly I am misunderstanding the paper.
+						double coeff = SmoothingKernel(((double)(i-j))/2d);
+						denom += coeff;
+						numerator += coeff*histogram_over_orientations[j];
+					}
+					smoothed_histogram[i] = numerator/denom;
+				}
+				//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
+				//However, we can't use the absolute location of the orientation because our images are distributed in a way that's rotationally
+				//invariant. Our images are not taken with upright cameras.
+				for(int i = 0; i < 3; i++) single_site_features[i]=Moment(smoothed_histogram,i);
+				single_site_features[3] = RightAngleFinder(smoothed_histogram);
+				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
+			}
+			return new ImageData(sitefeatures);
+		}
+		public static double RightAngleFinder(double[] histogram)
+		{
+			int maxindex = 0;
+			int secondbestindex = -1;
+			for(int i = 0; i < histogram.Length; i++)
+			{
+				if(maxindex == 0)
+				{
+					maxindex = i;
+				}
+				else if(histogram[i] >= histogram[maxindex])
+				{
+					secondbestindex = maxindex;
+					maxindex = i;
+				}
+				else if(secondbestindex == -1 || histogram[i] > histogram[secondbestindex])
+				{
+					secondbestindex = i;
+				}
+			}
+			if(maxindex == secondbestindex)
+			{
+				//My algorithm sucks
+				throw new NotImplementedException();
+			}
+			double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)maxindex);
+			double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)secondbestindex);
+			return Math.Abs(Math.Sin(ang1-ang2));
+		}
+		public static double Moment(double[] histogram, int p)
+		{
+			if(p == 0)
+			{
+				double sum = 0;
+				for(int i = 0; i < histogram.Length; i++)
+				{
+					sum += histogram[i];
+				}
+				return sum/((double)histogram.Length);
+			}
+			else
+			{
+				double v_0 = Moment(histogram, 0);
+				double numerator = 0;
+				double denom = 0;
+				for(int i = 0; i < histogram.Length; i++)
+				{
+					if(histogram[i] <= v_0) continue;
+					else
+					{
+						numerator += Math.Pow((histogram[i]-v_0),p+1);
+						denom += histogram[i]-v_0;
+					}
+				}
+				return numerator/denom;
+			}
+		}
+		public static double SmoothingKernel(double argument)
+		{
+			//Using triangular kernel.
+			if(Math.Abs(argument) > 1d) return 0;
+			return (1-Math.Abs(argument));
 		}
 		/// <summary>
 		/// Returns a smoothed gradient array, indexed so that SmoothedGradientArray(img)[x,y] is
@@ -178,6 +286,23 @@ namespace DRFCSharp
 				gaussian_derivative[i] = ((double)arg)/Math.Sqrt(2d*Math.PI*Math.Pow(variation,2d)) * Math.Exp(-1*Math.Pow(arg,2)/(2*Math.Pow(variation,2)));
 			}
 			return gaussian_derivative;
+		}
+		public static Classification ImportLabeling(string filename)
+		{
+			Label[,] labels = new Label[x_sites,y_sites];
+			using(StreamReader csvfile = new StreamReader(filename))
+			{
+				for(int col = 0; col < x_sites; col++)
+				{
+					string line = csvfile.ReadLine();
+					string[] vals = line.Split(',');
+					for(int row = 0; row < y_sites; row++)
+					{
+						labels[row,col] = (Label)Int32.Parse(vals[row]);
+					}
+				}
+			}
+			return new Classification(labels);
 		}
 	}
 }

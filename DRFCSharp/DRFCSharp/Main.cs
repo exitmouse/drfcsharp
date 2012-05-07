@@ -8,31 +8,26 @@ namespace DRFCSharp
 	{
 		public static void Main (string[] args)
 		{
-			SiteFeatureSet[,] sitesarray = new SiteFeatureSet[ImageData.x_sites,ImageData.y_sites];
-			SiteFeatureSet.Init(sitesarray);
-			ImageData img = new ImageData(sitesarray);
-			Label[,] labels = new Label[ImageData.x_sites,ImageData.y_sites];
-			for(int i = 0; i < 16; i++)
+			ImageData[] imgs = new ImageData[20];
+			Classification[] cfcs = new Classification[20];
+			string imgpath = "C:/Users/Jesse/Documents/DiscriminativeRandomFields/Discriminative-Random-Fields/Dataset/";
+			int count = 0;
+			for(int dig1 = 0; dig1 < 1; dig1++) for(int dig2 = 0; dig2 < 2; dig2++) for(int dig3 = 0; dig3 < 10; dig3++)
 			{
-				for(int j = 0; j < 16; j++)
-				{
-					labels[i,j] = Label.ON;
-				}
+				Console.WriteLine ("Importing "+dig1.ToString()+dig2.ToString()+dig3.ToString()+"th image");
+				string prefix = dig1.ToString()+dig2.ToString()+dig3.ToString();
+				ImageData img = ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+prefix+".jpg"));
+				Console.WriteLine (img[0,0].features[3]);
+				Classification cfc = ImageData.ImportLabeling(imgpath+prefix+".txt");
+				imgs[count] = img;
+				cfcs[count] = cfc;
+				count++;
 			}
-			labels[0,0] = Label.OFF;
-			img.site_features[0,0] = new SiteFeatureSet(new DenseVector(SiteFeatureSet.NUM_FEATURES,5d)); //Training _does not like it_ when the same features lead to different outcomes.
-			//Our features have double precision though, so we'll be fine.
-			Classification cfc = new Classification(labels);
-			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(new ImageData[1]{img},new Classification[1]{cfc},1d);
+			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(imgs,cfcs,1d);
 			Console.WriteLine(mfm.time_to_converge);
-			Classification out_classed = mfm.MaximumAPosterioriInfer(img); //See what I did there?
-			//for(int i = 0; i < 16; i++)
-			//	Console.WriteLine(out_classed[i,i]);
-			DenseVector[,] grads = ImageData.SmoothedGradientArray(new Bitmap("C:/test.bmp"));
-			for(int i = 0; i < grads.GetLength(0); i++)
-			{
-				Console.WriteLine(grads[i,i].ToString());
-			}
+			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate255.jpg"))); //See what I did there?
+			for(int i = 0; i < 16; i++)for(int j = 0; j < 16; j++)
+				Console.WriteLine(out_classed[i,j]);
 		}
 	}
 }
