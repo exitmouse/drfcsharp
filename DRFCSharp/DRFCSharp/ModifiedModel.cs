@@ -35,7 +35,12 @@ namespace DRFCSharp
 			}
 			Vertex source = new Vertex();
 			Vertex target = new Vertex();
-			StreamWriter sw = new StreamWriter("C:/Users/Jesse/Documents/DiscriminativeRandomFields/Discriminative-Random-Fields/Dataset/231.txt");
+			
+			//TODO: make sure this still works when we are not running in debug mode,
+			//so that the base directory no longer ends with
+			// /DRFCSharp/DRFCSharp/bin/debug/
+			string output_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,"231.xml");
+			StreamWriter sw = new StreamWriter(output_path);
 			for(int j = 0; j < ImageData.y_sites; j++)
 			{
 				for(int i = 0; i < ImageData.x_sites; i++) 
@@ -83,6 +88,7 @@ namespace DRFCSharp
 			}
 			sw.Close();
 			double flow_added = 0;
+			
 			while(true)
 			{
 				flow_added = source.AddFlowTo(new List<Vertex>(), target, 400000000d);
@@ -109,7 +115,11 @@ namespace DRFCSharp
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
 			
-			Stream thetaverboselog = new FileStream("/Users/ddenton/Documents/Dartmouth Courses/CS 74/Discriminative-Random-Fields/Dataset/thetalog80.xml",FileMode.OpenOrCreate);
+			//TODO: make sure this still works when we are not running in debug mode,
+			//so that the base directory no longer ends with
+			// /DRFCSharp/DRFCSharp/bin/debug/
+			string theta_verbose_log_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,"thetalog80.xml");
+			Stream thetaverboselog = new FileStream(theta_verbose_log_path,FileMode.OpenOrCreate);
 			SoapFormatter serializer = new SoapFormatter();
 			
 			//w = (DenseVector)serializer.Deserialize(thetaverboselog);
