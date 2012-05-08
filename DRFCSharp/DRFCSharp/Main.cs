@@ -18,6 +18,7 @@ namespace DRFCSharp
 				Console.WriteLine ("Importing "+dig1.ToString()+dig2.ToString()+dig3.ToString()+"th image");
 				string prefix = dig1.ToString()+dig2.ToString()+dig3.ToString();
 				ImageData img = ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+prefix+".jpg"));
+				Console.WriteLine (img[0,2].features[2]);
 				Classification cfc = ImageData.ImportLabeling(imgpath+prefix+".txt");
 				imgs[count] = img;
 				cfcs[count] = cfc;

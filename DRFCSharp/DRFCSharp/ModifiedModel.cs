@@ -146,17 +146,8 @@ namespace DRFCSharp
 									}
 									double coeff = Exp(logofcoeff);
 									z += coeff;
-									double denom = Sigma (tempx * w.DotProduct(h));
-									if(denom < 0.00000001)
-									{
-										Console.WriteLine (w.ToString());
-										Console.WriteLine ("That was w this is h");
-										Console.WriteLine (h.ToString());
-										Console.WriteLine ("And this is their dotporduct");
-										Console.WriteLine (w.DotProduct(h));
-										Console.WriteLine ("GRAAAH");
-									}
-									dzdw += coeff * tempx*h[k]/denom;
+									double multfactor = (1 - Sigma (tempx * w.DotProduct(h)));
+									dzdw += coeff * tempx*h[k]*multfactor;
 									if(double.IsNaN(dzdw)||double.IsNaN(z)||double.IsInfinity(dzdw)||double.IsInfinity(z)) throw new NotFiniteNumberException();
 								}
 								if(z <= 0d)
