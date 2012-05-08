@@ -13,8 +13,8 @@ namespace DRFCSharp
 		DenseVector v;
 		public const int MAX_ITERS = 3000;
 		public const double CONVERGENCE_CONSTANT = 1;
-		public const double START_STEP_LENGTH = 200d;
-		public const double MIN_STEP_LENGTH = 0.000000000001d; //TODO all these small thingies are hacks
+		public const double START_STEP_LENGTH = 0.00000001d;
+		public const double MIN_STEP_LENGTH = 0.00000000001d; //TODO all these small thingies are hacks
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
 		
@@ -96,8 +96,11 @@ namespace DRFCSharp
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
 			
-			Stream thetaverboselog = new FileStream("C:/Users/Jesse/Documents/DiscriminativeRandomFields/thetalog.xml",FileMode.OpenOrCreate);
+			Stream thetaverboselog = new FileStream("C:/Users/Jesse/Documents/DiscriminativeRandomFields/Discriminative-Random-Fields/thetalog.xml",FileMode.OpenOrCreate);
 			SoapFormatter serializer = new SoapFormatter();
+			
+			w = (DenseVector)serializer.Deserialize(thetaverboselog);
+			v = (DenseVector)serializer.Deserialize(thetaverboselog);
 			
 			int iter_count = 0;
 			while(iter_count < MAX_ITERS)
@@ -219,15 +222,10 @@ namespace DRFCSharp
 					}
 					vgrad[k] -= v[k]/(Math.Pow (tau,2));
 				}
-				double normwgrad = wgrad.Norm(1d);
-				double w0 = wgrad[0];
-				double w1 = wgrad[1];
-				double w2 = wgrad[2];
-				double w3 = wgrad[3];
-				double w4 = wgrad[4];
-				double normvgrad = vgrad.Norm(1d);
+				double normwgrad = wgrad.Norm(2d);
+				double normvgrad = vgrad.Norm(2d);
 				double sumofnorms = normwgrad + normvgrad;
-				Console.WriteLine("L1 Norms Summed: {0}\t L2 Norms Summed: {1}",sumofnorms,wgrad.Norm(2d)+vgrad.Norm(2d));
+				Console.WriteLine("\t\t\t\t\tL2 Norms Summed: {0}",sumofnorms);
 				//Check for convergence
 				if(sumofnorms < CONVERGENCE_CONSTANT)
 				{
