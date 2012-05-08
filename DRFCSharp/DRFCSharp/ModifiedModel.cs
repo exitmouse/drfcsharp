@@ -99,11 +99,11 @@ namespace DRFCSharp
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
 			
-			Stream thetaverboselog = new FileStream("C:/Users/Jesse/Documents/DiscriminativeRandomFields/Discriminative-Random-Fields/thetalog80.xml",FileMode.OpenOrCreate);
+			Stream thetaverboselog = new FileStream("/Users/ddenton/Documents/Dartmouth Courses/CS 74/Discriminative-Random-Fields/Dataset/thetalog80.xml",FileMode.OpenOrCreate);
 			SoapFormatter serializer = new SoapFormatter();
 			
-			w = (DenseVector)serializer.Deserialize(thetaverboselog);
-			v = (DenseVector)serializer.Deserialize(thetaverboselog);
+			//w = (DenseVector)serializer.Deserialize(thetaverboselog);
+			//v = (DenseVector)serializer.Deserialize(thetaverboselog);
 			
 			int iter_count = 0;
 			while(iter_count < MAX_ITERS)
