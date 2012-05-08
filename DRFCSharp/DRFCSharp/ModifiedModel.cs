@@ -100,8 +100,6 @@ namespace DRFCSharp
 				vgrad.Clear();
 				
 				//Compute gradients
-				
-				//TODO go over this code with a fine tooth comb
 				for(int k = 0; k < wgrad.Count; k++)
 				{
 					for(int m = 0; m < training_inputs.Length; m++)
@@ -117,16 +115,16 @@ namespace DRFCSharp
 								//x_i
 								int x = (int)(training_outputs[m][horz,vert])*2 - 1;
 								double hk = h[k];
+								
 								if(double.IsNaN(hk)) throw new NotFiniteNumberException();
+									
 								//sigma term that keeps reappearing
 								double sig = Sigma(x * w.DotProduct(h));
 								//x_i * h_i(y)_k * (1 - sigma(x_i * w^T h_i(y)))
 								double old = wgrad[k];
 								wgrad[k] += x*h[k]*(1 - sig);
-								if(double.IsNaN(wgrad[k])) 
-								{
-									throw new NotFiniteNumberException();
-								}
+								
+								if(double.IsNaN(wgrad[k])) throw new NotFiniteNumberException();
 								
 								//- ((d/(dw_k)) z_i) / z_i
 								double z = 0;
@@ -148,13 +146,14 @@ namespace DRFCSharp
 									z += coeff;
 									double multfactor = (1 - Sigma (tempx * w.DotProduct(h)));
 									dzdw += coeff * tempx*h[k]*multfactor;
+									
 									if(double.IsNaN(dzdw)||double.IsNaN(z)||double.IsInfinity(dzdw)||double.IsInfinity(z)) throw new NotFiniteNumberException();
 								}
-								if(z <= 0d)
-								{
-									throw new NotFiniteNumberException();
-								}
+								
+								if(z <= 0d) throw new NotFiniteNumberException();
+								
 								wgrad[k] -= dzdw/z;
+								
 								if(double.IsNaN(wgrad[k])) throw new NotFiniteNumberException();
 								if(Math.Abs(wgrad[k]) > 100000000000d) throw new NotFiniteNumberException();
 							}
@@ -203,10 +202,9 @@ namespace DRFCSharp
 									z += coeff;
 									dzdv += coeff * dzdvterm;
 								}
-								if(z <= 0d)
-								{
-									throw new NotFiniteNumberException();
-								}
+								
+								if(z <= 0d) throw new NotFiniteNumberException();
+								
 								vgrad[k] -= dzdv/z;
 							}
 						}

@@ -36,8 +36,8 @@
 
 \begin{document}
 \title{Computer Science 74}
-\author{Jesse Selover}
-\markright{Jesse Selover}
+\author{Jesse Selover and Dan Denton}
+\markright{Jesse Selover and Dan Denton}
 \maketitle
 
 We want
@@ -52,14 +52,15 @@ We have
 \frac{\partial}{\partial w_k} \text{that} = \sum_{m=1}^M \sum_{i \in
   S} \left[ x_i(\vec{h}_i(\vec{y}))_k(1-\sigma(x_i \vec{w}^\top
   \vec{h}_i(\vec{y}))) - \frac{\frac{\partial}{\partial w_k} z_i}{z_i}
-\right].
+\right]
 \]
 Computing the derivative of $z_i$,
 \[
 \frac{\partial}{\partial w_k} z_i = \sum_{x_i \in \{-1,1\}}
 \exp\left(\log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) +
   \sum_{j \in \mathcal{N}_i} x_i x_j \vec{v}^\top
-  \vec{\mu}_{ij}(\vec{y})\right)\frac{x_i(\vec{h}_i(\vec{y}))_k}{\sigma(x_i\vec{w}^\top\vec{h}_i(\vec{y}))}
+  \vec{\mu}_{ij}(\vec{y})\right)\left(1-\sigma(x_i\vec{w}^\top\vec{h}_i(\vec{y}))\right)
+  \left(x_i(\vec{h}_i(\vec{y}))_k\right)
 \]
 Now for $v_k$
 \[
@@ -69,7 +70,7 @@ Now for $v_k$
 \]
 where the partial derivative of $z_i$ is
 \[
-\frac{\partial}{\partial w_k} z_i = \sum_{x_i \in \{-1,1\}}
+\frac{\partial}{\partial v_k} z_i = \sum_{x_i \in \{-1,1\}}
 \exp\left(\log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) +
   \sum_{j \in \mathcal{N}_i} x_i x_j \vec{v}^\top
   \vec{\mu}_{ij}(\vec{y})\right)\sum_{j \in \mathcal{N}_i} x_i x_j(\vec{\mu}_{ij}(\vec{y}))_k
