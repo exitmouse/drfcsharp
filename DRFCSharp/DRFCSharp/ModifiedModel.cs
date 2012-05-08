@@ -146,7 +146,17 @@ namespace DRFCSharp
 									}
 									double coeff = Exp(logofcoeff);
 									z += coeff;
-									dzdw += coeff * tempx*h[k]/Sigma(tempx * w.DotProduct(h));
+									double denom = Sigma (tempx * w.DotProduct(h));
+									if(denom < 0.00000001)
+									{
+										Console.WriteLine (w.ToString());
+										Console.WriteLine ("That was w this is h");
+										Console.WriteLine (h.ToString());
+										Console.WriteLine ("And this is their dotporduct");
+										Console.WriteLine (w.DotProduct(h));
+										Console.WriteLine ("GRAAAH");
+									}
+									dzdw += coeff * tempx*h[k]/denom;
 									if(double.IsNaN(dzdw)||double.IsNaN(z)||double.IsInfinity(dzdw)||double.IsInfinity(z)) throw new NotFiniteNumberException();
 								}
 								if(z <= 0d)
@@ -155,6 +165,7 @@ namespace DRFCSharp
 								}
 								wgrad[k] -= dzdw/z;
 								if(double.IsNaN(wgrad[k])) throw new NotFiniteNumberException();
+								if(Math.Abs(wgrad[k]) > 100000000000d) throw new NotFiniteNumberException();
 							}
 						}
 					}
@@ -211,10 +222,15 @@ namespace DRFCSharp
 					}
 					vgrad[k] -= v[k]/(Math.Pow (tau,2));
 				}
-				double normw = wgrad.Norm(1d);
-				double normv = vgrad.Norm(1d);
+				double normwgrad = wgrad.Norm(1d);
+				double w0 = wgrad[0];
+				double w1 = wgrad[1];
+				double w2 = wgrad[2];
+				double w3 = wgrad[3];
+				double w4 = wgrad[4];
+				double normvgrad = vgrad.Norm(1d);
 				//Check for convergence
-				if(normw + normv < CONVERGENCE_CONSTANT)
+				if(normwgrad + normvgrad < CONVERGENCE_CONSTANT)
 				{
 					break;
 				}
@@ -286,7 +302,7 @@ namespace DRFCSharp
 			return Math.Log(x);
 		}
 		public static double Sigma(double x){
-			double result = 1/(1+ Exp(x));
+			double result = 1/(1+Exp(-x));
 			if(result < 0 || result > 1)
 			{
 				throw new NotFiniteNumberException("Sigma should be between 0 and 1");
