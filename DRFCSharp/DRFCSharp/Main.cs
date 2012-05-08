@@ -18,21 +18,21 @@ namespace DRFCSharp
 				Console.WriteLine ("Importing "+dig1.ToString()+dig2.ToString()+dig3.ToString()+"th image");
 				string prefix = dig1.ToString()+dig2.ToString()+dig3.ToString();
 				ImageData img = ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+prefix+".jpg"));
-				Console.WriteLine (img[0,2].features[2]);
+				//Console.WriteLine (img[0,2].features[2]);
 				Classification cfc = ImageData.ImportLabeling(imgpath+prefix+".txt");
 				imgs[count] = img;
 				cfcs[count] = cfc;
 				count++;
 			}
 			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(imgs,cfcs,1d);
-			Console.WriteLine("Model converged! Estimating image 138...");
-			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate138.jpg"))); //See what I did there?
-			StreamWriter sw = new StreamWriter(imgpath+"138.txt");
+			Console.WriteLine("Model converged! Estimating image 145...");
+			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate231.jpg"))); //See what I did there?
+			StreamWriter sw = new StreamWriter(imgpath+"145.txt");
 			for(int i = 0; i < 16; i++)
 			{
 				for(int j = 0; j < 16; j++)
 				{
-					if(out_classed[i,j] == Label.OFF)
+					if(out_classed[j,i] == Label.OFF)
 					{
 						sw.Write('0');
 					}
