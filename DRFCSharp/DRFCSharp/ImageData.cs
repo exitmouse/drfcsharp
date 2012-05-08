@@ -13,6 +13,8 @@ namespace DRFCSharp
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
 		public const int NUM_ORIENTATIONS = 8;
 		public SiteFeatureSet[,] site_features;
+		public static int Ons_seen = 0;
+		public static int Sites_seen = 0;
 		public ImageData (SiteFeatureSet[,] site_features)
 		{
 			if(site_features.GetLength(0) != x_sites || site_features.GetLength(1) != y_sites)
@@ -310,6 +312,8 @@ namespace DRFCSharp
 					for(int row = 0; row < y_sites; row++)
 					{
 						labels[row,col] = (Label)Int32.Parse(vals[row]);
+						Sites_seen += 1;
+						if(labels[row,col]==Label.ON) Ons_seen += 1;
 					}
 				}
 			}

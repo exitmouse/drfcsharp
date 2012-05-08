@@ -45,7 +45,7 @@ namespace DRFCSharp
 					//Lambda_t is the log-likelihood ratio: log( p(y | x = 1) / p(y | x = 0) ).
 					//Using Bayes' law, we have
 					//Posterior Odds = P(x = 1 | y)/P(x = 0 | y) = Likelihood Ratio * Prior Odds = (P(y | x = 1) / P(y | x = 0))*(P(x=1)/P(x=0)) = e^(lambda_t)*1
-					//So lambda_t should be log(Posterior Odds) = log(P(x=1|y))-log(P(x=0|y))
+					//So lambda_t should be log(Posterior Odds) + log(Prior Odds) = log(P(x=1|y))-log(P(x=0|y)) + possibly 0?
 					
 					//Now, P(x=1|y) is modeled as sigma(w^T * h(y)), so this should be
 					//log(sigma(w^T * h(y))) - log(1-sigma(w^T * h(y))).
@@ -53,7 +53,9 @@ namespace DRFCSharp
 					//I could totally be wrong.
 					//-Jesse Selover
 					double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
-					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one);
+					double prob_one = ((double)ImageData.Ons_seen)/((double) ImageData.Sites_seen);
+					double prob_zero = 1d - prob_one;
+					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) /*+ Log (prob_one/prob_zero)*/;
 					if(lambda > 0)
 					{
 						Console.WriteLine ("Edge to source with strength {0}",lambda);
