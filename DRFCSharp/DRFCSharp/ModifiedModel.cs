@@ -1,4 +1,7 @@
 using System;
+using System.IO;
+using System.Xml.Serialization;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra.Double;
 
@@ -8,10 +11,11 @@ namespace DRFCSharp
 	{
 		DenseVector w;
 		DenseVector v;
-		public const int MAX_ITERS = 30000;
+		public const int MAX_ITERS = 3000;
 		public const double CONVERGENCE_CONSTANT = 1;
-		public const double START_STEP_LENGTH = 200d;
-		public const double MIN_STEP_LENGTH = 0.0000000000000001d; //TODO all these small thingies are hacks
+		public const double START_STEP_LENGTH = 0.0000000001d;
+		public const double MIN_STEP_LENGTH = 0.0000000000001d; //TODO all these small thingies are hacks
+		public const double LIKELIHOOD_CONVERGENCE = 3d;
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
 		
@@ -50,10 +54,12 @@ namespace DRFCSharp
 				double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one);
 				if(lambda > 0)
 				{
+					Console.WriteLine ("Edge to source with strength {0}",lambda);
 					Edge.AddEdge(source,t,lambda,0);
 				}
 				else
 				{
+					Console.WriteLine ("Edge to target with strength {0}",-lambda);
 					Edge.AddEdge(t,target,-lambda,0);
 				}
 				
@@ -92,6 +98,12 @@ namespace DRFCSharp
 			
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
+			
+			Stream thetaverboselog = new FileStream("C:/Users/Jesse/Documents/DiscriminativeRandomFields/Discriminative-Random-Fields/thetalog80.xml",FileMode.OpenOrCreate);
+			SoapFormatter serializer = new SoapFormatter();
+			
+			w = (DenseVector)serializer.Deserialize(thetaverboselog);
+			v = (DenseVector)serializer.Deserialize(thetaverboselog);
 			
 			int iter_count = 0;
 			while(iter_count < MAX_ITERS)
@@ -211,25 +223,35 @@ namespace DRFCSharp
 					}
 					vgrad[k] -= v[k]/(Math.Pow (tau,2));
 				}
-				double normwgrad = wgrad.Norm(1d);
-				double w0 = wgrad[0];
-				double w1 = wgrad[1];
-				double w2 = wgrad[2];
-				double w3 = wgrad[3];
-				double w4 = wgrad[4];
-				double normvgrad = vgrad.Norm(1d);
+				double normwgrad = wgrad.Norm(2d);
+				double normvgrad = vgrad.Norm(2d);
+				double sumofnorms = normwgrad + normvgrad;
+				Console.WriteLine("\t\t\t\t\tL2 Norms Summed: {0}",sumofnorms);
 				//Check for convergence
-				if(normwgrad + normvgrad < CONVERGENCE_CONSTANT)
+				if(sumofnorms < CONVERGENCE_CONSTANT)
 				{
 					break;
 				}
 				
 				//Compute best step length
 				double a = START_STEP_LENGTH;
-				while(PseudoLikelihood(w + (DenseVector)wgrad.Multiply(a), v + (DenseVector)vgrad.Multiply(a), training_inputs, training_outputs, tau) < PseudoLikelihood(w,v, training_inputs, training_outputs, tau))
+				double oldlikelihood = PseudoLikelihood(w,v, training_inputs, training_outputs, tau);
+				double newlikelihood = 0;
+				while(true)
 				{
+					newlikelihood = PseudoLikelihood(w + (DenseVector)wgrad.Multiply(a), v + (DenseVector)vgrad.Multiply(a), training_inputs, training_outputs, tau);
+					if(newlikelihood > oldlikelihood)
+					{
+						Console.WriteLine ("Likelihood after this step: {0}",newlikelihood);
+						break;
+					}
 					a = a/2;
+					if(a < MIN_STEP_LENGTH)
+					{
+						break;
+					}
 				}
+				Console.WriteLine ("Step length: {0}",a);
 				if( a < MIN_STEP_LENGTH)
 				{
 					break;
@@ -237,8 +259,19 @@ namespace DRFCSharp
 				//Step
 				w += (DenseVector)wgrad.Multiply(a);
 				v += (DenseVector)vgrad.Multiply(a);
+				
+				serializer.Serialize(thetaverboselog,w);
+				serializer.Serialize(thetaverboselog,v);
+				thetaverboselog.Flush();
+				if(newlikelihood - oldlikelihood < LIKELIHOOD_CONVERGENCE)
+				{
+					break;
+				}
+				
 				iter_count++;
 			}
+			
+			thetaverboselog.Close();
 			return new ModifiedModel(w,v,iter_count);
 			
 		}
