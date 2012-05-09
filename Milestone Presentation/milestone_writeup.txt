@@ -31,4 +31,4 @@ By performing our labelings with these three labels, and choosing the most speci
 Inference:
 
 	[insert description]
-	We implemented the Greig, Porteous, Se
+	We implemented the min-cut algorithm for MAP label selection using C#.  The algorithm is the standard Ford-Fulkerson min-cut using depth first search.  After fixing a problem with the depth first search, which was 
