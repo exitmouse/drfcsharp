@@ -327,6 +327,121 @@ to use 3 labels, which form a totally ordered set:
 
 <h3>Issues with the Training</h3>
 
+<p>
+  We had trouble for a while getting the training to converge; this
+  turned out to be a bug not in our code but in our math. An incorrect
+  application of the chain rule made w's gradient slightly off; when
+  we fixed this, the gradient ascent worked very well. With our chosen
+  convergence constants, it tends to converge in under five
+  minutes. It takes a bit longer per iteration then we'd like, and
+  we've only been training it on 80 images; its runtime should be
+  proportional to the number of images, and we plan to use 200 for the
+  final results. We used C# to serialize the w and v we find at each
+  iteration to XML, so we can view the coefficients and save our
+  progress when we run it for extended periods of time.
+</p>
+
+<h3>Inference</h3>
+
+<p>
+  The [DRFS 2006] authors mentioned that the MAP estimate of the
+  labeling could be computed exactly with an algorithm of Grieg
+  et. al. However, that paper presented an algorithm for a different
+  random field model, without the specific potential form of DRFs.
+</p>
+<p>
+  The algorithm works by creating a graph with image sites as nodes,
+  plus a source node and a target node, and specifying edge capacities
+  between the nodes in such a way that the equation for the capacity
+  of a cut on the graph separating the source and the target is only
+  an additive constant away from the equation for the negative
+  likelihood of a labeling. There is a known algorithm to find the
+  minimum cut, and when we have found it we have found the maximum
+  likelihood labeling.
+</p>
+<p>
+  Specifically, according to the algorithm, lambda[i] is defined as
+  the log-likelihood ratio at site i of the site being classified as
+  structure; if lambda[i] is positive we create an edge from the
+  source to the node i with capacity lambda[i], and if it's negative
+  we create an edge from the node i to the target with capacity
+  -lambda[i].
+</p>
+<p>
+  Then we create undirected edges between site nodes i and their
+  neighbors j, with capacity beta[i,j] which is the coefficient of the
+  interaction potential. Unfortunately, our interaction potential is
+  not of that form.
+</p>
+<p>
+  In fact, the log likelihood ratio is of a different form as well. We
+  rederived these edge weights in the context of the modified DRF
+  model:
+</p>
+LOTS OF LATEX HERE
+
+<p>
+  Recently, however, we've investigated using empirically measured prior
+  odds; it's had a noticeable impact on our classifications.
+</p>
+<p>
+  As for beta[i,j], we've used the analogue of the Ising-model
+  coefficients for our specific interaction potential: max(0,v<sup>T</sup> * mu[i,j]y)
+</p>
+<p>
+  We implemented the min-cut algorithm for MAP label selection using
+  C#.  The algorithm is the standard Ford-Fulkerson min-cut using
+  depth first search.  After fixing a problem with the depth first
+  search, the min-cut algorithm seems to be working swimmingly.
+</p>
+<p>
+  Unfortunately, the same cannot be said for the actual inference.  We
+  began solving the problem by setting all of the beta[i,j]s to zero,
+  which performs inference using only the association potential and is
+  analogous to logistic regression. When we did this, we got
+  believable classifications:
+</p>
+
+<p>
+<center>
+<img src="images/Bridge_Labeling_Associative_Large_Prior.png" width="500" />
+<br/>
+<caption><span style="font-weight:bold;">Figure 2.</span>  
+This is what we get with a 50/50 prior.</caption>
+</center>
+</p>
+
+<p>
+<center>
+<img src="images/Bridge_Labeling_Associative_Small_Prior.png" width="500" />
+<br/>
+<caption><span style="font-weight:bold;">Figure 3.</span>  
+This is what we get with an empirically estimated prior.</caption>
+</center>
+</p>
+
+<p>
+  When we add in the beta[i,j]s calculated from the interaction
+  potential, however, we are seeing behavior where the classifier will
+  mark every site as being the same, either as all ones or all zeros.
+  This means that, after the introduction of the beta[i,j]s, the
+  min-cut is always either just the source vertex, or everything but
+  the sink vertex.  Clearly the beta[i,j]s are too large relative to
+  the lambda[i]s.  What we need to do is go over our derivations of
+  these values to check whether we have computed these values
+  correctly.
+</p>
+<p>
+  Our most recent theory for what is causing this mismatch is that we
+  have not yet correctly set the hyper-parameter tau.  Tau is the
+  variance of the prior on the vector of interaction parameters, v.
+  By using a smaller value of tau, we should cause v to take on
+  smaller values relative to w, and hence cause the beta[i,j]s to
+  shrink relative to the lambda[i]s.  It remains to see whether this
+  fixes the problem.  Once we find the error, we expect that the DRF
+  classifications using the interaction potential correctly will
+  significantly outperform the logistic classifier.
+</p>
 
 <h3>Data</h3>
 
@@ -352,35 +467,96 @@ A screenshot of the data labeler program in mid-labeling.</caption>
   and use a couple hundred such images.
 </p>
 
-<h3>Milestone Goal</h3>
+<h3>Remaining Work</h3>
+
 <p>
-  By the milestone we aim to complete the following tasks:
-  <ul>
-    <li> Writing a short program to facilitate hand-labeling our
-    data </li>
-    <li> Hand-labeling the data </li>
-    <li> Extracting features for each image (pre-processing) </li>
-    <li> Coding the DRF model </li>
-    <li> Training the DRF model </li>
-    <li> Producing preliminary results </li>
-  </ul>
+  The highest priority right now is to discover the bug that exists in
+  our use of the interaction potential for classification.  Once we
+  have that fixed, we will finally have access to the real results of
+  the DRF classifier.
+</p>
+<p>
+  We took the time to individually download 300 orthophotos for our
+  dataset.  Of these, we have been using the 80 which we have already
+  labeled for all of our training so far.  We need to use the data
+  labeler to label the remaining photos, and then train the model on
+  our full training set (200 randomly selected images).  Using cross
+  validation with our training data, we will tune the variance of the
+  gaussian gradient used for feature extraction, along with the
+  variance of the gaussian prior on v, tau.  With a tuned model, we
+  hope to achieve classification rates similar to those obtained by
+  [6].  We expect that it will be hard to actually achieve the
+  combined 70.5% detection rate and 0.4% false positive rates that
+  Kumar and Hebert got, because of the ambiguity of surfaces like
+  roads and parking lots which sometimes have angular edges and
+  sometime rounded edges.  We hope, however, that when detecting just
+  buildings we can get high detection rates, and when detecting all
+  structures we can avoid most false positives.
+</p>
+<p>
+  After we finish with quantitative analysis of classification using
+  our personal dataset, we will be ready to move on to other datasets
+  for comparison.  We have Kumar and Hebert's already labeled dataset,
+  and we look forward to seeing what kind of results we can achieve on
+  that data.  We also need to contact Bellman and Shortis (we should
+  probably do this very soon) to try to get access to their data.
+  With proper labeling, we hope to compare our building recognition
+  rates, where we will consider a success whenever the algorithm
+  labels at least one site of an image containing a rooftop, or when
+  it leaves blank every site of an image containing no rooftop.
+</p>
+<p>
+  Finally, we need to polish up and increase the commenting in our
+  code, and prepare the final presentation.  We believe that we are on
+  track to accomplish all of this by the 30th.
 </p>
 
 <h3>References</h3>
 <ol>
-  <li> C. J. Bellman and M. R. Shortis. A machine learning approach to building recognition in aerial photographs. In International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, pages 50-54, 2002.</li>
+  
+  <li>C. Bellman and M. Shortis. A machine learning approach to build-
+  ing recognition in aerial photographs. In International Archives of
+  the Photogrammetry, Remote Sensing and Spatial Information Sciences,
+  pages 50-54, 2002.</li>
 
-  <li> Sanjiv Kumar and Martial Hebert. Discriminative random fields: a discriminative framework for contextual interaction in classification. In Computer Vision, 2003. Proceedings. Ninth IEEE International Conference on, pages 1150-1157 vol.2, oct. 2003.</li>
+  <li>R. Cipolla, S. Battiato, and G.M. Farinella. Computer Vision:
+  Detection, Recognition and Reconstruction. Studies in Computational
+  Intelligence. Springer, 2010.</li>
 
-  <li> Sanjiv Kumar and Martial Hebert. Discriminative random fields. International Journal of Computer Vision, 68(2):179-202, 2006.</li>
+  <li>C. Fox and G. Nicholls. Exact map states and expectations from
+  perfect sampling: Greig, porteous and seheult revisited. In
+  Proceedings MaxEnt 2000 Twentieth International Workshop on Bayesian
+  Inference and Maximum Entropy Methods in Science and Engineering
+  CNRS, May 2000.</li>
 
-  <li> John D. Lafferty, Andrew McCallum, and Fernando C. N. Pereira. Conditional random fields: Probabilistic models for segmenting and labeling sequence data. In Carla E. Brodley and Andrea Pohoreckyj Danyluk, editors, ICML, pages 282-289. Morgan Kaufmann, 2001.</li>
+  <li>D. Greig, B. Porteous, and A. Seheult. Exact maximum a
+  posteriori estimation for binary images. Journal of the Royal
+  Statistical Society, 51:271-279, 1989.</li>
 
-  <li> Maryland GIS Montgomery County, April 2012.</li>
+  <li>S. Kumar and M. Hebert. Discriminative random fields: a
+  discriminative framework for contextual interaction in
+  classification. In Computer Vision, 2003. Proceedings. Ninth IEEE
+  International Conference on, pages 1150 -1157 vol.2, Oct. 2003.</li>
 
-  <li> Fanhuai Shi, Yongjian Xi, Xiaoling Li, and Ye Duan. Rooftop detection and 3d building modeling from aerial images. In George Bebis, Richard Boyle, Bahram Parvin, Darko Koracin, Yoshinori Kuno, Junxian Wang, Renato Pajarola, Peter Lindstrom, Andr Hinkenjann, Miguel Encarnao, Cludio Silva, and Daniel Coming, editors, Advances in Visual Computing, volume 5876 of Lecture Notes in Computer Science, pages 817-826. Springer Berlin / Heidelberg, 2009.</li>
+  <li>S. Kumar and M. Hebert. Discriminative random
+  fields. International Journal of Computer Vision, 68(2):179-202,
+  2006.</li>
 
-  <li> various. Wikipedia: Orthophoto, April 2012</li>
+  <li>J. Lafferty, A. McCallum, and F. Pereira. Conditional random
+  fields: Probabilistic models for segmenting and labeling sequence
+  data. In C. Brodley and A. Danyluk, editors, ICML, pages
+  282-289. Morgan Kaufmann, 2001.</li>
+
+  <li>Maryland GIS Montgomery County, April 2012.</li>
+
+  <li>F. Shi, Y. Xi, X. Li, and Y. Duan. Rooftop detection and 3d
+  building modeling from aerial images. In Advances in Visual
+  Computing, volume 5876 of Lecture Notes in Computer Science, pages
+  817-826. Springer Berlin / Heidelberg, 2009.</li>
+
+  <li>R. Szeliski. Computer Vision: Algorithms and
+  Applications. Texts in Computer Science. Springer, 2010.</li>
+
 </ol>
 
 </div>
