@@ -1,0 +1,190 @@
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+This HTML is based on that of Nick Foti from last year, which was in turn based on that of Cory Cornelius from the year before.
+-->
+<html>
+<head>
+<title>Discriminative Random Fields for Aerial Structure Detection</title>
+<style type="text/css">
+  body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Verdana;
+    font-size: 10pt;
+    color: #333;
+  }
+  
+  h4 {
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  p {
+    text-align: justify;
+  }
+  
+  #outer {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 620px;
+    border-left: 3px solid #93CA00;
+    border-right: 3px solid #93CA00;
+  }
+
+  #content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: auto;
+    padding: 10px;
+  }
+
+  #authors {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 11pt;
+  }
+  
+  #extra {
+    text-indent: 4em;
+  }
+</style>
+
+</head>
+<body>
+
+<div id="outer">
+
+<div id="content">
+<h2>Discriminative Random Fields for Aerial Structure Detection</h2>
+<h4 id="authors">Daniel Denton and Jesse Selover</h4>
+
+<h3>Project</h3>
+
+
+<center>
+<img src="images/Data_Labeler_Screenshot_Cropped.png" width="500" />
+<br/>
+<caption><span style="font-weight:bold;">Figure 1.</span>  
+A screenshot of the data labeler program in mid-labeling.</caption>
+</center>
+</p>
+
+<p>
+  $\tau$ We have chosen to work on a computer vision problem: labeling
+  regions of an image depending on the presence or absence of man-made
+  structures. We hope to replicate the results of Kumar and Hebert
+  [2], who applied a novel model to the problem that they called
+  Discriminative Random Fields (DRFs). Our interest is largely derived from
+  our desire to code this algorithm, but the
+  problem of detecting man-made structures in computer vision is
+  important in its own right.  Successful computer analysis of images
+  to detect buildings and other man-made structures is useful for
+  classification, retrieval, surveillance, and other applications [3].
+</p>
+<p>
+  In particular, we think that it will be fun to use aerial photos in
+  our project, rather than the stock ground-level photos used by Kumar
+  and Hebert. Structure detection from the air can be especially
+  important for military and law enforcement surveillance, search and
+  rescue, disaster relief, or even estimating building density
+  statistics that can be used for calculations relating to urban
+  sprawl.  Working with aerial photos has the added benefit of
+  standardizing our input images and making the problem slightly
+  easier.  Orthophotos are aerial photos geometrically corrected so
+  that the scale is uniform, and perspective effects due to the
+  distance to the camera have been removed [7]. These attributes make
+  them ideal to study. Due to their importance for applications like
+  mapping and zoning, there is a plethora of high-quality orthophotos
+  available online.  Thus, we had little trouble finding data sources
+  which would suit our needs.  The camera position in these photos
+  also means that lines in man-made structures typically meet at right
+  angles, which are favored by the detection features Kumar and Hebert
+  used [3].
+</p>
+<p>
+  We should note that significant work has already been done
+  on structure (specifically building) recognition from aerial photos.
+  For example, Bellman and Shortis claim to have achieved
+  classification success rates of higher than 80% using wavelet
+  analysis and support vector machines [1].  Similar rates have been
+  achieved by Shi et al. [6].  However, so far, none of the works we
+  have looked at have used DRFs.  It will be interesting to compare
+  our classification rate to their already-successful results.
+</p>
+
+
+<h3>Method</h3>
+<p>
+  Discriminative Random Fields are a type of Conditional Random Field,
+  (defined by Lafferty et al. [4]). Kumar and Hebert [2] provided an
+  example of a Conditional Random Field for machine learning that was
+  based on a lattice rather than a tree, generalizing Lafferty et
+  al.'s work to the case of images.
+</p>
+<p>
+  Following the procedure of Kumar and Hebert [3], we will break the
+  images into small sites, and assign a vertex of a lattice to each
+  site. Then we will model the conditional probability that a site
+  contains man-made structures according to a DRF. We intend to use
+  the same methodology that Kumar and Hebert used, although we will
+  have to tweak some of the aspects of the feature set and
+  hyperparameters to better suit our specific application.
+</p>
+
+
+<h3>Data</h3>
+<p>
+  We were fortunate to find a public online archive of high-quality
+  orthophotos of the entirety of Montgomery County, Maryland at the
+  Montgomery County GIS website [5].  We intend to use selections from
+  this archive for our training and test data.  Since we will be
+  performing supervised learning, each of these images will require
+  labeling.  We plan to write a program to assist us in labeling our
+  images.  Our program will superimpose a grid showing the site
+  divisions, and and it will serve to capture site-labelings as user
+  user mouse clicks.  In this manner we can reasonably expect to label
+  and use a couple hundred such images.
+</p>
+
+<h3>Milestone Goal</h3>
+<p>
+  By the milestone we aim to complete the following tasks:
+  <ul>
+    <li> Writing a short program to facilitate hand-labeling our
+    data </li>
+    <li> Hand-labeling the data </li>
+    <li> Extracting features for each image (pre-processing) </li>
+    <li> Coding the DRF model </li>
+    <li> Training the DRF model </li>
+    <li> Producing preliminary results </li>
+  </ul>
+</p>
+
+<h3>References</h3>
+<ol>
+  <li> C. J. Bellman and M. R. Shortis. A machine learning approach to building recognition in aerial photographs. In International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, pages 50-54, 2002.</li>
+
+  <li> Sanjiv Kumar and Martial Hebert. Discriminative random fields: a discriminative framework for contextual interaction in classification. In Computer Vision, 2003. Proceedings. Ninth IEEE International Conference on, pages 1150-1157 vol.2, oct. 2003.</li>
+
+  <li> Sanjiv Kumar and Martial Hebert. Discriminative random fields. International Journal of Computer Vision, 68(2):179-202, 2006.</li>
+
+  <li> John D. Lafferty, Andrew McCallum, and Fernando C. N. Pereira. Conditional random fields: Probabilistic models for segmenting and labeling sequence data. In Carla E. Brodley and Andrea Pohoreckyj Danyluk, editors, ICML, pages 282-289. Morgan Kaufmann, 2001.</li>
+
+  <li> Maryland GIS Montgomery County, April 2012.</li>
+
+  <li> Fanhuai Shi, Yongjian Xi, Xiaoling Li, and Ye Duan. Rooftop detection and 3d building modeling from aerial images. In George Bebis, Richard Boyle, Bahram Parvin, Darko Koracin, Yoshinori Kuno, Junxian Wang, Renato Pajarola, Peter Lindstrom, Andr Hinkenjann, Miguel Encarnao, Cludio Silva, and Daniel Coming, editors, Advances in Visual Computing, volume 5876 of Lecture Notes in Computer Science, pages 817-826. Springer Berlin / Heidelberg, 2009.</li>
+
+  <li> various. Wikipedia: Orthophoto, April 2012</li>
+</ol>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,3 +1,7 @@
+Discriminative Random Fields for Aerial Structure Detection
+
+Daniel Denton and Jesse Selover
+
 The description and motivation of our project remain unchanged since the original proposal.  Therefore, we will begin at the point where the proposal writeup ended, with the tasks we set for ourselves to complete by the milestone date.
 
 Recap: Milestone Goal
