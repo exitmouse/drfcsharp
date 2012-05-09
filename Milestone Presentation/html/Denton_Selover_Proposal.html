@@ -378,7 +378,59 @@ to use 3 labels, which form a totally ordered set:
   rederived these edge weights in the context of the modified DRF
   model:
 </p>
-LOTS OF LATEX HERE
+
+
+<p>
+<center>
+<img src="images/eqn7.png"/>
+</center>
+</p>
+<p>
+  Using Bayes' rule we have
+</p>
+<p>
+<center>
+<img src="images/eqn8.png"/>
+</center>
+</p>
+<p>
+<center>
+<img src="images/eqn9.png"/>
+</center>
+</p>
+<p>
+So
+</p>
+<p>
+<center>
+<img src="images/eqn10.png"/>
+</center>
+</p>
+
+<p>
+We started by assuming that the prior odds are fifty-fifty, so
+we got
+</p>
+<p>
+<center>
+<img src="images/eqn11.png"/>
+</center>
+</p>
+<p>
+<center>
+<img src="images/eqn12.png"/>
+</center>
+</p>
+
+<p>
+We are modeling P(x=1 | y) by Sigma(w<sup>T</sup> h(y)),
+so we derive that
+</p>
+<p>
+<center>
+<img src="images/eqn13.png"/>
+</center>
+</p>
 
 <p>
   Recently, however, we've investigated using empirically measured prior
@@ -441,30 +493,6 @@ This is what we get with an empirically estimated prior.</caption>
   fixes the problem.  Once we find the error, we expect that the DRF
   classifications using the interaction potential correctly will
   significantly outperform the logistic classifier.
-</p>
-
-<h3>Data</h3>
-
-<p>
-<center>
-<img src="images/eqn1.pdf" />
-<br/>
-<caption><span style="font-weight:bold;">Figure 1.</span>  
-A screenshot of the data labeler program in mid-labeling.</caption>
-</center>
-</p>
-
-<p>
-  We were fortunate to find a public online archive of high-quality
-  orthophotos of the entirety of Montgomery County, Maryland at the
-  Montgomery County GIS website [5].  We intend to use selections from
-  this archive for our training and test data.  Since we will be
-  performing supervised learning, each of these images will require
-  labeling.  We plan to write a program to assist us in labeling our
-  images.  Our program will superimpose a grid showing the site
-  divisions, and and it will serve to capture site-labelings as user
-  user mouse clicks.  In this manner we can reasonably expect to label
-  and use a couple hundred such images.
 </p>
 
 <h3>Remaining Work</h3>
