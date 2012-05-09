@@ -30,7 +30,7 @@ By performing our labelings with these three labels, and choosing the most speci
 
 Image Features:
 
-We have implemented the single-site image features from [DRFS 2006]
+We have implemented the single-site image features from [6]
 because they are most useful for comparison with other methods; we
 should be able to implement the multi-scale features with little
 additional trouble later.
@@ -54,12 +54,12 @@ only as a constant, so we can change it easily.
 We bin the gradients of the pixels in each site into a histogram array
 indexed by orientations; we weight their contributions by their L2
 norms. We chose to smooth the histogram with a simple triangular
-kernel, rather than the gaussian kernel of [DRFS 2006]; this will be
+kernel, rather than the gaussian kernel of [6]; this will be
 very simple to change later.
 
 The number of bins in the histogram is also a hyper-parameter; we can
 change it in the code by editing one variable. We chose 8 bins as a
-preliminary step, based on our research from [SZELISKI BOOK]
+preliminary step, based on our research from [10]
 
 Then the features we compute are heaved central-shift moments $v_p$ of
 the $0$th through $2$nd order. $v_0$ is defined as the arithmetic mean
@@ -76,7 +76,7 @@ In addition, we compute the absolute value of the sine of the angle
 difference between the two highest peaks of the histogram, to measure
 the presence of near-right-angle junctions.
 
-In the original [DRFS 2006] paper, Kumar and Hebert also used the
+In the original [6] paper, Kumar and Hebert also used the
 angle of the highest peak to perhaps allow their algorithm to catch on
 to the predominance of vertical lines in man-made structures in their
 data-set. However, our photos are not taken from upright cameras,
@@ -86,16 +86,16 @@ invariance, so we removed this feature. It should not be useful for
 our application; it would function as random noise.
 
 As we said earlier, we only coded the single-site feature vector, but
-the remaining features from [DRFS 2006] were all simple functions of
+the remaining features from [6] were all simple functions of
 the pixel-wise gradient histograms, so we will be able to implement
 them if necessary.
 
 Modified model:
 
-We decided to use the modified DRF model presented in [DRFS 2006], as
+We decided to use the modified DRF model presented in [6], as
 the learning objective is convex and it promised to be slightly easier
 to train. Kumar and Hebert suggest gradient ascent to maximize the
-log-likelihood, but we had to rederive the gradients with respect to
+log-likelihood, but we had to re-derive the gradients with respect to
 the vector parameters of the model.
 
 In exchange, however, the algorithm for inference became slightly more
@@ -103,7 +103,7 @@ technical. We were planning on using iterated conditional modes;
 iterating over the image assigning to each site the label of maximum
 likelihood given its neighbors. With the modified DRF model, though,
 you can compute exact MAP estimates of the labeling with an algorithm
-presented in [FOX/NICHOLS/GRIEG] as mentioned in [DRFS 2006].
+presented in [3] as mentioned in [6].
 
 Training:
 
@@ -257,4 +257,11 @@ Remaining Work:
 
 	The highest priority right now is to discover the bug that exists in our use of the interaction potential for classification.  Once we have that fixed, we will finally have access to the real results of the DRF classifier.  
 	We took the time to individually download 300 orthophotos for our dataset.  Of these, we have been using the 80 which we have already labeled for all of our training so far.  We need to use the data labeler to label the remaining photos, and then train the model on our full training set (150 randomly selected images).  Using cross validation with our training data, we will tune the variance of the gaussian gradient used for feature extraction, along with the variance of the gaussian prior on $\vec{v}$, $\tau$.  With a tuned model, we hope to achieve classification rates similar to those obtained by [6].  We expect that it will be hard to actually achieve the combined 70.5% detection rate and 0.4% false positive rates that Kumar and Hebert got, because of the ambiguity of surfaces like roads and parking lots which sometimes have angular edges and sometime rounded edges.  We hope, however, that when detecting just buildings we can get high detection rates, and when detecting all structures we can avoid most false positives.
-	After we finish with quantitative analysis of classification using our personal dataset, we will be ready to move on to the 
+	After we finish with quantitative analysis of classification using our personal dataset, we will be ready to move on to other datasets for comparison.  We have Kumar and Hebert's already labeled dataset, and we look forward to seeing what kind of results we can achieve on that data.  We also need to contact Bellman and Shortis (we should probably do this very soon) to try to get access to their data.  With proper labeling, we hope to compare our building recognition rates, where we will consider a success whenever the algorithm labels at least one site of an image containing a rooftop, or when it leaves blank every site of an image containing no rooftop.
+	Finally, we need to polish up and increase the commenting in our code, and prepare the final presentation.  We believe that we are on track to accomplish all of this by the 30th.
+
+
+
+References:
+
+[1] C. Bellman and M. Shortis. A machine learning approach to build- ing recognition in aerial photographs. In International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences, pages 50Ð54, 2002.[2] R. Cipolla, S. Battiato, and G.M. Farinella. Computer Vision: Detection, Recognition and Reconstruction. Studies in Computational Intelligence. Springer, 2010.[3] C. Fox and G. Nicholls. Exact map states and expectations from perfect sampling: Greig, porteous and seheult revisited. In Proceedings MaxEnt 2000 Twentieth International Workshop on Bayesian Inference and Maximum Entropy Methods in Science and Engineering CNRS, May 2000.[4] D. Greig, B. Porteous, and A. Seheult. Exact maximum a posteriori estimation for binary images. Journal of the Royal Statistical Society, 51:271Ð279, 1989.[5] S. Kumar and M. Hebert. Discriminative random fields: a discriminative framework for contextual interaction in classification. In Computer Vision, 2003. Proceedings. Ninth IEEE International Conference on, pages 1150 Ð1157 vol.2, Oct. 2003.[6] S. Kumar and M. Hebert. Discriminative random fields. International Journal of Computer Vision, 68(2):179Ð202, 2006.[7] J. Lafferty, A. McCallum, and F. Pereira. Conditional random fields: Probabilistic models for segmenting and labeling sequence data. In C. Brodley and A. Danyluk, editors, ICML, pages 282Ð289. Morgan Kaufmann, 2001.[8] Maryland GIS Montgomery County, April 2012.[9] F. Shi, Y. Xi, X. Li, and Y. Duan. Rooftop detection and 3d building modeling from aerial images. In Advances in Visual Computing, volume 5876 of Lecture Notes in Computer Science, pages 817Ð826. Springer Berlin / Heidelberg, 2009.[10] R. Szeliski. Computer Vision: Algorithms and Applications. Texts in Computer Science. Springer, 2010.
