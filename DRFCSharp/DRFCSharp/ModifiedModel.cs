@@ -15,7 +15,7 @@ namespace DRFCSharp
 		public const double CONVERGENCE_CONSTANT = 1;
 		public const double START_STEP_LENGTH = 0.0000000001d;
 		public const double MIN_STEP_LENGTH = 0.0000000000001d; //TODO all these small thingies are hacks
-		public const double LIKELIHOOD_CONVERGENCE = 3d;
+		public const double LIKELIHOOD_CONVERGENCE = 1d;
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
 		
@@ -39,7 +39,7 @@ namespace DRFCSharp
 			//TODO: make sure this still works when we are not running in debug mode,
 			//so that the base directory no longer ends with
 			// /DRFCSharp/DRFCSharp/bin/debug/
-			string output_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,"231.xml");
+			string output_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,"216.txt");
 			StreamWriter sw = new StreamWriter(output_path);
 			for(int j = 0; j < ImageData.y_sites; j++)
 			{
@@ -60,16 +60,16 @@ namespace DRFCSharp
 					double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
 					double prob_one = ((double)ImageData.Ons_seen)/((double) ImageData.Sites_seen);
 					double prob_zero = 1d - prob_one;
-					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) /*+ Log (prob_one/prob_zero)*/;
+					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one);// + Log (prob_one/prob_zero);
 					if(lambda > 0)
 					{
-						Console.WriteLine ("Edge to source with strength {0}",lambda);
+						//Console.WriteLine ("Edge to source with strength {0}",lambda);
 						Edge.AddEdge(source,t,lambda,0);
 						sw.Write('1');
 					}
 					else
 					{
-						Console.WriteLine ("Edge to target with strength {0}",-lambda);
+						//Console.WriteLine ("Edge to target with strength {0}",-lambda);
 						Edge.AddEdge(t,target,-lambda,0);
 						sw.Write('0');
 					}
@@ -122,8 +122,8 @@ namespace DRFCSharp
 			Stream thetaverboselog = new FileStream(theta_verbose_log_path,FileMode.OpenOrCreate);
 			SoapFormatter serializer = new SoapFormatter();
 			
-			//w = (DenseVector)serializer.Deserialize(thetaverboselog);
-			//v = (DenseVector)serializer.Deserialize(thetaverboselog);
+			w = (DenseVector)serializer.Deserialize(thetaverboselog);
+			v = (DenseVector)serializer.Deserialize(thetaverboselog);
 			
 			int iter_count = 0;
 			while(iter_count < MAX_ITERS)

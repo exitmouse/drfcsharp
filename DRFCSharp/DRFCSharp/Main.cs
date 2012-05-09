@@ -11,7 +11,7 @@ namespace DRFCSharp
 		{
 			ImageData[] imgs = new ImageData[80];
 			Classification[] cfcs = new Classification[80];
-			string imgpath = "/Users/ddenton/Documents/Dartmouth Courses/CS 74/Discriminative-Random-Fields/Dataset/";
+			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
 			int count = 0;
 			for(int dig1 = 0; dig1 < 1; dig1++) for(int dig2 = 0; dig2 < 8; dig2++) for(int dig3 = 0; dig3 < 10; dig3++)
 			{
@@ -25,9 +25,9 @@ namespace DRFCSharp
 				count++;
 			}
 			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(imgs,cfcs,1d);
-			Console.WriteLine("Model converged! Estimating image 145...");
-			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate231.jpg"))); //See what I did there?
-			StreamWriter sw = new StreamWriter(imgpath+"145.txt");
+			Console.WriteLine("Model converged! Estimating image ...");
+			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate216.jpg"))); //See what I did there?
+			StreamWriter sw = new StreamWriter(imgpath+"bad216.txt");
 			for(int i = 0; i < 16; i++)
 			{
 				for(int j = 0; j < 16; j++)

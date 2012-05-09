@@ -1,0 +1,34 @@
+The description and motivation of our project remain unchanged since the original proposal.  Therefore, we will begin at the point where the proposal writeup ended, with the tasks we set for ourselves to complete by the milestone date.
+
+Recap: Milestone Goal
+
+When we began this project, we set out to complete the following tasks by the milestone date:
+
+Writing a short program to facilitate hand-labeling our data
+Hand-labeling the data
+Extracting features for each image (pre-processing)
+Coding the DRF model
+Training the DRF model
+Producing preliminary results
+
+Now that the milestone date has arrived, we have completed almost all of these tasks.  In short, we have written our data labeling program, and used it to label some (but not all) of our data.  We have successfully extracted from our images the feature set that our DRF model uses to make its classifications.  We have coded the complete algorithm, with both training and inference.  We have trained the algorithm on the subset of data which we have labeled so far, although we this using a default selection of hyper-parameters which we eventually intend to discover using cross validation.  Finally, we have used the trained model to classify sites on a few test images, and discovered that there is currently a bug in how we are applying the inference when we include the interaction potential term.
+	As long as we can find and fix our bug with the use of the interaction potential in a reasonable amount of time, we should be on track to tune the algorithm, and test its behavior on several datasets, including some used by previous researchers [1], [6].
+
+Data Labeling:
+
+	We began by deciding to use images of 256x256 pixels split into 256 16x16 pixel sites (the same site size used by Kumar and Hebert [6]).  Since the images we acquired from the Montgomery County GIS website [8] were larger than this, we used a script to randomly crop each image to the desired size.  We also had the same script randomly rotate each of our images, because we are interested in performing structure detection which is not dependent on compass orientation.
+	Since we need to label 16x16=256 sites for each image, and we intend to label 300 of our own images along with some images from the datasets of previous researchers, it was imperative that we create a tool which simplifies and speeds up the process of creating and storing site labelings.  We decided to use python for our data labeling program, because the pygame library provides such great tools for easily creating a simple point and click application.
+	[insert image]  
+	One idea that we have been playing around with is to try training the model with labelings of only buildings, and also with labelings which label every man-made structure (including roads, and driveways, etc.) to compare the results.  Thus, we wrote the data labeler to allow us to use 3 labels, which form a totally ordered set:
+any_site
+any_structure 
+building
+By performing our labelings with these three labels, and choosing the most specific applicable label for each site, we can easily choose the threshold for either of the two binary classifications we are interested in training on.
+	The data labeler continuously backs up the current labeling of each image as a comma separated text file which we then read in our C# implementation.  This allows the data labeler to load the latest labeling of any image.  By outputting our inferred classifications of test images to this format, we gain the added benefit of using the same data labeler to display our classification results.
+	We now have the data labeler giving us all of the functionality that we foresee wanting from it.  We have used it to label 80 of our training images that we could use to begin testing our algorithm.  At this point, it simply remains to finish the labeling of the remaining images in our dataset.
+	The Kumar-Hebert dataset [6] has kindly been made available to us, and it comes pre-labeled.  We hope to also get access to the dataset used by Bellman and Shortis [1].  Their images also are 256x256, but are only labeled with a single boolean variable for the presence of absence of a building.  Thus, in order run our algorithm on their data, we will need to perform individual site labelings, which we can perform with our same data labeling program.  
+
+Inference:
+
+	[insert description]
+	We implemented the Greig, Porteous, Se
