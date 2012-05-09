@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{fullpage, paralist}
+\usepackage{graphicx}      % specify `dvips' driver
+\usepackage{subfig}
+\usepackage[all]{xy}
+
+\CompileMatrices
+
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\C}{{\mathbb C}}
+
+\newcommand{\A}{{\mathcal A}}
+\newcommand{\I}{{\mathcal I}}
+\newcommand{\B}{{\mathcal B}}
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\F}{{\mathbb F}}
+
+\newcommand{\tmin}{\text{min}}
+\newcommand{\tmax}{\text{max}}
+\newcommand{\Spl}{\text{Spl}}
+
+\newcommand{\cov}{\textbf{cov}}
+\newcommand{\var}{\textbf{var}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\p}{\text{P}}
+
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newtheorem{thm}{Theorem}[section]
+
+\theoremstyle{remark}
+\newtheorem*{nnremark}{Remark}
+
+\begin{document}
+\title{Gradient Derivations}
+\date{}
+\maketitle
+
+
+\[
+\arg\max_\theta \sum_{m=1}^M \sum_{i \in S} \left[
+  \log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) + \sum_{j \in
+    \mathcal{N}_i} x_i x_j \vec{v}^\top \vec{\mu}_{ij}(\vec{y}) -
+  \log(z_i) \right] - \frac{1}{2\tau^2}\vec{v}^\top\vec{v}.
+\]
+\\
+\\
+\[
+\frac{\partial}{\partial w_k} = \sum_{m=1}^M \sum_{i \in
+  S} \left[ x_i(\vec{h}_i(\vec{y}))_k(1-\sigma(x_i \vec{w}^\top
+  \vec{h}_i(\vec{y}))) - \frac{\frac{\partial}{\partial w_k} z_i}{z_i}
+\right]
+\]
+\[
+\frac{\partial}{\partial w_k} z_i = \sum_{x_i \in \{-1,1\}}
+\exp\left(\log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) +
+  \sum_{j \in \mathcal{N}_i} x_i x_j \vec{v}^\top
+  \vec{\mu}_{ij}(\vec{y})\right)\left(1-\sigma(x_i\vec{w}^\top\vec{h}_i(\vec{y}))\right)
+  \left(x_i(\vec{h}_i(\vec{y}))_k\right)
+\]
+\\
+\\
+\[
+\frac{\partial}{\partial v_k} = \sum_{m=1}^M \sum_{i \in S} \left[
+  \sum_{j \in \mathcal{N}_i} x_i x_j (\vec{\mu}_{ij}(\vec{y}))_k -
+  \frac{\frac{\partial}{\partial v_k} z_i}{z_i} \right] - \frac{v_k}{\tau^2}
+\]
+\[
+\frac{\partial}{\partial v_k} z_i = \sum_{x_i \in \{-1,1\}}
+\exp\left(\log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) +
+  \sum_{j \in \mathcal{N}_i} x_i x_j \vec{v}^\top
+  \vec{\mu}_{ij}(\vec{y})\right)\sum_{j \in \mathcal{N}_i} x_i x_j(\vec{\mu}_{ij}(\vec{y}))_k
+\]
+\end{document}

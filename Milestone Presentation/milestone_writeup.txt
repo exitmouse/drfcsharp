@@ -107,10 +107,58 @@ presented in [FOX/NICHOLS/GRIEG] as mentioned in [DRFS 2006].
 
 Training:
 
-[GRADIENT DERIVATION]
+We had a lot of fun re-deriving the gradient of the log likelihood to
+ascend it:
+We want to find
+\[
+\arg\max_\theta \sum_{m=1}^M \sum_{i \in S} \left[
+  \log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) + \sum_{j \in
+    \mathcal{N}_i} x_i x_j \vec{v}^\top \vec{\mu}_{ij}(\vec{y}) -
+  \log(z_i) \right] - \frac{1}{2\tau^2}\vec{v}^\top\vec{v},
+\]
+
+So we calculate:
+\[
+\frac{\partial}{\partial w_k} = \sum_{m=1}^M \sum_{i \in
+  S} \left[ x_i(\vec{h}_i(\vec{y}))_k(1-\sigma(x_i \vec{w}^\top
+  \vec{h}_i(\vec{y}))) - \frac{\frac{\partial}{\partial w_k} z_i}{z_i}
+\right],
+\]
+where
+\[
+\frac{\partial}{\partial w_k} z_i = \sum_{x_i \in \{-1,1\}}
+\exp\left(\log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) +
+  \sum_{j \in \mathcal{N}_i} x_i x_j \vec{v}^\top
+  \vec{\mu}_{ij}(\vec{y})\right)\left(1-\sigma(x_i\vec{w}^\top\vec{h}_i(\vec{y}))\right)
+  \left(x_i(\vec{h}_i(\vec{y}))_k\right).
+\]
+Similarly, for $\vec{v}$,
+\[
+\frac{\partial}{\partial v_k} = \sum_{m=1}^M \sum_{i \in S} \left[
+  \sum_{j \in \mathcal{N}_i} x_i x_j (\vec{\mu}_{ij}(\vec{y}))_k -
+  \frac{\frac{\partial}{\partial v_k} z_i}{z_i} \right] - \frac{v_k}{\tau^2},
+\]
+where
+\[
+\frac{\partial}{\partial v_k} z_i = \sum_{x_i \in \{-1,1\}}
+\exp\left(\log(\sigma(x_i\vec{w}^\top \vec{h}_i(\vec{y}))) +
+  \sum_{j \in \mathcal{N}_i} x_i x_j \vec{v}^\top
+  \vec{\mu}_{ij}(\vec{y})\right)\sum_{j \in \mathcal{N}_i} x_i x_j(\vec{\mu}_{ij}(\vec{y}))_k
+\]
 
 Issues with the training:
-We had trouble for a while getting 
+
+We had trouble for a while getting the training to converge; this
+turned out to be a bug not in our code but in our math. An incorrect
+application of the chain rule made $\vec{w}$'s gradient slightly off;
+when we fixed this, the gradient ascent worked very well. With our
+chosen convergence constants, it tends to converge in under five
+minutes. It takes a bit longer per iteration then we'd like, and we've
+only been training it on 80 images; its runtime should be proportional
+to the number of images, and we plan to use 200 for the final
+results. We used C# to serialize the $\vec{w}$ and $\vec{v}$ we find
+at each iteration to XML, so we can view the coefficients and save our
+progress when we run it for extended periods of time.
 
 
 Inference:
