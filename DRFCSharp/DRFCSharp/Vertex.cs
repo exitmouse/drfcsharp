@@ -40,6 +40,10 @@ namespace DRFCSharp
 			//as yet untraversed nodes.
 			return 0d;
 		}
+		public bool AddFlowTo(Vertex target)
+		{
+			return AddFlowTo(new List<Vertex>(),target,30000000d)>0d;//Hack
+		}
 		public void ResidualCapacityConnectedNodes()
 		{
 			tagged_as_one = true;

@@ -14,14 +14,14 @@ namespace DRFCSharp
 			Assert.LessOrEqual(ModifiedModel.Sigma(0),0.51d);
 		}
 		[Test]
-		public void SigmaOfOneHundred ()
-		{
-			Assert.LessOrEqual(ModifiedModel.Sigma(100),0.00001d);
-		}
-		[Test]
 		public void SigmaOfNegativeOneHundred ()
 		{
-			Assert.GreaterOrEqual(ModifiedModel.Sigma(-100),0.99999d);
+			Assert.LessOrEqual(ModifiedModel.Sigma(-100),0.00001d);
+		}
+		[Test]
+		public void SigmaOfOneHundred ()
+		{
+			Assert.GreaterOrEqual(ModifiedModel.Sigma(100),0.99999d);
 		}
 		[Test]
 		public void ModelTrainingConverges ()
