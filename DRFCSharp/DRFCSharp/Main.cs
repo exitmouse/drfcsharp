@@ -7,8 +7,10 @@ namespace DRFCSharp
 {
 	class MainClass
 	{
+		public const string imgnum = "136";
 		public static void Main (string[] args)
 		{
+
 			ImageData[] imgs = new ImageData[80];
 			Classification[] cfcs = new Classification[80];
 			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
@@ -26,8 +28,8 @@ namespace DRFCSharp
 			}
 			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(imgs,cfcs,0.0001d);
 			Console.WriteLine("Model converged! Estimating image ...");
-			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate231.jpg"))); //See what I did there?
-			StreamWriter sw = new StreamWriter(imgpath+"bad231.txt");
+			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+imgnum+".jpg"))); //See what I did there?
+			StreamWriter sw = new StreamWriter(imgpath+"bad"+imgnum+".txt");
 			for(int i = 0; i < 16; i++)
 			{
 				for(int j = 0; j < 16; j++)
