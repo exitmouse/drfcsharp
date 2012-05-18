@@ -1,0 +1,1301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <UnitTestResult>
+      <TestDate>2012-05-15T18:46:25</TestDate>
+      <Passed>23</Passed>
+      <Errors>0</Errors>
+      <Failures>0</Failures>
+      <Inconclusive>0</Inconclusive>
+      <NotRunnable>0</NotRunnable>
+      <Skipped>0</Skipped>
+      <Ignored>0</Ignored>
+      <Time />
+      <Message>成功したテスト
+
+実行時間: 1.65ms</Message>
+    </UnitTestResult>
+  </Results>
+  <Tests>
+    <TestRecord Name="DRFCSharp">
+      <Results>
+        <UnitTestResult>
+          <TestDate>2012-05-15T18:46:25</TestDate>
+          <Passed>23</Passed>
+          <Errors>0</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>成功したテスト
+
+実行時間: 1.64ms</Message>
+        </UnitTestResult>
+      </Results>
+      <Tests>
+        <TestRecord Name="FeatureTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-15T18:46:25</TestDate>
+              <Passed>10</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.47ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CrossFeatures">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GaussianMeanIsCentered">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GaussiansAreCorrectSize">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsCorners">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNewConnectionsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="InBoundsFarEdge">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SiteFeatureSetInitialization">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.06ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="TransformedFeatureVectors">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="GraphTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-15T18:46:25</TestDate>
+              <Passed>8</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.28ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="AddFlowCanWork">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowGoesBackwards">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowIsSane">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowMaximizes">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowRespectsMinimumCapacityInPath">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="EdgeAddBoth">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesDoesNotTravelSaturatedEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="ModelTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-15T18:46:25</TestDate>
+              <Passed>5</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.78ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CanClassify">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.51ms</Message>
+                  <ConsoleOutput>					L2 Norms Summed: 1087.7481101772
+Likelihood after this step: -177.293481406108
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+	Internode edge with strength 7.7721849139174E-06
+@target with strength 2.36043195200875E-05
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ModelTrainingConverges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput>					L2 Norms Summed: 1087.7481101772
+Likelihood after this step: -177.293481406108
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfNegativeOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfZero">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-15T18:46:25</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

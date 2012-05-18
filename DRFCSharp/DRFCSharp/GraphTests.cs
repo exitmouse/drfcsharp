@@ -58,7 +58,34 @@ namespace DRFCSharp
 			a.ResidualCapacityConnectedNodes();
 			Assert.IsFalse(b.tagged_as_one);
 		}
-			
+		[Test]
+		public void CanMakeNontrivialCut()
+		{
+			Vertex vert1 = new Vertex();
+			Vertex vert2 = new Vertex();
+			Vertex vert3 = new Vertex();
+			Vertex vert4 = new Vertex();
+			Vertex vert5 = new Vertex();
+			Vertex vert6 = new Vertex();
+/*   o:o-o6
+ *   |\:
+ * o-o-o
+ * 1 
+ * Where : is a weak edge
+ */
+			Edge.AddEdge(vert1,vert2,1d,1d);
+			Edge.AddEdge(vert2,vert3,1d,1d);
+			Edge.AddEdge(vert2,vert4,1d,1d);
+			Edge.AddEdge(vert3,vert4,1d,1d);
+			Edge.AddEdge(vert3,vert5,0.1d,0.1d);
+			Edge.AddEdge(vert4,vert5,0.1d,0.1d);
+			Edge.AddEdge(vert5,vert6,1d,1d);
+			while(vert1.AddFlowTo(vert6));
+			vert1.ResidualCapacityConnectedNodes();
+			bool all_on_that_should_be = vert1.tagged_as_one && vert2.tagged_as_one && vert3.tagged_as_one && vert4.tagged_as_one;
+			bool all_off_that_should_be = !(vert5.tagged_as_one) && !(vert6.tagged_as_one);
+			Assert.IsTrue(all_off_that_should_be && all_on_that_should_be);
+		}
 	}
 }
 
