@@ -31,7 +31,7 @@ namespace DRFCSharp
 			ImageData img = new ImageData(sitesarray);
 			Label[,] labels = new Label[ImageData.x_sites,ImageData.y_sites];
 			Classification cfc = new Classification(labels);
-			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(new ImageData[1]{img},new Classification[1]{cfc},1d);
+			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain("","", new ImageData[1]{img},new Classification[1]{cfc},1d);
 			Assert.AreNotEqual(mfm.time_to_converge, ModifiedModel.MAX_ITERS);
 		}
 		[Test]
@@ -42,7 +42,7 @@ namespace DRFCSharp
 			ImageData img = new ImageData(sitesarray);
 			Label[,] labels = new Label[ImageData.x_sites,ImageData.y_sites];
 			Classification cfc = new Classification(labels);
-			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(new ImageData[1]{img},new Classification[1]{cfc},1d);
+			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain("", "", new ImageData[1]{img},new Classification[1]{cfc},1d);
 			Classification inferred = mfm.MaximumAPosterioriInfer(img);
 			Assert.IsNotNull(inferred);
 		}

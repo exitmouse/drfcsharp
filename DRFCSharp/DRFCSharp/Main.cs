@@ -7,10 +7,14 @@ namespace DRFCSharp
 {
 	class MainClass
 	{
-		public const string imgnum = "136";
 		public static void Main (string[] args)
 		{
-
+			//Hacky command line arg parsing:
+			string params_in = args[0];
+			string params_out = args[1];
+			int image_num;
+			Int32.TryParse(args[2], out image_num);
+			string prediction_out = args[3];
 			ImageData[] imgs = new ImageData[80];
 			Classification[] cfcs = new Classification[80];
 			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
@@ -26,10 +30,15 @@ namespace DRFCSharp
 				cfcs[count] = cfc;
 				count++;
 			}
-			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(imgs,cfcs,0.0001d);
+			
+			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs,0.0001d);
 			Console.WriteLine("Model converged! Estimating image ...");
-			Classification out_classed = mfm.MaximumAPosterioriInfer(ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+imgnum+".jpg"))); //See what I did there?
-			StreamWriter sw = new StreamWriter(imgpath+"bad"+imgnum+".txt");
+			
+			ImageData input = ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+image_num.ToString()+".jpg"));
+			
+			Classification out_classed = mfm.MaximumAPosterioriInfer(input); //See what I did there?
+			
+			StreamWriter sw = new StreamWriter(imgpath+prediction_out);
 			for(int i = 0; i < 16; i++)
 			{
 				for(int j = 0; j < 16; j++)
@@ -47,7 +56,6 @@ namespace DRFCSharp
 				sw.Write('\n');
 			}
 			sw.Close();
-			Console.WriteLine ("SUCCESSED. I CAN ROUN ACROSS THE PARP MOUM.");
 		}
 	}
 }

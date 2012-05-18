@@ -35,11 +35,6 @@ namespace DRFCSharp
 			Vertex source = new Vertex();
 			Vertex target = new Vertex();
 			
-			//TODO: make sure this still works when we are not running in debug mode,
-			//so that the base directory no longer ends with
-			// /DRFCSharp/DRFCSharp/bin/debug/
-			string output_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,MainClass.imgnum+".txt");
-			StreamWriter sw = new StreamWriter(output_path);
 			for(int j = 0; j < ImageData.y_sites; j++)
 			{
 				for(int i = 0; i < ImageData.x_sites; i++) 
@@ -64,15 +59,12 @@ namespace DRFCSharp
 					{
 						Console.WriteLine ("@source with strength {0}",lambda);
 						Edge.AddEdge(source,t,lambda,0);
-						sw.Write('1');
 					}
 					else
 					{
 						Console.WriteLine ("@target with strength {0}",-lambda);
 						Edge.AddEdge(t,target,-lambda,0);
-						sw.Write('0');
 					}
-					sw.Write(',');
 					
 					foreach(Tuple<int,int> other in ImageData.GetNewConnections(i,j))
 					{
@@ -85,9 +77,7 @@ namespace DRFCSharp
 						Edge.AddEdge(t,u,capacity,capacity);
 					}
 				}
-				sw.Write('\n');
 			}
-			sw.Close();
 			double flow_added = 0;
 			
 			while(true)
@@ -105,7 +95,7 @@ namespace DRFCSharp
 			return new Classification(toReturn);
 		}
 		
-		public static ModifiedModel PseudoLikelihoodTrain(ImageData[] training_inputs, Classification[] training_outputs, double tau)
+		public static ModifiedModel PseudoLikelihoodTrain(string params_in, string params_out, ImageData[] training_inputs, Classification[] training_outputs, double tau)
 		{
 			if(tau <= 0) throw new ArgumentException("Tau must be positive");
 			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
@@ -116,15 +106,21 @@ namespace DRFCSharp
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
 			
-			//TODO: make sure this still works when we are not running in debug mode,
-			//so that the base directory no longer ends with
-			// /DRFCSharp/DRFCSharp/bin/debug/
-			string theta_verbose_log_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,"thetalog80.xml");
-			Stream thetaverboselog = new FileStream(theta_verbose_log_path,FileMode.OpenOrCreate);
 			SoapFormatter serializer = new SoapFormatter();
 			
-			w = (DenseVector)serializer.Deserialize(thetaverboselog);
-			v = (DenseVector)serializer.Deserialize(thetaverboselog);
+			if(!string.IsNullOrEmpty(params_in))
+			{
+				string parameter_storage_in_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,params_in);
+				Stream parameter_storage_in = new FileStream(parameter_storage_in_path,FileMode.Open);
+				w = (DenseVector)serializer.Deserialize(parameter_storage_in);
+				v = (DenseVector)serializer.Deserialize(parameter_storage_in);
+			}
+			Stream parameter_storage_out = null;
+			string parameter_storage_out_path = "";
+			if(!string.IsNullOrEmpty(params_out))
+			{
+				parameter_storage_out_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,params_out);
+			}
 			
 			int iter_count = 0;
 			while(iter_count < MAX_ITERS)
@@ -276,9 +272,13 @@ namespace DRFCSharp
 				w += (DenseVector)wgrad.Multiply(a);
 				v += (DenseVector)vgrad.Multiply(a);
 				
-				serializer.Serialize(thetaverboselog,w);
-				serializer.Serialize(thetaverboselog,v);
-				thetaverboselog.Flush();
+				if(!string.IsNullOrEmpty(parameter_storage_out_path))
+				{
+					parameter_storage_out = new FileStream(parameter_storage_out_path,FileMode.Create);
+					serializer.Serialize(parameter_storage_out,w);
+					serializer.Serialize(parameter_storage_out,v);
+					parameter_storage_out.Close();
+				}
 				if(newlikelihood - oldlikelihood < LIKELIHOOD_CONVERGENCE)
 				{
 					break;
@@ -286,8 +286,6 @@ namespace DRFCSharp
 				
 				iter_count++;
 			}
-			
-			thetaverboselog.Close();
 			return new ModifiedModel(w,v,iter_count);
 			
 		}
