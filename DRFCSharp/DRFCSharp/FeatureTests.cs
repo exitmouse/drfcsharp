@@ -50,6 +50,12 @@ namespace DRFCSharp
 			Assert.Contains(Tuple.Create<int,int>(2,1),test);
 		}
 		[Test]
+		public void GetNewConnectionsFarEdge ()
+		{
+			List<Tuple<int, int>> STOPAUTOCOMPLETINGTHISVARIABLEDAMMIT = ImageData.GetNewConnections(ImageData.x_sites-1, ImageData.y_sites-1);
+			Assert.IsEmpty(STOPAUTOCOMPLETINGTHISVARIABLEDAMMIT);
+		}
+		[Test]
 		public void InBoundsFarEdge ()
 		{
 			Assert.IsFalse(ImageData.InBounds(ImageData.x_sites,0));

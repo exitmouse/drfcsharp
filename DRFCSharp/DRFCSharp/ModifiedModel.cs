@@ -52,9 +52,9 @@ namespace DRFCSharp
 					//I could totally be wrong.
 					//-Jesse Selover
 					double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
-					/*double prob_one = ((double)ImageData.Ons_seen)/((double) ImageData.Sites_seen);
-					double prob_zero = 1d - prob_one;*/
-					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) /*+ Log (prob_one/prob_zero)*/;
+					double prob_one = ((double)ImageData.Ons_seen)/((double) ImageData.Sites_seen);
+					double prob_zero = 1d - prob_one;
+					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) + Log (prob_one/prob_zero);
 					if(lambda > 0)
 					{
 						Console.WriteLine ("@source with strength {0}",lambda);

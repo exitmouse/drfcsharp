@@ -13,6 +13,7 @@ This is our utility program for labeling photograph sites.  The commands are:
     left click to label a site as 1
     shift left click to label a site as 2
     right click to label a site as 3
+    o to toggle between viewing input images and output
 All labelings are immediately saved to the corresponding data file (a comma separated
 file representing the site labeling array), so there is no need for a save command.
 Whenever an image is loaded for whom a labeling has already been saved, the program
@@ -45,6 +46,8 @@ DATA_LABELER_DIR = os.path.split(os.path.abspath(sys.argv[0]))[0]
 DATASET_DIR = os.path.normpath(os.path.join(DATA_LABELER_DIR, '..\..\Dataset'))
 NUM_IMAGES = 300
 
+output_prefix = ""
+
 
 
 def LoadImage(name):
@@ -74,7 +77,7 @@ background sprite for the image.
 def LoadAerial(image_index, site_array):
     current_image_index_str = str(image_index).zfill(3)
     current_image_name = 'RandCropRotate' + current_image_index_str + '.jpg'
-    current_data_name = current_image_index_str + '.txt'
+    current_data_name = output_prefix + current_image_index_str + '.txt'
     image_filename = os.path.join(DATASET_DIR, current_image_name)
     data_filename = os.path.join(DATASET_DIR, current_data_name)
     
@@ -129,7 +132,7 @@ text file named <image_index>.txt, located in the Dataset directory.
 '''
 def SaveAerial(image_index, site_array):
     current_data_index_str = str(image_index).zfill(3)
-    current_data_name = current_data_index_str + '.txt'
+    current_data_name = output_prefix + current_data_index_str + '.txt'
     image_data_filename = os.path.join(DATASET_DIR, current_data_name)
     
     print image_data_filename
@@ -177,6 +180,7 @@ def SiteCoordsToScreenCoords (coords):
 
 
 def main(index):
+    global output_prefix
     ''' Initialize the current image index.'''
     current_image_index = index
     goto_index = 0
@@ -247,12 +251,23 @@ def main(index):
                     current_image_index = (current_image_index + 1) % NUM_IMAGES
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
-                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index)
+                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
                 elif event.key == K_a:
                     current_image_index = (current_image_index - 1) % NUM_IMAGES
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
-                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index)
+                    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
+                elif event.key == K_o:
+                    if output_prefix == "":
+                        output_prefix = "predicted"
+                        pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
+                    else:
+                        output_prefix = ""
+                        pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
+                        
+                    background = LoadAerial(current_image_index, site_array)
+                    allsprites = pygame.sprite.RenderPlain((background))
+                    
                 elif event.key == K_g:
                     goto_entry_mode = not goto_entry_mode
                     if not goto_entry_mode:
@@ -286,7 +301,7 @@ def main(index):
                                          
                     
                                 
-            elif event.type == MOUSEBUTTONDOWN:
+            elif event.type == MOUSEBUTTONDOWN and output_prefix == "":
                 site_coords = ScreenCoordsToSiteCoords(event.pos)
                 '''
                 Mouse controls are:
@@ -305,7 +320,7 @@ def main(index):
                     site_array[site_coords[0]][site_coords[1]] = 0
                     SaveAerial(current_image_index, site_array)
                     
-            elif event.type == MOUSEMOTION:
+            elif event.type == MOUSEMOTION and output_prefix == "":
                 site_coords = ScreenCoordsToSiteCoords(event.pos)
                 left_button_pressed, center_button_pressed, right_button_pressed = pygame.mouse.get_pressed()
                 

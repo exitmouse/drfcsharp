@@ -11,7 +11,7 @@ namespace DRFCSharp
 		public const int x_sites = 16; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
 		public const int y_sites = 16;
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
-		public const int NUM_ORIENTATIONS = 8;
+		public const int NUM_ORIENTATIONS = 16;
 		public SiteFeatureSet[,] site_features;
 		public static int Ons_seen = 0;
 		public static int Sites_seen = 0;
@@ -311,7 +311,11 @@ namespace DRFCSharp
 					string[] vals = line.Split(',');
 					for(int row = 0; row < y_sites; row++)
 					{
-						labels[row,col] = (Label)Int32.Parse(vals[row]);
+						int val = Int32.Parse(vals[row]);
+						if(val > 0)
+							labels[row,col] = Label.ON;
+						else
+							labels[row,col] = Label.OFF;
 						Sites_seen += 1;
 						if(labels[row,col]==Label.ON) Ons_seen += 1;
 					}
