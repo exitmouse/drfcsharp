@@ -7,7 +7,7 @@ namespace DRFCSharp
 	public class SiteFeatureSet
 	{
 		public DenseVector features;
-		public const int NUM_FEATURES = 4;
+		public const int NUM_FEATURES = 21;
 		public SiteFeatureSet ()
 		{
 			this.features = new DenseVector(NUM_FEATURES,0d);
@@ -55,7 +55,7 @@ namespace DRFCSharp
 		/// <exception cref='NotImplementedException'>
 		/// Is thrown when a requested operation is not implemented for a given type.
 		/// </exception>
-		public static DenseVector CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+		public static DenseVector CrossFeaturesConcatenate(SiteFeatureSet a, SiteFeatureSet b)
 		{
 			DenseVector af = a.features;
 			DenseVector bf = b.features;
@@ -65,6 +65,37 @@ namespace DRFCSharp
 			z[0] = 1;
 			aa.CopyTo(z,1);
 			ba.CopyTo(z,aa.Length+1);
+			return new DenseVector(z);
+		}
+				/// <summary>
+		/// We have features for two sites; we want a feature vector that describes their
+		/// cross-term for the interaction potential. This is the mu in Kumar & Hebert
+		/// 2006 (p. 14).
+		/// </summary>
+		/// <returns>
+		/// The new feature vector mu.
+		/// </returns>
+		/// <param name='a'>
+		/// One of the sites.
+		/// </param>
+		/// <param name='b'>
+		/// The other site.
+		/// </param>
+		/// <exception cref='NotImplementedException'>
+		/// Is thrown when a requested operation is not implemented for a given type.
+		/// </exception>
+		public static DenseVector CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+		{
+			DenseVector af = a.features;
+			DenseVector bf = b.features;
+			double[] aa = af.ToArray();
+			double[] ba = bf.ToArray();
+			double[] z = new double[aa.Length + 1];
+			z[0] = 1;
+			for(int i = 0; i < aa.Length; i++)
+			{
+				z[i+1] = Math.Abs(aa[i] - ba[i]);
+			}
 			return new DenseVector(z);
 		}
 		//h_i in modified DRFs 2006

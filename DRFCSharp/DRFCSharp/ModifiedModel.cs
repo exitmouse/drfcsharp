@@ -12,7 +12,7 @@ namespace DRFCSharp
 		DenseVector w;
 		DenseVector v;
 		public const int MAX_ITERS = 3000;
-		public const double CONVERGENCE_CONSTANT = 0.000001;
+		public const double CONVERGENCE_CONSTANT = 0.0000000001;
 		public const double START_STEP_LENGTH = 0.0000001d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 0.1d;
 		public const double EPSILON = 0.000000001d;
@@ -24,7 +24,60 @@ namespace DRFCSharp
 			this.v = v;
 			this.time_to_converge = iter_count;
 		}
-		
+		public Classification ICMInfer(ImageData test_input)
+		{
+			Label[,] curr_classification = new Label[ImageData.x_sites,ImageData.y_sites];
+			for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++) curr_classification[x,y] = Label.OFF;
+			bool converged = false;
+			while(!converged)
+			{
+				int changecount = 0;
+				converged = true;
+				for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++)
+				{
+					Label old = curr_classification[x,y];
+					//We have prob 1 vs prob 0. Prob n \propto exp(A + sum over neighbors of I calculated at n)
+					//So we can just calculate A + sum over neighbors of I for each labeling of the site, and
+					//assign to the site whichever is higher.
+					var sitefeatures = SiteFeatureSet.TransformedFeatureVector(test_input[x,y]);
+					double on_association = Sigma(w.DotProduct(sitefeatures));
+					double off_association = Sigma(-1 * w.DotProduct(sitefeatures));
+					double on_interaction = 0d;
+					double off_interaction = 0d;
+					
+					foreach(Tuple<int,int> t in ImageData.GetNeighbors(x,y))
+					{
+						var mu = SiteFeatureSet.CrossFeatures(test_input[x,y],test_input[t.Item1,t.Item2]);
+						if(curr_classification[t.Item1,t.Item2] == Label.ON)
+						{
+							on_interaction += v.DotProduct(mu);
+							off_interaction -= v.DotProduct(mu);
+						}
+						else
+						{
+							on_interaction -= v.DotProduct(mu);
+							off_interaction += v.DotProduct(mu);
+						}
+					}
+					
+					if(on_association + on_interaction > off_association + off_interaction)
+					{
+						curr_classification[x,y] = Label.ON;
+					}
+					else
+					{
+						curr_classification[x,y] = Label.OFF;
+					}
+					if(curr_classification[x,y] != old)
+					{
+						converged = false;
+						changecount += 1;
+					}
+				}
+				Console.WriteLine("Number of changes in this round of ICM: {0}",changecount);
+			}
+			return new Classification(curr_classification);
+		}
 		public Classification MaximumAPosterioriInfer(ImageData test_input)
 		{
 			Vertex[,] site_nodes = new Vertex[ImageData.x_sites,ImageData.y_sites];
@@ -71,8 +124,7 @@ namespace DRFCSharp
 						Vertex u = site_nodes[other.Item1,other.Item2];
 						//Add the edge with capacity Beta_{t,u} in both directions between t and u.
 						//DRFS (2006) says that the data dependent smoothing term is max(0,v^T * mu_{i,j}y)
-						double hack_term = 0.05;
-						double capacity = Math.Max(0,hack_term*v.DotProduct(SiteFeatureSet.CrossFeatures(test_input[i,j],test_input[other.Item1,other.Item2])));
+						double capacity = Math.Max(0,v.DotProduct(SiteFeatureSet.CrossFeatures(test_input[i,j],test_input[other.Item1,other.Item2])));
 						Console.WriteLine ("\tInternode edge with strength {0}",capacity);
 						Edge.AddEdge(t,u,capacity,capacity);
 					}
@@ -101,7 +153,7 @@ namespace DRFCSharp
 			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
 			
 			DenseVector w = new DenseVector(SiteFeatureSet.NUM_FEATURES + 1, 0d);
-			DenseVector v = new DenseVector(SiteFeatureSet.NUM_FEATURES*2 + 1, 0d);
+			DenseVector v = new DenseVector(SiteFeatureSet.NUM_FEATURES + 1, 0d);
 			
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
@@ -279,8 +331,9 @@ namespace DRFCSharp
 					serializer.Serialize(parameter_storage_out,v);
 					parameter_storage_out.Close();
 				}
-				if(newlikelihood - oldlikelihood < LIKELIHOOD_CONVERGENCE)
+				if(newlikelihood - oldlikelihood < LIKELIHOOD_CONVERGENCE)//Hack, remove the abs
 				{
+					Console.WriteLine("New likelihood - Old likelihood is {0}; Converged.",newlikelihood-oldlikelihood);
 					break;
 				}
 				

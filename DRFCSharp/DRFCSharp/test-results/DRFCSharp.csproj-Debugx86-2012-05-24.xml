@@ -1,0 +1,2593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <UnitTestResult>
+      <TestDate>2012-05-24T12:48:42</TestDate>
+      <Passed>22</Passed>
+      <Errors>3</Errors>
+      <Failures>0</Failures>
+      <Inconclusive>0</Inconclusive>
+      <NotRunnable>0</NotRunnable>
+      <Skipped>0</Skipped>
+      <Ignored>0</Ignored>
+      <Time />
+      <Message>One or more child tests had errors</Message>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2012-05-24T12:50:19</TestDate>
+      <Passed>23</Passed>
+      <Errors>2</Errors>
+      <Failures>0</Failures>
+      <Inconclusive>0</Inconclusive>
+      <NotRunnable>0</NotRunnable>
+      <Skipped>0</Skipped>
+      <Ignored>0</Ignored>
+      <Time />
+      <Message>One or more child tests had errors</Message>
+    </UnitTestResult>
+    <UnitTestResult>
+      <TestDate>2012-05-24T12:53:39</TestDate>
+      <Passed>25</Passed>
+      <Errors>0</Errors>
+      <Failures>0</Failures>
+      <Inconclusive>0</Inconclusive>
+      <NotRunnable>0</NotRunnable>
+      <Skipped>0</Skipped>
+      <Ignored>0</Ignored>
+      <Time />
+      <Message>成功したテスト
+
+実行時間: 1.41ms</Message>
+    </UnitTestResult>
+  </Results>
+  <Tests>
+    <TestRecord Name="DRFCSharp">
+      <Results>
+        <UnitTestResult>
+          <TestDate>2012-05-24T12:48:42</TestDate>
+          <Passed>22</Passed>
+          <Errors>3</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>One or more child tests had errors</Message>
+        </UnitTestResult>
+        <UnitTestResult>
+          <TestDate>2012-05-24T12:50:19</TestDate>
+          <Passed>23</Passed>
+          <Errors>2</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>One or more child tests had errors</Message>
+        </UnitTestResult>
+        <UnitTestResult>
+          <TestDate>2012-05-24T12:53:39</TestDate>
+          <Passed>25</Passed>
+          <Errors>0</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>成功したテスト
+
+実行時間: 1.40ms</Message>
+        </UnitTestResult>
+      </Results>
+      <Tests>
+        <TestRecord Name="FeatureTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:48:42</TestDate>
+              <Passed>10</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:48:52</TestDate>
+              <Passed>10</Passed>
+              <Errors>1</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:50:19</TestDate>
+              <Passed>11</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.45ms</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:53:39</TestDate>
+              <Passed>11</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.47ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CrossFeatures">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.FeatureTests.CrossFeatures()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:46</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.FeatureTests.CrossFeatures()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.FeatureTests.CrossFeatures()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GaussianMeanIsCentered">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GaussiansAreCorrectSize">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsCorners">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.06ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNewConnectionsFarEdge">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNewConnectionsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="InBoundsFarEdge">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SiteFeatureSetInitialization">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="TransformedFeatureVectors">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:52</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="CrossFeaturesConcatenate">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="CollectionOfLabelsInitialization">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T13:01:44</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="GraphTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:48:42</TestDate>
+              <Passed>9</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.29ms</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:50:19</TestDate>
+              <Passed>9</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.29ms</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:53:39</TestDate>
+              <Passed>9</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.28ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="AddFlowCanWork">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowGoesBackwards">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowIsSane">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowMaximizes">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowRespectsMinimumCapacityInPath">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="CanMakeNontrivialCut">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="EdgeAddBoth">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesDoesNotTravelSaturatedEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="ModelTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:48:42</TestDate>
+              <Passed>3</Passed>
+              <Errors>2</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:49:26</TestDate>
+              <Passed>3</Passed>
+              <Errors>2</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:50:19</TestDate>
+              <Passed>3</Passed>
+              <Errors>2</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>One or more child tests had errors</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2012-05-24T12:53:39</TestDate>
+              <Passed>5</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.54ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CanClassify">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.ModifiedModel.PseudoLikelihoodTrain(String params_in, String params_out, ImageData[] training_inputs, Classification[] training_outputs, Double tau)
+   at DRFCSharp.ModelTests.CanClassify()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:49:26</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.ModifiedModel.PseudoLikelihoodTrain(String params_in, String params_out, ImageData[] training_inputs, Classification[] training_outputs, Double tau)
+   at DRFCSharp.ModelTests.CanClassify()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.ModifiedModel.PseudoLikelihoodTrain(String params_in, String params_out, ImageData[] training_inputs, Classification[] training_outputs, Double tau)
+   at DRFCSharp.ModelTests.CanClassify()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.23ms</Message>
+                  <ConsoleOutput>					L2 Norms Summed: 1088
+Likelihood after this step: -177.351897269864
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+	Internode edge with strength 9.6E-05
+@target with strength NaN (非数値)
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ModelTrainingConverges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.ModifiedModel.PseudoLikelihoodTrain(String params_in, String params_out, ImageData[] training_inputs, Classification[] training_outputs, Double tau)
+   at DRFCSharp.ModelTests.ModelTrainingConverges()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:49:26</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.ModifiedModel.PseudoLikelihoodTrain(String params_in, String params_out, ImageData[] training_inputs, Classification[] training_outputs, Double tau)
+   at DRFCSharp.ModelTests.ModelTrainingConverges()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>0</Passed>
+                  <Errors>1</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Index was outside the bounds of the array.</Message>
+                  <StackTrace>   at DRFCSharp.SiteFeatureSet.CrossFeatures(SiteFeatureSet a, SiteFeatureSet b)
+   at DRFCSharp.ModifiedModel.PseudoLikelihoodTrain(String params_in, String params_out, ImageData[] training_inputs, Classification[] training_outputs, Double tau)
+   at DRFCSharp.ModelTests.ModelTrainingConverges()</StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.01ms</Message>
+                  <ConsoleOutput>					L2 Norms Summed: 1088
+Likelihood after this step: -177.351897269864
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfNegativeOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:49:26</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:49:26</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfZero">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:48:42</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:49:26</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:50:19</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2012-05-24T12:53:39</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

@@ -15,6 +15,7 @@ namespace DRFCSharp
 		public SiteFeatureSet[,] site_features;
 		public static int Ons_seen = 0;
 		public static int Sites_seen = 0;
+		public static int Images_seen = 0;
 		public ImageData (SiteFeatureSet[,] site_features)
 		{
 			if(site_features.GetLength(0) != x_sites || site_features.GetLength(1) != y_sites)
@@ -60,15 +61,18 @@ namespace DRFCSharp
 			SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[x_sites,y_sites];
 			int width_of_site = img.Width/x_sites;
 			int height_of_site = img.Height/y_sites;
-			for(int x = 0; x < x_sites; x++) for(int y = 0; y < y_sites; y++)
+			for(int x = 0; x < x_sites; x++) for(int y = 0; y < y_sites; y++)for(int scalepow = 0; scalepow < 3; scalepow++) //TODO maybe less hardcode?
 			{
 				//Console.WriteLine("X = {0}, Y = {1}",x,y);
 				DenseVector single_site_features = new DenseVector(SiteFeatureSet.NUM_FEATURES);
 				double[] histogram_over_orientations = new double[NUM_ORIENTATIONS]; //TODO maybe refactor into a function
-				for(int u = x*width_of_site; u < x*width_of_site + width_of_site; u++)
+				int scale = 16;
+				for(int useless = 0; useless < scalepow; useless++) scale *= 2; //HACK this is just bad code and I feel bad now.
+				for(int u = x*width_of_site; u < x*width_of_site + scale; u++)
 				{
-					for(int v = y*height_of_site; v < y*height_of_site + height_of_site; v++)
+					for(int v = y*height_of_site; v < y*height_of_site + scale; v++)
 					{
+						if(u >= img.Width || v >= img.Height) continue;
 						DenseVector g = grads[u,v];
 						//PREPARE FOR HACK
 						double angle = Math.Atan2 (g[1],g[0]);
@@ -99,16 +103,37 @@ namespace DRFCSharp
 				//invariant. Our images are not taken with upright cameras.
 				for(int i = 0; i < 3; i++)
 				{
-					single_site_features[i]=Moment(smoothed_histogram,i);
+					single_site_features[scalepow*4 + i]=Moment(smoothed_histogram,i);
 					if(double.IsNaN(single_site_features[i]))
 					{
 						throw new NotImplementedException();
 					}
 				}
-				single_site_features[3] = RightAngleFinder(smoothed_histogram);
+				single_site_features[scalepow*4 + 3] = RightAngleFinder(smoothed_histogram);
+				double[] avgs = AverageRGB(img, x, y);
+				for(int i = 0; i < 3; i++) single_site_features[scalepow*4+4+i] = avgs[i];
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
 			return new ImageData(sitefeatures);
+		}
+		public static double[] AverageRGB(Bitmap img, int sitex, int sitey)
+		{
+			double[] colors = new double[3];
+			int count = 0;
+			int width_of_site = img.Width/ImageData.x_sites;
+			int height_of_site = img.Height/ImageData.y_sites;
+			for(int x = sitex*width_of_site; x < (sitex+1)*width_of_site; x++) for(int y = sitey*height_of_site; y < (sitey+1)*height_of_site; y++)
+			{
+				Color pixval = img.GetPixel(x,y);
+				colors[0] += pixval.R;
+				colors[1] += pixval.G;
+				colors[2] += pixval.B;
+				
+				count++;
+			}
+			double multfactor = 1/((double)count);
+			for(int i = 0; i < 3; i++) colors[i] *= multfactor;
+			return colors;
 		}
 		public static double RightAngleFinder(double[] histogram)
 		{
@@ -205,15 +230,43 @@ namespace DRFCSharp
 			double[,] x_derivatives = Convolve(Convolve(luminances,one_d_gaussian_derivative,true),one_d_gaussian,false); //Convolve horizontally with the derivative first, then vertically with the gaussian.
 			double[,] y_derivatives = Convolve(Convolve(luminances,one_d_gaussian_derivative,false),one_d_gaussian,true); //Other way
 			DenseVector[,] toReturn = new DenseVector[width, height];
+			
+			/*
+			#region ONLY ONCE AND FOR TESTING I AM SORRY
+			Bitmap xmap = new Bitmap(width,height);
+			Bitmap ymap = new Bitmap(width,height);
+			int minx = 0;
+			int miny = 0;
+			for(int x = 0; x < width; x++) for(int y = 0; y < width; y++){ 
+				if(x_derivatives[x,y] < minx) minx = (int)x_derivatives[x,y];
+				if(y_derivatives[x,y] < miny) miny = (int)y_derivatives[x,y];
+			}
+			#endregion
+			*/
 			for(int x = 0; x < width; x++)
 			{
 				for(int y = 0; y < height; y++)
 				{
 					toReturn[x,y] = new DenseVector(2);
 					toReturn[x,y][0] = x_derivatives[x,y];
+					
+					//TODO REMOVE BELOW
+					//int xo = (int) x_derivatives[x,y];
+					//xo -= minx;
+					//xmap.SetPixel(x,y,Color.FromArgb(xo,xo,xo));
+					//TODO REMOVE ABOVE
+					
+					
 					toReturn[x,y][1] = y_derivatives[x,y];
+					
+					//TODO REMOVE BELOW
+					//ymap.SetPixel(x,y,Color.FromArgb((byte)(y_derivatives[x,y]),(byte)(y_derivatives[x,y]),(byte)(y_derivatives[x,y])));
+					//TODO REMOVE ABOVE
 				}
 			}
+			//xmap.Save(string.Format("XMAP{0}.png",Images_seen));
+			//ymap.Save(string.Format("YMAP{0}.png",Images_seen));
+			Images_seen++;
 			return toReturn;
 		}
 		public static double[,] Convolve(double[,] twod_array, DenseVector kernel, bool is_horizontal)

@@ -65,7 +65,7 @@ namespace DRFCSharp
 			string imagename = "RandCropRotate"+image_num.ToString("D3");
 			ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
 			
-			Classification out_classed = mfm.MaximumAPosterioriInfer(input); //See what I did there?
+			Classification out_classed = mfm.ICMInfer(input); //See what I did there?
 			
 			StreamWriter sw = new StreamWriter(imgpath+"predicted"+image_num.ToString("D3")+".txt");
 			for(int i = 0; i < 16; i++)
