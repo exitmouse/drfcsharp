@@ -63,7 +63,10 @@ L(\vec{x} \mid \vec{y}) = \sum_{i \in S}
 \log(\sigma((\vec{w}^{\top}\vec{h}_i(\vec{y})) x_i)) + \sum_{i \in S}\sum_{j \in \mathcal{N}_i}
 (\vec{v}^{\top}\vec{\mu}_{ij}(\vec{y}))x_ix_j.
 \]
-
+Now let's say we made a graph with the $\lambda_i =
+\log(\sigma((\vec{w}^{\top}\vec{h}_i(\vec{y})) x_i))$ and we'll figure
+out the internode edges later.
+A cut on the graph would have capacity
 
 %We want
 %\[

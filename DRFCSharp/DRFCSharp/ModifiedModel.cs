@@ -12,17 +12,33 @@ namespace DRFCSharp
 		DenseVector w;
 		DenseVector v;
 		public const int MAX_ITERS = 3000;
-		public const double CONVERGENCE_CONSTANT = 0.0000000001;
+		public const double CONVERGENCE_CONSTANT = 0.000000001;
 		public const double START_STEP_LENGTH = 0.0000001d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 0.1d;
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
 		
-		public ModifiedModel (DenseVector w, DenseVector v, int iter_count)
+		public int Ons_seen = 0;
+		public int Sites_seen = 0;
+		
+		public ModifiedModel (DenseVector w, DenseVector v, int iter_count, int Ons_seen, int Sites_seen)
 		{
 			this.w = w;
 			this.v = v;
 			this.time_to_converge = iter_count;
+			this.Ons_seen = Ons_seen;
+			this.Sites_seen = Sites_seen;
+		}
+		public Classification LogisticInfer(ImageData test_input)
+		{
+			Label[,] curr_classification = new Label[ImageData.x_sites, ImageData.y_sites];
+			for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++)
+			{
+				var f = test_input[x,y];
+				if(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(f)) > 0)
+					curr_classification[x,y] = Label.ON;
+			}
+			return new Classification(curr_classification);
 		}
 		public Classification ICMInfer(ImageData test_input)
 		{
@@ -105,7 +121,7 @@ namespace DRFCSharp
 					//I could totally be wrong.
 					//-Jesse Selover
 					double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
-					double prob_one = ((double)ImageData.Ons_seen)/((double) ImageData.Sites_seen);
+					double prob_one = ((double)Ons_seen)/((double) Sites_seen);
 					double prob_zero = 1d - prob_one;
 					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) + Log (prob_one/prob_zero);
 					if(lambda > 0)
@@ -145,6 +161,18 @@ namespace DRFCSharp
 				if(site_nodes[i,j].tagged_as_one) toReturn[i,j] = Label.ON;
 			}
 			return new Classification(toReturn);
+		}
+		
+		public static ModifiedModel Deserialize(string params_in)
+		{
+			string parameter_storage_in_path = string.Format("{0}../../.../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,params_in);
+			Stream parameter_storage_in = new FileStream(parameter_storage_in_path,FileMode.Open);
+			SoapFormatter serializer = new SoapFormatter();
+			DenseVector w = (DenseVector)serializer.Deserialize(parameter_storage_in);
+			DenseVector v = (DenseVector)serializer.Deserialize(parameter_storage_in);
+			int Ons_seen = (int)serializer.Deserialize(parameter_storage_in);
+			int Sites_seen = (int)serializer.Deserialize(parameter_storage_in);
+			return new ModifiedModel(w, v, 0, Ons_seen, Sites_seen);
 		}
 		
 		public static ModifiedModel PseudoLikelihoodTrain(string params_in, string params_out, ImageData[] training_inputs, Classification[] training_outputs, double tau)
@@ -249,8 +277,6 @@ namespace DRFCSharp
 						{
 							for(int vert = 0; vert < ImageData.y_sites; vert++)
 							{
-								//h_i(y):
-								DenseVector h = SiteFeatureSet.TransformedFeatureVector(training_inputs[m][horz,vert]);
 								double z = 0;
 								//x_i
 								int x = (int)(training_outputs[m][horz,vert])*2 - 1;
@@ -267,6 +293,9 @@ namespace DRFCSharp
 								double dzdv = 0;
 								
 								//Sum over possible x_i
+								//h_i(y):
+								DenseVector h = SiteFeatureSet.TransformedFeatureVector(training_inputs[m][horz,vert]);
+								
 								for(int tempx = -1; tempx <= 1; tempx += 2)
 								{
 									double logofcoeff = Log(Sigma(tempx * w.DotProduct(h)));
@@ -329,6 +358,8 @@ namespace DRFCSharp
 					parameter_storage_out = new FileStream(parameter_storage_out_path,FileMode.Create);
 					serializer.Serialize(parameter_storage_out,w);
 					serializer.Serialize(parameter_storage_out,v);
+					serializer.Serialize(parameter_storage_out,ImageData.Ons_seen);
+					serializer.Serialize(parameter_storage_out,ImageData.Sites_seen);
 					parameter_storage_out.Close();
 				}
 				if(newlikelihood - oldlikelihood < LIKELIHOOD_CONVERGENCE)//Hack, remove the abs
@@ -339,7 +370,7 @@ namespace DRFCSharp
 				
 				iter_count++;
 			}
-			return new ModifiedModel(w,v,iter_count);
+			return new ModifiedModel(w,v,iter_count, ImageData.Ons_seen, ImageData.Sites_seen);
 			
 		}
 		public static double PseudoLikelihood(DenseVector wtest, DenseVector vtest, ImageData[] training_inputs, Classification[] training_outputs, double tau)

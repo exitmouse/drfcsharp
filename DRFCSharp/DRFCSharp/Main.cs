@@ -9,14 +9,22 @@ namespace DRFCSharp
 	{
 		public static void PrintUsage()
 		{
-			Console.WriteLine("Usage: DRFCSharp [-l <load_training_from_here>] [-s <save_training_here>] [-i <# of image to predict>]" +
-				"\n If no image number is specified, defaults to 192 because I like that number.");
+			Console.WriteLine("Usage: DRFCSharp" +
+				"\n Options:" +
+				"\n -n/--notraining: If you want to just load a previous model without training a new one" +
+				"\n -l/--load <load_training_from_here>: Loads training from a serialized previous model" +
+				"\n -s/--save <save_training_here>: Saves training to the filename specified" +
+				"\n -i/--image <# of image to predict>: Uses the model to infer on this image number" +
+				"\n If no image number is specified, defaults to 192 because I like that number." +
+				"\n -t/--tau <double>: Controls the variance of the gaussian hyperparameter on v. Defaults to 0.001.");
 		}
 		public static void Main (string[] args)
 		{
 			string params_in = "";
 			string params_out = "";
+			bool deserialize_only = false;
 			int image_num = 192;
+			double tau = 0.001d;
 			for(int i = 0; i < args.Length; i++)
 			{
 				if(args[i] == "-l" || args[i] == "--loadtraining")
@@ -38,8 +46,21 @@ namespace DRFCSharp
 					}
 					i++;
 				}
+				if(args[i] == "-t" || args[i] == "--tau")
+				{
+					if(!double.TryParse(args[i+1], out tau))
+					{
+						PrintUsage();
+						return;
+					}
+					i++;
+				}
+				if(args[i] == "-n" || args[i] == "--notraining")
+				{
+					deserialize_only = true;
+				}
 			}
-			if(image_num < 0)
+			if(image_num < 0 || (deserialize_only && string.IsNullOrEmpty(params_in)))
 			{
 				PrintUsage();
 				return;
@@ -48,6 +69,12 @@ namespace DRFCSharp
 			Classification[] cfcs = new Classification[80];
 			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
 			int count = 0;
+			
+			ModifiedModel mfm;
+			if(deserialize_only)
+			{
+				mfm = ModifiedModel.Deserialize(params_in);
+			}
 			for(int k = 0; k < 80; k++)
 			{
 				Console.WriteLine ("Importing "+k.ToString()+"th image");
@@ -60,12 +87,12 @@ namespace DRFCSharp
 				count++;
 			}
 			
-			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs,0.0001d);
+			mfm = ModifiedModel.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs,tau);
 			Console.WriteLine("Model converged! Estimating image ...");
 			string imagename = "RandCropRotate"+image_num.ToString("D3");
 			ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
 			
-			Classification out_classed = mfm.ICMInfer(input); //See what I did there?
+			Classification out_classed = mfm.LogisticInfer(input); //See what I did there?
 			
 			StreamWriter sw = new StreamWriter(imgpath+"predicted"+image_num.ToString("D3")+".txt");
 			for(int i = 0; i < 16; i++)
