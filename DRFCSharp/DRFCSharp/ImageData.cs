@@ -110,8 +110,8 @@ namespace DRFCSharp
 					}
 				}
 				single_site_features[scalepow*4 + 3] = RightAngleFinder(smoothed_histogram);
-				double[] avgs = AverageRGB(img, x, y);
-				for(int i = 0; i < 3; i++) single_site_features[scalepow*4+4+i] = avgs[i];
+				//double[] avgs = AverageRGB(img, x, y);
+				//for(int i = 0; i < 3; i++) single_site_features[scalepow*4+4+i] = avgs[i];
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
 			return new ImageData(sitefeatures);

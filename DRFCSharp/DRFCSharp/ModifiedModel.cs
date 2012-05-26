@@ -311,6 +311,7 @@ namespace DRFCSharp
 									double coeff = Exp(logofcoeff);
 									z += coeff;
 									dzdv += coeff * dzdvterm;
+									if(double.IsNaN(dzdv)||double.IsNaN(z)||double.IsInfinity(dzdv)||double.IsInfinity(z)) throw new NotFiniteNumberException();
 								}
 								
 								if(z <= 0d) throw new NotFiniteNumberException();

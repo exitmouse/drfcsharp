@@ -9,14 +9,15 @@ namespace DRFCSharp
 	{
 		public static void PrintUsage()
 		{
-			Console.WriteLine("Usage: DRFCSharp" +
+			Console.WriteLine("Usage: DRFCSharp [logistic | ICM | MAP]" +
 				"\n Options:" +
-				"\n -n/--notraining: If you want to just load a previous model without training a new one" +
-				"\n -l/--load <load_training_from_here>: Loads training from a serialized previous model" +
-				"\n -s/--save <save_training_here>: Saves training to the filename specified" +
-				"\n -i/--image <# of image to predict>: Uses the model to infer on this image number" +
+				"\n -n/--notraining: Skips training step" +
+				"\n -l/--load <load_training_from_here>: Loads training from a file" +
+				"\n -s/--save <save_training_here>: Saves training to a file" +
+				"\n -i/--image <# of image to predict>: Infers on this image number" +
 				"\n If no image number is specified, defaults to 192 because I like that number." +
-				"\n -t/--tau <double>: Controls the variance of the gaussian hyperparameter on v. Defaults to 0.001.");
+				"\n -t/--tau <double>: Controls the variance of the gaussian hyperparameter on v." +
+				"\n Defaults to 0.001.");
 		}
 		public static void Main (string[] args)
 		{
@@ -25,7 +26,20 @@ namespace DRFCSharp
 			bool deserialize_only = false;
 			int image_num = 192;
 			double tau = 0.001d;
-			for(int i = 0; i < args.Length; i++)
+			
+			if(args.Length < 1)
+			{
+				PrintUsage();
+				return;
+			}
+			string inference_algorithm = args[0].ToLower();
+			if(inference_algorithm != "logistic" && inference_algorithm != "map" && inference_algorithm != "icm")
+			{
+				PrintUsage();
+				return;
+			}
+				
+			for(int i = 1; i < args.Length; i++)
 			{
 				if(args[i] == "-l" || args[i] == "--loadtraining")
 				{
@@ -92,7 +106,22 @@ namespace DRFCSharp
 			string imagename = "RandCropRotate"+image_num.ToString("D3");
 			ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
 			
-			Classification out_classed = mfm.LogisticInfer(input); //See what I did there?
+			Classification out_classed; //See what I did there?
+			if(inference_algorithm == "logistic")
+			{
+				Console.WriteLine("Inferring with Logistic classifier...");
+				out_classed = mfm.LogisticInfer(input);
+			}
+			else if (inference_algorithm == "map")
+			{
+				Console.WriteLine("Inferring with MAP classifier...");
+				out_classed = mfm.MaximumAPosterioriInfer(input);
+			}
+			else
+			{
+				Console.WriteLine("Inferring with ICM classifier...");
+				out_classed = mfm.ICMInfer(input);
+			}
 			
 			StreamWriter sw = new StreamWriter(imgpath+"predicted"+image_num.ToString("D3")+".txt");
 			for(int i = 0; i < 16; i++)
