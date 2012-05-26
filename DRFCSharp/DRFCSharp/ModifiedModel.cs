@@ -13,7 +13,7 @@ namespace DRFCSharp
 		DenseVector v;
 		public const int MAX_ITERS = 3000;
 		public const double CONVERGENCE_CONSTANT = 0.000000001;
-		public const double START_STEP_LENGTH = 0.0000001d;//TODO all these small thingies are hacks
+		public const double START_STEP_LENGTH = 0.01d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 0.1d;
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
@@ -42,8 +42,8 @@ namespace DRFCSharp
 		}
 		public Classification ICMInfer(ImageData test_input)
 		{
-			Label[,] curr_classification = new Label[ImageData.x_sites,ImageData.y_sites];
-			for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++) curr_classification[x,y] = Label.OFF;
+			Label[,] curr_classification = LogisticInfer(test_input).site_labels; //Muahaha better initialization. I don't think this is hacky.
+			//for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++) curr_classification[x,y] = Label.OFF;
 			bool converged = false;
 			while(!converged)
 			{
@@ -56,14 +56,17 @@ namespace DRFCSharp
 					//So we can just calculate A + sum over neighbors of I for each labeling of the site, and
 					//assign to the site whichever is higher.
 					var sitefeatures = SiteFeatureSet.TransformedFeatureVector(test_input[x,y]);
-					double on_association = Sigma(w.DotProduct(sitefeatures));
-					double off_association = Sigma(-1 * w.DotProduct(sitefeatures));
+					double on_association = Log(Sigma(w.DotProduct(sitefeatures)));
+					double off_association = Log(Sigma(-1 * w.DotProduct(sitefeatures)));
 					double on_interaction = 0d;
 					double off_interaction = 0d;
+					
+
 					
 					foreach(Tuple<int,int> t in ImageData.GetNeighbors(x,y))
 					{
 						var mu = SiteFeatureSet.CrossFeatures(test_input[x,y],test_input[t.Item1,t.Item2]);
+						//Console.WriteLine("Magnitude of Interaction: {0}",v.DotProduct(mu));
 						if(curr_classification[t.Item1,t.Item2] == Label.ON)
 						{
 							on_interaction += v.DotProduct(mu);
@@ -78,6 +81,8 @@ namespace DRFCSharp
 					
 					if(on_association + on_interaction > off_association + off_interaction)
 					{
+						/*Console.WriteLine("On Association: {0}",on_association);
+						Console.WriteLine("Off Association: {0}",off_association);*/
 						curr_classification[x,y] = Label.ON;
 					}
 					else
