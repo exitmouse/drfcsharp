@@ -89,20 +89,23 @@ namespace DRFCSharp
 			{
 				mfm = ModifiedModel.Deserialize(params_in);
 			}
-			for(int k = 0; k < 80; k++)
+			else
 			{
-				Console.WriteLine ("Importing "+k.ToString()+"th image");
-				string prefix = k.ToString("D3");
-				ImageData img = ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+prefix+".jpg"));
-				//Console.WriteLine (img[0,2].features[2]);
-				Classification cfc = ImageData.ImportLabeling(imgpath+prefix+".txt");
-				imgs[count] = img;
-				cfcs[count] = cfc;
-				count++;
+				for(int k = 0; k < 80; k++)
+				{
+					Console.WriteLine ("Importing "+k.ToString()+"th image");
+					string prefix = k.ToString("D3");
+					ImageData img = ImageData.FromImage(new Bitmap(imgpath+"RandCropRotate"+prefix+".jpg"));
+					//Console.WriteLine (img[0,2].features[2]);
+					Classification cfc = ImageData.ImportLabeling(imgpath+prefix+".txt");
+					imgs[count] = img;
+					cfcs[count] = cfc;
+					count++;
+				}
+				
+				mfm = ModifiedModel.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs,tau);
+				Console.WriteLine("Model converged! Estimating image ...");
 			}
-			
-			mfm = ModifiedModel.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs,tau);
-			Console.WriteLine("Model converged! Estimating image ...");
 			string imagename = "RandCropRotate"+image_num.ToString("D3");
 			ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
 			
