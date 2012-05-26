@@ -116,6 +116,7 @@ namespace DRFCSharp
 					//double[] avgs = AverageRGB(img, x, y);
 					//for(int i = 0; i < 3; i++) single_site_features[scalepow*7+4+i] = avgs[i];
 				}
+				//Console.WriteLine(single_site_features);
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
 			return new ImageData(sitefeatures);
