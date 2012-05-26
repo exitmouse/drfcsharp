@@ -61,57 +61,61 @@ namespace DRFCSharp
 			SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[x_sites,y_sites];
 			int width_of_site = img.Width/x_sites;
 			int height_of_site = img.Height/y_sites;
-			for(int x = 0; x < x_sites; x++) for(int y = 0; y < y_sites; y++)for(int scalepow = 0; scalepow < 3; scalepow++) //TODO maybe less hardcode?
+			for(int x = 0; x < x_sites; x++) for(int y = 0; y < y_sites; y++)
 			{
 				//Console.WriteLine("X = {0}, Y = {1}",x,y);
 				DenseVector single_site_features = new DenseVector(SiteFeatureSet.NUM_FEATURES);
-				double[] histogram_over_orientations = new double[NUM_ORIENTATIONS]; //TODO maybe refactor into a function
-				int scale = 16;
-				for(int useless = 0; useless < scalepow; useless++) scale *= 2; //HACK this is just bad code and I feel bad now.
-				for(int u = x*width_of_site; u < x*width_of_site + scale; u++)
+				
+				for(int scalepow = 0; scalepow < 3; scalepow++) //TODO maybe less hardcode?
 				{
-					for(int v = y*height_of_site; v < y*height_of_site + scale; v++)
+					double[] histogram_over_orientations = new double[NUM_ORIENTATIONS]; //TODO maybe refactor into a function
+					int scale = 16;
+					for(int useless = 0; useless < scalepow; useless++) scale *= 2; //HACK this is just bad code and I feel bad now.
+					for(int u = x*width_of_site; u < x*width_of_site + scale; u++)
 					{
-						if(u >= img.Width || v >= img.Height) continue;
-						DenseVector g = grads[u,v];
-						//PREPARE FOR HACK
-						double angle = Math.Atan2 (g[1],g[0]);
-						if(angle < 0) angle += 2*Math.PI;
-						int orientation = (int)Math.Floor((((double)NUM_ORIENTATIONS)/(2*Math.PI))*angle);
-						orientation = orientation % 8; //Hack moar
-						double magnitude = g.Norm(2);
-						histogram_over_orientations[orientation] += magnitude;
+						for(int v = y*height_of_site; v < y*height_of_site + scale; v++)
+						{
+							if(u >= img.Width || v >= img.Height) continue;
+							DenseVector g = grads[u,v];
+							//PREPARE FOR HACK
+							double angle = Math.Atan2 (g[1],g[0]);
+							if(angle < 0) angle += 2*Math.PI;
+							int orientation = (int)Math.Floor((((double)NUM_ORIENTATIONS)/(2*Math.PI))*angle);
+							orientation = orientation % 8; //Hack moar
+							double magnitude = g.Norm(2);
+							histogram_over_orientations[orientation] += magnitude;
+						}
 					}
-				}
-				double[] smoothed_histogram = new double[NUM_ORIENTATIONS];
-				for(int i = 0; i < NUM_ORIENTATIONS; i++)
-				{
-					double numerator = 0;
-					double denom = 0;
-					for(int j = 0; j < NUM_ORIENTATIONS; j++)
+					double[] smoothed_histogram = new double[NUM_ORIENTATIONS];
+					for(int i = 0; i < NUM_ORIENTATIONS; i++)
 					{
-						//Many things are wrong with this. It seems this should work _badly_.
-						//Possibly I am misunderstanding the paper.
-						double coeff = SmoothingKernel(((double)(i-j))/2d);
-						denom += coeff;
-						numerator += coeff*histogram_over_orientations[j];
+						double numerator = 0;
+						double denom = 0;
+						for(int j = 0; j < NUM_ORIENTATIONS; j++)
+						{
+							//Many things are wrong with this. It seems this should work _badly_.
+							//Possibly I am misunderstanding the paper.
+							double coeff = SmoothingKernel(((double)(i-j))/2d);
+							denom += coeff;
+							numerator += coeff*histogram_over_orientations[j];
+						}
+						smoothed_histogram[i] = numerator/denom;
 					}
-					smoothed_histogram[i] = numerator/denom;
-				}
-				//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
-				//However, we can't use the absolute location of the orientation because our images are distributed in a way that's rotationally
-				//invariant. Our images are not taken with upright cameras.
-				for(int i = 0; i < 3; i++)
-				{
-					single_site_features[scalepow*4 + i]=Moment(smoothed_histogram,i);
-					if(double.IsNaN(single_site_features[i]))
+					//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
+					//However, we can't use the absolute location of the orientation because our images are distributed in a way that's rotationally
+					//invariant. Our images are not taken with upright cameras.
+					for(int i = 0; i < 3; i++)
 					{
-						throw new NotImplementedException();
+						single_site_features[scalepow*4 + i]=Moment(smoothed_histogram,i);
+						if(double.IsNaN(single_site_features[i]))
+						{
+							throw new NotImplementedException();
+						}
 					}
+					single_site_features[scalepow*4 + 3] = RightAngleFinder(smoothed_histogram);
+					//double[] avgs = AverageRGB(img, x, y);
+					//for(int i = 0; i < 3; i++) single_site_features[scalepow*7+4+i] = avgs[i];
 				}
-				single_site_features[scalepow*4 + 3] = RightAngleFinder(smoothed_histogram);
-				//double[] avgs = AverageRGB(img, x, y);
-				//for(int i = 0; i < 3; i++) single_site_features[scalepow*4+4+i] = avgs[i];
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
 			return new ImageData(sitefeatures);
