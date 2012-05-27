@@ -17,7 +17,7 @@ namespace DRFCSharp
 				"\n -i/--image <# of image to predict>: Infers on this image number" +
 				"\n If no image number is specified, defaults to 192 because I like that number." +
 				"\n -t/--tau <double>: Controls the variance of the gaussian hyperparameter on v." +
-				"\n Defaults to 0.001.");
+				"\n Defaults to 0.0001.");
 		}
 		public static void Main (string[] args)
 		{
@@ -25,7 +25,7 @@ namespace DRFCSharp
 			string params_out = "";
 			bool deserialize_only = false;
 			int image_num = 192;
-			double tau = 0.001d;
+			double tau = 0.0001d;
 			
 			if(args.Length < 1)
 			{
@@ -79,8 +79,8 @@ namespace DRFCSharp
 				PrintUsage();
 				return;
 			}
-			ImageData[] imgs = new ImageData[80];
-			Classification[] cfcs = new Classification[80];
+			ImageData[] imgs = new ImageData[150];
+			Classification[] cfcs = new Classification[150];
 			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
 			int count = 0;
 			
@@ -91,7 +91,7 @@ namespace DRFCSharp
 			}
 			else
 			{
-				for(int k = 0; k < 80; k++)
+				for(int k = 0; k < 150; k++)
 				{
 					Console.WriteLine ("Importing "+k.ToString()+"th image");
 					string prefix = k.ToString("D3");
