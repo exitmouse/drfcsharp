@@ -267,7 +267,12 @@ def main(index):
                         
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
-                    
+                elif event.key == K_b:
+                    for u in range(SITE_DIM):
+                        for v in range(SITE_DIM):
+                            site_array[u][v] = (site_array[u][v]+1)%3
+                    SaveAerial(current_image_index, site_array)
+                            
                 elif event.key == K_g:
                     goto_entry_mode = not goto_entry_mode
                     if not goto_entry_mode:
