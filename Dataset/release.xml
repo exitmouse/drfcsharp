@@ -2,31 +2,22 @@
 <SOAP-ENV:Body>
 <a1:DenseVector id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/MathNet.Numerics.LinearAlgebra.Double/MathNet.Numerics%2C%20Version%3D2011.4.17.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dcd8b63ad3d691a37">
 <_x003C_Data_x003E_k__BackingField href="#ref-3"/>
-<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>22</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
+<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>13</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
 </a1:DenseVector>
-<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[22]">
-<item>-5.0500350645455496E-11</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>-1.144770049311186E-08</item>
-<item>-1.1320727032113833E-08</item>
-<item>-7.8834766735624813E-07</item>
-<item>-2.4171493823136476E-11</item>
-<item>-6.0231686553346271E-09</item>
-<item>-5.9885561995589985E-09</item>
-<item>-4.8392452627177935E-09</item>
+<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[13]">
+<item>-0.00044738834960523696</item>
+<item>-2.796177185032731E-05</item>
+<item>-1.0785940746063199E-05</item>
+<item>9.97254785680273E-08</item>
+<item>-0.00019966384892981554</item>
+<item>-2.7961771850327307E-05</item>
+<item>-7.6596457265779928E-06</item>
+<item>-1.6737389816062148E-08</item>
+<item>-0.00018834720453178469</item>
+<item>-2.796177185032731E-05</item>
+<item>-5.8851019803463651E-06</item>
+<item>-2.0853338190872082E-08</item>
+<item>-0.0001709977174923877</item>
 </SOAP-ENC:Array>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -34,31 +25,22 @@
 <SOAP-ENV:Body>
 <a1:DenseVector id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/MathNet.Numerics.LinearAlgebra.Double/MathNet.Numerics%2C%20Version%3D2011.4.17.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dcd8b63ad3d691a37">
 <_x003C_Data_x003E_k__BackingField href="#ref-3"/>
-<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>22</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
+<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>13</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
 </a1:DenseVector>
-<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[22]">
-<item>4.8231025915232463E-10</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>0</item>
-<item>1.6130848612562798E-08</item>
-<item>1.4521780478693275E-08</item>
-<item>3.3761841543711113E-06</item>
-<item>3.9715776866508667E-11</item>
-<item>5.051538637098998E-09</item>
-<item>4.4729241645982046E-09</item>
-<item>3.2602130034965814E-09</item>
+<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[13]">
+<item>0.00042047805571077736</item>
+<item>4.45370407945975E-21</item>
+<item>9.3641879400241531E-06</item>
+<item>1.3393545787736223E-06</item>
+<item>5.493485508613978E-05</item>
+<item>4.4120180131838925E-21</item>
+<item>4.813555282755025E-06</item>
+<item>4.6002808748152284E-07</item>
+<item>5.5633689211780909E-05</item>
+<item>4.4361317977785878E-21</item>
+<item>2.0446418583096205E-06</item>
+<item>1.2546866820323183E-07</item>
+<item>4.8716105172047807E-05</item>
 </SOAP-ENC:Array>
 </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

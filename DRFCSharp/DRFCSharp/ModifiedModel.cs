@@ -13,7 +13,7 @@ namespace DRFCSharp
 		DenseVector v;
 		public const int MAX_ITERS = 3000;
 		public const double CONVERGENCE_CONSTANT = 0.000000001;
-		public const double START_STEP_LENGTH = 0.01d;//TODO all these small thingies are hacks
+		public const double START_STEP_LENGTH = 0.0000001d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 0.1d;
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
@@ -284,6 +284,13 @@ namespace DRFCSharp
 						{
 							for(int vert = 0; vert < ImageData.y_sites; vert++)
 							{
+								
+								//vgrad[k] = sum over image sites in all images of
+								//[ sum over image sites of x_i x_j (mu_ij (y))_k] <- vterm
+								//-
+								//[dzdv]/[z]
+								//
+								//all minus v_k/tau^2
 								double z = 0;
 								//x_i
 								int x = (int)(training_outputs[m][horz,vert])*2 - 1;
@@ -299,10 +306,11 @@ namespace DRFCSharp
 								vgrad[k] += vterm;
 								double dzdv = 0;
 								
-								//Sum over possible x_i
+							
 								//h_i(y):
 								DenseVector h = SiteFeatureSet.TransformedFeatureVector(training_inputs[m][horz,vert]);
 								
+								//Sum over possible x_i	
 								for(int tempx = -1; tempx <= 1; tempx += 2)
 								{
 									double logofcoeff = Log(Sigma(tempx * w.DotProduct(h)));
@@ -370,7 +378,7 @@ namespace DRFCSharp
 					serializer.Serialize(parameter_storage_out,ImageData.Sites_seen);
 					parameter_storage_out.Close();
 				}
-				if(newlikelihood - oldlikelihood < LIKELIHOOD_CONVERGENCE)//Hack, remove the abs
+				if(newlikelihood - oldlikelihood < LIKELIHOOD_CONVERGENCE)
 				{
 					Console.WriteLine("New likelihood - Old likelihood is {0}; Converged.",newlikelihood-oldlikelihood);
 					break;

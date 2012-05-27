@@ -1,0 +1,1811 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <UnitTestResult>
+      <TestDate>2012-05-26T16:57:27</TestDate>
+      <Passed>26</Passed>
+      <Errors>0</Errors>
+      <Failures>0</Failures>
+      <Inconclusive>0</Inconclusive>
+      <NotRunnable>0</NotRunnable>
+      <Skipped>0</Skipped>
+      <Ignored>0</Ignored>
+      <Time />
+      <Message>成功したテスト
+
+実行時間: 7.32ms</Message>
+    </UnitTestResult>
+  </Results>
+  <Tests>
+    <TestRecord Name="DRFCSharp">
+      <Results>
+        <UnitTestResult>
+          <TestDate>2012-05-26T16:57:27</TestDate>
+          <Passed>26</Passed>
+          <Errors>0</Errors>
+          <Failures>0</Failures>
+          <Inconclusive>0</Inconclusive>
+          <NotRunnable>0</NotRunnable>
+          <Skipped>0</Skipped>
+          <Ignored>0</Ignored>
+          <Time />
+          <Message>成功したテスト
+
+実行時間: 7.30ms</Message>
+        </UnitTestResult>
+      </Results>
+      <Tests>
+        <TestRecord Name="FeatureTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-26T16:57:27</TestDate>
+              <Passed>12</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.77ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CollectionOfLabelsInitialization">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="CrossFeaturesConcatenate">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GaussianMeanIsCentered">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GaussiansAreCorrectSize">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsCorners">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNeighborsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNewConnectionsFarEdge">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="GetNewConnectionsSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="InBoundsFarEdge">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SiteFeatureSetInitialization">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="TransformedFeatureVectors">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="GraphTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-26T16:57:27</TestDate>
+              <Passed>9</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 0.23ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="AddFlowCanWork">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowGoesBackwards">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowIsSane">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowMaximizes">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="AddFlowRespectsMinimumCapacityInPath">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="CanMakeNontrivialCut">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="EdgeAddBoth">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesDoesNotTravelSaturatedEdges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ResidualCapacityConnectedNodesSanity">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="ModelTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2012-05-26T16:57:27</TestDate>
+              <Passed>5</Passed>
+              <Errors>0</Errors>
+              <Failures>0</Failures>
+              <Inconclusive>0</Inconclusive>
+              <NotRunnable>0</NotRunnable>
+              <Skipped>0</Skipped>
+              <Ignored>0</Ignored>
+              <Time />
+              <Message>成功したテスト
+
+実行時間: 6.20ms</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CanClassify">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 3.21ms</Message>
+                  <ConsoleOutput>					L2 Norms Summed: 1088
+Likelihood after this step: -46.08
+					L2 Norms Summed: 9.6
+Likelihood after this step: -45.163008
+					L2 Norms Summed: 9.504
+Likelihood after this step: -44.2642641408
+					L2 Norms Summed: 9.40896
+Likelihood after this step: -43.3834052843981
+					L2 Norms Summed: 9.3148704
+Likelihood after this step: -42.5200755192386
+					L2 Norms Summed: 9.22172169600003
+Likelihood after this step: -41.6739260164057
+					L2 Norms Summed: 9.12950447904
+Likelihood after this step: -40.8446148886792
+					L2 Norms Summed: 9.0382094342496
+Likelihood after this step: -40.0318070523945
+					L2 Norms Summed: 8.94782733990711
+Likelihood after this step: -39.2351740920519
+					L2 Norms Summed: 8.858349066508
+Likelihood after this step: -38.45439412762
+					L2 Norms Summed: 8.76976557584298
+Likelihood after this step: -37.6891516844804
+					L2 Norms Summed: 8.68206792008452
+Likelihood after this step: -36.9391375659593
+					L2 Norms Summed: 8.59524724088368
+Likelihood after this step: -36.2040487283967
+					L2 Norms Summed: 8.50929476847484
+Likelihood after this step: -35.4835881587016
+					L2 Norms Summed: 8.42420182079009
+Likelihood after this step: -34.7774647543434
+					L2 Norms Summed: 8.33995980258218
+Likelihood after this step: -34.085393205732
+					L2 Norms Summed: 8.25656020455635
+Likelihood after this step: -33.4070938809379
+					L2 Norms Summed: 8.17399460251079
+Likelihood after this step: -32.7422927127072
+					L2 Norms Summed: 8.09225465648566
+Likelihood after this step: -32.0907210877244
+					L2 Norms Summed: 8.0113321099208
+Likelihood after this step: -31.4521157380787
+					L2 Norms Summed: 7.93121878882158
+Likelihood after this step: -30.8262186348909
+					L2 Norms Summed: 7.85190660093334
+Likelihood after this step: -30.2127768840566
+					L2 Norms Summed: 7.77338753492398
+Likelihood after this step: -29.6115426240639
+					L2 Norms Summed: 7.6956536595747
+Likelihood after this step: -29.0222729258451
+					L2 Norms Summed: 7.61869712297891
+Likelihood after this step: -28.4447296946208
+					L2 Norms Summed: 7.54251015174905
+Likelihood after this step: -27.8786795736979
+					L2 Norms Summed: 7.46708505023145
+Likelihood after this step: -27.3238938501814
+					L2 Norms Summed: 7.39241419972902
+Likelihood after this step: -26.7801483625629
+					L2 Norms Summed: 7.31849005773158
+Likelihood after this step: -26.2472234101481
+					L2 Norms Summed: 7.24530515715404
+Likelihood after this step: -25.7249036642863
+					L2 Norms Summed: 7.17285210558221
+Likelihood after this step: -25.2129780813672
+					L2 Norms Summed: 7.10112358452601
+Likelihood after this step: -24.7112398175483
+					L2 Norms Summed: 7.03011234868025
+Likelihood after this step: -24.2194861451796
+					L2 Norms Summed: 6.95981122519279
+Likelihood after this step: -23.737518370891
+					L2 Norms Summed: 6.89021311294
+Likelihood after this step: -23.265141755311
+					L2 Norms Summed: 6.82131098180948
+Likelihood after this step: -22.8021654343813
+					L2 Norms Summed: 6.75309787198992
+Likelihood after this step: -22.3484023422383
+					L2 Norms Summed: 6.68556689326812
+Likelihood after this step: -21.9036691356294
+					L2 Norms Summed: 6.61871122433298
+Likelihood after this step: -21.4677861198324
+					L2 Norms Summed: 6.55252411208647
+Likelihood after this step: -21.0405771760504
+					L2 Norms Summed: 6.48699887096149
+Likelihood after this step: -20.6218696902505
+					L2 Norms Summed: 6.42212888224664
+Likelihood after this step: -20.2114944834189
+					L2 Norms Summed: 6.35790759341743
+Likelihood after this step: -19.8092857432045
+					L2 Norms Summed: 6.29432851747464
+Likelihood after this step: -19.4150809569219
+					L2 Norms Summed: 6.23138523228889
+Likelihood after this step: -19.0287208458883
+					L2 Norms Summed: 6.16907137995206
+Likelihood after this step: -18.6500493010667
+					L2 Norms Summed: 6.10738066613483
+Likelihood after this step: -18.2789133199902
+					L2 Norms Summed: 6.04630685945107
+Likelihood after this step: -17.915162944941
+					L2 Norms Summed: 5.9858437908283
+Likelihood after this step: -17.5586512023601
+					L2 Norms Summed: 5.92598535288433
+Likelihood after this step: -17.2092340434626
+					L2 Norms Summed: 5.86672549931073
+Likelihood after this step: -16.8667702860347
+					L2 Norms Summed: 5.80805824426157
+Likelihood after this step: -16.5311215573889
+					L2 Norms Summed: 5.74997766174887
+Likelihood after this step: -16.2021522384546
+					L2 Norms Summed: 5.69247788504393
+Likelihood after this step: -15.8797294089814
+					L2 Norms Summed: 5.63555310608467
+Likelihood after this step: -15.5637227938321
+					L2 Norms Summed: 5.57919757488873
+Likelihood after this step: -15.2540047103458
+					L2 Norms Summed: 5.5234055989725
+Likelihood after this step: -14.9504500167472
+					L2 Norms Summed: 5.46817154277594
+Likelihood after this step: -14.6529360615836
+					L2 Norms Summed: 5.4134898270931
+Likelihood after this step: -14.3613426341669
+					L2 Norms Summed: 5.35935492850828
+Likelihood after this step: -14.0755519160036
+					L2 Norms Summed: 5.30576137883775
+Likelihood after this step: -13.7954484331901
+					L2 Norms Summed: 5.25270376457712
+Likelihood after this step: -13.5209190097549
+					L2 Norms Summed: 5.20017672635394
+Likelihood after this step: -13.2518527219316
+					L2 Norms Summed: 5.14817495838591
+Likelihood after this step: -12.9881408533389
+					L2 Norms Summed: 5.09669320794435
+Likelihood after this step: -12.7296768510552
+					L2 Norms Summed: 5.04572627482273
+Likelihood after this step: -12.4763562825665
+					L2 Norms Summed: 4.99526901081076
+Likelihood after this step: -12.2280767935697
+					L2 Norms Summed: 4.94531631917335
+Likelihood after this step: -11.9847380666184
+					L2 Norms Summed: 4.89586315413466
+Likelihood after this step: -11.7462417805898
+					L2 Norms Summed: 4.84690452036714
+Likelihood after this step: -11.512491570959
+					L2 Norms Summed: 4.79843547248534
+Likelihood after this step: -11.283392990864
+					L2 Norms Summed: 4.75045111454499
+Likelihood after this step: -11.0588534729453
+					L2 Norms Summed: 4.70294659954608
+Likelihood after this step: -10.8387822919465
+					L2 Norms Summed: 4.65591712894148
+Likelihood after this step: -10.6230905280568
+					L2 Norms Summed: 4.60935795214928
+Likelihood after this step: -10.4116910309859
+					L2 Norms Summed: 4.56326436607012
+Likelihood after this step: -10.2044983847531
+					L2 Norms Summed: 4.51763171460908
+Likelihood after this step: -10.0014288731767
+					L2 Norms Summed: 4.47245538820114
+Likelihood after this step: -9.80240044605115
+					L2 Norms Summed: 4.42773082334126
+Likelihood after this step: -9.60733268599867
+					L2 Norms Summed: 4.38345350211987
+Likelihood after this step: -9.41614677597919
+					L2 Norms Summed: 4.33961895175834
+Likelihood after this step: -9.22876546744873
+					L2 Norms Summed: 4.29622274415369
+Likelihood after this step: -9.04511304915108
+					L2 Norms Summed: 4.25326049542281
+Likelihood after this step: -8.86511531653258
+					L2 Norms Summed: 4.2107278654521
+Likelihood after this step: -8.68869954176424
+					L2 Norms Summed: 4.16862055745046
+Likelihood after this step: -8.51579444436348
+					L2 Norms Summed: 4.1269343175048
+Likelihood after this step: -8.34633016240037
+					L2 Norms Summed: 4.08566493414022
+Likelihood after this step: -8.18023822427448
+					L2 Norms Summed: 4.04480823788092
+Likelihood after this step: -8.01745152106415
+					L2 Norms Summed: 4.00436010081611
+Likelihood after this step: -7.85790427941467
+					L2 Norms Summed: 3.96431643616759
+Likelihood after this step: -7.70153203497765
+					L2 Norms Summed: 3.92467319785885
+Likelihood after this step: -7.54827160637296
+					L2 Norms Summed: 3.88542638008818
+Likelihood after this step: -7.39806106967702
+					L2 Norms Summed: 3.8465720169028
+Likelihood after this step: -7.25083973341419
+					L2 Norms Summed: 3.80810618177355
+Likelihood after this step: -7.10654811405412
+					L2 Norms Summed: 3.77002498717324
+Likelihood after this step: -6.9651279119912
+					L2 Norms Summed: 3.73232458415512
+Likelihood after this step: -6.82652198801369
+					L2 Norms Summed: 3.69500116193128
+Likelihood after this step: -6.69067434023164
+					L2 Norms Summed: 3.65805094745335
+Likelihood after this step: -6.55753008148107
+					L2 Norms Summed: 3.62147020499178
+Likelihood after this step: -6.42703541716986
+					L2 Norms Summed: 3.58525523571682
+Likelihood after this step: -6.29913762356706
+					L2 Norms Summed: 3.54940237727521
+Likelihood after this step: -6.17378502653976
+					L2 Norms Summed: 3.51390800337236
+Likelihood after this step: -6.05092698070065
+					L2 Norms Summed: 3.47876852334571
+Likelihood after this step: -5.93051384898793
+					L2 Norms Summed: 3.44398038174056
+Likelihood after this step: -5.81249698265016
+					L2 Norms Summed: 3.40954005788274
+Likelihood after this step: -5.69682870163105
+					L2 Norms Summed: 3.37544406544788
+Likelihood after this step: -5.58346227535797
+					L2 Norms Summed: 3.34168895202642
+Likelihood after this step: -5.47235190391093
+					L2 Norms Summed: 3.30827129868535
+Likelihood after this step: -5.36345269957563
+					L2 Norms Summed: 3.27518771952337
+Likelihood after this step: -5.25672066877019
+					L2 Norms Summed: 3.24243486122285
+Likelihood after this step: -5.15211269433642
+					L2 Norms Summed: 3.21000940259177
+Likelihood after this step: -5.0495865181934
+					L2 Norms Summed: 3.17790805410121
+Likelihood after this step: -4.94910072434277
+					L2 Norms Summed: 3.14612755741186
+Likelihood after this step: -4.85061472221942
+New likelihood - Old likelihood is 0.098486002123348; Converged.
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+	Internode edge with strength 3.11467824435779
+@target with strength NaN (非数値)
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="ModelTrainingConverges">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 2.80ms</Message>
+                  <ConsoleOutput>					L2 Norms Summed: 1088
+Likelihood after this step: -46.08
+					L2 Norms Summed: 9.6
+Likelihood after this step: -45.163008
+					L2 Norms Summed: 9.504
+Likelihood after this step: -44.2642641408
+					L2 Norms Summed: 9.40896
+Likelihood after this step: -43.3834052843981
+					L2 Norms Summed: 9.3148704
+Likelihood after this step: -42.5200755192386
+					L2 Norms Summed: 9.22172169600003
+Likelihood after this step: -41.6739260164057
+					L2 Norms Summed: 9.12950447904
+Likelihood after this step: -40.8446148886792
+					L2 Norms Summed: 9.0382094342496
+Likelihood after this step: -40.0318070523945
+					L2 Norms Summed: 8.94782733990711
+Likelihood after this step: -39.2351740920519
+					L2 Norms Summed: 8.858349066508
+Likelihood after this step: -38.45439412762
+					L2 Norms Summed: 8.76976557584298
+Likelihood after this step: -37.6891516844804
+					L2 Norms Summed: 8.68206792008452
+Likelihood after this step: -36.9391375659593
+					L2 Norms Summed: 8.59524724088368
+Likelihood after this step: -36.2040487283967
+					L2 Norms Summed: 8.50929476847484
+Likelihood after this step: -35.4835881587016
+					L2 Norms Summed: 8.42420182079009
+Likelihood after this step: -34.7774647543434
+					L2 Norms Summed: 8.33995980258218
+Likelihood after this step: -34.085393205732
+					L2 Norms Summed: 8.25656020455635
+Likelihood after this step: -33.4070938809379
+					L2 Norms Summed: 8.17399460251079
+Likelihood after this step: -32.7422927127072
+					L2 Norms Summed: 8.09225465648566
+Likelihood after this step: -32.0907210877244
+					L2 Norms Summed: 8.0113321099208
+Likelihood after this step: -31.4521157380787
+					L2 Norms Summed: 7.93121878882158
+Likelihood after this step: -30.8262186348909
+					L2 Norms Summed: 7.85190660093334
+Likelihood after this step: -30.2127768840566
+					L2 Norms Summed: 7.77338753492398
+Likelihood after this step: -29.6115426240639
+					L2 Norms Summed: 7.6956536595747
+Likelihood after this step: -29.0222729258451
+					L2 Norms Summed: 7.61869712297891
+Likelihood after this step: -28.4447296946208
+					L2 Norms Summed: 7.54251015174905
+Likelihood after this step: -27.8786795736979
+					L2 Norms Summed: 7.46708505023145
+Likelihood after this step: -27.3238938501814
+					L2 Norms Summed: 7.39241419972902
+Likelihood after this step: -26.7801483625629
+					L2 Norms Summed: 7.31849005773158
+Likelihood after this step: -26.2472234101481
+					L2 Norms Summed: 7.24530515715404
+Likelihood after this step: -25.7249036642863
+					L2 Norms Summed: 7.17285210558221
+Likelihood after this step: -25.2129780813672
+					L2 Norms Summed: 7.10112358452601
+Likelihood after this step: -24.7112398175483
+					L2 Norms Summed: 7.03011234868025
+Likelihood after this step: -24.2194861451796
+					L2 Norms Summed: 6.95981122519279
+Likelihood after this step: -23.737518370891
+					L2 Norms Summed: 6.89021311294
+Likelihood after this step: -23.265141755311
+					L2 Norms Summed: 6.82131098180948
+Likelihood after this step: -22.8021654343813
+					L2 Norms Summed: 6.75309787198992
+Likelihood after this step: -22.3484023422383
+					L2 Norms Summed: 6.68556689326812
+Likelihood after this step: -21.9036691356294
+					L2 Norms Summed: 6.61871122433298
+Likelihood after this step: -21.4677861198324
+					L2 Norms Summed: 6.55252411208647
+Likelihood after this step: -21.0405771760504
+					L2 Norms Summed: 6.48699887096149
+Likelihood after this step: -20.6218696902505
+					L2 Norms Summed: 6.42212888224664
+Likelihood after this step: -20.2114944834189
+					L2 Norms Summed: 6.35790759341743
+Likelihood after this step: -19.8092857432045
+					L2 Norms Summed: 6.29432851747464
+Likelihood after this step: -19.4150809569219
+					L2 Norms Summed: 6.23138523228889
+Likelihood after this step: -19.0287208458883
+					L2 Norms Summed: 6.16907137995206
+Likelihood after this step: -18.6500493010667
+					L2 Norms Summed: 6.10738066613483
+Likelihood after this step: -18.2789133199902
+					L2 Norms Summed: 6.04630685945107
+Likelihood after this step: -17.915162944941
+					L2 Norms Summed: 5.9858437908283
+Likelihood after this step: -17.5586512023601
+					L2 Norms Summed: 5.92598535288433
+Likelihood after this step: -17.2092340434626
+					L2 Norms Summed: 5.86672549931073
+Likelihood after this step: -16.8667702860347
+					L2 Norms Summed: 5.80805824426157
+Likelihood after this step: -16.5311215573889
+					L2 Norms Summed: 5.74997766174887
+Likelihood after this step: -16.2021522384546
+					L2 Norms Summed: 5.69247788504393
+Likelihood after this step: -15.8797294089814
+					L2 Norms Summed: 5.63555310608467
+Likelihood after this step: -15.5637227938321
+					L2 Norms Summed: 5.57919757488873
+Likelihood after this step: -15.2540047103458
+					L2 Norms Summed: 5.5234055989725
+Likelihood after this step: -14.9504500167472
+					L2 Norms Summed: 5.46817154277594
+Likelihood after this step: -14.6529360615836
+					L2 Norms Summed: 5.4134898270931
+Likelihood after this step: -14.3613426341669
+					L2 Norms Summed: 5.35935492850828
+Likelihood after this step: -14.0755519160036
+					L2 Norms Summed: 5.30576137883775
+Likelihood after this step: -13.7954484331901
+					L2 Norms Summed: 5.25270376457712
+Likelihood after this step: -13.5209190097549
+					L2 Norms Summed: 5.20017672635394
+Likelihood after this step: -13.2518527219316
+					L2 Norms Summed: 5.14817495838591
+Likelihood after this step: -12.9881408533389
+					L2 Norms Summed: 5.09669320794435
+Likelihood after this step: -12.7296768510552
+					L2 Norms Summed: 5.04572627482273
+Likelihood after this step: -12.4763562825665
+					L2 Norms Summed: 4.99526901081076
+Likelihood after this step: -12.2280767935697
+					L2 Norms Summed: 4.94531631917335
+Likelihood after this step: -11.9847380666184
+					L2 Norms Summed: 4.89586315413466
+Likelihood after this step: -11.7462417805898
+					L2 Norms Summed: 4.84690452036714
+Likelihood after this step: -11.512491570959
+					L2 Norms Summed: 4.79843547248534
+Likelihood after this step: -11.283392990864
+					L2 Norms Summed: 4.75045111454499
+Likelihood after this step: -11.0588534729453
+					L2 Norms Summed: 4.70294659954608
+Likelihood after this step: -10.8387822919465
+					L2 Norms Summed: 4.65591712894148
+Likelihood after this step: -10.6230905280568
+					L2 Norms Summed: 4.60935795214928
+Likelihood after this step: -10.4116910309859
+					L2 Norms Summed: 4.56326436607012
+Likelihood after this step: -10.2044983847531
+					L2 Norms Summed: 4.51763171460908
+Likelihood after this step: -10.0014288731767
+					L2 Norms Summed: 4.47245538820114
+Likelihood after this step: -9.80240044605115
+					L2 Norms Summed: 4.42773082334126
+Likelihood after this step: -9.60733268599867
+					L2 Norms Summed: 4.38345350211987
+Likelihood after this step: -9.41614677597919
+					L2 Norms Summed: 4.33961895175834
+Likelihood after this step: -9.22876546744873
+					L2 Norms Summed: 4.29622274415369
+Likelihood after this step: -9.04511304915108
+					L2 Norms Summed: 4.25326049542281
+Likelihood after this step: -8.86511531653258
+					L2 Norms Summed: 4.2107278654521
+Likelihood after this step: -8.68869954176424
+					L2 Norms Summed: 4.16862055745046
+Likelihood after this step: -8.51579444436348
+					L2 Norms Summed: 4.1269343175048
+Likelihood after this step: -8.34633016240037
+					L2 Norms Summed: 4.08566493414022
+Likelihood after this step: -8.18023822427448
+					L2 Norms Summed: 4.04480823788092
+Likelihood after this step: -8.01745152106415
+					L2 Norms Summed: 4.00436010081611
+Likelihood after this step: -7.85790427941467
+					L2 Norms Summed: 3.96431643616759
+Likelihood after this step: -7.70153203497765
+					L2 Norms Summed: 3.92467319785885
+Likelihood after this step: -7.54827160637296
+					L2 Norms Summed: 3.88542638008818
+Likelihood after this step: -7.39806106967702
+					L2 Norms Summed: 3.8465720169028
+Likelihood after this step: -7.25083973341419
+					L2 Norms Summed: 3.80810618177355
+Likelihood after this step: -7.10654811405412
+					L2 Norms Summed: 3.77002498717324
+Likelihood after this step: -6.9651279119912
+					L2 Norms Summed: 3.73232458415512
+Likelihood after this step: -6.82652198801369
+					L2 Norms Summed: 3.69500116193128
+Likelihood after this step: -6.69067434023164
+					L2 Norms Summed: 3.65805094745335
+Likelihood after this step: -6.55753008148107
+					L2 Norms Summed: 3.62147020499178
+Likelihood after this step: -6.42703541716986
+					L2 Norms Summed: 3.58525523571682
+Likelihood after this step: -6.29913762356706
+					L2 Norms Summed: 3.54940237727521
+Likelihood after this step: -6.17378502653976
+					L2 Norms Summed: 3.51390800337236
+Likelihood after this step: -6.05092698070065
+					L2 Norms Summed: 3.47876852334571
+Likelihood after this step: -5.93051384898793
+					L2 Norms Summed: 3.44398038174056
+Likelihood after this step: -5.81249698265016
+					L2 Norms Summed: 3.40954005788274
+Likelihood after this step: -5.69682870163105
+					L2 Norms Summed: 3.37544406544788
+Likelihood after this step: -5.58346227535797
+					L2 Norms Summed: 3.34168895202642
+Likelihood after this step: -5.47235190391093
+					L2 Norms Summed: 3.30827129868535
+Likelihood after this step: -5.36345269957563
+					L2 Norms Summed: 3.27518771952337
+Likelihood after this step: -5.25672066877019
+					L2 Norms Summed: 3.24243486122285
+Likelihood after this step: -5.15211269433642
+					L2 Norms Summed: 3.21000940259177
+Likelihood after this step: -5.0495865181934
+					L2 Norms Summed: 3.17790805410121
+Likelihood after this step: -4.94910072434277
+					L2 Norms Summed: 3.14612755741186
+Likelihood after this step: -4.85061472221942
+New likelihood - Old likelihood is 0.098486002123348; Converged.
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfNegativeOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfOneHundred">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="SigmaOfZero">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2012-05-26T16:57:27</TestDate>
+                  <Passed>1</Passed>
+                  <Errors>0</Errors>
+                  <Failures>0</Failures>
+                  <Inconclusive>0</Inconclusive>
+                  <NotRunnable>0</NotRunnable>
+                  <Skipped>0</Skipped>
+                  <Ignored>0</Ignored>
+                  <Time />
+                  <Message>成功したテスト
+
+実行時間: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>
