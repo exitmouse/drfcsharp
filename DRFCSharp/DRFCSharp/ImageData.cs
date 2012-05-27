@@ -101,10 +101,10 @@ namespace DRFCSharp
 						}
 						smoothed_histogram[i] = numerator/denom;
 					}
-					//TODO Decide whether we want this normalization. Added it because of edges not getting as many data points.
+					/*//TODO Decide whether we want this normalization. Added it because of edges not getting as many data points.
 					double sum = 0;
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) sum += smoothed_histogram[i];
-					for(int i = 0; i < NUM_ORIENTATIONS; i++) smoothed_histogram[i] /= sum;
+					for(int i = 0; i < NUM_ORIENTATIONS; i++) smoothed_histogram[i] /= sum;*/
 					
 					
 					//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
