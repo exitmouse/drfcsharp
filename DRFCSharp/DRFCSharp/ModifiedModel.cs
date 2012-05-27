@@ -169,14 +169,16 @@ namespace DRFCSharp
 		}
 		
 		public static ModifiedModel Deserialize(string params_in)
-		{
-			string parameter_storage_in_path = string.Format("{0}../../.../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,params_in);
+		{ 
+			string parameter_storage_in_path = string.Format("{0}../../../../Dataset/{1}",AppDomain.CurrentDomain.BaseDirectory,params_in);
 			Stream parameter_storage_in = new FileStream(parameter_storage_in_path,FileMode.Open);
 			SoapFormatter serializer = new SoapFormatter();
 			DenseVector w = (DenseVector)serializer.Deserialize(parameter_storage_in);
 			DenseVector v = (DenseVector)serializer.Deserialize(parameter_storage_in);
 			int Ons_seen = (int)serializer.Deserialize(parameter_storage_in);
 			int Sites_seen = (int)serializer.Deserialize(parameter_storage_in);
+			
+			Console.WriteLine("Successfully loaded model from %s\n", parameter_storage_in_path); 
 			return new ModifiedModel(w, v, 0, Ons_seen, Sites_seen);
 		}
 		
