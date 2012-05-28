@@ -38,34 +38,34 @@ LEFT_BUTTON = 1
 RIGHT_BUTTON = 3
 
 IMAGE_ZOOM = 2
-IMAGE_DIM = 256
+IMAGE_DIM_AERIAL = 256
+IMAGE_DIM_KH_X = 384
+IMAGE_DIM_KH_Y = IMAGE_DIM_AERIAL
 
 SITE_DIM = 16
 
 DATA_LABELER_DIR = os.path.split(os.path.abspath(sys.argv[0]))[0]
 DATASET_DIR = os.path.normpath(os.path.join(DATA_LABELER_DIR, '..\..\Dataset'))
 DATASETKH_DIR = os.path.normpath(os.path.join(CONVERTER_DIR, '../../DatasetKH'))
-DATASETKH_IMAGES_TEST_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'totalImagesTest/'))
-DATASETKH_IMAGES_TRAIN_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'totalImagesTrain/'))
-DATASETKH_CSV_LABELS_TEST_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'csvLabelsTest/'))
-DATASETKH_CSV_LABELS_TRAIN_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'csvLabelsTrain/'))
 
 NUM_IMAGES_DATASET = 300
-NUM_IMAGES_DATASETKH_TRAIN = 107
-NUM_IMAGES_DATASETKH_TEST = 128
+NUM_IMAGES_DATASETKH = 237
 
-IMAGE_PATH = ''
-LABEL_PATH = ''
-NUM_IMAGES = 0
-
-
+    
+data_path = DATASET_DIR
+num_images = NUM_IMAGES_DATASET
 output_prefix = ""
-mode = "aerial"  # modes are aerial, kh_train, and kh_test
+
+image_dim_x = IMAGE_DIM_AERIAL
+image_dim_y = IMAGE_DIM_AERIAL
+
+background
+grid
 
 
 
 def LoadImage(name):
-    fullname = os.path.join(DATASET_DIR, name)
+    fullname = os.path.join(data_path, name)
     try:
         image = pygame.image.load(fullname)
     except pygame.error, message:
@@ -77,7 +77,6 @@ def LoadImage(name):
 
 
 class Background(pygame.sprite.Sprite):
-    """moves a clenched fist on the screen, following the mouse"""
     def __init__(self):
         pygame.sprite.Sprite.__init__(self) #call Sprite initializer
 
@@ -90,7 +89,7 @@ background sprite for the image.
 '''
 def LoadAerial(image_index, site_array):
     current_image_index_str = str(image_index).zfill(3)
-    current_image_name = 'RandCropRotate' + current_image_index_str + '.jpg'
+    current_image_name = current_image_index_str + '.jpg'
     current_data_name = output_prefix + current_image_index_str + '.txt'
     image_filename = os.path.join(DATASET_DIR, current_image_name)
     data_filename = os.path.join(DATASET_DIR, current_data_name)
@@ -107,9 +106,10 @@ def LoadAerial(image_index, site_array):
     
     ''' zero the site array
     '''
-    for j in range(len(site_array)):
-        for i in range(len(site_array)):
-            site_array[i][j] = 0
+    site_array_size = site_array.shape
+    for i in range (site_array_size[1]):
+        for j in range (site_array_size[0]):
+            site_array[i,j] = 0
     
     ''' load saved data into the site array if applicable
     '''
@@ -126,7 +126,7 @@ def LoadAerial(image_index, site_array):
                     i = 0
                     j += 1
                 elif len(row) == 1:
-                    site_array[i][j] = int(row[0])
+                    site_array[i,j] = int(row[0])
                     i += 1
         finally:
             f.close()
@@ -154,10 +154,11 @@ def SaveAerial(image_index, site_array):
     try:
         f = open(image_data_filename, "w")
         try:
-            for j in range(len(site_array)):
+            site_array_size = site_array.shape
+            for i in range (site_array_size[1]):
                 line = ''
-                for i in range(len(site_array)):
-                    line = line + ('%d,' % site_array[i][j])
+                for j in range (site_array_size[0]):
+                    line = line + ('%d,' % site_array[i,j])
                 line = line + '\n'
                 f.write(line)
         finally:
@@ -170,8 +171,8 @@ def SaveAerial(image_index, site_array):
 
 def ScreenCoordsToSiteCoords (coords):
     assert len(coords) == 2
-    assert 0 <= coords[0] and coords[0] < (IMAGE_ZOOM * IMAGE_DIM)
-    assert 0 <= coords[1] and coords[1] < (IMAGE_ZOOM * IMAGE_DIM)
+    assert 0 <= coords[0] and coords[0] < (IMAGE_ZOOM * image_dim_x)
+    assert 0 <= coords[1] and coords[1] < (IMAGE_ZOOM * image_dim_y)
     
     x = coords[0] / (IMAGE_ZOOM * SITE_DIM)
     y = coords[1] / (IMAGE_ZOOM * SITE_DIM)
@@ -187,28 +188,37 @@ def SiteCoordsToScreenCoords (coords):
     x = coords[0] * (IMAGE_ZOOM * SITE_DIM)
     y = coords[1] * (IMAGE_ZOOM * SITE_DIM)
     
-    assert x < (IMAGE_ZOOM * IMAGE_DIM)
-    assert y < (IMAGE_ZOOM * IMAGE_DIM)
+    assert x < (IMAGE_ZOOM * image_dim_x)
+    assert y < (IMAGE_ZOOM * image_dim_y)
     
     return (x, y)
 
 
-def main(index):
-    global output_prefix
-    ''' Initialize the current image index.'''
-    current_image_index = index
-    goto_index = 0
-    goto_entry_mode = False
+''' A method to switch between working with the 256x256 images in our dataset,
+and the 384x256 images in Kumar and Heberts dataset.'''
+def SetMode (mode):
+    assert mode == "aerial"  or mode == "kh"
     
+    if mode == "aerial":
+        data_path = DATASET_DIR
+        num_images = NUM_IMAGES_DATASET
+        image_dim_x = IMAGE_DIM_AERIAL
+        image_dim_y = IMAGE_DIM_AERIAL
+    else:
+        data_path = DATASETKH_DIR
+        num_images = NUM_IMAGES_DATASETKH
+        image_dim_x = IMAGE_DIM_KH_X
+        image_dim_y = IMAGE_DIM_KH_Y
+        
+    assert image_dim_x % SITE_DIM == 0, "We require that the sizes evenly partition the image." 
+    site_array_dim_x = image_dim_x / SITE_DIM
+    assert image_dim_y % SITE_DIM == 0, "We require that the sizes evenly partition the image." 
+    site_array_dim_y = image_dim_y / SITE_DIM
+    site_array = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
     
-    assert IMAGE_DIM % SITE_DIM == 0, "We require that the sizes evenly partition the image." 
-    site_array_dim = IMAGE_DIM / SITE_DIM
-    site_array = numpy.zeros((site_array_dim, site_array_dim), dtype=numpy.int)
-    
-    pygame.init()
-    screen = pygame.display.set_mode((IMAGE_ZOOM * IMAGE_DIM, IMAGE_ZOOM * IMAGE_DIM))
-    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index)
-    
+    # Change the screen setup
+    screen = pygame.display.set_mode((IMAGE_ZOOM * image_dim_x, IMAGE_ZOOM * image_dim_y))
+    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover')
     background = LoadAerial(current_image_index, site_array)
     allsprites = pygame.sprite.RenderPlain((background))
     
@@ -218,9 +228,36 @@ def main(index):
     grid = grid.convert()
     grid.fill(COLOR_BLACK)
     grid.set_colorkey(COLOR_BLACK, pygame.RLEACCEL)
-    for i in range(1, site_array_dim):
+    for i in range(1, site_array_dim_y):
         pygame.draw.line(grid, COLOR_WHITISH, (0, i * (SITE_DIM * IMAGE_ZOOM)), (IMAGE_DIM * IMAGE_ZOOM, i * (SITE_DIM * IMAGE_ZOOM)))
-        pygame.draw.line(grid, COLOR_WHITISH, (i * (SITE_DIM * IMAGE_ZOOM), 0), (i * (SITE_DIM * IMAGE_ZOOM), IMAGE_DIM * IMAGE_ZOOM))       
+    for i in range(1,site_array_dim_x):
+        pygame.draw.line(grid, COLOR_WHITISH, (i * (SITE_DIM * IMAGE_ZOOM), 0), (i * (SITE_DIM * IMAGE_ZOOM), IMAGE_DIM * IMAGE_ZOOM))   
+    
+    return site_array
+
+
+def main(index):
+    global output_prefix
+    global data_path
+    global num_images
+    global image_dim_x
+    global image_dim_y
+    
+    global background
+    global grid
+
+    mode = "aerial"  # modes are aerial, and kh
+    ''' Initialize the current image index.'''
+    current_image_index = index
+    goto_index = 0
+    goto_entry_mode = False
+
+    site_array = SetMode("aerial")
+    pygame.init()
+    
+
+    
+    
     
     
     '''' Draw the site indicator overlay boxes
@@ -282,9 +319,10 @@ def main(index):
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
                 elif event.key == K_b:
-                    for u in range(SITE_DIM):
-                        for v in range(SITE_DIM):
-                            site_array[u][v] = (site_array[u][v]+1)%3
+                    site_array_size = site_array.shape
+                    for u in range(site_array_size[1]):
+                        for v in range(site_array_size[0]):
+                            site_array[u,v] = (site_array[u,v]+1)%3
                     SaveAerial(current_image_index, site_array)
                             
                 elif event.key == K_g:
@@ -295,7 +333,7 @@ def main(index):
                         goto_index = 0
                         background = LoadAerial(current_image_index, site_array)
                         allsprites = pygame.sprite.RenderPlain((background))
-                        pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover (#%d)' % current_image_index) 
+                        pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
                 elif goto_entry_mode and event.key == K_0:
                     goto_index = goto_index * 10 + 0
                 elif goto_entry_mode and event.key == K_1:
@@ -359,9 +397,9 @@ def main(index):
         ''' Drawing update
         '''
         allsprites.draw(screen)
-        screen.blit(grid, (0, 0))
-        for i in range(site_array_dim):
-            for j in range(site_array_dim):
+        screen.blit(grid, (0, 0)
+        for i in range(site_array_size[1]):
+            for j in range(site_array_size[0]):
                 if site_array[i][j] == 1:
                     screen.blit(box1, SiteCoordsToScreenCoords((i, j)))
                 elif site_array[i][j] == 2:
