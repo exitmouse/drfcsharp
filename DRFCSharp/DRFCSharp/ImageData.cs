@@ -94,13 +94,15 @@ namespace DRFCSharp
 					{
 						double numerator = 0;
 						double denom = 0;
-						for(int j = 0; j < NUM_ORIENTATIONS; j++)
+						double SMOOTHING_KERNEL_BANDWIDTH = 2.0d; // radius of the kernel section that is non-zero (in indices)
+						int b = Convert.ToInt32(Math.Ceiling(SMOOTHING_KERNEL_BANDWIDTH));
+						for(int j = 0 - b; j < NUM_ORIENTATIONS + b; j++)
 						{
-							//Many things are wrong with this. It seems this should work _badly_.
-							//Possibly I am misunderstanding the paper.
-							double coeff = SmoothingKernel(((double)(i-j))/2d);
+							// As long as the kernel bandwidth is not larger than NUM_ORIENTATIONS/2, the fact
+							// that we count sever orientations multiple times should not be a problem.
+							double coeff = SmoothingKernel(((double)(i-j))/SMOOTHING_KERNEL_BANDWIDTH);
 							denom += coeff;
-							numerator += coeff*histogram_over_orientations[j];
+							numerator += coeff*histogram_over_orientations[j % NUM_ORIENTATIONS];
 						}
 						smoothed_histogram[i] = numerator/denom;
 					}
