@@ -161,42 +161,64 @@ namespace DRFCSharp
 		}
 		public static double RightAngleFinder(double[] histogram)
 		{
-			int maxindex = 0;
-			int secondbestindex = -1;
-			for(int i = 0; i < histogram.Length; i++)
+			int highest_peak_index = -1;
+			int second_peak_index = -1;
+			double last_height_level = -1.0d;
+			// Traverse the histogram in backward order to find the first index having
+			// different height than histogram[0].  This will be the initial value of 
+			// last_height_level.
+			for (int i = NUM_ORIENTATIONS - 1; i >= 0; i--)
 			{
-				if(maxindex == 0)
+				if (i == 0)
 				{
-					maxindex = i;
+					// the entire histogram has uniform distribution
+					return 0.0d;
 				}
-				else if(histogram[i] >= histogram[maxindex])
+				else if (histogram[i] != histogram[0])
 				{
-					secondbestindex = maxindex;
-					maxindex = i;
-				}
-				else if(secondbestindex == -1 || histogram[i] > histogram[secondbestindex])
-				{
-					secondbestindex = i;
+					last_height_level = histogram[i];
+					break;
 				}
 			}
-			if(maxindex == secondbestindex || secondbestindex == -1)
+			// Now traverse the histogram in forwards order finding the peaks and right
+			// plateau corners.
+			for (int i = 0; i < NUM_ORIENTATIONS; i++)
 			{
-				//My algorithm sucks
-				throw new NotImplementedException();
+				if (histogram[i] > last_height_level && histogram[i] > histogram[(i + 1) % NUM_ORIENTATIONS])
+				{
+					// this is a peak (we accept as a peak the right corner of a plateau).
+					if (highest_peak_index == -1 || histogram[i] >= histogram[highest_peak_index])
+					{
+						second_peak_index = highest_peak_index;
+						highest_peak_index = i;
+					}
+					else if (second_peak_index == -1 || histogram[i] >= histogram[second_peak_index])
+					{ 
+						second_peak_index = i;
+					}
+				}
+				if (histogram[(i + 1) % NUM_ORIENTATIONS] != histogram[i]) 
+				{
+					last_height_level = histogram[i];
+				}
 			}
-			double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)maxindex);
-			double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)secondbestindex);
+			if(second_peak_index == -1)
+			{
+				return 0.0d;
+			}
+			double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)highest_peak_index);
+			double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)second_peak_index);
 			double ang = ang1-ang2;
 			double interim = Math.Sin(ang);
 			double toReturn = Math.Abs (interim);
-			if(toReturn < 0.0001d) toReturn += 0.001d; //Not sure if this will help. Hack; we only use the sine function to give better falloff anyway so I don't feel too guilty. But still.
+			//if(toReturn < 0.0001d) toReturn += 0.001d; //Not sure if this will help. Hack; we only use the sine function to give better falloff anyway so I don't feel too guilty. But still.
 			return toReturn;
 		}
 		public static double Moment(double[] histogram, int p)
 		{
 			if(p == 0)
 			{
-				double sum = 0;
+				double sum = 0;         
 				for(int i = 0; i < histogram.Length; i++)
 				{
 					sum += histogram[i];
