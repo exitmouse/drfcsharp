@@ -14,7 +14,7 @@ namespace DRFCSharp
 		public const int MAX_ITERS = 3000;
 		public const double CONVERGENCE_CONSTANT = 0.000000001;
 		public const double START_STEP_LENGTH = 0.0000001d;//TODO all these small thingies are hacks
-		public const double LIKELIHOOD_CONVERGENCE = 0.1d;
+		public const double LIKELIHOOD_CONVERGENCE = 1d;
 		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
 		
