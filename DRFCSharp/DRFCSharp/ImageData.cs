@@ -96,10 +96,10 @@ namespace DRFCSharp
 						double denom = 0;
 						double SMOOTHING_KERNEL_BANDWIDTH = 2.0d; // radius of the kernel section that is non-zero (in indices)
 						int b = Convert.ToInt32(Math.Ceiling(SMOOTHING_KERNEL_BANDWIDTH));
-						for(int j = 0 - b; j < NUM_ORIENTATIONS + b; j++)
+						for(int j = i - b; j <= i + b; j++)
 						{
-							// As long as the kernel bandwidth is not larger than NUM_ORIENTATIONS/2, the fact
-							// that we count sever orientations multiple times should not be a problem.
+							// As long as the kernel bandwidth is not larger than NUM_ORIENTATIONS/2, we don't 
+							// count directions multiple times.
 							double coeff = SmoothingKernel(((double)(i-j))/SMOOTHING_KERNEL_BANDWIDTH);
 							denom += coeff;
 							numerator += coeff*histogram_over_orientations[j % NUM_ORIENTATIONS];
