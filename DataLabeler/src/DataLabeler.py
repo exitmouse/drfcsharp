@@ -44,9 +44,23 @@ SITE_DIM = 16
 
 DATA_LABELER_DIR = os.path.split(os.path.abspath(sys.argv[0]))[0]
 DATASET_DIR = os.path.normpath(os.path.join(DATA_LABELER_DIR, '..\..\Dataset'))
-NUM_IMAGES = 300
+DATASETKH_DIR = os.path.normpath(os.path.join(CONVERTER_DIR, '../../DatasetKH'))
+DATASETKH_IMAGES_TEST_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'totalImagesTest/'))
+DATASETKH_IMAGES_TRAIN_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'totalImagesTrain/'))
+DATASETKH_CSV_LABELS_TEST_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'csvLabelsTest/'))
+DATASETKH_CSV_LABELS_TRAIN_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'csvLabelsTrain/'))
+
+NUM_IMAGES_DATASET = 300
+NUM_IMAGES_DATASETKH_TRAIN = 107
+NUM_IMAGES_DATASETKH_TEST = 128
+
+IMAGE_PATH = ''
+LABEL_PATH = ''
+NUM_IMAGES = 0
+
 
 output_prefix = ""
+mode = "aerial"  # modes are aerial, kh_train, and kh_test
 
 
 

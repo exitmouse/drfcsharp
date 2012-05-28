@@ -102,13 +102,12 @@ if __name__ == '__main__':
         path = os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, current_data_name)
         SaveLabeling(path, site_array)'''
    
-    paths = glob.glob(os.path.normpath(os.path.join(DATASET_DIR, '*[0-9][0-9][0-9].jpg'))) 
-    for path in paths:
-        name = os.path.split(path)[1]
-        new_name = name[-7:]
-        new_path = os.path.normpath(os.path.join(DATASET_DIR, new_name))
-        print path
-        print new_path
-        os.system('git mv ' + path + ' ' + new_path) 
+    paths = glob.glob(os.path.normpath(os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, '[0-9][0-9][0-9].txt'))) 
+    for i in range(len(paths)):
+        if i <= 20:
+            new_path = os.path.normpath(os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, str(i + 108).zfill(3) + '.txt'))
+            print paths[i]
+            print new_path
+            os.system('git mv ' + paths[i] + ' ' + new_path) 
     
     pass
