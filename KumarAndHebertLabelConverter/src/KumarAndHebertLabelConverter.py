@@ -16,6 +16,7 @@ import glob
 
 
 CONVERTER_DIR = os.path.split(os.path.abspath(sys.argv[0]))[0]
+DATASET_DIR = os.path.normpath(os.path.join(CONVERTER_DIR, '../../Dataset'))
 DATASETKH_DIR = os.path.normpath(os.path.join(CONVERTER_DIR, '../../DatasetKH'))
 DATASETKH_IMAGES_TEST_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'totalImagesTest/'))
 DATASETKH_IMAGES_TRAIN_DIR = os.path.normpath(os.path.join(DATASETKH_DIR, 'totalImagesTrain/'))
@@ -92,17 +93,21 @@ if __name__ == '__main__':
             os.rename(filename, os.path.normpath(os.path.join(DATASETKH_LABELS_TEST_DIR, 's' + index_str + '.tif')))
         i += 1'''
     
-    filenames = glob.glob(os.path.normpath(os.path.join(DATASETKH_LABELS_TEST_DIR, '*.tif')))
+    '''filenames = glob.glob(os.path.normpath(os.path.join(DATASETKH_LABELS_TEST_DIR, '*.tif')))
     for i in range(len(filenames)/2):
         site_array = generateSiteArray(True, i)
         
         current_data_index_str = str(i).zfill(3)
         current_data_name = current_data_index_str + '.txt'
         path = os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, current_data_name)
-        SaveLabeling(path, site_array)
+        SaveLabeling(path, site_array)'''
+   
+    paths = glob.glob(os.path.normpath(os.path.join(DATASET_DIR, '*[0-9][0-9][0-9].jpg'))) 
+    for path in paths:
+        name = os.path.split(path)[1]
+        new_name = name[-7:]
+        new_path = os.path.normpath(os.path.join(DATASET_DIR, 'Raw\ Images/' + name))
         
+        os.system('git mv ' + path + ' ' + new_path) 
     
-    '''site_array = generateSiteArray(True, 140006)
-    print site_array
-    SaveLabeling(1, site_array)'''
     pass
