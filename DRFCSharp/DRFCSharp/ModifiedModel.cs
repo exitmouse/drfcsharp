@@ -15,8 +15,8 @@ namespace DRFCSharp
 		public const double CONVERGENCE_CONSTANT = double.Epsilon; //0.000000001;
 		public const double START_STEP_LENGTH = 1d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 1d;
-		public const CrossFeatureOptions cross_options = CrossFeatureOptions.DIFFERENCE;
-		public const TransformedFeatureOptions transformed_options = TransformedFeatureOptions.QUADRATIC;
+		public const CrossFeatureOptions cross_options = CrossFeatureOptions.CONCATENATE;
+		public const TransformedFeatureOptions transformed_options = TransformedFeatureOptions.LINEAR;
 		
 		public readonly int time_to_converge;
 		
@@ -36,9 +36,14 @@ namespace DRFCSharp
 			Label[,] curr_classification = new Label[ImageData.x_sites, ImageData.y_sites];
 			for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++)
 			{
-				var f = test_input[x,y];
-				if(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(f)) > 0)
+				double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[x,y])));
+				double prob_one = ((double)Ons_seen)/((double) Sites_seen);
+				double prob_zero = 1d - prob_one;
+				double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one)/* + Log (prob_one/prob_zero)*/;
+				if(lambda > 0)
 					curr_classification[x,y] = Label.ON;
+				else
+					curr_classification[x,y] = Label.OFF;
 			}
 			return new Classification(curr_classification);
 		}
