@@ -71,11 +71,14 @@ namespace DRFCSharp
 					double[] histogram_over_orientations = new double[NUM_ORIENTATIONS]; //TODO maybe refactor into a function
 					int scale = 16;
 					for(int useless = 0; useless < scalepow; useless++) scale *= 2; //HACK this is just bad code and I feel bad now.
+					
+					int num_pixels_at_scale = 0;
 					for(int u = (x*width_of_site+width_of_site/2)-scale/2; u < (x*width_of_site+width_of_site/2) + scale/2; u++)
 					{
 						for(int v = (y*height_of_site+height_of_site/2)-scale/2; v < (y*height_of_site+height_of_site/2) + scale/2; v++)
 						{
 							if(u >= img.Width || v >= img.Height || u < 0 || v < 0) continue;
+							num_pixels_at_scale++;
 							DenseVector g = grads[u,v];
 							//PREPARE FOR HACK
 							double angle = Math.Atan2 (g[1],g[0]);
@@ -101,6 +104,7 @@ namespace DRFCSharp
 						}
 						smoothed_histogram[i] = numerator/denom;
 					}
+					for(int i = 0; i < NUM_ORIENTATIONS; i++) smoothed_histogram[i] *= 4096d / ((double)num_pixels_at_scale);
 					/*//TODO Decide whether we want this normalization. Added it because of edges not getting as many data points.
 					double sum = 0;
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) sum += smoothed_histogram[i];
