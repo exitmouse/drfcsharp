@@ -1,7 +1,7 @@
 using System;
 namespace DRFCSharp
 {
-	public enum TransformedFeatures
+	public enum TransformedFeatureOptions
 	{
 		LINEAR,
 		QUADRATIC,

@@ -273,7 +273,7 @@ namespace DRFCSharp
 								wgrad[k] -= dzdw/z;
 								
 								if(double.IsNaN(wgrad[k])) throw new NotFiniteNumberException();
-								if(Math.Abs(wgrad[k]) > 100000000000d) throw new NotFiniteNumberException();
+								if(double.IsInfinity(wgrad[k])) throw new NotFiniteNumberException();
 							}
 						}
 					}
