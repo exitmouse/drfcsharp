@@ -19,6 +19,7 @@ namespace DRFCSharp
 				"\n -s/--save <save_training_here>: Saves training to a file" +
 				"\n -i/--image <# of image to predict>: Infers on this image number" +
 			    "\n -ei/--endimage <# of last image to predict>: Infers on everything between -i and this" +
+			    "Will not let you have control of file naming, though" +
 				"\n -r/--range <# of images to train on>" +
 				"\n --imgdir <path>" +
 				"\n --labeldir <path>" +
@@ -152,7 +153,7 @@ namespace DRFCSharp
 				Console.WriteLine("Model converged! Estimating image ...");
 			}
 			
-			end_image_num = Math.Min(end_image_num, image_num);
+			end_image_num = Math.Max(end_image_num, image_num);
 			for (int i = image_num; i <= end_image_num; i++)
 			{
 				string imagename = i.ToString("D3");
@@ -175,13 +176,10 @@ namespace DRFCSharp
 					out_classed = mfm.ICMInfer(input);
 				}
 				
-				if(string.IsNullOrEmpty(outpath))
-				{
-					outpath = imgpath+"predicted"+i.ToString("D3")+".txt";
-				}
+				outpath = imgpath+"predicted"+i.ToString("D3")+".txt";
 				
 				StreamWriter sw = new StreamWriter(outpath);
-				for(int k = 0; i < ImageData.y_sites; k++)
+				for(int k = 0; k < ImageData.y_sites; k++)
 				{
 					for(int j = 0; j < ImageData.x_sites; j++)
 					{

@@ -256,6 +256,7 @@ def main(index):
     global output_prefix
     global allsprites
     global background
+    global data_path
 
     current_image_index = index
     goto_index = 0
@@ -280,7 +281,38 @@ def main(index):
     box2.fill(COLOR_ROSE)
     box2.set_alpha(SITE_INDICATOR_OVERLAY_ALPHA, pygame.RLEACCEL)
     box2 = box2.convert_alpha()
-    
+
+    number_of_sites_total = 0
+    number_of_sites_predicted_on_total = 0
+    false_positives_total = 0
+    number_of_sites_meant_to_be_on_total = 0
+    number_of_ons_detected_total = 0
+    data_path = DATASETKH_DIR
+    for m in range(NUM_IMAGES_DATASETKH):
+        site_array_dim_x = IMAGE_DIM_KH_X / SITE_DIM
+        site_array_dim_y = IMAGE_DIM_KH_Y / SITE_DIM
+        site_array_predicted = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
+        site_array_actual = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
+        output_prefix = ""
+        LoadAerial(m, site_array_actual)
+        output_prefix = "predicted"
+        LoadAerial(m, site_array_predicted)
+        for x in range(IMAGE_DIM_KH_X/SITE_DIM):
+            for y in range(IMAGE_DIM_KH_Y/SITE_DIM):
+                number_of_sites_total += 1
+                if(site_array_actual[y][x] > 0):
+                    number_of_sites_meant_to_be_on_total += 1
+                    if(site_array_predicted[y][x] > 0):
+                        number_of_ons_detected_total += 1
+                if(site_array_predicted[y][x] > 0):
+                    number_of_sites_predicted_on_total += 1
+                    if(site_array_actual[y][x] == 0):
+                        false_positives_total += 1
+    print("Number of sites total: "+str(number_of_sites_total))
+    print("Number of sites predicted on: "+str(number_of_sites_predicted_on_total))
+    print("False positives total: "+str(false_positives_total))
+    print("Number of sites actually on: "+str(number_of_sites_meant_to_be_on_total))
+    print("Numerator of detection rate: "+str(number_of_ons_detected_total))
     
     
     

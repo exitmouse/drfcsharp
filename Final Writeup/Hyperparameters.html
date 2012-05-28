@@ -107,7 +107,18 @@ histogram, three types of features are calculated:
   <li>An orientation feature, measuring the absolute verticality of
   the gradients in the group.</li>
 </ul>
+<p>
+For our dataset, the third feature type was inconceivable. The
+justification for that feature was that pictures of structures are
+taken with upright cameras, but our data was aerial. It could have
+conceivably been taken from any angle; we weren't sure if it was
+initially North-South aligned, we didn't know if buildings tended to
+be North-South aligned, and to top it off we preprocessed our data by
+randomly rotating it.
+</p>
 
+We chose to use the first three central-shift moments, as described in
+[6], as we 
 
 <!--
 <p>
