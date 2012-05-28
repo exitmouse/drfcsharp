@@ -46,7 +46,7 @@ SITE_DIM = 16
 
 DATA_LABELER_DIR = os.path.split(os.path.abspath(sys.argv[0]))[0]
 DATASET_DIR = os.path.normpath(os.path.join(DATA_LABELER_DIR, '..\..\Dataset'))
-DATASETKH_DIR = os.path.normpath(os.path.join(CONVERTER_DIR, '../../DatasetKH'))
+DATASETKH_DIR = os.path.normpath(os.path.join(DATA_LABELER_DIR, '../../DatasetKH'))
 
 NUM_IMAGES_DATASET = 300
 NUM_IMAGES_DATASETKH = 237
@@ -59,8 +59,10 @@ output_prefix = ""
 image_dim_x = IMAGE_DIM_AERIAL
 image_dim_y = IMAGE_DIM_AERIAL
 
-background
-grid
+background= None
+grid = None
+screen = None
+allsprites = None
 
 
 
@@ -91,24 +93,24 @@ def LoadAerial(image_index, site_array):
     current_image_index_str = str(image_index).zfill(3)
     current_image_name = current_image_index_str + '.jpg'
     current_data_name = output_prefix + current_image_index_str + '.txt'
-    image_filename = os.path.join(DATASET_DIR, current_image_name)
-    data_filename = os.path.join(DATASET_DIR, current_data_name)
+    image_filename = os.path.join(data_path, current_image_name)
+    data_filename = os.path.join(data_path, current_data_name)
     
     
     ''' This is just temporary code to give us a cropped version of the image.
     Eventually, we will want to pre-crop and pre-rotate all of the images in
     our data set. '''
     im = Image.open(image_filename) #@UndefinedVariable
-    im = im.resize((IMAGE_ZOOM * IMAGE_DIM, IMAGE_ZOOM * IMAGE_DIM))
-    savename = os.path.join(DATASET_DIR, 'tmp.jpg')
+    im = im.resize((IMAGE_ZOOM * image_dim_x, IMAGE_ZOOM * image_dim_y))
+    savename = os.path.join(data_path, 'tmp.jpg')
     im.save(savename)
     
     
     ''' zero the site array
     '''
     site_array_size = site_array.shape
-    for i in range (site_array_size[1]):
-        for j in range (site_array_size[0]):
+    for i in range (site_array_size[0]):
+        for j in range (site_array_size[1]):
             site_array[i,j] = 0
     
     ''' load saved data into the site array if applicable
@@ -126,7 +128,7 @@ def LoadAerial(image_index, site_array):
                     i = 0
                     j += 1
                 elif len(row) == 1:
-                    site_array[i,j] = int(row[0])
+                    site_array[j,i] = int(row[0])
                     i += 1
         finally:
             f.close()
@@ -197,6 +199,15 @@ def SiteCoordsToScreenCoords (coords):
 ''' A method to switch between working with the 256x256 images in our dataset,
 and the 384x256 images in Kumar and Heberts dataset.'''
 def SetMode (mode):
+    global data_path
+    global num_images
+    global image_dim_x
+    global image_dim_y
+    global background
+    global grid
+    global allsprites
+    global screen
+    
     assert mode == "aerial"  or mode == "kh"
     
     if mode == "aerial":
@@ -215,10 +226,11 @@ def SetMode (mode):
     assert image_dim_y % SITE_DIM == 0, "We require that the sizes evenly partition the image." 
     site_array_dim_y = image_dim_y / SITE_DIM
     site_array = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
+    print site_array
     
     # Change the screen setup
     screen = pygame.display.set_mode((IMAGE_ZOOM * image_dim_x, IMAGE_ZOOM * image_dim_y))
-    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover')
+    pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
     background = LoadAerial(current_image_index, site_array)
     allsprites = pygame.sprite.RenderPlain((background))
     
@@ -229,25 +241,19 @@ def SetMode (mode):
     grid.fill(COLOR_BLACK)
     grid.set_colorkey(COLOR_BLACK, pygame.RLEACCEL)
     for i in range(1, site_array_dim_y):
-        pygame.draw.line(grid, COLOR_WHITISH, (0, i * (SITE_DIM * IMAGE_ZOOM)), (IMAGE_DIM * IMAGE_ZOOM, i * (SITE_DIM * IMAGE_ZOOM)))
+        pygame.draw.line(grid, COLOR_WHITISH, (0, i * (SITE_DIM * IMAGE_ZOOM)), (image_dim_x * IMAGE_ZOOM, i * (SITE_DIM * IMAGE_ZOOM)))
     for i in range(1,site_array_dim_x):
-        pygame.draw.line(grid, COLOR_WHITISH, (i * (SITE_DIM * IMAGE_ZOOM), 0), (i * (SITE_DIM * IMAGE_ZOOM), IMAGE_DIM * IMAGE_ZOOM))   
+        pygame.draw.line(grid, COLOR_WHITISH, (i * (SITE_DIM * IMAGE_ZOOM), 0), (i * (SITE_DIM * IMAGE_ZOOM), image_dim_y * IMAGE_ZOOM))   
     
     return site_array
 
 
 def main(index):
+    global current_image_index
     global output_prefix
-    global data_path
-    global num_images
-    global image_dim_x
-    global image_dim_y
-    
+    global allsprites
     global background
-    global grid
 
-    mode = "aerial"  # modes are aerial, and kh
-    ''' Initialize the current image index.'''
     current_image_index = index
     goto_index = 0
     goto_entry_mode = False
@@ -299,12 +305,12 @@ def main(index):
                 if event.key == K_ESCAPE:
                     return
                 elif event.key == K_d:
-                    current_image_index = (current_image_index + 1) % NUM_IMAGES
+                    current_image_index = (current_image_index + 1) % num_images
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
                     pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
                 elif event.key == K_a:
-                    current_image_index = (current_image_index - 1) % NUM_IMAGES
+                    current_image_index = (current_image_index - 1) % num_images
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
                     pygame.display.set_caption('DataLabeler by Dan Denton and Jesse Selover ({0} #{1})'.format(output_prefix, current_image_index))
@@ -318,18 +324,20 @@ def main(index):
                         
                     background = LoadAerial(current_image_index, site_array)
                     allsprites = pygame.sprite.RenderPlain((background))
-                elif event.key == K_b:
-                    site_array_size = site_array.shape
-                    for u in range(site_array_size[1]):
-                        for v in range(site_array_size[0]):
-                            site_array[u,v] = (site_array[u,v]+1)%3
-                    SaveAerial(current_image_index, site_array)
-                            
+                elif event.key == K_l:
+                    screen_size = screen.get_size()
+                    print screen_size
+                    if screen_size[0] > screen_size[1]:
+                        site_array = SetMode("aerial")
+                    else:
+                        site_array = SetMode("kh")
+                        
+     
                 elif event.key == K_g:
                     goto_entry_mode = not goto_entry_mode
                     if not goto_entry_mode:
                         ''' We must have just finished entering the goto image index. '''
-                        current_image_index = goto_index % NUM_IMAGES
+                        current_image_index = goto_index % num_images
                         goto_index = 0
                         background = LoadAerial(current_image_index, site_array)
                         allsprites = pygame.sprite.RenderPlain((background))
@@ -355,55 +363,67 @@ def main(index):
                 elif goto_entry_mode and event.key == K_9:
                     goto_index = goto_index * 10 + 9   
                     
-                                         
                     
-                                
-            elif event.type == MOUSEBUTTONDOWN and output_prefix == "":
-                site_coords = ScreenCoordsToSiteCoords(event.pos)
-                '''
-                Mouse controls are:
-                    left-click to label site as a 1 (blue tint)
-                    shift-left click to label site as a 2 (red tint)
-                    right click to label site as a 0
-                '''
-                if event.button == LEFT_BUTTON:
-                    if (pygame.key.get_mods() & KMOD_LSHIFT):
-                        site_array[site_coords[0]][site_coords[1]] = 2
+            ''' Keybindings and mouselicks for modifying labelings.  Only allowed
+            if we are looking at an aerial image and we are not looking at an
+            output (prediction) image. ''' 
+            screen_size = screen.get_size()                            
+            if screen_size[0] == screen_size[1] and output_prefix == "":  
+                   
+                if event.type == KEYDOWN and event.key == K_b:
+                    site_array_size = site_array.shape
+                    for u in range(site_array_size[1]):
+                        for v in range(site_array_size[0]):
+                            site_array[u,v] = (site_array[u,v]+1)%3
+                    SaveAerial(current_image_index, site_array)          
+                                                
+                elif event.type == MOUSEBUTTONDOWN:
+                    site_coords = ScreenCoordsToSiteCoords(event.pos)
+                    '''
+                    Mouse controls are:
+                        left-click to label site as a 1 (blue tint)
+                        shift-left click to label site as a 2 (red tint)
+                        right click to label site as a 0
+                    '''
+                    if event.button == LEFT_BUTTON:
+                        if (pygame.key.get_mods() & KMOD_LSHIFT):
+                            site_array[site_coords[1]][site_coords[0]] = 2
+                            SaveAerial(current_image_index, site_array)
+                        else:    
+                            site_array[site_coords[1]][site_coords[0]] = 1
+                            SaveAerial(current_image_index, site_array)
+                    elif event.button == RIGHT_BUTTON:
+                        site_array[site_coords[1]][site_coords[0]] = 0
                         SaveAerial(current_image_index, site_array)
-                    else:    
-                        site_array[site_coords[0]][site_coords[1]] = 1
-                        SaveAerial(current_image_index, site_array)
-                elif event.button == RIGHT_BUTTON:
-                    site_array[site_coords[0]][site_coords[1]] = 0
-                    SaveAerial(current_image_index, site_array)
+                        
+                elif event.type == MOUSEMOTION:
+                    site_coords = ScreenCoordsToSiteCoords(event.pos)
+                    left_button_pressed, center_button_pressed, right_button_pressed = pygame.mouse.get_pressed()
                     
-            elif event.type == MOUSEMOTION and output_prefix == "":
-                site_coords = ScreenCoordsToSiteCoords(event.pos)
-                left_button_pressed, center_button_pressed, right_button_pressed = pygame.mouse.get_pressed()
-                
-                if right_button_pressed:
-                    site_array[site_coords[0]][site_coords[1]] = 0
-                    SaveAerial(current_image_index, site_array)
-                elif left_button_pressed:
-                    if (pygame.key.get_mods() & KMOD_LSHIFT):
-                        site_array[site_coords[0]][site_coords[1]] = 2
+                    if right_button_pressed:
+                        site_array[site_coords[1]][site_coords[0]] = 0
                         SaveAerial(current_image_index, site_array)
-                    else:    
-                        site_array[site_coords[0]][site_coords[1]] = 1
-                        SaveAerial(current_image_index, site_array)
+                    elif left_button_pressed:
+                        if (pygame.key.get_mods() & KMOD_LSHIFT):
+                            site_array[site_coords[1]][site_coords[0]] = 2
+                            SaveAerial(current_image_index, site_array)
+                        else:    
+                            site_array[site_coords[1]][site_coords[0]] = 1
+                            SaveAerial(current_image_index, site_array)
             
         
         
         ''' Drawing update
         '''
         allsprites.draw(screen)
-        screen.blit(grid, (0, 0)
-        for i in range(site_array_size[1]):
-            for j in range(site_array_size[0]):
-                if site_array[i][j] == 1:
-                    screen.blit(box1, SiteCoordsToScreenCoords((i, j)))
-                elif site_array[i][j] == 2:
-                    screen.blit(box2, SiteCoordsToScreenCoords((i, j)))
+        screen.blit(grid, (0, 0))
+        site_array_size = site_array.shape
+        for i in range(site_array_size[0]):
+            for j in range(site_array_size[1]):
+                if site_array[i,j] == 1:
+                    screen.blit(box1, SiteCoordsToScreenCoords((j, i)))
+                elif site_array[i,j] == 2:
+                    screen.blit(box2, SiteCoordsToScreenCoords((j, i)))
        
         if pygame.font and goto_entry_mode:
             font = pygame.font.Font(None, 72)
