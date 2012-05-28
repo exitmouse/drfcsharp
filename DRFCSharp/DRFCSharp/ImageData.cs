@@ -11,7 +11,7 @@ namespace DRFCSharp
 		public const int x_sites = 24; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
 		public const int y_sites = 16;
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
-		public const int NUM_ORIENTATIONS = 32;
+		public const int NUM_ORIENTATIONS = 64;
 		public SiteFeatureSet[,] site_features;
 		public static int Ons_seen = 0;
 		public static int Sites_seen = 0;
@@ -65,7 +65,7 @@ namespace DRFCSharp
 			{
 				//Console.WriteLine("X = {0}, Y = {1}",x,y);
 				DenseVector single_site_features = new DenseVector(SiteFeatureSet.NUM_FEATURES);
-				
+				int[] intra_scale_peaks = new int[3];
 				for(int scalepow = 0; scalepow < 3; scalepow++) //TODO maybe less hardcode?
 				{
 					double[] histogram_over_orientations = new double[NUM_ORIENTATIONS]; //TODO maybe refactor into a function
@@ -131,10 +131,20 @@ namespace DRFCSharp
 							throw new NotImplementedException();
 						}
 					}
+					intra_scale_peaks[scalepow] = 0;
+					for(int i = 0; i < NUM_ORIENTATIONS; i++) if(smoothed_histogram[i] > smoothed_histogram[intra_scale_peaks[scalepow]]) intra_scale_peaks[scalepow] = i;
+					
 					single_site_features[scalepow*4 + 3] = RightAngleFinder(smoothed_histogram);
 					//double[] avgs = AverageRGB(img, x, y);
 					//for(int i = 0; i < 3; i++) single_site_features[scalepow*7+4+i] = avgs[i];
 				}
+				double[] intra_scale_angles = new double[3];
+				for(int i = 0; i < 3; i++)
+				{
+					intra_scale_angles[i] = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)intra_scale_peaks[i]);
+				}
+				single_site_features[12] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
+				single_site_features[13] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
 				//Console.WriteLine(single_site_features);
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
