@@ -106,8 +106,9 @@ if __name__ == '__main__':
     for path in paths:
         name = os.path.split(path)[1]
         new_name = name[-7:]
-        new_path = os.path.normpath(os.path.join(DATASET_DIR, 'Raw\ Images/' + name))
-        
+        new_path = os.path.normpath(os.path.join(DATASET_DIR, new_name))
+        print path
+        print new_path
         os.system('git mv ' + path + ' ' + new_path) 
     
     pass
