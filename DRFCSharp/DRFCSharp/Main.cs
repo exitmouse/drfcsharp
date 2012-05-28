@@ -21,7 +21,6 @@ namespace DRFCSharp
 				"\n -r/--range <# of images to train on>" +
 				"\n --imgdir <path>" +
 				"\n --labeldir <path>" +
-				"\n --testdir <path>" +
 				"\n If no image number is specified, defaults to 192 because I like that number." +
 				"\n -t/--tau <double>: Controls the variance of the gaussian hyperparameter on v." +
 				"\n Defaults to 0.0001.");
@@ -32,7 +31,6 @@ namespace DRFCSharp
 			string params_out = "";
 			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
 			string labelpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
-			string testpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
 			string outpath = "";
 			bool deserialize_only = false;
 			int image_num = 192;
@@ -104,11 +102,6 @@ namespace DRFCSharp
 					labelpath = args[i+1];
 					i++;
 				}
-				else if(args[i] == "--testdir")
-				{
-					testpath = args[i+1];
-					i++;
-				}
 				else
 				{
 					outpath = args[i];
@@ -147,7 +140,7 @@ namespace DRFCSharp
 				Console.WriteLine("Model converged! Estimating image ...");
 			}
 			string imagename = image_num.ToString("D3");
-			ImageData input = ImageData.FromImage(new Bitmap(testpath+imagename+".jpg"));
+			ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
 			
 			Classification out_classed; //See what I did there?
 			if(inference_algorithm == "logistic")
