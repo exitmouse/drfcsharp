@@ -13,8 +13,8 @@ namespace DRFCSharp
 		DenseVector v;
 		public const int MAX_ITERS = 3000;
 		public const double CONVERGENCE_CONSTANT = double.Epsilon; //0.000000001;
-		public const double START_STEP_LENGTH = 1d;//TODO all these small thingies are hacks
-		public const double LIKELIHOOD_CONVERGENCE = 1d;
+		public const double START_STEP_LENGTH = 10.0d;//TODO all these small thingies are hacks
+		public const double LIKELIHOOD_CONVERGENCE = 1.0d;
 		public const CrossFeatureOptions cross_options = CrossFeatureOptions.DIFFERENCE;
 		public const TransformedFeatureOptions transformed_options = TransformedFeatureOptions.QUADRATIC;
 		

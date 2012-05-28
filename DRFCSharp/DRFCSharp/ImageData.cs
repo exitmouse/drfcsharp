@@ -218,7 +218,7 @@ namespace DRFCSharp
 		{
 			if(p == 0)
 			{
-				double sum = 0;         
+				double sum = 0.0d;         
 				for(int i = 0; i < histogram.Length; i++)
 				{
 					sum += histogram[i];
@@ -228,8 +228,8 @@ namespace DRFCSharp
 			else
 			{
 				double v_0 = Moment(histogram, 0);
-				double numerator = 0;
-				double denom = 0;
+				double numerator = 0.0d;
+				double denom = 0.0d;
 				for(int i = 0; i < histogram.Length; i++)
 				{
 					if(histogram[i] <= v_0) continue;
