@@ -133,6 +133,7 @@ namespace DRFCSharp
 					Classification cfc = ImageData.ImportLabeling(labelpath+prefix+".txt");
 					imgs[count] = img;
 					cfcs[count] = cfc;
+					//if (k == 5) Console.WriteLine (SiteFeatureSet.TransformedFeatureVector(img[0,2]));
 					count++;
 				}
 				

@@ -162,7 +162,7 @@ namespace DRFCSharp
 			case TransformedFeatureOptions.LINEAR:
 				return NUM_FEATURES + 1;
 			case TransformedFeatureOptions.QUADRATIC:
-				return 1 + (NUM_FEATURES * (NUM_FEATURES + 1))/2;
+				return ((NUM_FEATURES + 1) * (NUM_FEATURES + 2))/2;
 			default:
 				throw new ArgumentException();
 			}
@@ -181,17 +181,18 @@ namespace DRFCSharp
 		
 		public static DenseVector TransformedFeatureVectorQuad(SiteFeatureSet a)
 		{
-			DenseVector af = a.features;
-			double[] aa = af.ToArray();
-			double[] z = new double[(aa.Length*(aa.Length+1))/2 + 1];
-			z[0] = 1;
+			//DenseVector af = a.features;
+			double[] aa = SiteFeatureSet.TransformedFeatureVectorLinear(a).ToArray();
+			double[] z = new double[(aa.Length*(aa.Length+1))/2];
 			int count = 0;
 			for(int i = 0; i < aa.Length; i++)
+			{
 				for(int j = i; j < aa.Length; j++)
 				{
-					z[1+count] = aa[i]*aa[j];
+					z[count] = aa[i]*aa[j];
 					count++;
 				}
+			}
 			return new DenseVector(z);
 		}
 	}
