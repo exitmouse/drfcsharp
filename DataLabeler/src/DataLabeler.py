@@ -282,6 +282,8 @@ def main(index):
     box2.set_alpha(SITE_INDICATOR_OVERLAY_ALPHA, pygame.RLEACCEL)
     box2 = box2.convert_alpha()
 
+
+    '''
     number_of_sites_total = 0
     number_of_sites_predicted_on_total = 0
     false_positives_total = 0
@@ -313,7 +315,7 @@ def main(index):
     print("False positives total: "+str(false_positives_total))
     print("Number of sites actually on: "+str(number_of_sites_meant_to_be_on_total))
     print("Numerator of detection rate: "+str(number_of_ons_detected_total))
-    
+    '''
     
     
     ''' Main loop
