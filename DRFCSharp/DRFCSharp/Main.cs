@@ -137,7 +137,6 @@ namespace DRFCSharp
 					string prefix = k.ToString("D3");
 					ImageData img = ImageData.FromImage(new Bitmap(imgpath+prefix+".jpg"));
 					//Console.WriteLine (img[0,2].features[2]);
-					Console.WriteLine(labelpath+prefix+".txt");
 					Classification cfc = ImageData.ImportLabeling(labelpath+prefix+".txt");
 					imgs[count] = img;
 					cfcs[count] = cfc;

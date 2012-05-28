@@ -96,13 +96,13 @@ namespace DRFCSharp
 						double denom = 0;
 						double SMOOTHING_KERNEL_BANDWIDTH = 2.0d; // radius of the kernel section that is non-zero (in indices)
 						int b = Convert.ToInt32(Math.Ceiling(SMOOTHING_KERNEL_BANDWIDTH));
-						for(int j = i - b; j <= i + b; j++)
+						for(int j = i - Math.Min(b, NUM_ORIENTATIONS/2); j <= i + Math.Min(b, NUM_ORIENTATIONS/2); j++)
 						{
 							// As long as the kernel bandwidth is not larger than NUM_ORIENTATIONS/2, we don't 
 							// count directions multiple times.
 							double coeff = SmoothingKernel(((double)(i-j))/SMOOTHING_KERNEL_BANDWIDTH);
 							denom += coeff;
-							numerator += coeff*histogram_over_orientations[j % NUM_ORIENTATIONS];
+							numerator += coeff*histogram_over_orientations[(j+NUM_ORIENTATIONS)%NUM_ORIENTATIONS];
 						}
 						smoothed_histogram[i] = numerator/denom;
 					}
@@ -375,11 +375,11 @@ namespace DRFCSharp
 			Label[,] labels = new Label[x_sites,y_sites];
 			using(StreamReader csvfile = new StreamReader(filename))
 			{
-				for(int col = 0; col < x_sites; col++)
+				for(int col = 0; col < y_sites; col++)
 				{
 					string line = csvfile.ReadLine();
 					string[] vals = line.Split(',');
-					for(int row = 0; row < y_sites; row++)
+					for(int row = 0; row < x_sites; row++)
 					{
 						int val = Int32.Parse(vals[row]);
 						if(val > 0)
