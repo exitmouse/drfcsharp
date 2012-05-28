@@ -105,13 +105,20 @@ namespace DRFCSharp
 							numerator += coeff*histogram_over_orientations[(j+NUM_ORIENTATIONS)%NUM_ORIENTATIONS];
 						}
 						smoothed_histogram[i] = numerator/denom;
+						if(denom == 0) throw new NotFiniteNumberException();
 					}
-					for(int i = 0; i < NUM_ORIENTATIONS; i++) smoothed_histogram[i] *= 4096d / ((double)num_pixels_at_scale);
+					for(int i = 0; i < NUM_ORIENTATIONS; i++)
+					{
+						if(double.IsNaN(smoothed_histogram[i]) || double.IsInfinity(smoothed_histogram[i])) throw new NotFiniteNumberException();
+						smoothed_histogram[i] *= 4096d / ((double)num_pixels_at_scale);
+					}
 					/*//TODO Decide whether we want this normalization. Added it because of edges not getting as many data points.
 					double sum = 0;
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) sum += smoothed_histogram[i];
-					for(int i = 0; i < NUM_ORIENTATIONS; i++) smoothed_histogram[i] /= sum;*/
+					for(int i = 0; i < NUM_ORIENTATIONS; i++) smoothed_histogram[i] /= sum;
+					*/
 					
+						
 					
 					//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
 					//However, we can't use the absolute location of the orientation because our images are distributed in a way that's rotationally
@@ -119,7 +126,7 @@ namespace DRFCSharp
 					for(int i = 0; i < 3; i++)
 					{
 						single_site_features[scalepow*4 + i]=Moment(smoothed_histogram,i);
-						if(double.IsNaN(single_site_features[i]))
+						if(double.IsNaN(single_site_features[scalepow*4 + i]))
 						{
 							throw new NotImplementedException();
 						}
@@ -210,7 +217,7 @@ namespace DRFCSharp
 						denom += histogram[i]-v_0;
 					}
 				}
-				return numerator/denom;
+				return numerator/(denom+double.Epsilon);
 			}
 		}
 		public static double SmoothingKernel(double argument)

@@ -15,7 +15,6 @@ namespace DRFCSharp
 		public const double CONVERGENCE_CONSTANT = 0.000000001;
 		public const double START_STEP_LENGTH = 0.0000001d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 1d;
-		public const double EPSILON = 0.000000001d;
 		public readonly int time_to_converge;
 		
 		public int Ons_seen = 0;
@@ -431,9 +430,9 @@ namespace DRFCSharp
 		}
 		public static double Exp(double x){ return Math.Exp(x); }
 		public static double Log(double x){ 
-			if(x <= EPSILON)
+			if(x <= double.Epsilon)
 			{
-				return Math.Log (EPSILON);
+				return Math.Log (double.Epsilon);
 			}
 			return Math.Log(x);
 		}
@@ -443,7 +442,7 @@ namespace DRFCSharp
 			{
 				throw new NotFiniteNumberException("Sigma should be between 0 and 1");
 			}
-			if(result < EPSILON) return EPSILON;
+			if(result < double.Epsilon) return double.Epsilon;
 			return result; 
 		}
 	}
