@@ -15,6 +15,9 @@ namespace DRFCSharp
 		public const double CONVERGENCE_CONSTANT = 0.000000001;
 		public const double START_STEP_LENGTH = 0.0000001d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 1d;
+		public const CrossFeatureOptions cross_options = CrossFeatureOptions.CONCATENATE;
+		public const TransformedFeatureOptions transformed_options = TransformedFeatureOptions.QUADRATIC;
+		
 		public readonly int time_to_converge;
 		
 		public int Ons_seen = 0;
@@ -177,7 +180,7 @@ namespace DRFCSharp
 			int Ons_seen = (int)serializer.Deserialize(parameter_storage_in);
 			int Sites_seen = (int)serializer.Deserialize(parameter_storage_in);
 			
-			Console.WriteLine("Successfully loaded model from %s\n", parameter_storage_in_path); 
+			Console.WriteLine("Successfully loaded model from {0}\n", parameter_storage_in_path); 
 			return new ModifiedModel(w, v, 0, Ons_seen, Sites_seen);
 		}
 		
@@ -186,8 +189,8 @@ namespace DRFCSharp
 			if(tau <= 0) throw new ArgumentException("Tau must be positive");
 			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
 			
-			DenseVector w = new DenseVector(SiteFeatureSet.NUM_FEATURES + 1, 0d);
-			DenseVector v = new DenseVector(SiteFeatureSet.NUM_FEATURES + 1, 0d);
+			DenseVector w = new DenseVector(SiteFeatureSet.TransformedFeatureCount(), 0d);
+			DenseVector v = new DenseVector(SiteFeatureSet.CrossFeaturesCount(), 0d);
 			
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);

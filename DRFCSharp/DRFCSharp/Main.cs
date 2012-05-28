@@ -172,9 +172,9 @@ namespace DRFCSharp
 			}
 			
 			StreamWriter sw = new StreamWriter(outpath);
-			for(int i = 0; i < 16; i++)
+			for(int i = 0; i < ImageData.y_sites; i++)
 			{
-				for(int j = 0; j < 16; j++)
+				for(int j = 0; j < ImageData.x_sites; j++)
 				{
 					if(out_classed[j,i] == Label.OFF)
 					{
