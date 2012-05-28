@@ -4,7 +4,8 @@ Created on Apr 29, 2012
 @author: Dan Denton and Jesse Selover
 
 
-This is our utility program for labeling photograph sites.  The commands are:
+This is our utility program for labeling photograph sites.  It can also be used
+to view classifications output from machine learning algorithms.  The commands are:
     esc to exit
     d to go to the next image
     a to go to the previous image
@@ -13,7 +14,9 @@ This is our utility program for labeling photograph sites.  The commands are:
     left click to label a site as 1
     shift left click to label a site as 2
     right click to label a site as 3
-    o to toggle between viewing input images and output
+    o to toggle between labeling images and viewing classifications
+    l to toggle between our data set (aerial images) and Kumar and Hebert's 
+    	data set.
 All labelings are immediately saved to the corresponding data file (a comma separated
 file representing the site labeling array), so there is no need for a save command.
 Whenever an image is loaded for whom a labeling has already been saved, the program
