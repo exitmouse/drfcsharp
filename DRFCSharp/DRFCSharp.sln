@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRFCSharp", "DRFCSharp\DRFCSharp.csproj", "{6E9C7EFB-3C71-4966-A8EF-1C92296B5A7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRFCSharp", "DRFCSharp\DRFCSharp.csproj", "{5BDDDC05-54F2-4C1C-B060-15E65E7369C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E9C7EFB-3C71-4966-A8EF-1C92296B5A7F}.Debug|x86.ActiveCfg = Debug|x86
-		{6E9C7EFB-3C71-4966-A8EF-1C92296B5A7F}.Debug|x86.Build.0 = Debug|x86
-		{6E9C7EFB-3C71-4966-A8EF-1C92296B5A7F}.Release|x86.ActiveCfg = Release|x86
-		{6E9C7EFB-3C71-4966-A8EF-1C92296B5A7F}.Release|x86.Build.0 = Release|x86
+		{5BDDDC05-54F2-4C1C-B060-15E65E7369C1}.Debug|x86.ActiveCfg = Debug|x86
+		{5BDDDC05-54F2-4C1C-B060-15E65E7369C1}.Debug|x86.Build.0 = Debug|x86
+		{5BDDDC05-54F2-4C1C-B060-15E65E7369C1}.Release|x86.ActiveCfg = Release|x86
+		{5BDDDC05-54F2-4C1C-B060-15E65E7369C1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = DRFCSharp\DRFCSharp.csproj
