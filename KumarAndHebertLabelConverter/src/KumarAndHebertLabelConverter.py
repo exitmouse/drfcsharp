@@ -117,13 +117,21 @@ if __name__ == '__main__':
     for i in range(300):
        path = os.path.normpath(os.path.join(DATASET_DIR, str(i).zfill(3) + '.txt'))
        new_path = os.path.normpath(os.path.join(DATASET_DIR, 'tmp/' + str(perm[i]).zfill(3) + '.txt'))
-       print path
-       print new_path
-       os.system('git mv ' + path + ' ' + new_path) 
+       #print path
+       #print new_path
+       cmd = 'git mv ' + path + ' ' + new_path
+       print cmd
+       os.system(cmd) 
        path = os.path.normpath(os.path.join(DATASET_DIR, str(i).zfill(3) + '.jpg'))
        new_path = os.path.normpath(os.path.join(DATASET_DIR, 'tmp/' + str(perm[i]).zfill(3) + '.jpg'))
-       print path
-       print new_path
-       os.system('git mv ' + path + ' ' + new_path) 
+       #print path
+       #print new_path
+       cmd = 'git mv ' + path + ' ' + new_path
+       print cmd
+       os.system(cmd) 
+    
+    #cmd = 'cd ' + DATASET_DIR + "; ls"
+    #os.system(cmd)
+       
     
     pass
