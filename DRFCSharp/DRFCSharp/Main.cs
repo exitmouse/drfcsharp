@@ -18,6 +18,7 @@ namespace DRFCSharp
 				"\n -l/--load <load_training_from_here>: Loads training from a file" +
 				"\n -s/--save <save_training_here>: Saves training to a file" +
 				"\n -i/--image <# of image to predict>: Infers on this image number" +
+			    "\n -ei/--endimage <# of last image to predict>: Infers on everything between -i and this" +
 				"\n -r/--range <# of images to train on>" +
 				"\n --imgdir <path>" +
 				"\n --labeldir <path>" +
@@ -34,6 +35,7 @@ namespace DRFCSharp
 			string outpath = "";
 			bool deserialize_only = false;
 			int image_num = 192;
+			int end_image_num = -1; // infer between image_num and this inclusive, -1 indicates a single image rather than a range
 			double tau = 0.0001d;
 			int range = 80;
 			
@@ -64,6 +66,15 @@ namespace DRFCSharp
 				else if(args[i] == "-i" || args[i] == "--image")
 				{
 					if(!Int32.TryParse(args[i+1], out image_num) || image_num < 0)
+					{
+						PrintUsage();
+						return;
+					}
+					i++;
+				}
+				else if(args[i] == "-ei" || args[i] == "--image")
+				{
+					if(!Int32.TryParse(args[i+1], out end_image_num) || end_image_num < image_num)
 					{
 						PrintUsage();
 						return;
@@ -140,49 +151,54 @@ namespace DRFCSharp
 				mfm = ModifiedModel.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs,tau);
 				Console.WriteLine("Model converged! Estimating image ...");
 			}
-			string imagename = image_num.ToString("D3");
-			ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
 			
-			Classification out_classed; //See what I did there?
-			if(inference_algorithm == "logistic")
+			end_image_num = Math.Min(end_image_num, image_num);
+			for (int i = image_num; i <= end_image_num; i++)
 			{
-				Console.WriteLine("Inferring with Logistic classifier...");
-				out_classed = mfm.LogisticInfer(input);
-			}
-			else if (inference_algorithm == "map")
-			{
-				Console.WriteLine("Inferring with MAP classifier...");
-				out_classed = mfm.MaximumAPosterioriInfer(input);
-			}
-			else
-			{
-				Console.WriteLine("Inferring with ICM classifier...");
-				out_classed = mfm.ICMInfer(input);
-			}
-			
-			if(string.IsNullOrEmpty(outpath))
-			{
-				outpath = imgpath+"predicted"+image_num.ToString("D3")+".txt";
-			}
-			
-			StreamWriter sw = new StreamWriter(outpath);
-			for(int i = 0; i < ImageData.y_sites; i++)
-			{
-				for(int j = 0; j < ImageData.x_sites; j++)
+				string imagename = i.ToString("D3");
+				ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
+				
+				Classification out_classed; //See what I did there?
+				if(inference_algorithm == "logistic")
 				{
-					if(out_classed[j,i] == Label.OFF)
-					{
-						sw.Write('0');
-					}
-					else
-					{
-						sw.Write('1');
-					}
-					sw.Write(',');
+					Console.WriteLine("Inferring with Logistic classifier...");
+					out_classed = mfm.LogisticInfer(input);
 				}
-				sw.Write('\n');
+				else if (inference_algorithm == "map")
+				{
+					Console.WriteLine("Inferring with MAP classifier...");
+					out_classed = mfm.MaximumAPosterioriInfer(input);
+				}
+				else
+				{
+					Console.WriteLine("Inferring with ICM classifier...");
+					out_classed = mfm.ICMInfer(input);
+				}
+				
+				if(string.IsNullOrEmpty(outpath))
+				{
+					outpath = imgpath+"predicted"+i.ToString("D3")+".txt";
+				}
+				
+				StreamWriter sw = new StreamWriter(outpath);
+				for(int k = 0; i < ImageData.y_sites; k++)
+				{
+					for(int j = 0; j < ImageData.x_sites; j++)
+					{
+						if(out_classed[j,k] == Label.OFF)
+						{
+							sw.Write('0');
+						}
+						else
+						{
+							sw.Write('1');
+						}
+						sw.Write(',');
+					}
+					sw.Write('\n');
+				}
+				sw.Close();
 			}
-			sw.Close();
 		}
 	}
 }

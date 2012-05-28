@@ -16,7 +16,7 @@ namespace DRFCSharp
 		public const double START_STEP_LENGTH = 10.0d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 1.0d;
 		public const CrossFeatureOptions cross_options = CrossFeatureOptions.DIFFERENCE;
-		public const TransformedFeatureOptions transformed_options = TransformedFeatureOptions.QUADRATIC;
+		public const TransformedFeatureOptions transformed_options = TransformedFeatureOptions.LINEAR;
 		
 		public readonly int time_to_converge;
 		

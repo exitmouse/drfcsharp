@@ -2,100 +2,22 @@
   <SOAP-ENV:Body>
     <a1:DenseVector id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/MathNet.Numerics.LinearAlgebra.Double/MathNet.Numerics%2C%20Version%3D2011.4.17.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dcd8b63ad3d691a37">
       <_x003C_Data_x003E_k__BackingField href="#ref-2" />
-      <Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>91</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
+      <Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>13</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
     </a1:DenseVector>
-    <SOAP-ENC:Array id="ref-2" SOAP-ENC:arrayType="xsd:double[91]">
-      <item>-2.1251064045054849E-26</item>
-      <item>-8.0863985194359677E-24</item>
-      <item>-6.0292313927723253E-24</item>
-      <item>-3.208148472079801E-21</item>
-      <item>-8.454389740885166E-27</item>
-      <item>-8.499028580538332E-24</item>
-      <item>-5.2484377160878896E-24</item>
-      <item>-2.3690781140866549E-21</item>
-      <item>-6.7970967386974247E-27</item>
-      <item>-9.1687197118542189E-24</item>
-      <item>-4.8243875218814813E-24</item>
-      <item>-1.8733353848330326E-21</item>
-      <item>-5.6432138578881911E-27</item>
-      <item>-5.6912809663147151E-21</item>
-      <item>-3.1536741382004312E-21</item>
-      <item>-9.7779423213453961E-19</item>
-      <item>-3.1906429733811005E-24</item>
-      <item>-5.6676447352015014E-21</item>
-      <item>-2.5356127413580612E-21</item>
-      <item>-9.0622390435076515E-19</item>
-      <item>-2.4302673413746757E-24</item>
-      <item>-5.6703207985648265E-21</item>
-      <item>-2.2377926656029423E-21</item>
-      <item>-8.5734023586149526E-19</item>
-      <item>-1.8028101965579198E-24</item>
-      <item>-2.8542266067069056E-21</item>
-      <item>-7.7715788828370828E-19</item>
-      <item>-2.0486345019850799E-24</item>
-      <item>-3.148418448617545E-21</item>
-      <item>-2.1150416630783835E-21</item>
-      <item>-5.5854455222073186E-19</item>
-      <item>-1.6172711564116311E-24</item>
-      <item>-3.2414316544898389E-21</item>
-      <item>-1.7407597169312877E-21</item>
-      <item>-4.8015818770267134E-19</item>
-      <item>-1.2332640859215224E-24</item>
-      <item>5.3810660155949498E-15</item>
-      <item>-1.0627059490687935E-21</item>
-      <item>-9.8927703715570788E-19</item>
-      <item>-6.2493174016710578E-19</item>
-      <item>2.3410682284429104E-15</item>
-      <item>-7.7736815375114336E-22</item>
-      <item>-1.1568983133624693E-18</item>
-      <item>-5.8997257396418654E-19</item>
-      <item>1.0139218320541894E-15</item>
-      <item>-4.6523724454467894E-22</item>
-      <item>-6.1927389395118371E-27</item>
-      <item>-3.3879590316725425E-24</item>
-      <item>-1.7962719891042779E-24</item>
-      <item>-7.632756569005399E-22</item>
-      <item>-3.5524248384145948E-27</item>
-      <item>-3.6681570624127613E-24</item>
-      <item>-1.6819218175671312E-24</item>
-      <item>-6.0584134800363895E-22</item>
-      <item>-2.6757261534885363E-27</item>
-      <item>-5.8747129416416508E-21</item>
-      <item>-2.7233847046241537E-21</item>
-      <item>-1.0555277297411104E-18</item>
-      <item>-2.5937274682663474E-24</item>
-      <item>-5.9579469296725562E-21</item>
-      <item>-2.4076292893717109E-21</item>
-      <item>-9.6203016245427674E-19</item>
-      <item>-1.9175737429449594E-24</item>
-      <item>-2.0669057987178617E-21</item>
-      <item>-7.354337799053934E-19</item>
-      <item>-1.3451422376664136E-24</item>
-      <item>-2.8327421414193994E-21</item>
-      <item>-1.6560036804792326E-21</item>
-      <item>-5.3057696743077335E-19</item>
-      <item>-1.0698252962702613E-24</item>
-      <item>1.4757485659475468E-15</item>
-      <item>-5.449206019049001E-22</item>
-      <item>-1.1335398481613014E-18</item>
-      <item>-5.8594714529833981E-19</item>
-      <item>6.8173669478495663E-16</item>
-      <item>-3.9908240136735902E-22</item>
-      <item>-4.6693932782296202E-27</item>
-      <item>-2.847712666257369E-24</item>
-      <item>-1.2527177146268695E-24</item>
-      <item>-4.0884353093340185E-22</item>
-      <item>-2.6350137866597446E-27</item>
-      <item>-6.2886146438558771E-21</item>
-      <item>-2.6282313064415642E-21</item>
-      <item>-1.0843192231157064E-18</item>
-      <item>-2.1468061958104879E-24</item>
-      <item>-1.6356357688303038E-21</item>
-      <item>-6.1019066740953762E-19</item>
-      <item>-9.5017167845416093E-25</item>
-      <item>3.1062218638448827E-16</item>
-      <item>-2.9447429644917397E-22</item>
-      <item>-3.7755979671438883E-27</item>
+    <SOAP-ENC:Array id="ref-2" SOAP-ENC:arrayType="xsd:double[13]">
+      <item>-1.168502919724783E-11</item>
+      <item>-6.2660226711093856E-09</item>
+      <item>-2.0256421631623939E-09</item>
+      <item>2.5853996336339461E-07</item>
+      <item>-2.1464982592051502E-12</item>
+      <item>-7.009253915496323E-09</item>
+      <item>-1.8947753816479312E-09</item>
+      <item>-3.7737431473478248E-07</item>
+      <item>-2.1985793941598106E-12</item>
+      <item>-8.0069449824486361E-09</item>
+      <item>-1.8768169518540877E-09</item>
+      <item>-5.1834611531374648E-07</item>
+      <item>-2.3801807870420199E-12</item>
     </SOAP-ENC:Array>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope><SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/clr/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
@@ -105,31 +27,31 @@
       <Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>13</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
     </a1:DenseVector>
     <SOAP-ENC:Array id="ref-2" SOAP-ENC:arrayType="xsd:double[13]">
-      <item>1.8503425247307366E-25</item>
-      <item>2.6977727999093796E-23</item>
-      <item>4.1763468992419216E-23</item>
-      <item>7.581872984513948E-20</item>
-      <item>6.3773129267817809E-26</item>
-      <item>1.7488361241160629E-23</item>
-      <item>2.2195420489838308E-23</item>
-      <item>2.7781931925420635E-20</item>
-      <item>4.7517165536901651E-26</item>
-      <item>1.1496409734853932E-23</item>
-      <item>1.0900147758710095E-23</item>
-      <item>9.8960526702914312E-21</item>
-      <item>3.1446517927431415E-26</item>
+      <item>8.8490346078251275E-11</item>
+      <item>1.1393254378161646E-08</item>
+      <item>7.0124161140365648E-09</item>
+      <item>2.9785340076787601E-08</item>
+      <item>2.1414273364417361E-11</item>
+      <item>9.1540366438999017E-09</item>
+      <item>4.7321094461218861E-09</item>
+      <item>1.5396855778440947E-06</item>
+      <item>1.7940963746494351E-11</item>
+      <item>8.0717033572202858E-09</item>
+      <item>3.6065604290176077E-09</item>
+      <item>1.7240213227093244E-06</item>
+      <item>1.4354412937098447E-11</item>
     </SOAP-ENC:Array>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope><SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/clr/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
   <SOAP-ENV:Body>
     <xsd:int id="ref-1">
-      <m_value>4955</m_value>
+      <m_value>5203</m_value>
     </xsd:int>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope><SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/clr/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
   <SOAP-ENV:Body>
     <xsd:int id="ref-1">
-      <m_value>38400</m_value>
+      <m_value>41472</m_value>
     </xsd:int>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

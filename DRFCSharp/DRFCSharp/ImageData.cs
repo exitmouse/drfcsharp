@@ -11,7 +11,7 @@ namespace DRFCSharp
 		public const int x_sites = 24; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
 		public const int y_sites = 16;
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
-		public const int NUM_ORIENTATIONS = 16;
+		public const int NUM_ORIENTATIONS = 8;
 		public SiteFeatureSet[,] site_features;
 		public static int Ons_seen = 0;
 		public static int Sites_seen = 0;
