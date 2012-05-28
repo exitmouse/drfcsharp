@@ -13,6 +13,7 @@ import numpy
 import Image
 import csv
 import glob
+import random
 
 
 CONVERTER_DIR = os.path.split(os.path.abspath(sys.argv[0]))[0]
@@ -102,12 +103,27 @@ if __name__ == '__main__':
         path = os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, current_data_name)
         SaveLabeling(path, site_array)'''
    
-    paths = glob.glob(os.path.normpath(os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, '[0-9][0-9][0-9].txt'))) 
+    '''paths = glob.glob(os.path.normpath(os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, '[0-9][0-9][0-9].txt'))) 
     for i in range(len(paths)):
         if i <= 20:
             new_path = os.path.normpath(os.path.join(DATASETKH_CSV_LABELS_TEST_DIR, str(i + 108).zfill(3) + '.txt'))
             print paths[i]
             print new_path
-            os.system('git mv ' + paths[i] + ' ' + new_path) 
+            os.system('git mv ' + paths[i] + ' ' + new_path) '''
+    
+    perm = range(300)
+    random.shuffle(perm)
+    print perm
+    for i in range(300):
+       path = os.path.normpath(os.path.join(DATASET_DIR, str(i).zfill(3) + '.txt'))
+       new_path = os.path.normpath(os.path.join(DATASET_DIR, 'tmp/' + str(perm[i]).zfill(3) + '.txt'))
+       print path
+       print new_path
+       os.system('git mv ' + path + ' ' + new_path) 
+       path = os.path.normpath(os.path.join(DATASET_DIR, str(i).zfill(3) + '.jpg'))
+       new_path = os.path.normpath(os.path.join(DATASET_DIR, 'tmp/' + str(perm[i]).zfill(3) + '.jpg'))
+       print path
+       print new_path
+       os.system('git mv ' + path + ' ' + new_path) 
     
     pass
