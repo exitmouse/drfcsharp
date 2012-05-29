@@ -8,7 +8,7 @@ namespace DRFCSharp
 {
 	public class ImageData
 	{
-		public const int x_sites = 24; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
+		public const int x_sites = 16; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
 		public const int y_sites = 16;
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
 		public const int NUM_ORIENTATIONS = 32;
@@ -174,7 +174,7 @@ namespace DRFCSharp
 		public static double RightAngleFinder(double[] histogram, int first_peak_rank, int second_peak_rank)
 		{
 			int peak_indices_len = second_peak_rank + 1; // since peak ranks start at 0
-			int[] peak_indices = new int[speak_indices_len]; 
+			int[] peak_indices = new int[peak_indices_len]; 
 			for (int i = 0; i < peak_indices_len; i++)
 			{
 				peak_indices[i] = 1;
