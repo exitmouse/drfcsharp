@@ -8,10 +8,10 @@ namespace DRFCSharp
 {
 	public class ImageData
 	{
-		public const int x_sites = 16; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
+		public const int x_sites = 24; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
 		public const int y_sites = 16;
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
-		public const int NUM_ORIENTATIONS = 32;
+		public const int NUM_ORIENTATIONS = 50;
 		public SiteFeatureSet[,] site_features;
 		public static int Ons_seen = 0;
 		public static int Sites_seen = 0;
@@ -148,6 +148,10 @@ namespace DRFCSharp
 				}
 				single_site_features[9] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
 				single_site_features[10] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
+				for(int i = 0; i < 3; i++)
+				{
+					single_site_features[11+i] = Math.Abs(Math.Sin(intra_scale_angles[i]));
+				}
 				//Console.WriteLine(single_site_features);
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
