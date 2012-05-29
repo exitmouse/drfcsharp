@@ -135,9 +135,7 @@ namespace DRFCSharp
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) if(smoothed_histogram[i] > smoothed_histogram[intra_scale_peaks[scalepow]]) intra_scale_peaks[scalepow] = i;
 					
 
-					single_site_features[scalepow*3 + 2] = Math.Max (Math.Max (RightAngleFinder(smoothed_histogram, 0, 1),
-					                                                 		   RightAngleFinder(smoothed_histogram, 0, 2)),
-					                                                 RightAngleFinder(smoothed_histogram, 1, 2));
+					single_site_features[scalepow*3 + 2] = RightAngleFinder(smoothed_histogram, 3);
 					//double[] avgs = AverageRGB(img, x, y);
 					//for(int i = 0; i < 3; i++) single_site_features[scalepow*7+4+i] = avgs[i];
 				}
@@ -176,13 +174,12 @@ namespace DRFCSharp
 			for(int i = 0; i < 3; i++) colors[i] *= multfactor;
 			return colors;
 		}
-		public static double RightAngleFinder(double[] histogram, int first_peak_rank, int second_peak_rank)
+		public static double RightAngleFinder(double[] histogram, int num_peaks_to_consider)
 		{
-			int peak_indices_len = second_peak_rank + 1; // since peak ranks start at 0
-			int[] peak_indices = new int[peak_indices_len]; 
-			for (int i = 0; i < peak_indices_len; i++)
+			int[] peak_indices = new int[num_peaks_to_consider]; 
+			for (int i = 0; i < num_peaks_to_consider; i++)
 			{
-				peak_indices[i] = 1;
+				peak_indices[i] = -1;
 			}
 			double last_height_level = -1.0d;
 			// Traverse the histogram in backward order to find the first index having
@@ -208,12 +205,12 @@ namespace DRFCSharp
 				if (histogram[i] > last_height_level && histogram[i] > histogram[(i + 1) % NUM_ORIENTATIONS])
 				{
 					// this is a peak (we accept as a peak the right corner of a plateau).
-					for (int j = 0; j < peak_indices_len; j++)
+					for (int j = 0; j < num_peaks_to_consider; j++)
 					{
 						if (peak_indices[j] == -1 || histogram[i] > histogram[peak_indices[j]])
 						{
 							// shift all the lesser peaks
-							for (int k = peak_indices_len -1; k > j; k--)
+							for (int k = num_peaks_to_consider -1; k > j; k--)
 							{
 								peak_indices[k] = peak_indices[k-1];
 							}
@@ -228,24 +225,29 @@ namespace DRFCSharp
 					last_height_level = histogram[i];
 				}
 			}
-			if(peak_indices[first_peak_rank] == -1 || peak_indices[second_peak_rank] == -1)
+			if(peak_indices[1] == -1)
 			{
 				return 0.0d;
 			}
-			double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)peak_indices[first_peak_rank]);
-			double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)peak_indices[second_peak_rank]);
-			double ang = ang1-ang2;
-			double interim = Math.Sin(ang);
-			double toReturn = Math.Abs (interim);
-			//if(toReturn < 0.0001d) toReturn += 0.001d; //Not sure if this will help. Hack; we only use the sine function to give better falloff anyway so I don't feel too guilty. But still.
-			
-			/*Console.WriteLine("RightAngleFinder");
-			Console.WriteLine(histogram.ToString());
-			Console.WriteLine(string.Format("{0}th peak: {1} \t {2}th peak: {3}\nright-angle feature: {4}",
-			                                first_peak_rank, peak_indices[first_peak_rank],
-			                                second_peak_rank, peak_indices[second_peak_rank],
-			                                toReturn));*/
-			
+			double toReturn = 0.0d;
+			for (int j = num_peaks_to_consider -1; j > 0; j--)
+			{
+				for (int i = j-1; i >= 0 && peak_indices[j] != -1; i--)
+				{
+					double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)peak_indices[i]);
+					double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)peak_indices[j]);
+					double ang = ang1-ang2;
+					double interim = Math.Sin(ang);
+					toReturn = Math.Max(toReturn, Math.Abs(interim));
+				
+					/*Console.WriteLine("RightAngleFinder");
+					Console.WriteLine(histogram.ToString());
+					Console.WriteLine(string.Format("{0}th peak: {1} \t {2}th peak: {3}\nright-angle feature: {4}",
+					                                i, peak_indices[i],
+					                                j, peak_indices[j],
+					                                toReturn));*/
+				}
+			}
 			return toReturn;
 		}
 		public static double Moment(double[] histogram, int p)
