@@ -63,7 +63,7 @@ namespace DRFCSharp
 			int height_of_site = img.Height/y_sites;
 			for(int x = 0; x < x_sites; x++) for(int y = 0; y < y_sites; y++)
 			{
-				Console.WriteLine("X = {0}, Y = {1}",x,y);
+				//Console.WriteLine("X = {0}, Y = {1}",x,y);
 				DenseVector single_site_features = new DenseVector(SiteFeatureSet.NUM_FEATURES);
 				int[] intra_scale_peaks = new int[3];
 				for(int scalepow = 0; scalepow < 3; scalepow++) //TODO maybe less hardcode?
@@ -125,8 +125,8 @@ namespace DRFCSharp
 					//invariant. Our images are not taken with upright cameras.
 					for(int i = 0; i < 3; i+=2)
 					{
-						single_site_features[scalepow*4 + i/2]=Moment(smoothed_histogram,i);
-						if(double.IsNaN(single_site_features[scalepow*4 + i/2]))
+						single_site_features[scalepow*3 + i/2]=Moment(smoothed_histogram,i);
+						if(double.IsNaN(single_site_features[scalepow*3 + i/2]))
 						{
 							throw new NotImplementedException();
 						}
@@ -135,8 +135,9 @@ namespace DRFCSharp
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) if(smoothed_histogram[i] > smoothed_histogram[intra_scale_peaks[scalepow]]) intra_scale_peaks[scalepow] = i;
 					
 
-					single_site_features[scalepow*4 + 2] = RightAngleFinder(smoothed_histogram, 0, 1);
-					single_site_features[scalepow*4 + 3] = RightAngleFinder(smoothed_histogram, 0, 2);
+					single_site_features[scalepow*3 + 2] = Math.Max (Math.Max (RightAngleFinder(smoothed_histogram, 0, 1),
+					                                                 		   RightAngleFinder(smoothed_histogram, 0, 2)),
+					                                                 RightAngleFinder(smoothed_histogram, 1, 2));
 					//double[] avgs = AverageRGB(img, x, y);
 					//for(int i = 0; i < 3; i++) single_site_features[scalepow*7+4+i] = avgs[i];
 				}
@@ -145,8 +146,8 @@ namespace DRFCSharp
 				{
 					intra_scale_angles[i] = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)intra_scale_peaks[i]);
 				}
-				single_site_features[12] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
-				single_site_features[13] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
+				single_site_features[9] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
+				single_site_features[10] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
 				//Console.WriteLine(single_site_features);
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
@@ -174,7 +175,7 @@ namespace DRFCSharp
 		public static double RightAngleFinder(double[] histogram, int first_peak_rank, int second_peak_rank)
 		{
 			int peak_indices_len = second_peak_rank + 1; // since peak ranks start at 0
-			int[] peak_indices = new int[speak_indices_len]; 
+			int[] peak_indices = new int[peak_indices_len]; 
 			for (int i = 0; i < peak_indices_len; i++)
 			{
 				peak_indices[i] = 1;
@@ -234,9 +235,12 @@ namespace DRFCSharp
 			double toReturn = Math.Abs (interim);
 			//if(toReturn < 0.0001d) toReturn += 0.001d; //Not sure if this will help. Hack; we only use the sine function to give better falloff anyway so I don't feel too guilty. But still.
 			
-			/*Console.WriteLine("Right-angle finder:");
-			Console.WriteLine(histogram);
-			Console.WriteLine(string.Format("peak1: {0} peak2: {1}\nright-angle feature: {2}",highest_peak_index, second_peak_index, toReturn));*/
+			/*Console.WriteLine("RightAngleFinder");
+			Console.WriteLine(histogram.ToString());
+			Console.WriteLine(string.Format("{0}th peak: {1} \t {2}th peak: {3}\nright-angle feature: {4}",
+			                                first_peak_rank, peak_indices[first_peak_rank],
+			                                second_peak_rank, peak_indices[second_peak_rank],
+			                                toReturn));*/
 			
 			return toReturn;
 		}
