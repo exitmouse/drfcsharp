@@ -52,8 +52,10 @@ namespace DRFCSharp
 			Label[,] curr_classification = LogisticInfer(test_input).site_labels; //Muahaha better initialization. I don't think this is hacky.
 			//for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++) curr_classification[x,y] = Label.OFF;
 			bool converged = false;
-			while(!converged)
+			int loopcount = 0;
+			while(!converged && loopcount < 300)
 			{
+				loopcount++;
 				int changecount = 0;
 				converged = true;
 				for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++)
@@ -63,6 +65,15 @@ namespace DRFCSharp
 					//So we can just calculate A + sum over neighbors of I for each labeling of the site, and
 					//assign to the site whichever is higher.
 					var sitefeatures = SiteFeatureSet.TransformedFeatureVector(test_input[x,y]);
+					if(x == 6 && y == 10)
+					{
+						Console.WriteLine("Components of the dot product w*sitefeatures:");
+						for(int i = 0; i < SiteFeatureSet.TransformedFeatureCount(); i++)
+						{
+							Console.WriteLine("{0}th component: {1}", i, w[i]*sitefeatures[i]);
+						}
+							                  
+					}
 					double on_association = Log(Sigma(w.DotProduct(sitefeatures)));
 					double off_association = Log(Sigma(-1 * w.DotProduct(sitefeatures)));
 					double on_interaction = 0d;
@@ -72,7 +83,9 @@ namespace DRFCSharp
 					
 					foreach(Tuple<int,int> t in ImageData.GetNeighbors(x,y))
 					{
-						var mu = SiteFeatureSet.CrossFeatures(test_input[x,y],test_input[t.Item1,t.Item2]);
+						DenseVector mu;
+						if(ImageData.IsEarlier(x,y,t.Item1,t.Item2))mu = SiteFeatureSet.CrossFeatures(test_input[x,y],test_input[t.Item1,t.Item2]);
+						else mu = SiteFeatureSet.CrossFeatures(test_input[t.Item1,t.Item2], test_input[x,y]);
 						//Console.WriteLine("Magnitude of Interaction: {0}",v.DotProduct(mu));
 						if(curr_classification[t.Item1,t.Item2] == Label.ON)
 						{
@@ -152,7 +165,10 @@ namespace DRFCSharp
 						Vertex u = site_nodes[other.Item1,other.Item2];
 						//Add the edge with capacity Beta_{t,u} in both directions between t and u.
 						//DRFS (2006) says that the data dependent smoothing term is max(0,v^T * mu_{i,j}y)
-						double capacity = Math.Max(0,v.DotProduct(SiteFeatureSet.CrossFeatures(test_input[i,j],test_input[other.Item1,other.Item2])));
+						DenseVector mu;
+						if(ImageData.IsEarlier(i,j,other.Item1,other.Item2))mu = SiteFeatureSet.CrossFeatures(test_input[i,j],test_input[other.Item1,other.Item2]);
+						else mu = SiteFeatureSet.CrossFeatures(test_input[other.Item1,other.Item2], test_input[i,j]);
+						double capacity = Math.Max(0,v.DotProduct(mu));
 						Console.WriteLine ("\tInternode edge with strength {0}",capacity);
 						Edge.AddEdge(t,u,capacity,capacity);
 					}
@@ -262,7 +278,9 @@ namespace DRFCSharp
 									foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
 									{
 										int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
-										DenseVector mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+										DenseVector mu;
+										if(ImageData.IsEarlier(horz,vert,j.Item1,j.Item2))mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+										else mu = SiteFeatureSet.CrossFeatures(training_inputs[m][j.Item1,j.Item2], training_inputs[m][horz,vert]);
 										logofcoeff += tempx * jx * v.DotProduct(mu);
 									}
 									double coeff = Exp(logofcoeff);
@@ -307,7 +325,9 @@ namespace DRFCSharp
 								foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz, vert))
 								{
 									int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
-									DenseVector mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+									DenseVector mu;
+									if(ImageData.IsEarlier(horz,vert,j.Item1,j.Item2))mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+									else mu = SiteFeatureSet.CrossFeatures(training_inputs[m][j.Item1,j.Item2], training_inputs[m][horz,vert]);
 									vterm += x * jx * mu[k];
 								}
 								vgrad[k] += vterm;
@@ -326,7 +346,9 @@ namespace DRFCSharp
 									foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
 									{
 										int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
-										DenseVector mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+										DenseVector mu;
+										if(ImageData.IsEarlier(horz,vert,j.Item1,j.Item2))mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+										else mu = SiteFeatureSet.CrossFeatures(training_inputs[m][j.Item1,j.Item2], training_inputs[m][horz,vert]);
 										logofcoeff += tempx * jx * v.DotProduct(mu);
 										dzdvterm += tempx * jx * mu[k];
 									}
@@ -413,7 +435,9 @@ namespace DRFCSharp
 						foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
 						{
 							int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
-							DenseVector mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+							DenseVector mu;
+							if(ImageData.IsEarlier(horz,vert,j.Item1,j.Item2))mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+							else mu = SiteFeatureSet.CrossFeatures(training_inputs[m][j.Item1,j.Item2], training_inputs[m][horz,vert]);
 							first_term += x * jx * vtest.DotProduct(mu);
 						}
 						double z = 0;
@@ -425,7 +449,9 @@ namespace DRFCSharp
 							foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
 							{
 								int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
-								DenseVector mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+								DenseVector mu;
+								if(ImageData.IsEarlier(horz,vert,j.Item1,j.Item2))mu = SiteFeatureSet.CrossFeatures(training_inputs[m][horz,vert],training_inputs[m][j.Item1,j.Item2]);
+								else mu = SiteFeatureSet.CrossFeatures(training_inputs[m][j.Item1,j.Item2], training_inputs[m][horz,vert]);
 								logofcoeff += tempx * jx * vtest.DotProduct(mu);
 							}
 							z += Exp (logofcoeff);
