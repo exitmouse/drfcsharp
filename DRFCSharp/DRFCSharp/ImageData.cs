@@ -63,7 +63,7 @@ namespace DRFCSharp
 			int height_of_site = img.Height/y_sites;
 			for(int x = 0; x < x_sites; x++) for(int y = 0; y < y_sites; y++)
 			{
-				//Console.WriteLine("X = {0}, Y = {1}",x,y);
+				Console.WriteLine("X = {0}, Y = {1}",x,y);
 				DenseVector single_site_features = new DenseVector(SiteFeatureSet.NUM_FEATURES);
 				int[] intra_scale_peaks = new int[3];
 				for(int scalepow = 0; scalepow < 3; scalepow++) //TODO maybe less hardcode?
@@ -125,8 +125,8 @@ namespace DRFCSharp
 					//invariant. Our images are not taken with upright cameras.
 					for(int i = 0; i < 3; i+=2)
 					{
-						single_site_features[scalepow*3 + i/2]=Moment(smoothed_histogram,i);
-						if(double.IsNaN(single_site_features[scalepow*3 + i/2]))
+						single_site_features[scalepow*4 + i/2]=Moment(smoothed_histogram,i);
+						if(double.IsNaN(single_site_features[scalepow*4 + i/2]))
 						{
 							throw new NotImplementedException();
 						}
@@ -134,7 +134,9 @@ namespace DRFCSharp
 					intra_scale_peaks[scalepow] = 0;
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) if(smoothed_histogram[i] > smoothed_histogram[intra_scale_peaks[scalepow]]) intra_scale_peaks[scalepow] = i;
 					
-					single_site_features[scalepow*3 + 2] = RightAngleFinder(smoothed_histogram);
+
+					single_site_features[scalepow*4 + 2] = RightAngleFinder(smoothed_histogram, 0, 1);
+					single_site_features[scalepow*4 + 3] = RightAngleFinder(smoothed_histogram, 0, 2);
 					//double[] avgs = AverageRGB(img, x, y);
 					//for(int i = 0; i < 3; i++) single_site_features[scalepow*7+4+i] = avgs[i];
 				}
@@ -143,8 +145,8 @@ namespace DRFCSharp
 				{
 					intra_scale_angles[i] = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)intra_scale_peaks[i]);
 				}
-				single_site_features[9] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
-				single_site_features[10] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
+				single_site_features[12] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
+				single_site_features[13] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
 				//Console.WriteLine(single_site_features);
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}
@@ -169,10 +171,14 @@ namespace DRFCSharp
 			for(int i = 0; i < 3; i++) colors[i] *= multfactor;
 			return colors;
 		}
-		public static double RightAngleFinder(double[] histogram)
+		public static double RightAngleFinder(double[] histogram, int first_peak_rank, int second_peak_rank)
 		{
-			int highest_peak_index = -1;
-			int second_peak_index = -1;
+			int peak_indices_len = second_peak_rank + 1; // since peak ranks start at 0
+			int[] peak_indices = new int[speak_indices_len]; 
+			for (int i = 0; i < peak_indices_len; i++)
+			{
+				peak_indices[i] = 1;
+			}
 			double last_height_level = -1.0d;
 			// Traverse the histogram in backward order to find the first index having
 			// different height than histogram[0].  This will be the initial value of 
@@ -197,14 +203,19 @@ namespace DRFCSharp
 				if (histogram[i] > last_height_level && histogram[i] > histogram[(i + 1) % NUM_ORIENTATIONS])
 				{
 					// this is a peak (we accept as a peak the right corner of a plateau).
-					if (highest_peak_index == -1 || histogram[i] >= histogram[highest_peak_index])
+					for (int j = 0; j < peak_indices_len; j++)
 					{
-						second_peak_index = highest_peak_index;
-						highest_peak_index = i;
-					}
-					else if (second_peak_index == -1 || histogram[i] >= histogram[second_peak_index])
-					{ 
-						second_peak_index = i;
+						if (peak_indices[j] == -1 || histogram[i] > histogram[peak_indices[j]])
+						{
+							// shift all the lesser peaks
+							for (int k = peak_indices_len -1; k > j; k--)
+							{
+								peak_indices[k] = peak_indices[k-1];
+							}
+							// and save this one
+							peak_indices[j] = i;
+							break;
+						}
 					}
 				}
 				if (histogram[(i + 1) % NUM_ORIENTATIONS] != histogram[i]) 
@@ -212,16 +223,21 @@ namespace DRFCSharp
 					last_height_level = histogram[i];
 				}
 			}
-			if(second_peak_index == -1)
+			if(peak_indices[first_peak_rank] == -1 || peak_indices[second_peak_rank] == -1)
 			{
 				return 0.0d;
 			}
-			double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)highest_peak_index);
-			double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)second_peak_index);
+			double ang1 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)peak_indices[first_peak_rank]);
+			double ang2 = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)peak_indices[second_peak_rank]);
 			double ang = ang1-ang2;
 			double interim = Math.Sin(ang);
 			double toReturn = Math.Abs (interim);
 			//if(toReturn < 0.0001d) toReturn += 0.001d; //Not sure if this will help. Hack; we only use the sine function to give better falloff anyway so I don't feel too guilty. But still.
+			
+			/*Console.WriteLine("Right-angle finder:");
+			Console.WriteLine(histogram);
+			Console.WriteLine(string.Format("peak1: {0} peak2: {1}\nright-angle feature: {2}",highest_peak_index, second_peak_index, toReturn));*/
+			
 			return toReturn;
 		}
 		public static double Moment(double[] histogram, int p)
