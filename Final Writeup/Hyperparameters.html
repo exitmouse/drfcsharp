@@ -70,7 +70,8 @@ This HTML is based on that of Nick Foti from last year, which was in turn based 
 We had to make many choices in our implementation of the DRF
 model. Broadly speaking, we had to choose what features were
 important, choose hyperparameters for training, and choose an
-inference method.
+inference method. In choosing an inference method, our hand was
+somewhat forced, but we had plenty of other choices:
 </p>
 
 <h4>Features</h4>
@@ -116,24 +117,91 @@ initially North-South aligned, we didn't know if buildings tended to
 be North-South aligned, and to top it off we preprocessed our data by
 randomly rotating it.
 </p>
-
+<p>
 We chose to use the first three central-shift moments, as described in
-[6], as higher moments were so heavily correlated.
+[6], as higher moments were so heavily correlated. We also used two
+inter-scale features as described in Kumar and Hebert's paper, based
+on the relative angles of the peaks of the histogram between scales.
+</p>
+<p>
+We also had to choose between the different methods of cross-feature
+calculation, and between linear and quadratic basis functions for the
+association features. We ended up using linear basis functions because
+quadratic ones did not seem to offer significant benefits, and linear
+functions were much easier to train. We chose to concatenate the two
+feature vectors to calculate cross-site features, after determining
+experimentally that calculating componentwise differences to try to
+learn some sort of linear scaled distance function produced much worse
+results.
+</p>
 
-In trying to determine why our logistic classifier is behaving so
+
+
+<p>
+Initially, we had only one scale, but we found, as Kumar and Hebert
+did, that results were significantly improved with 3.
+</p>
+
+
+
+<p>
+We briefly considered using three RGB features per scale, in our mad
+dash to get better features, which would measure the average intensity
+of each RGB component over the window at the given scale, but the
+features were ultimately not useful.
+</p>
+
+
+
+<p>
+We chose, as we mentioned in the milestone, a gradient-of-gaussian
+filter with variance 0.5, on recommendation via personal
+correspondence with Kumar and Hebert.
+</p>
+
+<p>
+We had to select the method of smoothing on the histogram of oriented
+gradients; we ended up using a triangular kernel, but since smoothing
+was restricted to adjacent bins and we chose our bandwidth carefully,
+it was equivalent to the gaussian kernel used by Kumar and Hebert.
+</p>
+
+<h4>Parameters for Training</h4>
+<p>
+We had to choose a variance for the Gaussian prior on the inter-site
+parameters; via cross-validation on the powers of ten, we eventually
+selected 10^(-4).
+</p>
+
+
+
+<p>
+We also chose our convergence criterion based on the function we were
+trying to optimize; we terminated the gradient ascent when the
+likelihood only increased by 1 or less. We initially tried a
+step-length-based method of checking for convergence, but the
+likelihood criterion was much more invariant under changing the length
+of our feature vector, which we frequently did. 
+</p>
+
+<h3>Investigating our Features</h3>
+<p>
+In trying to determine why our logistic classifier was behaving so
 mediocrely even on Kumar and Hebert's dataset, we suspected our
 features. We decided to examine the dot product of the parameter
 vector w together with a site feature set to determine the
 contributions of the various features to the association potential.
 We were immediately struck by how incomparable these contributions
 were.
-
+</p>
+<p>
 Among our intrascale features, the contribution (to the dot product of
 w with the features) from the second moment feature was on the order
 of 10^1 to 10^3.  By comparison, all the other features tended to have
 contributions of 10^-6 or less.  This included the 0th and 1st
 moments, as well as the right-angle detection feature.
-
+</p>
+<p>
 The fact that the second moment feature dwarfed the contributions of
 the other two moments is really no surprise.  This was partially
 reflected by Kumar and Hebert's decision to drop the 1st moment from
@@ -141,14 +209,16 @@ their intrascale feature vector.  Nevertheless, we would definitely
 have hoped to find an important contribution from the right-angle
 detection term.  The fact that this term was being completely ignored
 was very upsetting.
-
+</p>
+<p>
 We set out to try to modify our right-angle detection feature so that
 it would be more useful for the classification problem.  Our initial
 implementation began with the smoothed histogram of gradients,
 identified the two highest peaks, and then returned the absolute value
 of the difference between the angles of these two peaks.  (Note that
 this is exactly the approach described by the Kumar and Hebert.)
-
+</p>
+<p>
 We printed out the peak information for certain sites, and then
 compared this to a visual inspection of the corresponding site on the
 image.  One thing that we quickly noticed was that, for many sites
@@ -156,7 +226,8 @@ containing a strong line the two highest peaks would form a straight
 angle (and thus the sin of their angle would be zero).  This was
 occurring even in the presence of a strong right angle line if that
 line happened to be slightly less strong.
-
+</p>
+<p>
 This observation prompted us to redesign the right-angle detection
 feature as follows.  We identify the k largest peaks of the histogram
 (initially with k = 3).  We then compute the absolute value of the sin
@@ -164,7 +235,8 @@ of the angle between each pair of peaks, and return the maximum of
 these.  Thus we are guaranteed to return a large (close to one) value
 if there is an angle of approximately 90 degrees between any of the k
 most prominent edge directions.
-
+</p>
+<p>
 The new right-angle feature gave a slight improvement of the detection
 rate, but the trained model still decides that it is unimportant
 compared to the second order moment.  After our presentation on the
@@ -177,21 +249,27 @@ next tried training with just two intrascale features, the zeroth
 order moment and the right angle feature for k=3, along with the the
 two orientation based interscale features.  Including all three
 scales, this gave us a feature vector of dimension eight.
-
+</p>
+<p>
 Examining the contributions of the features from this new model, we
 found that the right-angle feature was still passed over.  Instead,
 the new model relied primarily on the zeroth order moment.  Not
 surprisingly, a logistic model based primarily on the average pixel
 magnitudes did not provide good classification results.
-
+</p>
+<p>
 In order to finally isolate the right-angle feature, we tried removing
 all of the intrascale moment features and training with just the
 right-angle and orientation based interscale features, for a total of
 five features.
-
+</p>
+<p>
 The logistic classifier then classified entirely zeros. In conclusion,
 our right-angle feature is completely useless.
+</p>
+
 <!--
+
 <p>
 The description and motivation of our project remain unchanged since 
 the original proposal.  Therefore, we will begin at the point where the 
