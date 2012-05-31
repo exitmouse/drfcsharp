@@ -14,6 +14,7 @@ namespace DRFCSharp
 				"\n printed to a csv file." +
 				"\n Usage: DRFCSharp [logistic | ICM | MAP] outfile" +
 				"\n Options:" +
+				"\n --xsites, --ysites: Set the number of x and y sites in the images. Defaults to 24 and 16 respectively" +
 				"\n -n/--notraining: Skips training step" +
 				"\n -l/--load <load_training_from_here>: Loads training from a file" +
 				"\n -s/--save <save_training_here>: Saves training to a file" +
@@ -39,6 +40,8 @@ namespace DRFCSharp
 			int end_image_num = -1; // infer between image_num and this inclusive, -1 indicates a single image rather than a range
 			double tau = 0.0001d;
 			int range = 80;
+			int xsites = 24;
+			int ysites = 16;
 			
 			if(args.Length < 1)
 			{
@@ -73,7 +76,7 @@ namespace DRFCSharp
 					}
 					i++;
 				}
-				else if(args[i] == "-ei" || args[i] == "--image")
+				else if(args[i] == "-ei" || args[i] == "--endimage")
 				{
 					if(!Int32.TryParse(args[i+1], out end_image_num) || end_image_num < image_num)
 					{
@@ -85,6 +88,24 @@ namespace DRFCSharp
 				else if(args[i] == "-r" || args[i] == "--range")
 				{
 					if(!Int32.TryParse(args[i+1], out range) || range < 1)
+					{
+						PrintUsage();
+						return;
+					}
+					i++;
+				}
+				else if(args[i] == "-x" || args[i] == "--xsites")
+				{
+					if(!Int32.TryParse(args[i+1], out xsites) || xsites < 1)
+					{
+						PrintUsage();
+						return;
+					}
+					i++;
+				}
+				else if(args[i] == "-y" || args[i] == "--ysites")
+				{
+					if(!Int32.TryParse(args[i+1], out ysites) || ysites < 1)
 					{
 						PrintUsage();
 						return;
@@ -125,6 +146,8 @@ namespace DRFCSharp
 				PrintUsage();
 				return;
 			}
+			ImageData.x_sites = xsites;
+			ImageData.y_sites = ysites;
 			ImageData[] imgs = new ImageData[range];
 			Classification[] cfcs = new Classification[range];
 			int count = 0;

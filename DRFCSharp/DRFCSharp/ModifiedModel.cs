@@ -146,20 +146,14 @@ namespace DRFCSharp
 					//I could totally be wrong.
 					//-Jesse Selover
 					double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
-					double prob_one = ((double)Ons_seen)/((double) Sites_seen);
+					/*double prob_one = ((double)Ons_seen)/((double) Sites_seen);
 					double prob_zero = 1d - prob_one;
-					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) + Log (prob_one/prob_zero);
-					if(lambda > 0)
-					{
-						Console.WriteLine ("@source with strength {0}",lambda);
-						Edge.AddEdge(source,t,lambda,0);
-					}
-					else
-					{
-						Console.WriteLine ("@target with strength {0}",-lambda);
-						Edge.AddEdge(t,target,-lambda,0);
-					}
-					
+					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) + Log (prob_one/prob_zero);*/
+					Edge.AddEdge(source,t,-Log(modeled_prob_of_one),0);
+					Edge.AddEdge(t,target,-Log(1-modeled_prob_of_one),0);
+					Console.WriteLine("Edge to target with strength {0}",-Log(1-modeled_prob_of_one));
+					//Add an edge from the source with the modeled probability of 1, and an edge to the target with the modeled probability of 0.
+					//Console.WriteLine(ImageData.GetNewConnections(i,j).Count);
 					foreach(Tuple<int,int> other in ImageData.GetNewConnections(i,j))
 					{
 						Vertex u = site_nodes[other.Item1,other.Item2];

@@ -8,14 +8,15 @@ namespace DRFCSharp
 {
 	public class ImageData
 	{
-		public const int x_sites = 24; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
-		public const int y_sites = 16;
+		public static int x_sites = 24; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
+		public static int y_sites = 16;
 		public const double variation = 0.5d; //Make sure 6*variation is odd.
 		public const int NUM_ORIENTATIONS = 32;
 		public SiteFeatureSet[,] site_features;
 		public static int Ons_seen = 0;
 		public static int Sites_seen = 0;
 		public static int Images_seen = 0;
+		public const double SMOOTHING_KERNEL_BANDWIDTH = 2.0d;
 		public ImageData (SiteFeatureSet[,] site_features)
 		{
 			if(site_features.GetLength(0) != x_sites || site_features.GetLength(1) != y_sites)
@@ -94,7 +95,7 @@ namespace DRFCSharp
 					{
 						double numerator = 0;
 						double denom = 0;
-						double SMOOTHING_KERNEL_BANDWIDTH = 2.0d; // radius of the kernel section that is non-zero (in indices)
+
 						int b = Convert.ToInt32(Math.Ceiling(SMOOTHING_KERNEL_BANDWIDTH));
 						for(int j = i - Math.Min(b, NUM_ORIENTATIONS/2); j <= i + Math.Min(b, NUM_ORIENTATIONS/2); j++)
 						{
@@ -123,17 +124,17 @@ namespace DRFCSharp
 					//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
 					//However, we can't use the absolute location of the orientation because our images are distributed in a way that's rotationally
 					//invariant. Our images are not taken with upright cameras.
+
 					/*for(int i = 0; i < 3; i+=2)
 					{
-						single_site_features[scalepow*3 + i/2]=Moment(smoothed_histogram,i);
-						if(double.IsNaN(single_site_features[scalepow*3 + i/2]))
+						single_site_features[scalepow*6 + i/2]=Moment(smoothed_histogram,i);
+						if(double.IsNaN(single_site_features[scalepow*6 + i/2]))
 						{
 							throw new NotImplementedException();
 						}
 					}*/
 					intra_scale_peaks[scalepow] = 0;
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) if(smoothed_histogram[i] > smoothed_histogram[intra_scale_peaks[scalepow]]) intra_scale_peaks[scalepow] = i;
-					
 
 					single_site_features[scalepow] = RightAngleFinder(smoothed_histogram, 3);
 					//double[] avgs = AverageRGB(img, x, y);
