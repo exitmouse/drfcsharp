@@ -37,3 +37,27 @@ We then compute the absolute value of the sin of the angle between each pair of
 peaks, and return the maximum of these.  Thus we are guaranteed to return a large
 (close to one) value if there is an angle of approximately 90 degrees between 
 any of the k most prominent edge directions.
+
+The new right-angle feature gave a slight improvement of the detection rate,
+but the trained model still decides that it is unimportant compared to the 
+second order moment.  After our presentation on the 29th, Torresani suggested 
+that we try removing the second order moment feature to see how this affected
+the the learned model.  Since the second and first order moments are so closely 
+tied together, we had already decided to follow the lead of Kumar and Hebert 
+in using only the second order moment in lieu of the pair of moments.  Therefore,
+we next tried training with just two intrascale features, the zeroth order
+moment and the right angle feature for k=3, along with the the two orientation 
+based interscale features.  Including all three scales, this gave us a 
+feature vector of dimension eight.
+
+Examining the contributions of the features from this new model, we found that
+the right-angle feature was still passed over.  Instead, the new model 
+relied primarily on the zeroth order movement.  Not surprisingly, a logistic
+model based primarily on the average pixel magnitudes did not provide good
+classification results.
+
+In order to finally isolate the right-angle feature, we tried removing all of the
+intrascale moment features and training with just the right-angle and orientation 
+based interscale features, for a total of five features.  
+
+
