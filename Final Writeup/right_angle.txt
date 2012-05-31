@@ -52,7 +52,7 @@ feature vector of dimension eight.
 
 Examining the contributions of the features from this new model, we found that
 the right-angle feature was still passed over.  Instead, the new model 
-relied primarily on the zeroth order movement.  Not surprisingly, a logistic
+relied primarily on the zeroth order moment.  Not surprisingly, a logistic
 model based primarily on the average pixel magnitudes did not provide good
 classification results.
 
