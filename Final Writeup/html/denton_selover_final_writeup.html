@@ -190,316 +190,318 @@ it to that point.
 </p>
 
 
-<h3>Image Features</h3>
+<h3>Hyperparameters of the Model</h3>
 <p>
-  We have implemented the single-site image features from [6] because
-  they are most useful for comparison with other methods; we should be
-  able to implement the multi-scale features with little additional
-  trouble later.
+We had to make many choices in our implementation of the DRF
+model. Broadly speaking, we had to choose what features were
+important, choose hyperparameters for training, and choose an
+inference method. In choosing an inference method, our hand was
+somewhat forced, but we had plenty of other choices:
+</p>
+
+<h4>Features</h4>
+
+<p>
+The features we could use are limitless, but to replicate the results
+of [6], we used the same types of feature. However, this left open
+many questions about which features presented would work best with our
+data.
+</p>
+
+<p>
+Everything in [6] starts from a gradient calculation. For every pixel
+of the image, the smoothed gradient vector at that pixel is calculated
+by convolving with a gradient of a gaussian filter. Then the other
+features are calculated from this pixelwise information.
 </p>
 <p>
-  The image features are all derived from an initial pixel-by-pixel
-  gradient computation. To calculate the gradient vector at a pixel,
-  we first convert the image to grayscale using NTSC-recommended
-  values (Intensity = 0.299*R + 0.587*G + 0.114*B). Then to get the
-  directional x-derivative, we convolve the resultant matrix of
-  intensities with the derivative of a gaussian horizontally and the
-  original gaussian vertically; the process is analogous for the
-  directional y-derivative. We wrote code in C# to do this; we found
-  no library to do it for us.
+The features presented in [6] are multi-scale; first we will explain
+the features within each scale.
 </p>
 <p>
-  The variance of the gaussian is a hyper-parameter; we will have to
-  optimize it. For now, we contacted Kumar and Hebert and they say
-  they used 0.5 which seems like a decent, upstanding number that we
-  don't really object to much. The algorithm is coded referencing the
-  number only as a constant, so we can change it easily.
+At a given scale, the pixels within each window are grouped
+together. Their respective gradients are binned into a histogram
+indexed by orientation, weighted by magnitude. Then, from this
+histogram, three types of features are calculated:
+</p>
+<ul>
+  <li>Angularity features, which are implemented as moments of the
+  histogram.</li>
+  <li>A right-angle-finding feature, which is implemented by finding
+  the peaks of the histogram and measuring the difference between
+  them.</li>
+  <li>An orientation feature, measuring the absolute verticality of
+  the gradients in the group.</li>
+</ul>
+<p>
+For our dataset, the third feature type was inconceivable. The
+justification for that feature was that pictures of structures are
+taken with upright cameras, but our data was aerial. It could have
+conceivably been taken from any angle; we weren't sure if it was
+initially North-South aligned, we didn't know if buildings tended to
+be North-South aligned, and to top it off we preprocessed our data by
+randomly rotating it.
 </p>
 <p>
-  We bin the gradients of the pixels in each site into a histogram
-  array indexed by orientations; we weight their contributions by
-  their L2 norms. We chose to smooth the histogram with a simple
-  triangular kernel, rather than the gaussian kernel of [6]; this will
-  be very simple to change later.
+We chose to use the first three central-shift moments, as described in
+[6], as higher moments were so heavily correlated. We also used two
+inter-scale features as described in Kumar and Hebert's paper, based
+on the relative angles of the peaks of the histogram between scales.
 </p>
 <p>
-  The number of bins in the histogram is also a hyper-parameter; we
-  can change it in the code by editing one variable. We chose 8 bins
-  as a preliminary step, based on our research from [10]
+We also had to choose between the different methods of cross-feature
+calculation, and between linear and quadratic basis functions for the
+association features. We ended up using linear basis functions because
+quadratic ones did not seem to offer significant benefits, and linear
+functions were much easier to train. We chose to concatenate the two
+feature vectors to calculate cross-site features, after determining
+experimentally that calculating componentwise differences to try to
+learn some sort of linear scaled distance function produced much worse
+results.
+</p>
+
+
+
+<p>
+Initially, we had only one scale, but we found, as Kumar and Hebert
+did, that results were significantly improved with 3.
+</p>
+
+
+
+<p>
+We briefly considered using three RGB features per scale, in our mad
+dash to get better features, which would measure the average intensity
+of each RGB component over the window at the given scale, but the
+features were ultimately not useful.
+</p>
+
+
+
+<p>
+We chose, as we mentioned in the milestone, a gradient-of-gaussian
+filter with variance 0.5, on recommendation via personal
+correspondence with Kumar and Hebert.
+</p>
+
+<p>
+We had to select the method of smoothing on the histogram of oriented
+gradients; we ended up using a triangular kernel, but since smoothing
+was restricted to adjacent bins and we chose our bandwidth carefully,
+it was equivalent to the gaussian kernel used by Kumar and Hebert.
+</p>
+
+<h4>Parameters for Training</h4>
+<p>
+We had to choose a variance for the Gaussian prior on the inter-site
+parameters; via cross-validation on the powers of ten, we eventually
+selected 10^(-4).
+</p>
+
+
+
+<p>
+We also chose our convergence criterion based on the function we were
+trying to optimize; we terminated the gradient ascent when the
+likelihood only increased by 1 or less. We initially tried a
+step-length-based method of checking for convergence, but the
+likelihood criterion was much more invariant under changing the length
+of our feature vector, which we frequently did. 
+</p>
+
+<h3>Investigating our Features</h3>
+<p>
+In trying to determine why our logistic classifier was behaving so
+mediocrely even on Kumar and Hebert's dataset, we suspected our
+features. We decided to examine the dot product of the parameter
+vector w together with a site feature set to determine the
+contributions of the various features to the association potential.
+We were immediately struck by how incomparable these contributions
+were.
 </p>
 <p>
-  Then the features we compute are heaved central-shift moments
-  v<sub>p</sub> of the 0th through 2nd order. v<sub>0</sub> is defined
-  as the arithmetic mean of the magnitudes. Let the bins be
-  E<sub>i</sub> and let H(x) be the indicator function for the
-  positive real numbers; then v<sub>p</sub> for p > 0 is defined as
+Among our intrascale features, the contribution (to the dot product of
+w with the features) from the second moment feature was on the order
+of 10^1 to 10^3.  By comparison, all the other features tended to have
+contributions of 10^-6 or less.  This included the 0th and 1st
+moments, as well as the right-angle detection feature.
 </p>
+<p>
+The fact that the second moment feature dwarfed the contributions of
+the other two moments is really no surprise.  This was partially
+reflected by Kumar and Hebert's decision to drop the 1st moment from
+their intrascale feature vector.  Nevertheless, we would definitely
+have hoped to find an important contribution from the right-angle
+detection term.  The fact that this term was being completely ignored
+was very upsetting.
+</p>
+<p>
+We set out to try to modify our right-angle detection feature so that
+it would be more useful for the classification problem.  Our initial
+implementation began with the smoothed histogram of gradients,
+identified the two highest peaks, and then returned the absolute value
+of the difference between the angles of these two peaks.  (Note that
+this is exactly the approach described by the Kumar and Hebert.)
+</p>
+<p>
+We printed out the peak information for certain sites, and then
+compared this to a visual inspection of the corresponding site on the
+image.  One thing that we quickly noticed was that, for many sites
+containing a strong line the two highest peaks would form a straight
+angle (and thus the sin of their angle would be zero).  This was
+occurring even in the presence of a strong right angle line if that
+line happened to be slightly less strong.
+</p>
+<p>
+This observation prompted us to redesign the right-angle detection
+feature as follows.  We identify the k largest peaks of the histogram
+(initially with k = 3).  We then compute the absolute value of the sin
+of the angle between each pair of peaks, and return the maximum of
+these.  Thus we are guaranteed to return a large (close to one) value
+if there is an angle of approximately 90 degrees between any of the k
+most prominent edge directions.
+</p>
+<p>
+The new right-angle feature gave a slight improvement of the detection
+rate, but the trained model still decides that it is unimportant
+compared to the second order moment.  After our presentation on the
+29th, Torresani suggested that we try removing the second order moment
+feature to see how this affected the the learned model.  Since the
+second and first order moments are so closely tied together, we had
+already decided to follow the lead of Kumar and Hebert in using only
+the second order moment in lieu of the pair of moments.  Therefore, we
+next tried training with just two intrascale features, the zeroth
+order moment and the right angle feature for k=3, along with the the
+two orientation based interscale features.  Including all three
+scales, this gave us a feature vector of dimension eight.
+</p>
+<p>
+Examining the contributions of the features from this new model, we
+found that the right-angle feature was still passed over.  Instead,
+the new model relied primarily on the zeroth order moment.  Not
+surprisingly, a logistic model based primarily on the average pixel
+magnitudes did not provide good classification results.
+</p>
+<p>
+In order to finally isolate the right-angle feature, we tried removing
+all of the intrascale moment features and training with just the
+right-angle and orientation based interscale features, for a total of
+five features.
+</p>
+<p>
+The logistic classifier then classified entirely zeros. In conclusion,
+our right-angle feature is completely useless.
+</p>
+
+<h3>Results on Dataset (our aerial photo dataset)</h3>
+
+
+<h3>Results on DatasetKH</h3>
+<p>
+Our attempt to replicate most closely the hyperparameter choice of
+Kumar and Hebert gave results that were nowhere near comparable to
+theirs. They were, however, significantly better than random
+chance. We used ICM inference, rather than MAP inference, for the
+reasons we mention, and in aggregate we had a detection rate of 34%
+with an average of 83 false positives per image. Random chance would
+give 115. Out of 91008 sites, we predicted 23,674 as on, 19,683 of
+which were false positives; the number of sites actually on was
+11,575. The classifications showed wide variation; some were accurate
+and interpretable, while others labeled vast swathes of the images as
+on for seemingly no reason. We speculate that this behavior was
+partially due to the choice of ICM as an inference mechanism, but if
+we compare our logistic classifications to theirs, we see that the
+problem must really lie with our features. They achieved much better
+results with just a logistic classification than we were able to;
+either we are training our model wrong, or our features are just not
+usefully correlated with being a manmade structure. The results we
+have gotten when removing the moment-based features, and the
+dependencies we have observed of our model on the moment-based
+features both indicate that our right-angle detection and
+orientation-based inter-scale features are effectively useless.
+</p>
+<p>
+When we tweaked some features and hyperparameters around (we used only
+the zeroth and second order moments, and changed our right angle
+feature to be an improvement on theirs), we achieved, on the test set,
+a detection rate of 13.1% with 14 false positives per image on
+average. Random classification would have given 43.9 false positives
+for that detection rate. This is compared to the detection rate of 70.5% 
+with 1.37 false positives per image which was supposedly achieved in [6].
+</p>
+<p>
+It is also worth noting that some aspects of the the labelings provided
+by Kumar and Hebert seem subjective.  For example, many of there images 
+have sections which we believe to be structure sites which are unclassified,
+and these sections tend to correspond to sections which are poorly lit, don't
+have noticeable edgy structure, or otherwise seem like they would be 
+unlikely to work well with the classification algorithm.  Alternately,
+some images have edgy sites which we believe are not man-made structures,
+but which Kumar and Hebert labeled as such.  For example, in the following
+image (from Kumar and Hebert's training set), the wake of the windsurfer
+is labeled.
 
 <p>
 <center>
-<img src="images/eqn1.png"/>
-</center>
-</p>
-
-<p>
-  In addition, we compute the absolute value of the sine of the angle
-  difference between the two highest peaks of the histogram, to
-  measure the presence of near-right-angle junctions.
-</p>
-<p>
-  In the original [6] paper, Kumar and Hebert also used the angle of
-  the highest peak to perhaps allow their algorithm to catch on to the
-  predominance of vertical lines in man-made structures in their
-  data-set. However, our photos are not taken from upright cameras,
-  houses did not tend to be aligned with the cameras, and in fact we
-  randomly rotated the images in preprocessing to enforce this
-  invariance, so we removed this feature. It should not be useful for
-  our application; it would function as random noise.
-</p>
-<p>
-  As we said earlier, we only coded the single-site feature vector,
-  but the remaining features from [6] were all simple functions of the
-  pixel-wise gradient histograms, so we will be able to implement them
-  if necessary.
-</p>
-
-<h3>Modified Model</h3>
-<p>
-  We decided to use the modified DRF model presented in [6], as the
-  learning objective is convex and it promised to be slightly easier
-  to train. Kumar and Hebert suggest gradient ascent to maximize the
-  log-likelihood, but we had to re-derive the gradients with respect
-  to the vector parameters of the model.
-</p>
-<p>
-  In exchange, however, the algorithm for inference became slightly
-  more technical. We were planning on using iterated conditional
-  modes; iterating over the image assigning to each site the label of
-  maximum likelihood given its neighbors. With the modified DRF model,
-  though, you can compute exact MAP estimates of the labeling with an
-  algorithm presented in [3] as mentioned in [6].
-</p>
-
-<h3>Training</h3>
-<p>
-  We had a lot of fun re-deriving the gradient of the log likelihood
-  to ascend it: We want to find
-</p>
-
-<p>
-<center>
-<img src="images/eqn2.png"/>
-</center>
-</p>
-<p>
-  So we calculate:
-</p>
-
-<p>
-<center>
-<img src="images/eqn3.png"/>
-</center>
-</p>
-
-<p>
-  where
-</p>
-
-<p>
-<center>
-<img src="images/eqn4.png"/>
-</center>
-</p>
-
-<p>
-  Similarly, for v,
-</p>
-
-<p>
-<center>
-<img src="images/eqn5.png"/>
-</center>
-</p>
-
-<p>
-  where
-</p>
-
-<p>
-<center>
-<img src="images/eqn6.png"/>
-</center>
-</p>
-
-<h3>Issues with the Training</h3>
-
-<p>
-  We had trouble for a while getting the training to converge; this
-  turned out to be a bug not in our code but in our math. An incorrect
-  application of the chain rule made w's gradient slightly off; when
-  we fixed this, the gradient ascent worked very well. With our chosen
-  convergence constants, it tends to converge in under five
-  minutes. It takes a bit longer per iteration then we'd like, and
-  we've only been training it on 80 images; its runtime should be
-  proportional to the number of images, and we plan to use 200 for the
-  final results. We used C# to serialize the w and v we find at each
-  iteration to XML, so we can view the coefficients and save our
-  progress when we run it for extended periods of time.
-</p>
-
-<h3>Inference</h3>
-
-<p>
-  The [DRFS 2006] authors mentioned that the MAP estimate of the
-  labeling could be computed exactly with an algorithm of Grieg
-  et. al. However, that paper presented an algorithm for a different
-  random field model, without the specific potential form of DRFs.
-</p>
-<p>
-  The algorithm works by creating a graph with image sites as nodes,
-  plus a source node and a target node, and specifying edge capacities
-  between the nodes in such a way that the equation for the capacity
-  of a cut on the graph separating the source and the target is only
-  an additive constant away from the equation for the negative
-  likelihood of a labeling. There is a known algorithm to find the
-  minimum cut, and when we have found it we have found the maximum
-  likelihood labeling.
-</p>
-<p>
-  Specifically, according to the algorithm, lambda[i] is defined as
-  the log-likelihood ratio at site i of the site being classified as
-  structure; if lambda[i] is positive we create an edge from the
-  source to the node i with capacity lambda[i], and if it's negative
-  we create an edge from the node i to the target with capacity
-  -lambda[i].
-</p>
-<p>
-  Then we create undirected edges between site nodes i and their
-  neighbors j, with capacity beta[i,j] which is the coefficient of the
-  interaction potential. Unfortunately, our interaction potential is
-  not of that form.
-</p>
-<p>
-  In fact, the log likelihood ratio is of a different form as well. We
-  rederived these edge weights in the context of the modified DRF
-  model:
-</p>
-
-
-<p>
-<center>
-<img src="images/eqn7.png"/>
-</center>
-</p>
-<p>
-  Using Bayes' rule we have
-</p>
-<p>
-<center>
-<img src="images/eqn8.png"/>
-</center>
-</p>
-<p>
-<center>
-<img src="images/eqn9.png"/>
-</center>
-</p>
-<p>
-So
-</p>
-<p>
-<center>
-<img src="images/eqn10.png"/>
-</center>
-</p>
-
-<p>
-We started by assuming that the prior odds are fifty-fifty, so
-we got
-</p>
-<p>
-<center>
-<img src="images/eqn11.png"/>
-</center>
-</p>
-<p>
-<center>
-<img src="images/eqn12.png"/>
-</center>
-</p>
-
-<p>
-We are modeling P(x=1 | y) by Sigma(w<sup>T</sup> h(y)),
-so we derive that
-</p>
-<p>
-<center>
-<img src="images/eqn13.png"/>
-</center>
-</p>
-
-<p>
-  Recently, however, we've investigated using empirically measured prior
-  odds; it's had a noticeable impact on our classifications.
-</p>
-<p>
-  As for beta[i,j], we've used the analogue of the Ising-model
-  coefficients for our specific interaction potential: max(0,v<sup>T</sup> * mu[i,j]y)
-</p>
-<p>
-  We implemented the min-cut algorithm for MAP label selection using
-  C#.  The algorithm is the standard Ford-Fulkerson min-cut using
-  depth first search.  After fixing a problem with the depth first
-  search, the min-cut algorithm seems to be working swimmingly.
-</p>
-<p>
-  Unfortunately, the same cannot be said for the actual inference.  We
-  began solving the problem by setting all of the beta[i,j]s to zero,
-  which performs inference using only the association potential and is
-  analogous to logistic regression. When we did this, we got
-  believable classifications:
-</p>
-
-<p>
-<center>
-<img src="images/Bridge_Labeling_Associative_Large_Prior.png" width="500" />
+<img src="images/cheaty_windsurfer_correct.png" width="500" />
 <br/>
 <caption><span style="font-weight:bold;">Figure 2.</span>  
-This is what we get with a 50/50 prior.</caption>
+The ground truth labeling of a training set image by Kumar and Hebert.</caption>
 </center>
 </p>
+
+Using our trained DRF model to classify this image with ICM inference, 
+however, does not label the wake.
 
 <p>
 <center>
-<img src="images/Bridge_Labeling_Associative_Small_Prior.png" width="500" />
+<img src="images/cheaty_windsurfer_classification.png" width="500" />
 <br/>
 <caption><span style="font-weight:bold;">Figure 3.</span>  
-This is what we get with an empirically estimated prior.</caption>
+Our ICM inference classification of the above image.</caption>
 </center>
 </p>
 
+While this particularly blatant example comes from the training set and
+thus is not factored into the quantitative analysis of error rates on the
+test set, there are similar examples on the test set where we as humans
+agree with the algorithms output over the labelings provided.
+
+
+<h3>Conclusion</h3>
+
 <p>
-  When we add in the beta[i,j]s calculated from the interaction
-  potential, however, we are seeing behavior where the classifier will
-  mark every site as being the same, either as all ones or all zeros.
-  This means that, after the introduction of the beta[i,j]s, the
-  min-cut is always either just the source vertex, or everything but
-  the sink vertex.  Clearly the beta[i,j]s are too large relative to
-  the lambda[i]s.  What we need to do is go over our derivations of
-  these values to check whether we have computed these values
-  correctly.
+  Careful examination of the behavior of our features has revealed
+  that they simply aren't very good.  This is especially true for the
+  images in our aerial dataset, where the image resolutions are 
+  somewhat varied.
 </p>
 <p>
-  Our most recent theory for what is causing this mismatch is that we
-  have not yet correctly set the hyper-parameter tau.  Tau is the
-  variance of the prior on the vector of interaction parameters, v.
-  By using a smaller value of tau, we should cause v to take on
-  smaller values relative to w, and hence cause the beta[i,j]s to
-  shrink relative to the lambda[i]s.  It remains to see whether this
-  fixes the problem.  Once we find the error, we expect that the DRF
-  classifications using the interaction potential correctly will
-  significantly outperform the logistic classifier.
+  We tried several varieties of features, which included the following 
+  itrascale features at three scales:
+<ol> 
+  <li>the Oth through 2nd order moments</li>
+  <li>the right-angle detection features (for the k top peaks)</li>
+  <li>the vertical orientation feature</li>
+  <li>rgb features</li>
+</ol>
+  and the two iterscale features.  Among these, the only features that 
+  seem to be correlated with the site labeling ar the 1st and 2nd 
+  order moments (and these only for the K-H dataset).
 </p>
+<p>
+While we have combed through our feature calculation code to see where 
+we could be miscalculating these features, we haven't succeeded in 
+finding where our mistakes lie.  Without improving on the features, 
+our classification results are limited to being poor overall.  On
+the K-H dataset, there is a large number of images which are decently 
+classified when using ICM.  The logistic classifications, however, are
+very poor (correlating with the idea that the features are bad).
+Even with the ICM classification, there are also a large number of images whose 
+classification failed catastrophically, so that statistically the
+overall performance was marginal.
+</p>
+
 
 
 <h3>References</h3>
