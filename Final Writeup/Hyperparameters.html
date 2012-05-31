@@ -70,7 +70,8 @@ This HTML is based on that of Nick Foti from last year, which was in turn based 
 We had to make many choices in our implementation of the DRF
 model. Broadly speaking, we had to choose what features were
 important, choose hyperparameters for training, and choose an
-inference method.
+inference method. In choosing an inference method, our hand was
+somewhat forced, but we had plenty of other choices:
 </p>
 
 <h4>Features</h4>
@@ -116,11 +117,76 @@ initially North-South aligned, we didn't know if buildings tended to
 be North-South aligned, and to top it off we preprocessed our data by
 randomly rotating it.
 </p>
-
+<p>
 We chose to use the first three central-shift moments, as described in
-[6], as higher moments were so heavily correlated.
+[6], as higher moments were so heavily correlated. We also used two
+inter-scale features as described in Kumar and Hebert's paper, based
+on the relative angles of the peaks of the histogram between scales.
+</p>
+<p>
+We also had to choose between the different methods of cross-feature
+calculation, and between linear and quadratic basis functions for the
+association features. We ended up using linear basis functions because
+quadratic ones did not seem to offer significant benefits, and linear
+functions were much easier to train. We chose to concatenate the two
+feature vectors to calculate cross-site features, after determining
+experimentally that calculating componentwise differences to try to
+learn some sort of linear scaled distance function produced much worse
+results.
+</p>
 
-In trying to determine why our logistic classifier is behaving so
+
+
+<p>
+Initially, we had only one scale, but we found, as Kumar and Hebert
+did, that results were significantly improved with 3.
+</p>
+
+
+
+<p>
+We briefly considered using three RGB features per scale, in our mad
+dash to get better features, which would measure the average intensity
+of each RGB component over the window at the given scale, but the
+features were ultimately not useful.
+</p>
+
+
+
+<p>
+We chose, as we mentioned in the milestone, a gradient-of-gaussian
+filter with variance 0.5, on recommendation via personal
+correspondence with Kumar and Hebert.
+</p>
+
+<p>
+We had to select the method of smoothing on the histogram of oriented
+gradients; we ended up using a triangular kernel, but since smoothing
+was restricted to adjacent bins and we chose our bandwidth carefully,
+it was equivalent to the gaussian kernel used by Kumar and Hebert.
+</p>
+
+<h4>Parameters for Training</h4>
+<p>
+We had to choose a variance for the Gaussian prior on the inter-site
+parameters; via cross-validation on the powers of ten, we eventually
+selected 10^(-4).
+</p>
+
+
+
+<p>
+We also chose our convergence criterion based on the function we were
+trying to optimize; we terminated the gradient ascent when the
+likelihood only increased by 1 or less. We initially tried a
+step-length-based method of checking for convergence, but the
+likelihood criterion was much more invariant under changing the length
+of our feature vector, which we frequently did. 
+</p>
+
+<h3>Investigating our Features</h3>
+
+In trying to determine why our logistic classifier was behaving so
 mediocrely even on Kumar and Hebert's dataset, we suspected our
 features. We decided to examine the dot product of the parameter
 vector w together with a site feature set to determine the
