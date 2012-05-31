@@ -82,6 +82,44 @@ many questions about which features presented would work best with our
 data.
 </p>
 
+<p>
+Everything in [6] starts from a gradient calculation. For every pixel
+of the image, the smoothed gradient vector at that pixel is calculated
+by convolving with a gradient of a gaussian filter. Then the other
+features are calculated from this pixelwise information.
+</p>
+<p>
+The features presented in [6] are multi-scale; first we will explain
+the features within each scale.
+</p>
+<p>
+At a given scale, the pixels within each window are grouped
+together. Their respective gradients are binned into a histogram
+indexed by orientation, weighted by magnitude. Then, from this
+histogram, three types of features are calculated:
+</p>
+<ul>
+  <li>Angularity features, which are implemented as moments of the
+  histogram.</li>
+  <li>A right-angle-finding feature, which is implemented by finding
+  the peaks of the histogram and measuring the difference between
+  them.</li>
+  <li>An orientation feature, measuring the absolute verticality of
+  the gradients in the group.</li>
+</ul>
+<p>
+For our dataset, the third feature type was inconceivable. The
+justification for that feature was that pictures of structures are
+taken with upright cameras, but our data was aerial. It could have
+conceivably been taken from any angle; we weren't sure if it was
+initially North-South aligned, we didn't know if buildings tended to
+be North-South aligned, and to top it off we preprocessed our data by
+randomly rotating it.
+</p>
+
+We chose to use the first three central-shift moments, as described in
+[6], as we 
+
 <!--
 <p>
 The description and motivation of our project remain unchanged since 

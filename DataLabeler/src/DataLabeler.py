@@ -272,14 +272,14 @@ def SetMode (mode):
 made by inferance.
 '''
 def Analyze():
-    
+    global output_prefix
     number_of_sites_total = 0
     number_of_sites_predicted_on_total = 0
     false_positives_total = 0
     number_of_sites_meant_to_be_on_total = 0
     number_of_ons_detected_total = 0
     
-    for m in range(num_images):
+    for m in range(108,num_images):
         site_array_dim_x = image_dim_x / SITE_DIM
         site_array_dim_y = image_dim_y / SITE_DIM
         site_array_predicted = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
@@ -299,11 +299,11 @@ def Analyze():
                     number_of_sites_predicted_on_total += 1
                     if(site_array_actual[y,x] == 0):
                         false_positives_total += 1
-    #print("Number of sites total: "+str(number_of_sites_total))
-    #print("Number of sites predicted on: "+str(number_of_sites_predicted_on_total))
-    #print("False positives total: "+str(false_positives_total))
-    #print("Number of sites actually on: "+str(number_of_sites_meant_to_be_on_total))
-    #print("Numerator of detection rate: "+str(number_of_ons_detected_total) + "\n")
+    print("Number of sites total: "+str(number_of_sites_total))
+    print("Number of sites predicted on: "+str(number_of_sites_predicted_on_total))
+    print("False positives total: "+str(false_positives_total))
+    print("Number of sites actually on: "+str(number_of_sites_meant_to_be_on_total))
+    print("Numerator of detection rate: "+str(number_of_ons_detected_total) + "\n")
 
     print "Detection rate: " + str(float(number_of_ons_detected_total)/number_of_sites_meant_to_be_on_total)
     print "Number of false positives per image: " +  str(float(false_positives_total)/num_images)
