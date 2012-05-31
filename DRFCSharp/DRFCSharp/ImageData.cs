@@ -124,7 +124,7 @@ namespace DRFCSharp
 					//Page 20 of paper says that the single-site features were the first three moments and two orientation-based intrascale features.
 					//However, we can't use the absolute location of the orientation because our images are distributed in a way that's rotationally
 					//invariant. Our images are not taken with upright cameras.
-						
+
 					/*for(int i = 0; i < 3; i+=2)
 					{
 						single_site_features[scalepow*6 + i/2]=Moment(smoothed_histogram,i);
@@ -135,13 +135,8 @@ namespace DRFCSharp
 					}*/
 					intra_scale_peaks[scalepow] = 0;
 					for(int i = 0; i < NUM_ORIENTATIONS; i++) if(smoothed_histogram[i] > smoothed_histogram[intra_scale_peaks[scalepow]]) intra_scale_peaks[scalepow] = i;
-					
-					single_site_features[scalepow*6 + 0] = Math.Pow(RightAngleFinder(smoothed_histogram, 3),3d);
-					single_site_features[scalepow*6 + 1] = Math.Pow(RightAngleFinder(smoothed_histogram, 2),3d);
-					single_site_features[scalepow*6 + 2] = RightAngleFinder(smoothed_histogram, 3);
-					single_site_features[scalepow*6 + 3] = Math.Pow(RightAngleFinder(smoothed_histogram, 3),2d);
-					single_site_features[scalepow*6 + 4] = RightAngleFinder(smoothed_histogram, 2);
-					single_site_features[scalepow*6 + 5] = Math.Pow(RightAngleFinder(smoothed_histogram, 2),2d);
+
+					single_site_features[scalepow] = RightAngleFinder(smoothed_histogram, 3);
 					//double[] avgs = AverageRGB(img, x, y);
 					//for(int i = 0; i < 3; i++) single_site_features[scalepow*7+4+i] = avgs[i];
 				}
@@ -150,12 +145,8 @@ namespace DRFCSharp
 				{
 					intra_scale_angles[i] = (2*Math.PI/((double)NUM_ORIENTATIONS))*((double)intra_scale_peaks[i]);
 				}
-				single_site_features[18] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
-				single_site_features[19] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
-				/*for(int i = 0; i < 3; i++)
-				{
-					single_site_features[11+i] = Math.Abs(Math.Sin(intra_scale_angles[i]));
-				}*/
+				single_site_features[3] = Math.Abs(Math.Cos(2*(intra_scale_angles[0]-intra_scale_angles[1])));
+				single_site_features[4] = Math.Abs(Math.Cos(2*(intra_scale_angles[1]-intra_scale_angles[2])));
 				//Console.WriteLine(single_site_features);
 				sitefeatures[x,y] = new SiteFeatureSet(single_site_features);
 			}

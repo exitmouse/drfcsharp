@@ -6,21 +6,32 @@ Created on Apr 29, 2012
 
 This is our utility program for labeling photograph sites.  It can also be used
 to view classifications output from machine learning algorithms.  The commands are:
+    
+Navigation:
     esc to exit
     d to go to the next image
     a to go to the previous image
-    g to enter goto mode (in which to type the index of an image to goto), and g again
-        to actually go there
-    left click to label a site as 1
-    shift left click to label a site as 2
-    right click to label a site as 3
+    g to enter goto mode (in which to type the index of an image to goto), and 
+	g again to actually go there
     o to toggle between labeling images and viewing classifications
     l to toggle between our data set (aerial images) and Kumar and Hebert's 
-    	data set.
-All labelings are immediately saved to the corresponding data file (a comma separated
-file representing the site labeling array), so there is no need for a save command.
-Whenever an image is loaded for whom a labeling has already been saved, the program
-will automatically load that saved labeling.
+    data set.
+    
+Editing labelings (disabled except for labeling mode on aerial photos):
+    left click to label a site as 1 (a building)
+    shift left click to label a site as 2 (a non-building structure)
+    right click to label a site as 0
+    b to increment every labeling of the current image modulo 3
+    
+Running the quantitative analysis:
+    u to run a quantitative analysis of the classification outputs for the
+	current dataset
+    
+    
+Notes: All labelings are immediately saved to the corresponding data file (a comma 
+separated file representing the site labeling array), so there is no need for a 
+save command.  Whenever an image is loaded for whom a labeling has already been 
+saved, the program will automatically load that saved labeling.
 '''
 
 import os, sys
@@ -210,6 +221,7 @@ def SetMode (mode):
     global grid
     global allsprites
     global screen
+    global current_image_index
     
     assert mode == "aerial"  or mode == "kh"
     
@@ -223,6 +235,10 @@ def SetMode (mode):
         num_images = NUM_IMAGES_DATASETKH
         image_dim_x = IMAGE_DIM_KH_X
         image_dim_y = IMAGE_DIM_KH_Y
+
+
+    # Change current_image_index to avoid crashing if we swap modes to a dataset with fewer images.
+    current_image_index = current_image_index % num_images
         
     assert image_dim_x % SITE_DIM == 0, "We require that the sizes evenly partition the image." 
     site_array_dim_x = image_dim_x / SITE_DIM
@@ -249,6 +265,51 @@ def SetMode (mode):
         pygame.draw.line(grid, COLOR_WHITISH, (i * (SITE_DIM * IMAGE_ZOOM), 0), (i * (SITE_DIM * IMAGE_ZOOM), image_dim_y * IMAGE_ZOOM))   
     
     return site_array
+
+
+
+''' A method to output quantitative analysis on the classifications that were 
+made by inferance.
+'''
+def Analyze():
+    
+    number_of_sites_total = 0
+    number_of_sites_predicted_on_total = 0
+    false_positives_total = 0
+    number_of_sites_meant_to_be_on_total = 0
+    number_of_ons_detected_total = 0
+    
+    for m in range(num_images):
+        site_array_dim_x = image_dim_x / SITE_DIM
+        site_array_dim_y = image_dim_y / SITE_DIM
+        site_array_predicted = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
+        site_array_actual = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
+        output_prefix = ""
+        LoadAerial(m, site_array_actual)
+        output_prefix = "predicted"
+        LoadAerial(m, site_array_predicted)
+        for x in range(site_array_dim_x):
+            for y in range(site_array_dim_y):
+                number_of_sites_total += 1
+                if(site_array_actual[y,x] > 0):
+                    number_of_sites_meant_to_be_on_total += 1
+                    if(site_array_predicted[y,x] > 0):
+                        number_of_ons_detected_total += 1
+                if(site_array_predicted[y,x] > 0):
+                    number_of_sites_predicted_on_total += 1
+                    if(site_array_actual[y,x] == 0):
+                        false_positives_total += 1
+    #print("Number of sites total: "+str(number_of_sites_total))
+    #print("Number of sites predicted on: "+str(number_of_sites_predicted_on_total))
+    #print("False positives total: "+str(false_positives_total))
+    #print("Number of sites actually on: "+str(number_of_sites_meant_to_be_on_total))
+    #print("Numerator of detection rate: "+str(number_of_ons_detected_total) + "\n")
+
+    print "Detection rate: " + str(float(number_of_ons_detected_total)/number_of_sites_meant_to_be_on_total)
+    print "Number of false positives per image: " +  str(float(false_positives_total)/num_images)
+    
+   
+
 
 
 def main(index):
@@ -283,40 +344,6 @@ def main(index):
     box2 = box2.convert_alpha()
 
 
-    '''
-    number_of_sites_total = 0
-    number_of_sites_predicted_on_total = 0
-    false_positives_total = 0
-    number_of_sites_meant_to_be_on_total = 0
-    number_of_ons_detected_total = 0
-    data_path = DATASETKH_DIR
-    for m in range(NUM_IMAGES_DATASETKH):
-        site_array_dim_x = IMAGE_DIM_KH_X / SITE_DIM
-        site_array_dim_y = IMAGE_DIM_KH_Y / SITE_DIM
-        site_array_predicted = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
-        site_array_actual = numpy.zeros((site_array_dim_y, site_array_dim_x), dtype=numpy.int)
-        output_prefix = ""
-        LoadAerial(m, site_array_actual)
-        output_prefix = "predicted"
-        LoadAerial(m, site_array_predicted)
-        for x in range(IMAGE_DIM_KH_X/SITE_DIM):
-            for y in range(IMAGE_DIM_KH_Y/SITE_DIM):
-                number_of_sites_total += 1
-                if(site_array_actual[y][x] > 0):
-                    number_of_sites_meant_to_be_on_total += 1
-                    if(site_array_predicted[y][x] > 0):
-                        number_of_ons_detected_total += 1
-                if(site_array_predicted[y][x] > 0):
-                    number_of_sites_predicted_on_total += 1
-                    if(site_array_actual[y][x] == 0):
-                        false_positives_total += 1
-    print("Number of sites total: "+str(number_of_sites_total))
-    print("Number of sites predicted on: "+str(number_of_sites_predicted_on_total))
-    print("False positives total: "+str(false_positives_total))
-    print("Number of sites actually on: "+str(number_of_sites_meant_to_be_on_total))
-    print("Numerator of detection rate: "+str(number_of_ons_detected_total))
-    '''
-    
     
     ''' Main loop
     ***************************************************************************
@@ -399,6 +426,10 @@ def main(index):
                     goto_index = goto_index * 10 + 8                   
                 elif goto_entry_mode and event.key == K_9:
                     goto_index = goto_index * 10 + 9   
+    
+                
+                elif event.key == K_u:
+                    Analyze()
                     
                     
             ''' Keybindings and mouselicks for modifying labelings.  Only allowed
