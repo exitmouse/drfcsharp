@@ -12,7 +12,7 @@ namespace DRFCSharp
 			Console.WriteLine("DRFCSharp: Trains a DRF model on a set of images, and predicts" +
 				"\n the location of man-made structures in a test image. The classification is" +
 				"\n printed to a csv file." +
-				"\n Usage: DRFCSharp [logistic | ICM | MAP] outfile" +
+				"\n Usage: DRFCSharp [logistic | ICM | MAP | features <filename>] outfile" +
 				"\n Options:" +
 				"\n --xsites, --ysites: Set the number of x and y sites in the images. Defaults to 24 and 16 respectively" +
 				"\n -n/--notraining: Skips training step" +
@@ -20,20 +20,24 @@ namespace DRFCSharp
 				"\n -s/--save <save_training_here>: Saves training to a file" +
 				"\n -i/--image <# of image to predict>: Infers on this image number" +
 			    "\n -ei/--endimage <# of last image to predict>: Infers on everything between -i and this" +
-			    "Will not let you have control of file naming, though" +
+			    "\n Will not let you have control of file naming, though" +
 				"\n -r/--range <# of images to train on>" +
 				"\n --imgdir <path>" +
 				"\n --labeldir <path>" +
 				"\n If no image number is specified, defaults to 192 because I like that number." +
 				"\n -t/--tau <double>: Controls the variance of the gaussian hyperparameter on v." +
-				"\n Defaults to 0.0001.");
+				"\n Defaults to 0.0001." +
+			    "\n If the mode is specified as features <filename>: Only calculates features for filename" +
+			    "\n and prints them to outfile.");
 		}
 		public static void Main (string[] args)
 		{
 			string params_in = "";
 			string params_out = "";
+			string test_image_path = "";
 			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
 			string labelpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
+			string featuretestpath = string.Format("{0}../../../../TestImages/",AppDomain.CurrentDomain.BaseDirectory);
 			string outpath = "";
 			bool deserialize_only = false;
 			int image_num = 192;
@@ -49,15 +53,19 @@ namespace DRFCSharp
 				return;
 			}
 			string inference_algorithm = args[0].ToLower();
-			if(inference_algorithm != "logistic" && inference_algorithm != "map" && inference_algorithm != "icm")
+			if(inference_algorithm != "logistic" && inference_algorithm != "map" && inference_algorithm != "icm" && inference_algorithm != "features")
 			{
 				PrintUsage();
 				return;
 			}
-				
+
 			for(int i = 1; i < args.Length; i++)
 			{
-				if(args[i] == "-l" || args[i] == "--loadtraining")
+				if(inference_algorithm == "features" && i == 1)
+				{
+					test_image_path = args[i];
+				}
+				else if(args[i] == "-l" || args[i] == "--loadtraining")
 				{
 					params_in = args[i+1];
 					i++;
@@ -138,7 +146,6 @@ namespace DRFCSharp
 				else
 				{
 					outpath = args[i];
-					i++;
 				}
 			}
 			if(deserialize_only && string.IsNullOrEmpty(params_in))
@@ -148,6 +155,27 @@ namespace DRFCSharp
 			}
 			ImageData.x_sites = xsites;
 			ImageData.y_sites = ysites;
+			Console.WriteLine("{0} X Sites", ImageData.x_sites);
+			Console.WriteLine("{0} Y Sites", ImageData.y_sites);
+			
+			if(inference_algorithm == "features")
+			{
+				outpath = featuretestpath + args[2];
+				ImageData testimg = ImageData.FromImage(new Bitmap(featuretestpath + test_image_path));
+				StreamWriter sw = new StreamWriter(outpath);
+				for(int x = 0; x < ImageData.x_sites; x++)
+				{
+					for(int y = 0; y < ImageData.y_sites; y++)
+					{
+						sw.WriteLine("X: {0}\tY:{1}\tSite Features: {2}", x, y, testimg[x,y].features.ToString());
+					}
+					Console.WriteLine("Wrote column {0}",x);
+				}
+				sw.Close();
+				return;
+			}
+			
+			
 			ImageData[] imgs = new ImageData[range];
 			Classification[] cfcs = new Classification[range];
 			int count = 0;
