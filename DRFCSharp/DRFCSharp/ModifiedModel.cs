@@ -9,35 +9,34 @@ namespace DRFCSharp
 {
 	public class ModifiedModel
 	{
-		DenseVector w;
-		DenseVector v;
 		public const int MAX_ITERS = 3000;
 		public const double CONVERGENCE_CONSTANT = double.Epsilon; //0.000000001;
 		public const double START_STEP_LENGTH = 1d;//TODO all these small thingies are hacks
 		public const double LIKELIHOOD_CONVERGENCE = 1d;
 		public const CrossFeatureOptions cross_options = CrossFeatureOptions.CONCATENATE;
 		public const TransformedFeatureOptions transformed_options = TransformedFeatureOptions.LINEAR;
+
+		public DenseVector W { get; private set; }	
+		public DenseVector V { get; private set; }
+		public int TimeToConverge { get; private set; }
+		public int OnsSeen { get; private set; }
+		public int SitesSeen { get; private set; }
 		
-		public readonly int time_to_converge;
-		
-		public int Ons_seen = 0;
-		public int Sites_seen = 0;
-		
-		public ModifiedModel (DenseVector w, DenseVector v, int iter_count, int Ons_seen, int Sites_seen)
+		public ModifiedModel (DenseVector w, DenseVector v, int iter_count, int ons_seen, int sites_seen)
 		{
-			this.w = w;
-			this.v = v;
-			this.time_to_converge = iter_count;
-			this.Ons_seen = Ons_seen;
-			this.Sites_seen = Sites_seen;
+			this.W = w;
+			this.V = v;
+			this.TimeToConverge = iter_count;
+			this.OnsSeen = ons_seen;
+			this.SitesSeen = sites_seen;
 		}
 		public Classification LogisticInfer(ImageData test_input)
 		{
 			Label[,] curr_classification = new Label[ImageData.x_sites, ImageData.y_sites];
 			for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++)
 			{
-				double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[x,y])));
-				double prob_one = ((double)Ons_seen)/((double) Sites_seen);
+				double modeled_prob_of_one = Sigma(W.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[x,y])));
+				double prob_one = ((double)OnsSeen)/((double) SitesSeen);
 				double prob_zero = 1d - prob_one;
 				double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one)/* + Log (prob_one/prob_zero)*/;
 				if(lambda > 0)
@@ -49,7 +48,7 @@ namespace DRFCSharp
 		}
 		public Classification ICMInfer(ImageData test_input)
 		{
-			Label[,] curr_classification = LogisticInfer(test_input).site_labels; //Muahaha better initialization. I don't think this is hacky.
+			Classification curr_classification = LogisticInfer(test_input); //Muahaha better initialization. I don't think this is hacky.
 			//for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++) curr_classification[x,y] = Label.OFF;
 			bool converged = false;
 			int loopcount = 0;
@@ -70,12 +69,12 @@ namespace DRFCSharp
 						Console.WriteLine("Components of the dot product w*sitefeatures:");
 						for(int i = 0; i < SiteFeatureSet.TransformedFeatureCount(); i++)
 						{
-							Console.WriteLine("{0}th component: {1}", i, w[i]*sitefeatures[i]);
+							Console.WriteLine("{0}th component: {1}", i, W[i]*sitefeatures[i]);
 						}
 							                  
 					}
-					double on_association = Log(Sigma(w.DotProduct(sitefeatures)));
-					double off_association = Log(Sigma(-1 * w.DotProduct(sitefeatures)));
+					double on_association = Log(Sigma(W.DotProduct(sitefeatures)));
+					double off_association = Log(Sigma(-1 * W.DotProduct(sitefeatures)));
 					double on_interaction = 0d;
 					double off_interaction = 0d;
 					
@@ -89,13 +88,13 @@ namespace DRFCSharp
 						//Console.WriteLine("Magnitude of Interaction: {0}",v.DotProduct(mu));
 						if(curr_classification[t.Item1,t.Item2] == Label.ON)
 						{
-							on_interaction += v.DotProduct(mu);
-							off_interaction -= v.DotProduct(mu);
+							on_interaction += V.DotProduct(mu);
+							off_interaction -= V.DotProduct(mu);
 						}
 						else
 						{
-							on_interaction -= v.DotProduct(mu);
-							off_interaction += v.DotProduct(mu);
+							on_interaction -= V.DotProduct(mu);
+							off_interaction += V.DotProduct(mu);
 						}
 					}
 					
@@ -117,7 +116,7 @@ namespace DRFCSharp
 				}
 				Console.WriteLine("Number of changes in this round of ICM: {0}",changecount);
 			}
-			return new Classification(curr_classification);
+			return curr_classification;
 		}
 		public Classification MaximumAPosterioriInfer(ImageData test_input)
 		{
@@ -145,7 +144,7 @@ namespace DRFCSharp
 					//However, all these calculations were done at roughly 5:50 AM and I hadn't slept yet, so...
 					//I could totally be wrong.
 					//-Jesse Selover
-					double modeled_prob_of_one = Sigma(w.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
+					double modeled_prob_of_one = Sigma(W.DotProduct(SiteFeatureSet.TransformedFeatureVector(test_input[i,j])));
 					/*double prob_one = ((double)Ons_seen)/((double) Sites_seen);
 					double prob_zero = 1d - prob_one;
 					double lambda = Log(modeled_prob_of_one) - Log (1 - modeled_prob_of_one) + Log (prob_one/prob_zero);*/
@@ -162,7 +161,7 @@ namespace DRFCSharp
 						DenseVector mu;
 						if(ImageData.IsEarlier(i,j,other.Item1,other.Item2))mu = SiteFeatureSet.CrossFeatures(test_input[i,j],test_input[other.Item1,other.Item2]);
 						else mu = SiteFeatureSet.CrossFeatures(test_input[other.Item1,other.Item2], test_input[i,j]);
-						double capacity = Math.Max(0,v.DotProduct(mu));
+						double capacity = Math.Max(0,V.DotProduct(mu));
 						Console.WriteLine ("\tInternode edge with strength {0}",capacity);
 						Edge.AddEdge(t,u,capacity,capacity);
 					}

@@ -230,22 +230,7 @@ namespace DRFCSharp
 				outpath = imgpath+"predicted"+i.ToString("D3")+".txt";
 				
 				StreamWriter sw = new StreamWriter(outpath);
-				for(int k = 0; k < ImageData.y_sites; k++)
-				{
-					for(int j = 0; j < ImageData.x_sites; j++)
-					{
-						if(out_classed[j,k] == Label.OFF)
-						{
-							sw.Write('0');
-						}
-						else
-						{
-							sw.Write('1');
-						}
-						sw.Write(',');
-					}
-					sw.Write('\n');
-				}
+				sw.Write(out_classed.ToString());
 				sw.Close();
 			}
 		}

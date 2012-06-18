@@ -32,7 +32,7 @@ namespace DRFCSharp
 			Label[,] labels = new Label[ImageData.x_sites,ImageData.y_sites];
 			Classification cfc = new Classification(labels);
 			ModifiedModel mfm = ModifiedModel.PseudoLikelihoodTrain("","", new ImageData[1]{img},new Classification[1]{cfc},1d);
-			Assert.AreNotEqual(mfm.time_to_converge, ModifiedModel.MAX_ITERS);
+			Assert.AreNotEqual(mfm.TimeToConverge, ModifiedModel.MAX_ITERS);
 		}
 		[Test]
 		public void CanClassify ()

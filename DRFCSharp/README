@@ -1,0 +1,147 @@
+Installing and Running DRFCSharp
+-------------------------------------
+
+To run DRFCSharp, you must pass it command-line arguments.  Command-line arguments are: (assuming your working directory is
+/bin/Release/)
+
+[logistic/MAP/ICM], as the first argument, specifies which classifier
+you want to use. MAP inference is still broken as of submission, but
+logistic and ICM both work.
+
+--imgdir specifies where the images you will train on are
+  located. Examples:
+
+    --imgdir "../../../../DatasetKH/"
+    or
+    --imgdir "../../../../Dataset/" --xsites 16
+    
+--labeldir specifies where the corresponding labelings are
+  located. Examples:
+
+    --labeldir "../../../../DatasetKH/"
+    or
+    --labeldir "../../../../Dataset/"
+    
+--range or -r specifies how many images to train on. This should be 108 if
+  you are using DatasetKH, but we have randomly permuted the order of
+  Dataset and so you can feel free to choose based on the desired
+  sizes of your training and test sets if you are using that data.
+
+--image or -i specifies what image number you will attempt to
+  predict. If you want to predict for a range of images with just one
+  call to DRFCSharp, put the start index of the range here, and use
+
+--endimage or -ei, which specifies an inclusive end index and causes
+  DRFCSharp to go into batch prediction mode. There are 237 images in
+  DatasetKH, so this should not be above 236; there are 300 images in
+  our dataset, so it shouldn't be above 299 in that case.
+
+The predictions are saved to predicted<imgnum>.txt
+
+It's also useful to use
+
+--save or -s, followed by a name, to save name.xml to the /Dataset/
+  directory with the parameters you've learned during gradient ascent
+  at each step. This means you don't have to go through the long
+  process of training the model more than once per dataset.
+
+-n to avoid training, and
+
+--load or -l, followed by a name, to load name.xml from the /Dataset/
+  directory. If you specified --save, but quit the process before it
+  was done training, the intermediate parameters were still saved, so
+  just pass --save "name" --load "name" on your next run, and you'll
+  continue as if nothing happened.
+
+Architecture of DRFCSharp
+-------------------------------------
+
+DRFCSharp has two main components: feature processing and the DRF
+model itself.
+
+The classes that do the brunt of the work with feature processing are
+SiteFeatureSet and ImageData. An ImageData object stores the complete
+in-code description of a single image, as a two-dimensional array of
+SiteFeatureSets. 
+
+A SiteFeatureSet stores all of the per-site features
+for a site in an image; it is a very light wrapper around DenseVector,
+a MathNet.Numerics class.
+
+SiteFeatureSet contains static methods for transforming these feature
+vectors with basis functions.
+
+ImageData, however, contains a static method to create a new ImageData
+object from a Bitmap. This method, ImageData.FromImage(), loops over
+each site and calculates a new SiteFeatureSet for that site; to do
+this, it does all of our image processing and contains static methods
+to calculate every one of our features.
+
+The class that indisputably does the most work is ModifiedModel,
+though, which contains all the code to train and infer from
+models. It's called ModifiedModel because it's the second form of the
+DRF model that Kumar and Hebert considered.
+
+A ModifiedModel object has five member fields: w and v, the model
+parameters; time_to_converge, the number of iterations it took for the
+model's training to converge; Ons_seen, the number of sites that were
+on in the data it was trained on; and Sites_seen, the total number of
+sites in the data it was trained on.
+
+The main way of making a new ModifiedModel is
+ModifiedModel.PseudoLikelihoodTrain(ImageData[] input_images). This
+method takes an array of images and uses gradient ascent to find the
+hyperparameters that maximize the log-pseudolikelihood. We converge
+when the difference in pseudolikelihood between steps is less than
+LIKELIHOOD_CONVERGENCE (which is currently set to 1).
+
+A ModifiedModel object has three main methods for prediction:
+
+LogisticInfer, which predicts 1 if Sigma(w^T h_i(y)) is greater than
+0.5,
+ICMInfer, which runs Iterative Conditional Modes to find a local
+maximum of the probability distribution over labelings, and
+MaximumAPosterioriInfer, which uses an equivalence between maximizing
+the a posteriori probability and finding the minimum cut on a graph to
+predict the exact MAP estimate of the classification. The entire
+implementation of this method is there except for the mathematical
+definitions of the edge weights; we have heavily tested our
+Ford-Fulkerson implementation and it runs perfectly, so if we knew the
+correct edge weights to obtain the equivalence we would be set.
+
+Hyperparameter Adjustment
+-------------------------------------
+
+If you want to use different basis functions for either the
+single-site or cross-site feature vectors, you just have to change the
+constant CrossFeatureOptions and TransformedFeatureOptions fields at
+the top of ModifiedModel. This does require re-compiling,
+unfortunately. You can use either linear or quadratic single-site
+features, and you can form the cross-site features by either
+concatenating, taking the component-wise absolute value of the
+difference, or concatenating both vectors and their absolute
+difference (CrossFeatureOptions.BOTH).
+
+Adjusting the variance of the Gaussian prior on v, the interaction
+parameters, is easy: -t or --tau are command-line options you can use
+to set it.
+
+Adjusting the variance of the gaussian used for convolution to find
+the histogram of oriented gradients just requires adjusting
+ImageData.variation.
+
+Similarly, you can adjust the number of orientations used for binning
+by changing ImageData.NUM_ORIENTATIONS; we selected 32 by hand because
+it gave, informally, the best performance of the powers of 2. It
+doesn't need to be a power of 2, however; we tested several models
+with 50 orientations.
+
+You can adjust the smoothing of the histogram by adjusting
+ImageData.SMOOTHING_KERNEL_BANDWIDTH.
+
+Adjusting which features to use, however, is pretty tough.
+You have to adjust SiteFeatureSet.NUM_FEATURES, and then modify
+ImageData.FromImage by hand. All of the methods to make the various
+features are there, but especially with multiple scales it's fairly
+difficult to automate the process. Still, I plan to after this class
+ends.
