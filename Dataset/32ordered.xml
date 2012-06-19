@@ -1,0 +1,69 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:DenseVector id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/MathNet.Numerics.LinearAlgebra.Double/MathNet.Numerics%2C%20Version%3D2011.4.17.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dcd8b63ad3d691a37">
+<_x003C_Data_x003E_k__BackingField href="#ref-3"/>
+<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>12</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
+</a1:DenseVector>
+<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[12]">
+<item>-1.4339480932687747E-10</item>
+<item>-2.1172951581418967E-08</item>
+<item>6.055490864250579E-07</item>
+<item>-1.1139689994722034E-10</item>
+<item>-2.3993842206468766E-08</item>
+<item>-2.6348576483190562E-06</item>
+<item>-1.0711402386264854E-10</item>
+<item>-2.5947489980276485E-08</item>
+<item>-2.2464775192608089E-06</item>
+<item>-1.0484512384943794E-10</item>
+<item>-1.0830008033951863E-10</item>
+<item>-1.1508010844675627E-10</item>
+</SOAP-ENC:Array>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:DenseVector id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/MathNet.Numerics.LinearAlgebra.Double/MathNet.Numerics%2C%20Version%3D2011.4.17.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dcd8b63ad3d691a37">
+<_x003C_Data_x003E_k__BackingField href="#ref-3"/>
+<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>23</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
+</a1:DenseVector>
+<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[23]">
+<item>1.0621973432785255E-09</item>
+<item>1.716346782710045E-07</item>
+<item>1.5696003997483045E-07</item>
+<item>8.2407668911778329E-10</item>
+<item>1.7683501453195435E-07</item>
+<item>8.1195487505510332E-07</item>
+<item>7.9606505848602853E-10</item>
+<item>1.8697797430007276E-07</item>
+<item>4.0903278791565008E-06</item>
+<item>7.8221406867277047E-10</item>
+<item>8.2528527519303086E-10</item>
+<item>8.4993620899944537E-10</item>
+<item>1.6982223657772219E-07</item>
+<item>1.8983431354206877E-07</item>
+<item>8.2087942425367545E-10</item>
+<item>1.7520221879855503E-07</item>
+<item>1.0094294706902935E-06</item>
+<item>7.9034053112087012E-10</item>
+<item>1.8559766351280729E-07</item>
+<item>4.1102180742470331E-06</item>
+<item>7.8187007602344951E-10</item>
+<item>8.2095142222431872E-10</item>
+<item>8.5327339976792573E-10</item>
+</SOAP-ENC:Array>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:int id="ref-1">
+<m_value>7225</m_value>
+</xsd:int>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:int id="ref-1">
+<m_value>20480</m_value>
+</xsd:int>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

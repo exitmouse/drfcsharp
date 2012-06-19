@@ -180,10 +180,10 @@ namespace DRFCSharp
 			Classification[] cfcs = new Classification[range];
 			int count = 0;
 			
-			ModifiedModel mfm;
+			Model mfm;
 			if(deserialize_only)
 			{
-				mfm = ModifiedModel.Deserialize(params_in);
+				mfm = ModelBuilder.Deserialize(params_in);
 			}
 			else
 			{
@@ -199,8 +199,8 @@ namespace DRFCSharp
 					//if (k == 5) Console.WriteLine (SiteFeatureSet.TransformedFeatureVector(img[0,2]));
 					count++;
 				}
-				
-				mfm = ModifiedModel.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs,tau);
+				ModelBuilder mbr = new ModelBuilder(ConcatenateFeatures.INSTANCE, LinearBasis.INSTANCE, tau, 3000, 1d, 1d);
+				mfm = mbr.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs);
 				Console.WriteLine("Model converged! Estimating image ...");
 			}
 			

@@ -11,3 +11,4 @@ DRFCSharp/DRFCSharp/test-results/DRFCSharp.csproj-Debug|x86-2012-04-28.xml
 DataLabeler/.project
 DataLabeler/.pydevproject
 Dataset/tmp.jpg
+predicted*.txt

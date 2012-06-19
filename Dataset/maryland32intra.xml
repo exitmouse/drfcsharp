@@ -1,0 +1,78 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:DenseVector id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/MathNet.Numerics.LinearAlgebra.Double/MathNet.Numerics%2C%20Version%3D2011.4.17.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dcd8b63ad3d691a37">
+<_x003C_Data_x003E_k__BackingField href="#ref-3"/>
+<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>15</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
+</a1:DenseVector>
+<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[15]">
+<item>-6.0271484639721433E-11</item>
+<item>-8.4740428116447086E-09</item>
+<item>-4.107911997252309E-09</item>
+<item>1.0737111849827966E-06</item>
+<item>-3.6927159581455668E-11</item>
+<item>-9.7321113669742845E-09</item>
+<item>-4.4520684436065964E-09</item>
+<item>-6.969758259535335E-07</item>
+<item>-3.0479043370680116E-11</item>
+<item>-1.0687784685274842E-08</item>
+<item>-4.3881032246221319E-09</item>
+<item>-7.8291571443193406E-07</item>
+<item>-2.2344931575787494E-11</item>
+<item>-4.46672626758014E-11</item>
+<item>-4.7914691317779009E-11</item>
+</SOAP-ENC:Array>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:DenseVector id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/MathNet.Numerics.LinearAlgebra.Double/MathNet.Numerics%2C%20Version%3D2011.4.17.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dcd8b63ad3d691a37">
+<_x003C_Data_x003E_k__BackingField href="#ref-3"/>
+<Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>29</Vector_x0060_1_x002B__x003C_Count_x003E_k__BackingField>
+</a1:DenseVector>
+<SOAP-ENC:Array id="ref-3" SOAP-ENC:arrayType="xsd:double[29]">
+<item>4.4967536335382086E-10</item>
+<item>6.7930232913663174E-08</item>
+<item>3.9906950899656754E-08</item>
+<item>3.1741139799033918E-06</item>
+<item>2.6482583774347174E-10</item>
+<item>7.12074055616963E-08</item>
+<item>2.9653071100925435E-08</item>
+<item>1.8643984730181834E-06</item>
+<item>2.26959490837372E-10</item>
+<item>7.7096710572463709E-08</item>
+<item>2.6631094994186931E-08</item>
+<item>2.1527981642812663E-06</item>
+<item>1.7584280307833034E-10</item>
+<item>3.4166684195842171E-10</item>
+<item>3.5834855884084772E-10</item>
+<item>7.0105984566797855E-08</item>
+<item>4.721876591850864E-08</item>
+<item>-1.1116180995499717E-07</item>
+<item>2.6018973238374148E-10</item>
+<item>7.2591241762010975E-08</item>
+<item>3.0976856237477288E-08</item>
+<item>4.6595775077064414E-08</item>
+<item>2.2394814335484609E-10</item>
+<item>7.7351527744620743E-08</item>
+<item>2.6606791192794139E-08</item>
+<item>1.6873321173062082E-06</item>
+<item>1.7484316218439724E-10</item>
+<item>3.494133654414777E-10</item>
+<item>3.6023322161648833E-10</item>
+</SOAP-ENC:Array>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:int id="ref-1">
+<m_value>12654</m_value>
+</xsd:int>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<xsd:int id="ref-1">
+<m_value>38400</m_value>
+</xsd:int>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

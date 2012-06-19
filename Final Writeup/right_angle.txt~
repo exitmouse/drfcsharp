@@ -1,0 +1,63 @@
+In trying to determine why our logistic classifier is behaving so mediocrely 
+even on Kumar and Hebert's dataset, we decided to examine the dot product of
+the parameter vector w together with a site feature set to determine
+the contributions of the various features to the association potential.  We were
+immediately struck by how inequitable this contribution was.  
+
+Among our intrascale features, the contribution (to the dot product of w
+with the features) from the second moment feature was on the order of 10^1 
+to 10^3.  By comparison, all the other features tended to have contributions
+of 10^-6 or less.  This included the 0th and 1st moments, as well as the 
+right-angle detection feature.
+
+The fact that the second moment feature dwarfed the contributions of the other
+two moments is really no surprise.  This was partially reflected by Kumar and
+Hebert's decision to drop the 1st moment from their intrascale feature vector.
+Nevertheless, we would definitely have hoped to find an important contribution
+from the right-angle detection term.  The fact that this term was being
+completely ignored was very upsetting.
+
+We set out to try to modify our right-angle detection feature so that it would
+be more useful for the classification problem.  Our initial implementation
+began with the smoothed histogram of gradients, identified the two highest peaks,
+and then returned the absolute value of the difference between the angles of these
+two peaks.  (Note that this is exactly the approach described by the Kumar and
+Hebert.)
+
+We printed out the peak information for certain sites, and then compared this 
+to a visual inspection of the corresponding site on the image.  One thing that 
+we quickly noticed was that, for many sites containing a strong line the two 
+highest peaks would form a straight angle (and thus the sin of their angle
+would be zero).  This was occurring even in the presence of a strong right angle
+line if that line happened to be slightly less strong.  
+
+This observation prompted us to redesign the right-angle detection feature as 
+follows.  We identify the k largest peaks of the histogram (initially with k = 3).  
+We then compute the absolute value of the sin of the angle between each pair of 
+peaks, and return the maximum of these.  Thus we are guaranteed to return a large
+(close to one) value if there is an angle of approximately 90 degrees between 
+any of the k most prominent edge directions.
+
+The new right-angle feature gave a slight improvement of the detection rate,
+but the trained model still decides that it is unimportant compared to the 
+second order moment.  After our presentation on the 29th, Torresani suggested 
+that we try removing the second order moment feature to see how this affected
+the the learned model.  Since the second and first order moments are so closely 
+tied together, we had already decided to follow the lead of Kumar and Hebert 
+in using only the second order moment in lieu of the pair of moments.  Therefore,
+we next tried training with just two intrascale features, the zeroth order
+moment and the right angle feature for k=3, along with the the two orientation 
+based interscale features.  Including all three scales, this gave us a 
+feature vector of dimension eight.
+
+Examining the contributions of the features from this new model, we found that
+the right-angle feature was still passed over.  Instead, the new model 
+relied primarily on the zeroth order movement.  Not surprisingly, a logistic
+model based primarily on the average pixel magnitudes did not provide good
+classification results.
+
+In order to finally isolate the right-angle feature, we tried removing all of the
+intrascale moment features and training with just the right-angle and orientation 
+based interscale features, for a total of five features.  
+
+

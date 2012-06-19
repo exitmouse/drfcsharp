@@ -30,8 +30,9 @@ namespace DRFCSharp
 			hard2.CopyTo(dubs2,0);
 			DenseVector f1 = new DenseVector(dubs1);
 			DenseVector f2 = new DenseVector(dubs2);
+			CrossFeatureStrategy crosser = ConcatenateFeatures.INSTANCE;
 			//DenseVector expected_result = new DenseVector(new double[2*SiteFeatureSet.NUM_FEATURES + 1]{1,1.2,7,2.4,-1.3, 0, 0, 0,2,-3.8,7.6,100, 0, 0, 0});
-			Assert.AreEqual(SiteFeatureSet.CrossFeaturesConcatenate(new SiteFeatureSet(f1),new SiteFeatureSet(f2)).SubVector(1,4),new DenseVector(hard1));
+			Assert.AreEqual(crosser.Cross(new SiteFeatureSet(f1),new SiteFeatureSet(f2)).SubVector(1,4),new DenseVector(hard1));
 		}
 		[Test]
 		public void TransformedFeatureVectors ()
@@ -47,7 +48,8 @@ namespace DRFCSharp
 			exps[0] = 1d;
 			hard1.CopyTo(exps,1);
 			DenseVector expected_result = new DenseVector(exps);
-			Assert.AreEqual(SiteFeatureSet.TransformedFeatureVector(new SiteFeatureSet(f1)),expected_result);
+			TransformFeatureStrategy transformer = LinearBasis.INSTANCE;
+			Assert.AreEqual(transformer.Transform(new SiteFeatureSet(f1)),expected_result);
 	
 		}
 		[Test]
