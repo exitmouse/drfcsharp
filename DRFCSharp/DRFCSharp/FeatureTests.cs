@@ -98,15 +98,15 @@ namespace DRFCSharp
 		[Test]
 		public void GaussiansAreCorrectSize ()
 		{
-			DenseVector dv = ImageData.MakeGaussian();
-			DenseVector dvdx = ImageData.MakeGaussianDerivative();
+			DenseVector dv = GradientArrayMaker.MakeGaussian(0.5);
+			DenseVector dvdx = GradientArrayMaker.MakeGaussianDerivative(0.5);
 			Assert.AreEqual(dv.Count,3);
 			Assert.AreEqual(dvdx.Count,3);
 		}
 		[Test]
 		public void GaussianMeanIsCentered ()
 		{
-			DenseVector dv = ImageData.MakeGaussian();
+			DenseVector dv = GradientArrayMaker.MakeGaussian(0.5);
 			int midindex = dv.Count/2;
 			Assert.GreaterOrEqual(dv[midindex], dv[midindex-1]);
 			Assert.GreaterOrEqual(dv[midindex], dv[midindex+1]);
