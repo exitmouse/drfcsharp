@@ -27,6 +27,34 @@ namespace DRFCSharp
 		}
 		public static double RightAngleFinder(double[] histogram, int num_peaks_to_consider)
 		{
+			int[] peak_indices = GetPeakIndices(histogram, num_peaks_to_consider);
+			if(peak_indices[0] == -1 || peak_indices[1] == -1)
+			{
+				return 0.0d;
+			}
+			double toReturn = 0.0d;
+			for (int j = num_peaks_to_consider -1; j > 0; j--)
+			{
+				for (int i = j-1; i >= 0 && peak_indices[j] != -1; i--)
+				{
+					double ang1 = (2*Math.PI/((double)histogram.Length))*((double)peak_indices[i]);
+					double ang2 = (2*Math.PI/((double)histogram.Length))*((double)peak_indices[j]);
+					double ang = ang1-ang2;
+					double interim = Math.Sin(ang);
+					toReturn = Math.Max(toReturn, Math.Abs(interim));
+				
+					/*Console.WriteLine("RightAngleFinder");
+					Console.WriteLine(histogram.ToString());
+					Console.WriteLine(string.Format("{0}th peak: {1} \t {2}th peak: {3}\nright-angle feature: {4}",
+					                                i, peak_indices[i],
+					                                j, peak_indices[j],
+					                                toReturn));*/
+				}
+			}
+			return toReturn;
+		}
+		public static int[] GetPeakIndices(double[] histogram, int num_peaks_to_consider)
+		{
 			int[] peak_indices = new int[num_peaks_to_consider]; 
 			for (int i = 0; i < num_peaks_to_consider; i++)
 			{
@@ -41,7 +69,7 @@ namespace DRFCSharp
 				if (i == 0)
 				{
 					// the entire histogram has uniform distribution
-					return 0.0d;
+					return new int[1]{-1};
 				}
 				else if (histogram[i] != histogram[0])
 				{
@@ -76,30 +104,7 @@ namespace DRFCSharp
 					last_height_level = histogram[i];
 				}
 			}
-			if(peak_indices[1] == -1)
-			{
-				return 0.0d;
-			}
-			double toReturn = 0.0d;
-			for (int j = num_peaks_to_consider -1; j > 0; j--)
-			{
-				for (int i = j-1; i >= 0 && peak_indices[j] != -1; i--)
-				{
-					double ang1 = (2*Math.PI/((double)histogram.Length))*((double)peak_indices[i]);
-					double ang2 = (2*Math.PI/((double)histogram.Length))*((double)peak_indices[j]);
-					double ang = ang1-ang2;
-					double interim = Math.Sin(ang);
-					toReturn = Math.Max(toReturn, Math.Abs(interim));
-				
-					/*Console.WriteLine("RightAngleFinder");
-					Console.WriteLine(histogram.ToString());
-					Console.WriteLine(string.Format("{0}th peak: {1} \t {2}th peak: {3}\nright-angle feature: {4}",
-					                                i, peak_indices[i],
-					                                j, peak_indices[j],
-					                                toReturn));*/
-				}
-			}
-			return toReturn;
+			return peak_indices;
 		}
 	}
 }

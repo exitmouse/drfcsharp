@@ -36,6 +36,7 @@ namespace DRFCSharp
 		/// </param>
 		public GradientArrayMaker(double variance)
 		{
+			GradientCache = new ConcurrentDictionary<Bitmap, DenseVector[,]>();
 			Variance = variance;
 		}
 

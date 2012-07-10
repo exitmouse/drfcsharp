@@ -62,20 +62,37 @@ namespace DRFCSharp
 		public Window Constrain(int minx, int miny, int maxx, int maxy)
 		{
 			Window result = Window.FromBounds(Math.Max(StartX, minx), Math.Max(StartY, miny), Math.Min(EndX, maxx), Math.Min(EndY, maxy));
-			if(result.Area <= 0) return null;
-			else return result;
+			return result;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if(obj == null) return false;
+			Window other = obj as Window;
+			if(other == null) return false;
+			return (StartX == other.StartX) && (StartY == other.StartY) && (Width == other.Width) && (Height == other.Height);
+		}
+
+		public override string ToString()
+		{
+			return string.Format("[Window: StartX={0}, StartY={1}, EndX={2}, EndY={3}, Width={4}, Height={5}, Area={6}]", StartX, StartY, EndX, EndY, Width, Height, Area);
+		}
+
+		private static Window FromParams(int startx, int starty, int width, int height){
+			if(width < 0 || height < 0) return null;
+			return new Window(startx, starty, Math.Abs(width), Math.Abs(height));
 		}
 
 		public static Window FromSize(int startx, int starty, int width, int height){
-			return new Window(startx, starty, width, height);
+			return FromParams(startx, starty, width, height);
 		}
 
 		public static Window FromBounds(int startx, int starty, int endx, int endy){
-			return new Window(startx, starty, endx-startx, endy-starty);
+			return FromParams(startx, starty, endx-startx, endy-starty);
 		}
 
 		public static Window FromCenter(int centx, int centy, int width, int height){
-			return FromSize(centx - width/2, centy - height/2, width, height);
+			return FromParams(centx - width/2, centy - height/2, width, height);
 		}
 	}
 }
