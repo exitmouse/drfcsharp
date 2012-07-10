@@ -28,7 +28,7 @@ namespace DRFCSharp
 		public static double RightAngleFinder(double[] histogram, int num_peaks_to_consider)
 		{
 			int[] peak_indices = GetPeakIndices(histogram, num_peaks_to_consider);
-			if(peak_indices[0] == -1 || peak_indices[1] == -1)
+			if(peak_indices[0] == -1)
 			{
 				return 0.0d;
 			}
@@ -55,55 +55,15 @@ namespace DRFCSharp
 		}
 		public static int[] GetPeakIndices(double[] histogram, int num_peaks_to_consider)
 		{
-			int[] peak_indices = new int[num_peaks_to_consider]; 
-			for (int i = 0; i < num_peaks_to_consider; i++)
-			{
-				peak_indices[i] = -1;
-			}
-			double last_height_level = -1.0d;
-			// Traverse the histogram in backward order to find the first index having
-			// different height than histogram[0].  This will be the initial value of 
-			// last_height_level.
-			for (int i = histogram.Length - 1; i >= 0; i--)
-			{
-				if (i == 0)
-				{
-					// the entire histogram has uniform distribution
-					return new int[1]{-1};
-				}
-				else if (histogram[i] != histogram[0])
-				{
-					last_height_level = histogram[i];
-					break;
-				}
-			}
-			// Now traverse the histogram in forwards order finding the peaks and right
-			// plateau corners.
-			for (int i = 0; i < histogram.Length; i++)
-			{
-				if (histogram[i] > last_height_level && histogram[i] > histogram[(i + 1) % histogram.Length])
-				{
-					// this is a peak (we accept as a peak the right corner of a plateau).
-					for (int j = 0; j < num_peaks_to_consider; j++)
-					{
-						if (peak_indices[j] == -1 || histogram[i] > histogram[peak_indices[j]])
-						{
-							// shift all the lesser peaks
-							for (int k = num_peaks_to_consider -1; k > j; k--)
-							{
-								peak_indices[k] = peak_indices[k-1];
-							}
-							// and save this one
-							peak_indices[j] = i;
-							break;
-						}
-					}
-				}
-				if (histogram[(i + 1) % histogram.Length] != histogram[i]) 
-				{
-					last_height_level = histogram[i];
-				}
-			}
+			int[] peak_indices = new int[num_peaks_to_consider];
+			int[] indices = new int[histogram.Length];
+			for(int i = 0; i < indices.Length; i++)
+				indices[i] = i;
+			Array.Sort(histogram, indices);
+			/*Get the top num_peaks_to_consider entries of indices, which is sorted in the reverse of the order we want.
+			 *If we don't have enough entries, fill the rest with -1s*/
+			for(int i = 0; i < peak_indices.Length; i++)
+				peak_indices[i] = (i < indices.Length)? indices[indices.Length - i - 1] : -1;
 			return peak_indices;
 		}
 	}
