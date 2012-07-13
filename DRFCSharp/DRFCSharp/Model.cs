@@ -27,8 +27,8 @@ namespace DRFCSharp
 		}
 		public Classification LogisticInfer(ImageData test_input)
 		{
-			Classification curr_classification = new Classification(new Label[ImageData.x_sites, ImageData.y_sites]);
-			for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++)
+			Classification curr_classification = new Classification(new Label[test_input.XSites, test_input.YSites]);
+			for(int x = 0; x < test_input.XSites; x++) for(int y = 0; y < test_input.YSites; y++)
 			{
 				double modeled_prob_of_one = MathWrapper.Sigma(W.DotProduct(Transformer.Transform(test_input[x,y])));
 				double prob_one = ((double)OnsSeen)/((double) SitesSeen);
@@ -52,7 +52,7 @@ namespace DRFCSharp
 				loopcount++;
 				int changecount = 0;
 				converged = true;
-				for(int x = 0; x < ImageData.x_sites; x++) for(int y = 0; y < ImageData.y_sites; y++)
+				for(int x = 0; x < test_input.XSites; x++) for(int y = 0; y < test_input.YSites; y++)
 				{
 					Label old = curr_classification[x,y];
 					//We have prob 1 vs prob 0. Prob n \propto exp(A + sum over neighbors of I calculated at n)
@@ -62,7 +62,7 @@ namespace DRFCSharp
 					if(x == 6 && y == 10)
 					{
 						Console.WriteLine("Components of the dot product w*sitefeatures:");
-						for(int i = 0; i < Transformer.Components(SiteFeatureSet.NUM_FEATURES); i++)
+						for(int i = 0; i < sitefeatures.Count; i++)
 						{
 							Console.WriteLine("{0}th component: {1}", i, W[i]*sitefeatures[i]);
 						}
@@ -75,7 +75,7 @@ namespace DRFCSharp
 					
 
 					
-					foreach(Tuple<int,int> t in ImageData.GetNeighbors(x,y))
+					foreach(Tuple<int,int> t in test_input.GetNeighbors(x,y))
 					{
 						DenseVector mu;
 						if(ImageData.IsEarlier(x,y,t.Item1,t.Item2))mu = Crosser.Cross(test_input[x,y],test_input[t.Item1,t.Item2]);
@@ -115,17 +115,17 @@ namespace DRFCSharp
 		}
 		public Classification MaximumAPosterioriInfer(ImageData test_input)
 		{
-			Vertex[,] site_nodes = new Vertex[ImageData.x_sites,ImageData.y_sites];
-			for(int i = 0; i < ImageData.x_sites; i++) for(int j = 0; j < ImageData.y_sites; j++)
+			Vertex[,] site_nodes = new Vertex[test_input.XSites, test_input.YSites];
+			for(int i = 0; i < test_input.XSites; i++) for(int j = 0; j < test_input.YSites; j++)
 			{
 				site_nodes[i,j] = new Vertex();
 			}
 			Vertex source = new Vertex();
 			Vertex target = new Vertex();
 			
-			for(int j = 0; j < ImageData.y_sites; j++)
+			for(int j = 0; j < test_input.YSites; j++)
 			{
-				for(int i = 0; i < ImageData.x_sites; i++) 
+				for(int i = 0; i < test_input.XSites; i++) 
 				{
 					Vertex t = site_nodes[i,j];
 					//Add the edge with capacity lambda_t from the source, or the edge with capacity -lambda_t to the target.
@@ -148,7 +148,7 @@ namespace DRFCSharp
 					Console.WriteLine("Edge to target with strength {0}",-MathWrapper.Log(1-modeled_prob_of_one));
 					//Add an edge from the source with the modeled probability of 1, and an edge to the target with the modeled probability of 0.
 					//Console.WriteLine(ImageData.GetNewConnections(i,j).Count);
-					foreach(Tuple<int,int> other in ImageData.GetNewConnections(i,j))
+					foreach(Tuple<int,int> other in test_input.GetNewConnections(i,j))
 					{
 						Vertex u = site_nodes[other.Item1,other.Item2];
 						//Add the edge with capacity Beta_{t,u} in both directions between t and u.
@@ -171,8 +171,8 @@ namespace DRFCSharp
 			}; //Find the maximum flow
 			source.ResidualCapacityConnectedNodes(); //Find the source end of the minimum cut
 			
-			Label[,] toReturn = new Label[ImageData.x_sites,ImageData.y_sites];
-			for(int i = 0; i < ImageData.x_sites; i++) for(int j = 0; j < ImageData.y_sites; j++)
+			Label[,] toReturn = new Label[test_input.XSites, test_input.YSites];
+			for(int i = 0; i < test_input.XSites; i++) for(int j = 0; j < test_input.YSites; j++)
 			{
 				if(site_nodes[i,j].tagged_as_one) toReturn[i,j] = Label.ON;
 			}

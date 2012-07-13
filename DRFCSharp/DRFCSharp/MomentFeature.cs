@@ -9,6 +9,11 @@ namespace DRFCSharp
 		private HogsMaker SharedHogs { get; set; }
 		private FeatureApplicationScheme Windower { get; set; }
 		private int Moment { get; set; }
+		public int Length {
+			get {
+				return Windower.NumScales;
+			}
+		}
 		public MomentFeature(HogsMaker sh, FeatureApplicationScheme windower, int moment)
 		{
 			SharedHogs = sh;

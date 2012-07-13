@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Drawing;
 using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra.Double;
@@ -8,20 +7,24 @@ namespace DRFCSharp
 {
 	public class ImageData
 	{
-		public static int x_sites = 24; //Make sure these divide the image dimensions. The size of the sites is deduced from them.
-		public static int y_sites = 16;
-		public const double variation = 0.5d; //Make sure 6*variation is odd.
-		public const int NUM_ORIENTATIONS = 50;
-		public SiteFeatureSet[,] site_features;
+		private SiteFeatureSet[,] site_features;
+		public int FeatureCount { get; private set; }
+		public int XSites { get; private set; }
+		public int YSites { get; private set; }
 		public static int Ons_seen = 0;
 		public static int Sites_seen = 0;
 		public static int Images_seen = 0;
 		private static GradientArrayMaker gm = new GradientArrayMaker(0.5d);
 		private static HogsMaker hm = new HogsMaker(gm, 50);
-		public ImageData (SiteFeatureSet[,] site_features)
+		private ImageData (SiteFeatureSet[,] site_features, int feature_count)
 		{
-			if(site_features.GetLength(0) != x_sites || site_features.GetLength(1) != y_sites)
-				throw new ArgumentException("Wrong size of test input for this model");
+			if(site_features == null) throw new ArgumentNullException("site_features");
+			XSites = site_features.GetLength(0);
+			YSites = site_features.GetLength(1);
+			if(XSites == 0 || YSites == 0) throw new ArgumentException("site_features must not be size zero");
+			if(site_features[0,0] == null) throw new ArgumentException("site_features must be initialized");
+			if(site_features[0,0].Features.Count != feature_count) throw new ArgumentException("wtf"); //TODO remove this or remove the parameter.
+			FeatureCount = feature_count;
 			this.site_features = site_features;
 		}
 		
@@ -30,7 +33,7 @@ namespace DRFCSharp
 				return this.site_features[value1,value2];
 			}
 		}
-		public static List<Tuple<int,int>> GetNeighbors(int x, int y)
+		public List<Tuple<int,int>> GetNeighbors(int x, int y)
 		{
 			List<Tuple<int,int>> toReturn = new List<Tuple<int, int>>();
 			for(int horz = -1; horz <=1; horz++)
@@ -40,9 +43,9 @@ namespace DRFCSharp
 							toReturn.Add(Tuple.Create<int,int>(x+horz,y+vert));
 			return toReturn;
 		}
-		public static bool InBounds(int x, int y)
+		public bool InBounds(int x, int y)
 		{
-			if(x >= 0 && x < x_sites && y >= 0 && y < y_sites)
+			if(x >= 0 && x < XSites && y >= 0 && y < YSites)
 				return true;
 			return false;
 		}
@@ -51,7 +54,7 @@ namespace DRFCSharp
 			if(y1 == y2) return x1 < x2;
 			else return y1 < y2;
 		}
-		public static List<Tuple<int,int>> GetNewConnections(int x, int y)
+		public List<Tuple<int,int>> GetNewConnections(int x, int y)
 		{
 			List<Tuple<int,int>> toReturn = GetNeighbors(x,y);
 			toReturn.RemoveAll((t) => IsEarlier(t.Item1,t.Item2,x,y));
@@ -78,30 +81,7 @@ namespace DRFCSharp
 			{
 				sitefeatures[x,y] = new SiteFeatureSet(feature_set.ApplyToBitmap(img, x, y));
 			}
-			return new ImageData(sitefeatures);
-		}
-		public static Classification ImportLabeling(string filename)
-		{
-			Label[,] labels = new Label[x_sites,y_sites];
-			using(StreamReader csvfile = new StreamReader(filename))
-			{
-				for(int col = 0; col < y_sites; col++)
-				{
-					string line = csvfile.ReadLine();
-					string[] vals = line.Split(',');
-					for(int row = 0; row < x_sites; row++)
-					{
-						int val = Int32.Parse(vals[row]);
-						if(val > 0)
-							labels[row,col] = Label.ON;
-						else
-							labels[row,col] = Label.OFF;
-						Sites_seen += 1;
-						if(labels[row,col]==Label.ON) Ons_seen += 1;
-					}
-				}
-			}
-			return new Classification(labels);
+			return new ImageData(sitefeatures, feature_set.Length);
 		}
 	}
 }

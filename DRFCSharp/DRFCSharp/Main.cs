@@ -34,10 +34,10 @@ namespace DRFCSharp
 		{
 			string params_in = "";
 			string params_out = "";
-			string test_image_path = "";
-			string imgpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
+			string test_image_name = "";
 			string labelpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
-			string featuretestpath = string.Format("{0}../../../../TestImages/",AppDomain.CurrentDomain.BaseDirectory);
+			ResourceManager resources = new ResourceManager();
+			resources.LabelPath = labelpath;
 			string outpath = "";
 			bool deserialize_only = false;
 			int image_num = 192;
@@ -63,7 +63,7 @@ namespace DRFCSharp
 			{
 				if(inference_algorithm == "features" && i == 1)
 				{
-					test_image_path = args[i];
+					test_image_name = args[i];
 				}
 				else if(args[i] == "-l" || args[i] == "--loadtraining")
 				{
@@ -135,12 +135,12 @@ namespace DRFCSharp
 				}
 				else if(args[i] == "--imgdir")
 				{
-					imgpath = args[i+1];
+					resources.ImgPath = args[i+1];
 					i++;
 				}
 				else if(args[i] == "--labeldir")
 				{
-					labelpath = args[i+1];
+					resources.LabelPath = args[i+1];
 					i++;
 				}
 				else
@@ -153,21 +153,20 @@ namespace DRFCSharp
 				PrintUsage();
 				return;
 			}
-			ImageData.x_sites = xsites;
+			/*ImageData.x_sites = xsites;
 			ImageData.y_sites = ysites;
 			Console.WriteLine("{0} X Sites", ImageData.x_sites);
-			Console.WriteLine("{0} Y Sites", ImageData.y_sites);
+			Console.WriteLine("{0} Y Sites", ImageData.y_sites);*/
 			
 			if(inference_algorithm == "features")
 			{
-				outpath = featuretestpath + args[2];
-				ImageData testimg = ImageData.FromImage(new Bitmap(featuretestpath + test_image_path));
+				ImageData test_img = ResourceManager.UsingTestingBitmap(test_image_name, thingy => ImageData.FromImage(thingy));
 				StreamWriter sw = new StreamWriter(outpath);
-				for(int x = 0; x < ImageData.x_sites; x++)
+				for(int x = 0; x < test_img.XSites; x++)
 				{
-					for(int y = 0; y < ImageData.y_sites; y++)
+					for(int y = 0; y < test_img.YSites; y++)
 					{
-						sw.WriteLine("X: {0}\tY:{1}\tSite Features: {2}", x, y, testimg[x,y].features.ToString());
+						sw.WriteLine("X: {0}\tY:{1}\t {2}", x, y, test_img[x,y].ToString());
 					}
 					Console.WriteLine("Wrote column {0}",x);
 				}
@@ -191,9 +190,10 @@ namespace DRFCSharp
 				{
 					Console.WriteLine ("Importing "+k.ToString()+"th image");
 					string prefix = k.ToString("D3");
-					ImageData img = ImageData.FromImage(new Bitmap(imgpath+prefix+".jpg"));
+					string suffix = prefix +".jpg";
+					ImageData img = resources.UsingBitmap(suffix, bmp => ImageData.FromImage(bmp));
 					//Console.WriteLine (img[0,2].features[2]);
-					Classification cfc = ImageData.ImportLabeling(labelpath+prefix+".txt");
+					Classification cfc = Classification.FromLabeling(resources.LabelPath+prefix+".txt", img.XSites, img.YSites);
 					imgs[count] = img;
 					cfcs[count] = cfc;
 					//if (k == 5) Console.WriteLine (SiteFeatureSet.TransformedFeatureVector(img[0,2]));
@@ -208,7 +208,7 @@ namespace DRFCSharp
 			for (int i = image_num; i <= end_image_num; i++)
 			{
 				string imagename = i.ToString("D3");
-				ImageData input = ImageData.FromImage(new Bitmap(imgpath+imagename+".jpg"));
+				ImageData input = resources.UsingBitmap(imagename+".jpg", bmp => ImageData.FromImage(bmp));
 				
 				Classification out_classed; //See what I did there?
 				if(inference_algorithm == "logistic")
@@ -227,7 +227,7 @@ namespace DRFCSharp
 					out_classed = mfm.ICMInfer(input);
 				}
 				
-				outpath = imgpath+"predicted"+i.ToString("D3")+".txt";
+				outpath = resources.ImgPath+"predicted"+i.ToString("D3")+".txt";
 				
 				StreamWriter sw = new StreamWriter(outpath);
 				sw.Write(out_classed.ToString());

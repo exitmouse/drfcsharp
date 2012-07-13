@@ -6,38 +6,37 @@ namespace DRFCSharp
 {
 	public class SiteFeatureSet
 	{
-		public DenseVector features;
-		public const int NUM_FEATURES = 11;
-		public SiteFeatureSet ()
-		{
-			this.features = new DenseVector(NUM_FEATURES,0d);
-		}
-
+		public DenseVector Features{ get; private set; }
 		public SiteFeatureSet (DenseVector features)
 		{
-			if(features.Count != NUM_FEATURES) throw new ArgumentException("SiteFeatureSets have "+NUM_FEATURES.ToString()+" features, not "+features.Count.ToString()+".");
-			this.features = features;
+			this.Features = features;
 		}
 		
 		public double[] ToArray(){
-			return features.ToArray();
+			return Features.ToArray();
 		}
 
 		public override bool Equals (object obj)
 		{
 			if(obj is SiteFeatureSet)
 			{
-				return features.Equals((obj as SiteFeatureSet).features);
+				return Features.Equals((obj as SiteFeatureSet).Features);
 			}
 			else return false;
 		}
-		public static void Init(SiteFeatureSet[,] sitesarray)
+
+		public override string ToString()
+		{
+			return string.Format("[SiteFeatureSet: Features={0}]", Features);
+		}
+
+		public static void Init(SiteFeatureSet[,] sitesarray, DenseVector init)
 		{
 			for(int i = 0; i < sitesarray.GetLength(0); i++)
 			{
 				for(int j = 0; j < sitesarray.GetLength(1); j++)
 				{
-					sitesarray[i,j] = new SiteFeatureSet();
+					sitesarray[i,j] = new SiteFeatureSet((DenseVector)init.Clone());
 				}
 			}
 		}

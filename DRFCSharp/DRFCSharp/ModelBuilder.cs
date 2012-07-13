@@ -31,9 +31,11 @@ namespace DRFCSharp
 		public Model PseudoLikelihoodTrain(string params_in, string params_out, ImageData[] training_inputs, Classification[] training_outputs)
 		{
 			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
-			
-			DenseVector w = new DenseVector(Transformer.Components(SiteFeatureSet.NUM_FEATURES), 0d);
-			DenseVector v = new DenseVector(Crosser.Components(SiteFeatureSet.NUM_FEATURES), 0d);
+
+			//TODO: Assert that these are all the same across the entire ImageData array--do it by having a class that's a wrapper around ImageData[]s and
+			//one that's a wrapper around Classification[]s.
+			DenseVector w = new DenseVector(Transformer.Components(training_inputs[0].FeatureCount), 0d);
+			DenseVector v = new DenseVector(Crosser.Components(training_inputs[0].FeatureCount), 0d);
 			
 			DenseVector wgrad = new DenseVector(w.Count);
 			DenseVector vgrad = new DenseVector(v.Count);
@@ -65,9 +67,9 @@ namespace DRFCSharp
 				{
 					for(int m = 0; m < training_inputs.Length; m++)
 					{
-						for(int horz = 0; horz < ImageData.x_sites; horz++)
+						for(int horz = 0; horz < training_inputs[m].XSites; horz++)
 						{
-							for(int vert = 0; vert < ImageData.y_sites; vert++)
+							for(int vert = 0; vert < training_inputs[m].YSites; vert++)
 							{
 
 								//h_i(y):
@@ -97,7 +99,7 @@ namespace DRFCSharp
 								{
 									double logofcoeff = MathWrapper.Log(MathWrapper.Sigma(tempx * w.DotProduct(h)));
 									//sum over the neighbors
-									foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
+									foreach(Tuple<int,int> j in training_inputs[m].GetNeighbors(horz,vert))
 									{
 										int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
 										DenseVector mu;
@@ -127,9 +129,9 @@ namespace DRFCSharp
 				{
 					for(int m = 0; m < training_inputs.Length; m++)
 					{
-						for(int horz = 0; horz < ImageData.x_sites; horz++)
+						for(int horz = 0; horz < training_inputs[m].XSites; horz++)
 						{
-							for(int vert = 0; vert < ImageData.y_sites; vert++)
+							for(int vert = 0; vert < training_inputs[m].YSites; vert++)
 							{
 								
 								//vgrad[k] = sum over image sites in all images of
@@ -144,7 +146,7 @@ namespace DRFCSharp
 								
 								//Sum over neighbors of x_i x_j mu_{ij}(y)_k
 								double vterm = 0;
-								foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz, vert))
+								foreach(Tuple<int,int> j in training_inputs[m].GetNeighbors(horz, vert))
 								{
 									int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
 									DenseVector mu;
@@ -165,7 +167,7 @@ namespace DRFCSharp
 									double logofcoeff = MathWrapper.Log(MathWrapper.Sigma(tempx * w.DotProduct(h)));
 									double dzdvterm = 0;
 									//sum over the neighbors
-									foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
+									foreach(Tuple<int,int> j in training_inputs[m].GetNeighbors(horz,vert))
 									{
 										int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
 										DenseVector mu;
@@ -246,16 +248,16 @@ namespace DRFCSharp
 			double first_term = 0;
 			for(int m = 0; m < training_inputs.Length; m++)
 			{
-				for(int horz = 0; horz < ImageData.x_sites; horz++)
+				for(int horz = 0; horz < training_inputs[m].XSites; horz++)
 				{
-					for(int vert = 0; vert < ImageData.y_sites; vert++)
+					for(int vert = 0; vert < training_inputs[m].YSites; vert++)
 					{
 						int x = (int)(training_outputs[m][horz,vert])*2 - 1;
 						
 						//h_i(y):
 						DenseVector h = Transformer.Transform(training_inputs[m][horz,vert]);
 						first_term += MathWrapper.Log (MathWrapper.Sigma( x * wtest.DotProduct(h) ) );
-						foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
+						foreach(Tuple<int,int> j in training_inputs[m].GetNeighbors(horz,vert))
 						{
 							int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
 							DenseVector mu;
@@ -269,7 +271,7 @@ namespace DRFCSharp
 						{
 							double logofcoeff = MathWrapper.Log(MathWrapper.Sigma(tempx * wtest.DotProduct(h)));
 							//sum over the neighbors
-							foreach(Tuple<int,int> j in ImageData.GetNeighbors(horz,vert))
+							foreach(Tuple<int,int> j in training_inputs[m].GetNeighbors(horz,vert))
 							{
 								int jx = (int)(training_outputs[m][j.Item1,j.Item2])*2 - 1;
 								DenseVector mu;

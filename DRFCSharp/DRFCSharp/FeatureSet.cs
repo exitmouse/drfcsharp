@@ -10,15 +10,18 @@ namespace DRFCSharp
 	/// </summary>
 	public sealed class FeatureSet
 	{
-		private List<Feature> Features{ get; set; }
+		private List<Feature> Features { get; set; }
+		public int Length { get; private set; }
 		public FeatureSet()
 		{
 			Features = new List<Feature>();
+			Length = 0;
 		}
 
 		public void AddFeature(Feature f)
 		{
 			Features.Add(f);
+			Length += f.Length;
 		}
 
 		public DenseVector ApplyToBitmap(Bitmap bmp, int x, int y)
@@ -30,6 +33,8 @@ namespace DRFCSharp
 				feature_results.AddRange(f.Calculate(bmp, x, y));
 			}
 			DenseVector dv = new DenseVector(feature_results.ToArray());
+			//TODO figure out the right pattern for validating this.
+			if(dv.Count != Length) throw new InvalidOperationException(string.Format("Length out of sync: Length: {0}, Actual: {1}", Length, dv.Count));
 			return dv;
 		}
 	}

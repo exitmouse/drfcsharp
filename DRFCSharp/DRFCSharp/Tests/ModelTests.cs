@@ -26,10 +26,10 @@ namespace DRFCSharp
 		[Test]
 		public void ModelTrainingConverges ()
 		{
-			SiteFeatureSet[,] sitesarray = new SiteFeatureSet[ImageData.x_sites,ImageData.y_sites];
-			SiteFeatureSet.Init(sitesarray);
-			ImageData img = new ImageData(sitesarray);
-			Label[,] labels = new Label[ImageData.x_sites,ImageData.y_sites];
+			ImageData img = ResourceManager.UsingTestingBitmap("testgrid1px.png", (bmp) => {
+				return ImageData.FromImage(bmp);
+			});
+			Label[,] labels = new Label[img.XSites,img.YSites];
 			Classification cfc = new Classification(labels);
 			ModelBuilder mbr = new ModelBuilder(ConcatenateFeatures.INSTANCE, LinearBasis.INSTANCE, 1d, 3000, 1d, 1d);
 			Model mfm = mbr.PseudoLikelihoodTrain("","", new ImageData[1]{img},new Classification[1]{cfc});
@@ -38,10 +38,10 @@ namespace DRFCSharp
 		[Test]
 		public void CanClassify ()
 		{
-			SiteFeatureSet[,] sitesarray = new SiteFeatureSet[ImageData.x_sites,ImageData.y_sites];
-			SiteFeatureSet.Init(sitesarray);
-			ImageData img = new ImageData(sitesarray);
-			Label[,] labels = new Label[ImageData.x_sites,ImageData.y_sites];
+			ImageData img = ResourceManager.UsingTestingBitmap("testgrid1px.png", (bmp) => {
+				return ImageData.FromImage(bmp);
+			});
+			Label[,] labels = new Label[img.XSites,img.YSites];
 			Classification cfc = new Classification(labels);
 			ModelBuilder mbr = new ModelBuilder(ConcatenateFeatures.INSTANCE, LinearBasis.INSTANCE, 1d, 3000, 1d, 1d);
 			Model mfm = mbr.PseudoLikelihoodTrain("", "", new ImageData[1]{img},new Classification[1]{cfc});

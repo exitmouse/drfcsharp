@@ -9,6 +9,11 @@ namespace DRFCSharp
 		private HogsMaker SharedHogs { get; set; }
 		private FeatureApplicationScheme Windower { get; set; }
 		private int NumPeaks { get; set; }
+		public int Length {
+			get {
+				return Windower.NumScales;
+			}
+		}
 		public RightAngleFeature(HogsMaker sh, FeatureApplicationScheme windower, int num_peaks)
 		{
 			SharedHogs = sh;

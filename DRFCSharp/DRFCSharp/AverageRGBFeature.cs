@@ -7,6 +7,11 @@ namespace DRFCSharp
 	public class AverageRGBFeature : Feature
 	{
 		private FeatureApplicationScheme Windower { get; set; }
+		public int Length {
+			get {
+				return Windower.NumScales * 3;
+			}
+		}
 		public AverageRGBFeature(FeatureApplicationScheme windower)
 		{
 			Windower = windower;

@@ -14,6 +14,7 @@ namespace DRFCSharp
 		 * That means this interface is the correct one, modulo Bitmap being replaced by that wrapper class.*/
 		/*Even better plan: do as below, but then have a static global cache of HOGs of bitmaps, so you don't recalculate the HOGs.*/
 		List<double> Calculate(Bitmap bmp, int x, int y);
+		int Length{ get; }
 	}
 }
 

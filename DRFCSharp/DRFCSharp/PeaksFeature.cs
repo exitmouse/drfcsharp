@@ -13,6 +13,11 @@ namespace DRFCSharp
 			SharedHogs = sh;
 			Windower = windower;
 		}
+		public int Length {
+			get {
+				return Windower.NumScales - 1;
+			}
+		}
 		public List<double> Calculate(Bitmap bmp, int x, int y)
 		{
 			int[] intra_scale_peaks = new int[Windower.NumScales];
