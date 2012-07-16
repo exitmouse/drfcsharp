@@ -84,7 +84,7 @@ namespace DRFCSharp
 								//sigma term that keeps reappearing
 								double sig = MathWrapper.Sigma(x * w.DotProduct(h));
 								//x_i * h_i(y)_k * (1 - sigma(x_i * w^T h_i(y)))
-								double old = wgrad[k];
+								//double old = wgrad[k];
 								wgrad[k] += x*h[k]*(1 - sig);
 								
 								if(double.IsNaN(wgrad[k])) throw new NotFiniteNumberException();

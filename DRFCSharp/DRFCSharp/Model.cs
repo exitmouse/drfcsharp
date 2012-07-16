@@ -32,7 +32,7 @@ namespace DRFCSharp
 			{
 				double modeled_prob_of_one = MathWrapper.Sigma(W.DotProduct(Transformer.Transform(test_input[x,y])));
 				double prob_one = ((double)OnsSeen)/((double) SitesSeen);
-				double prob_zero = 1d - prob_one;
+				//double prob_zero = 1d - prob_one;
 				double lambda = MathWrapper.Log(modeled_prob_of_one) - MathWrapper.Log (1 - modeled_prob_of_one)/* + MathWrapper.Log (prob_one/prob_zero)*/;
 				if(lambda > 0)
 					curr_classification[x,y] = Label.ON;
