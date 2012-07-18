@@ -35,9 +35,7 @@ namespace DRFCSharp
 			string params_in = "";
 			string params_out = "";
 			string test_image_name = "";
-			string labelpath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
-			ResourceManager resources = new ResourceManager();
-			resources.LabelPath = labelpath;
+			ResourceManagerBuilder resources_builder = new ResourceManagerBuilder();
 			string outpath = "";
 			bool deserialize_only = false;
 			int image_num = 192;
@@ -135,12 +133,12 @@ namespace DRFCSharp
 				}
 				else if(args[i] == "--imgdir")
 				{
-					resources.ImgPath = args[i+1];
+					resources_builder.ImgPath = args[i+1];
 					i++;
 				}
 				else if(args[i] == "--labeldir")
 				{
-					resources.LabelPath = args[i+1];
+					resources_builder.LabelPath = args[i+1];
 					i++;
 				}
 				else
@@ -178,7 +176,7 @@ namespace DRFCSharp
 			ImageData[] imgs = new ImageData[range];
 			Classification[] cfcs = new Classification[range];
 			int count = 0;
-			
+			ResourceManager resources = resources_builder.Build();
 			Model mfm;
 			if(deserialize_only)
 			{
@@ -193,7 +191,7 @@ namespace DRFCSharp
 					string suffix = prefix +".jpg";
 					ImageData img = resources.UsingBitmap(suffix, bmp => ImageData.FromImage(bmp));
 					//Console.WriteLine (img[0,2].features[2]);
-					Classification cfc = Classification.FromLabeling(resources.LabelPath+prefix+".txt", img.XSites, img.YSites);
+					Classification cfc = Classification.FromLabeling(resources_builder.LabelPath+prefix+".txt", img.XSites, img.YSites);
 					imgs[count] = img;
 					cfcs[count] = cfc;
 					//if (k == 5) Console.WriteLine (SiteFeatureSet.TransformedFeatureVector(img[0,2]));
@@ -227,7 +225,7 @@ namespace DRFCSharp
 					out_classed = mfm.ICMInfer(input);
 				}
 				
-				outpath = resources.ImgPath+"predicted"+i.ToString("D3")+".txt";
+				outpath = resources_builder.ImgPath+"predicted"+i.ToString("D3")+".txt";
 				
 				StreamWriter sw = new StreamWriter(outpath);
 				sw.Write(out_classed.ToString());
