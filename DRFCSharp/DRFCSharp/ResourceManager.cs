@@ -7,7 +7,7 @@ namespace DRFCSharp
 	{
 		public string ImgPath { get; private set; }
 		public string LabelPath { get; private set; }
-		private static string feature_test_path = string.Format("{0}../../../../TestImages/",AppDomain.CurrentDomain.BaseDirectory);
+		private static string feature_test_path = string.Format("{0}/../../../../TestImages/",AppDomain.CurrentDomain.BaseDirectory); //Added first forward slash to make it work on linux.
 		public ResourceManager(string img_path, string label_path)
 		{
 			ImgPath = img_path;
