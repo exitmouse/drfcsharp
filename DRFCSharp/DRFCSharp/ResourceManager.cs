@@ -5,29 +5,13 @@ namespace DRFCSharp
 {
 	public sealed class ResourceManager
 	{
-		private string img_path = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
-		private string label_path = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
-		public string ImgPath {
-			get{
-				return img_path;
-			}
-			set{
-				img_path = value;
-			}
-		}
-		public string LabelPath {
-			get{
-				return label_path;
-			}
-			set{
-				label_path = value;
-			}
-		}
+		public string ImgPath { get; private set; }
+		public string LabelPath { get; private set; }
 		private static string feature_test_path = string.Format("{0}../../../../TestImages/",AppDomain.CurrentDomain.BaseDirectory);
-		public ResourceManager()
+		public ResourceManager(string img_path, string label_path)
 		{
-			img_path = "";
-			label_path = "";
+			ImgPath = img_path;
+			LabelPath = label_path;
 		}
 		public static T UsingTestingBitmap<T>(string name, Func<Bitmap,T> block)
 		{
@@ -38,7 +22,7 @@ namespace DRFCSharp
 		}
 		public T UsingBitmap<T>(string name, Func<Bitmap,T> block)
 		{
-			using (Bitmap bmp = new Bitmap(img_path + name))
+			using (Bitmap bmp = new Bitmap(ImgPath + name))
 			{
 				return block(bmp);
 			}
