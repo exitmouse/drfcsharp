@@ -25,6 +25,11 @@ namespace DRFCSharp
 			else return false;
 		}
 
+        public override int GetHashCode()
+        {
+            return Features.GetHashCode();
+        }
+
 		public override string ToString()
 		{
 			return string.Format("[SiteFeatureSet: Features={0}]", Features);

@@ -73,6 +73,16 @@ namespace DRFCSharp
 			return (StartX == other.StartX) && (StartY == other.StartY) && (Width == other.Width) && (Height == other.Height);
 		}
 
+        public override int GetHashCode()
+        {
+            int hash = 13;
+            hash = (hash * 7) + StartX.GetHashCode();
+            hash = (hash * 7) + StartY.GetHashCode();
+            hash = (hash * 7) + Width.GetHashCode();
+            hash = (hash * 7) + Height.GetHashCode();
+            return hash;
+        }
+
 		public override string ToString()
 		{
 			return string.Format("[Window: StartX={0}, StartY={1}, EndX={2}, EndY={3}, Width={4}, Height={5}, Area={6}]", StartX, StartY, EndX, EndY, Width, Height, Area);

@@ -31,7 +31,7 @@ namespace DRFCSharp
 			for(int x = 0; x < test_input.XSites; x++) for(int y = 0; y < test_input.YSites; y++)
 			{
 				double modeled_prob_of_one = MathWrapper.Sigma(W.DotProduct(Transformer.Transform(test_input[x,y])));
-				double prob_one = ((double)OnsSeen)/((double) SitesSeen);
+				//double prob_one = ((double)OnsSeen)/((double) SitesSeen);
 				//double prob_zero = 1d - prob_one;
 				double lambda = MathWrapper.Log(modeled_prob_of_one) - MathWrapper.Log (1 - modeled_prob_of_one)/* + MathWrapper.Log (prob_one/prob_zero)*/;
 				if(lambda > 0)
