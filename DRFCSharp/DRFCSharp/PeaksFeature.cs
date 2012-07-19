@@ -18,6 +18,12 @@ namespace DRFCSharp
 				return Windower.NumScales - 1;
 			}
 		}
+
+        public string Name(int idx)
+        {
+            return string.Format("PeaksFeature [Scale: {0}-{1}]", idx, idx+1);
+        }
+
 		public List<double> Calculate(Bitmap bmp, int x, int y)
 		{
 			int[] intra_scale_peaks = new int[Windower.NumScales];

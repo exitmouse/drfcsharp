@@ -1,16 +1,32 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace DRFCSharp
 {
+    //Immutable
 	public class SiteFeatureSet
 	{
 		public DenseVector Features{ get; private set; }
-		public SiteFeatureSet (DenseVector features)
+        private FeatureSet _feature_set;
+        public SiteFeatureSet (double[] features, FeatureSet feature_set)
+        {
+            Features = features;
+            _feature_set = feature_set;
+            //TODO: Assert _feature_set.Length == Features.Count
+        }
+		public SiteFeatureSet (List<double> features, FeatureSet feature_set)
 		{
-			this.Features = features;
+            Features = GetDenseVector(features);
+            _feature_set = feature_set;
 		}
+
+        private static DenseVector GetDenseVector(List<double> features)
+        {
+            double[] features_arr = features.ToArray();
+            return new DenseVector(features_arr);
+        }
 		
 		public double[] ToArray(){
 			return Features.ToArray();
@@ -32,18 +48,7 @@ namespace DRFCSharp
 
 		public override string ToString()
 		{
-			return string.Format("[SiteFeatureSet: Features={0}]", Features);
-		}
-
-		public static void Init(SiteFeatureSet[,] sitesarray, DenseVector init)
-		{
-			for(int i = 0; i < sitesarray.GetLength(0); i++)
-			{
-				for(int j = 0; j < sitesarray.GetLength(1); j++)
-				{
-					sitesarray[i,j] = new SiteFeatureSet((DenseVector)init.Clone());
-				}
-			}
+			return string.Format("[SiteFeatureSet: {0}]", _feature_set.StringFeatures(Features));
 		}
 	}
 }

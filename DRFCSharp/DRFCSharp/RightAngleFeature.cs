@@ -14,6 +14,11 @@ namespace DRFCSharp
 				return Windower.NumScales;
 			}
 		}
+
+        public string Name(int idx)
+        {
+            return string.Format("RightAngleFeature [NumPeaks: {0}, Scale: {1}]", NumPeaks, idx);
+        }
 		public RightAngleFeature(HogsMaker sh, FeatureApplicationScheme windower, int num_peaks)
 		{
 			SharedHogs = sh;

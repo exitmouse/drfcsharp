@@ -32,8 +32,8 @@ namespace DRFCSharp
 		}
 		public static void Main (string[] args)
 		{
-			string params_in = "";
-			string params_out = "";
+			string saved_model_path = "";
+			string write_model_path = "";
 			string test_image_name = "";
 			ResourceManagerBuilder resources_builder = new ResourceManagerBuilder();
 			string outpath = "";
@@ -65,12 +65,12 @@ namespace DRFCSharp
 				}
 				else if(args[i] == "-l" || args[i] == "--loadtraining")
 				{
-					params_in = args[i+1];
+					saved_model_path = args[i+1];
 					i++;
 				}
 				else if(args[i] == "-s" || args[i] == "--savetraining")
 				{
-					params_out = args[i+1];
+					write_model_path = args[i+1];
 					i++;
 				}
 				else if(args[i] == "-i" || args[i] == "--image")
@@ -146,7 +146,7 @@ namespace DRFCSharp
 					outpath = args[i];
 				}
 			}
-			if(deserialize_only && string.IsNullOrEmpty(params_in))
+			if(deserialize_only && string.IsNullOrEmpty(saved_model_path))
 			{
 				PrintUsage();
 				return;
@@ -160,13 +160,14 @@ namespace DRFCSharp
 			{
 				ImageData test_img = ResourceManager.UsingTestingBitmap(test_image_name, thingy => ImageData.FromImage(thingy));
 				StreamWriter sw = new StreamWriter(outpath);
+                sw.WriteLine("Features at each site:");
 				for(int x = 0; x < test_img.XSites; x++)
 				{
+                    sw.WriteLine("    X: {0}", x);
 					for(int y = 0; y < test_img.YSites; y++)
 					{
-						sw.WriteLine("X: {0}\tY:{1}\t {2}", x, y, test_img[x,y].ToString());
+						sw.WriteLine("        Y: {0}\n            {1}", y, test_img[x,y].ToString());
 					}
-					Console.WriteLine("Wrote column {0}",x);
 				}
 				sw.Close();
 				return;
@@ -180,7 +181,7 @@ namespace DRFCSharp
 			Model mfm;
 			if(deserialize_only)
 			{
-				mfm = ModelBuilder.Deserialize(params_in);
+				mfm = ModelBuilder.Deserialize(saved_model_path);
 			}
 			else
 			{
@@ -198,7 +199,7 @@ namespace DRFCSharp
 					count++;
 				}
 				ModelBuilder mbr = new ModelBuilder(ConcatenateFeatures.INSTANCE, LinearBasis.INSTANCE, tau, 3000, 1d, 1d);
-				mfm = mbr.PseudoLikelihoodTrain(params_in, params_out, imgs,cfcs);
+				mfm = mbr.PseudoLikelihoodTrain(saved_model_path, write_model_path, imgs,cfcs);
 				Console.WriteLine("Model converged! Estimating image ...");
 			}
 			

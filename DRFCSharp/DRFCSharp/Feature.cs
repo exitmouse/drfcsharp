@@ -15,6 +15,7 @@ namespace DRFCSharp
 		/*Even better plan: do as below, but then have a static global cache of HOGs of bitmaps, so you don't recalculate the HOGs.*/
 		List<double> Calculate(Bitmap bmp, int x, int y);
 		int Length{ get; }
+        string Name(int idx);
 	}
 }
 

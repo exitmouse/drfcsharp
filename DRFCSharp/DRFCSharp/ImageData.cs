@@ -79,7 +79,7 @@ namespace DRFCSharp
 			feature_set.AddFeature(peaks);
 			for(int x = 0; x < iws.NumXs; x++) for(int y = 0; y < iws.NumYs; y++)
 			{
-				sitefeatures[x,y] = new SiteFeatureSet(feature_set.ApplyToBitmap(img, x, y));
+				sitefeatures[x,y] = new SiteFeatureSet(feature_set.ApplyToBitmap(img, x, y), feature_set);
 			}
 			return new ImageData(sitefeatures, feature_set.Length);
 		}

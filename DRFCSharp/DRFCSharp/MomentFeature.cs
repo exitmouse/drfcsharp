@@ -14,6 +14,12 @@ namespace DRFCSharp
 				return Windower.NumScales;
 			}
 		}
+
+        public string Name(int idx)
+        {
+            return string.Format("MomentFeature [Moment: {0}, Scale: {1}]", Moment, idx);
+        }
+
 		public MomentFeature(HogsMaker sh, FeatureApplicationScheme windower, int moment)
 		{
 			SharedHogs = sh;

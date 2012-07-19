@@ -12,6 +12,25 @@ namespace DRFCSharp
 				return Windower.NumScales * 3;
 			}
 		}
+        public string Name(int idx)
+        {
+            return string.Format("AverageRGBFeature [Color: {0}, Scale: {1}]", GetColorName(idx % 3), idx/3);
+        }
+        private string GetColorName(int color_idx)
+        {
+            switch(color_idx)
+            {
+                case 0:
+                    return "Red";
+                case 1:
+                    return "Green";
+                case 2:
+                    return "Blue";
+                default:
+                    return "That is not a color.";
+            }
+        }
+
 		public AverageRGBFeature(FeatureApplicationScheme windower)
 		{
 			Windower = windower;

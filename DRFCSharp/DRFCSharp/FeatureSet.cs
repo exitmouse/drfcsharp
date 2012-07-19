@@ -24,6 +24,33 @@ namespace DRFCSharp
 			Length += f.Length;
 		}
 
+        public string StringFeatures(DenseVector dv)
+        {
+            if(dv.Count != Length) throw new ArgumentException();
+            string to_return = "";
+            for(int i = 0; i < Length; i++)
+            {
+                to_return += string.Format("{0}: {1}", GetFeatureName(i), dv[i]);
+                //TODO I just realized this will out-of-bounds error because features have one name and many components of the densevector.
+                //Maybe we should 1) give Features a name method that takes an index
+                //and 2) create a helper method that takes an index into the densevector
+                //and calls the correct index on the correct feature name method
+                if(i < Length - 1) to_return += ", ";
+            }
+            return to_return;
+        }
+
+        private string GetFeatureName(int component_idx)
+        {
+            int feature_idx = 0;
+            while(component_idx >= Features[feature_idx].Length)
+            {
+                component_idx -= Features[feature_idx].Length;
+                feature_idx++;
+            }
+            return Features[feature_idx].Name(component_idx);
+        }
+
 		public DenseVector ApplyToBitmap(Bitmap bmp, int x, int y)
 		{
 			List<double> feature_results = new List<double>();
