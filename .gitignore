@@ -12,3 +12,5 @@ DataLabeler/.project
 DataLabeler/.pydevproject
 Dataset/tmp.jpg
 predicted*.txt
+*.swp
+*~
