@@ -14,3 +14,4 @@ Dataset/tmp.jpg
 predicted*.txt
 *.swp
 *~
+*.vim
