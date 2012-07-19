@@ -1,0 +1,1 @@
+DenseVector array constructor may just keep a reference to the array and not copy it!
