@@ -11,19 +11,12 @@ namespace DRFCSharp
 		public int FeatureCount { get; private set; }
 		public int XSites { get; private set; }
 		public int YSites { get; private set; }
-		public static int Ons_seen = 0;
-		public static int Sites_seen = 0;
-		public static int Images_seen = 0;
-		private static GradientArrayMaker gm = new GradientArrayMaker(0.5d);
-		private static HogsMaker hm = new HogsMaker(gm, 50);
 		private ImageData (SiteFeatureSet[,] site_features, int feature_count)
 		{
 			if(site_features == null) throw new ArgumentNullException("site_features");
 			XSites = site_features.GetLength(0);
 			YSites = site_features.GetLength(1);
 			if(XSites == 0 || YSites == 0) throw new ArgumentException("site_features must not be size zero");
-			if(site_features[0,0] == null) throw new ArgumentException("site_features must be initialized");
-			if(site_features[0,0].Features.Count != feature_count) throw new ArgumentException("wtf"); //TODO remove this or remove the parameter.
 			FeatureCount = feature_count;
 			this.site_features = site_features;
 		}
@@ -33,6 +26,42 @@ namespace DRFCSharp
 				return this.site_features[value1,value2];
 			}
 		}
+
+        public class Factory
+        {
+            public int FeatureCount { get; private set; }
+            public int XSites { get; private set; }
+            public int YSites { get; private set; }
+            public int SitesSeen { get; private set; }
+            public int ImagesSeen { get; private set; }
+            public FeatureSet Features { get; private set; }
+            public Factory (int xsites, int ysites, FeatureSet f)
+            {
+                XSites = xsites;
+                YSites = ysites;
+                if(XSites == 0 || YSites == 0) throw new ArgumentException("site_features must not be size zero");
+                FeatureCount = f.Length;
+                Features = f;
+                SitesSeen = 0;
+                ImagesSeen = 0;
+            }
+            public ImageData FromImage(Bitmap img)
+            {
+                //TODO don't make the sitefeaturesarray! start with an 
+                //empty imagedata object and fill it out.
+                //That way you can verify the length invariants.
+                SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[XSites, YSites];
+                for(int x = 0; x < XSites; x++) for(int y = 0; y < YSites; y++)
+                {
+                    sitefeatures[x,y] = new SiteFeatureSet(feature_set.ApplyToBitmap(img, x, y), feature_set);
+                    //TODO Assert that feature_set.Length == sitefeatures[x,y].Length
+                }
+                SitesSeen += XSites*YSites;
+                ImagesSeen += 1;
+                return new ImageData(sitefeatures, feature_set.Length);
+            }
+        }
+
 		public List<Tuple<int,int>> GetNeighbors(int x, int y)
 		{
 			List<Tuple<int,int>> toReturn = new List<Tuple<int, int>>();
@@ -60,23 +89,9 @@ namespace DRFCSharp
 			toReturn.RemoveAll((t) => IsEarlier(t.Item1,t.Item2,x,y));
 			return toReturn;
 		}
-		public static ImageData FromImage(Bitmap img)
+		public static ImageData FromImage(Bitmap img, ImageWindowScheme iws, FeatureSet feature_set)
 		{
-			ImageWindowScheme iws = new ImageWindowScheme(16, 16, img.Width, img.Height, 3);
-			SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[iws.NumXs, iws.NumYs];
-
-			MomentFeature moment0 = new MomentFeature(hm, iws, 0);
-			MomentFeature moment2 = new MomentFeature(hm, iws, 2);
-			RightAngleFeature right_angles = new RightAngleFeature(hm, iws, 3);
-			AverageRGBFeature avg_rgb = new AverageRGBFeature(iws);
-			PeaksFeature peaks = new PeaksFeature(hm, iws);
-
-			FeatureSet feature_set = new FeatureSet();
-			feature_set.AddFeature(moment0);
-			feature_set.AddFeature(moment2);
-			feature_set.AddFeature(right_angles);
-			feature_set.AddFeature(avg_rgb);
-			feature_set.AddFeature(peaks);
+            SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[iws.NumXs, iws.NumYs];
 			for(int x = 0; x < iws.NumXs; x++) for(int y = 0; y < iws.NumYs; y++)
 			{
 				sitefeatures[x,y] = new SiteFeatureSet(feature_set.ApplyToBitmap(img, x, y), feature_set);
