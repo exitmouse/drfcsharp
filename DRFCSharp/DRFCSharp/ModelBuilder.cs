@@ -228,8 +228,8 @@ namespace DRFCSharp
 					parameter_storage_out = new FileStream(parameter_storage_out_path,FileMode.Create);
 					serializer.Serialize(parameter_storage_out,w);
 					serializer.Serialize(parameter_storage_out,v);
-					serializer.Serialize(parameter_storage_out,ImageData.Ons_seen);
-					serializer.Serialize(parameter_storage_out,ImageData.Sites_seen);
+					/* serializer.Serialize(parameter_storage_out,ImageData.Ons_seen); */
+					/* serializer.Serialize(parameter_storage_out,ImageData.Sites_seen); */
 					parameter_storage_out.Close();
 				}
 				if(newlikelihood - oldlikelihood < LikelihoodConvergence)
@@ -240,7 +240,7 @@ namespace DRFCSharp
 				
 				iter_count++;
 			}
-			return new Model(w,v,iter_count, ImageData.Ons_seen, ImageData.Sites_seen, Crosser, Transformer);
+			return new Model(w,v,iter_count, 0, 10, Crosser, Transformer);
 			
 		}
 		public double PseudoLikelihood(DenseVector wtest, DenseVector vtest, ImageData[] training_inputs, Classification[] training_outputs)
@@ -294,13 +294,13 @@ namespace DRFCSharp
 			SoapFormatter serializer = new SoapFormatter();
 			DenseVector w = (DenseVector)serializer.Deserialize(parameter_storage_in);
 			DenseVector v = (DenseVector)serializer.Deserialize(parameter_storage_in);
-			int Ons_seen = (int)serializer.Deserialize(parameter_storage_in);
-			int Sites_seen = (int)serializer.Deserialize(parameter_storage_in);
+			/* int Ons_seen = (int)serializer.Deserialize(parameter_storage_in); */
+			/* int Sites_seen = (int)serializer.Deserialize(parameter_storage_in); */
 			/*CrossFeatureStrategy crosser = (CrossFeatureStrategy)serializer.Deserialize(parameter_storage_in);
 			TransformFeatureStrategy transformer = (TransformFeatureStrategy)serializer.Deserialize(parameter_storage_in);*/
 			
 			Console.WriteLine("Successfully loaded model from {0}\n", parameter_storage_in_path); 
-			return new Model(w, v, 0, Ons_seen, Sites_seen, ConcatenateFeatures.INSTANCE, LinearBasis.INSTANCE); //HACK TODO: This sucks.
+			return new Model(w, v, 0, 0, 10, ConcatenateFeatures.INSTANCE, LinearBasis.INSTANCE); //HACK TODO: This sucks.
 		}
 	}
 }

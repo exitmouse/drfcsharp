@@ -12,17 +12,31 @@ namespace DRFCSharp
 	{
 		private List<Feature> Features { get; set; }
 		public int Length { get; private set; }
-		public FeatureSet()
+		private FeatureSet(List<Feature> features, int len)
 		{
-			Features = new List<Feature>();
-			Length = 0;
+			Features = features;
+			Length = len;
 		}
 
-		public void AddFeature(Feature f)
-		{
-			Features.Add(f);
-			Length += f.Length;
-		}
+        public class Builder
+        {
+            private List<Feature> Features { get; set; }
+            public int Length { get; private set; }
+            public Builder()
+            {
+            }
+            public Builder AddFeature(Feature f)
+            {
+                Features.Add(f);
+                Length += f.Length;
+                return this;
+            }
+            public FeatureSet Build()
+            {
+                return new FeatureSet(Features, Length);
+                //TODO assert the length was calculated right?
+            }
+        }
 
         public string StringFeatures(DenseVector dv)
         {
@@ -31,10 +45,6 @@ namespace DRFCSharp
             for(int i = 0; i < Length; i++)
             {
                 to_return += string.Format("{0}: {1}", GetFeatureName(i), dv[i]);
-                //TODO I just realized this will out-of-bounds error because features have one name and many components of the densevector.
-                //Maybe we should 1) give Features a name method that takes an index
-                //and 2) create a helper method that takes an index into the densevector
-                //and calls the correct index on the correct feature name method
                 if(i < Length - 1) to_return += ", ";
             }
             return to_return;

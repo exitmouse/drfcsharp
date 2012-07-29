@@ -53,12 +53,12 @@ namespace DRFCSharp
                 SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[XSites, YSites];
                 for(int x = 0; x < XSites; x++) for(int y = 0; y < YSites; y++)
                 {
-                    sitefeatures[x,y] = new SiteFeatureSet(feature_set.ApplyToBitmap(img, x, y), feature_set);
+                    sitefeatures[x,y] = new SiteFeatureSet(Features.ApplyToBitmap(img, x, y), Features);
                     //TODO Assert that feature_set.Length == sitefeatures[x,y].Length
                 }
                 SitesSeen += XSites*YSites;
                 ImagesSeen += 1;
-                return new ImageData(sitefeatures, feature_set.Length);
+                return new ImageData(sitefeatures, Features.Length);
             }
         }
 

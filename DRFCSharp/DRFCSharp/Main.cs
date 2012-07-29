@@ -35,7 +35,7 @@ namespace DRFCSharp
 			string saved_model_path = "";
 			string write_model_path = "";
 			string test_image_name = "";
-			ResourceManagerBuilder resources_builder = new ResourceManagerBuilder();
+			ResourceManager.Builder resources_builder = new ResourceManager.Builder();
 			string outpath = "";
 			bool deserialize_only = false;
 			int image_num = 192;
@@ -155,10 +155,12 @@ namespace DRFCSharp
 			ImageData.y_sites = ysites;
 			Console.WriteLine("{0} X Sites", ImageData.x_sites);
 			Console.WriteLine("{0} Y Sites", ImageData.y_sites);*/
+            FeatureSet feature_set = new FeatureSet.Builder().Build();
+            ImageData.Factory idf = new ImageData.Factory(xsites, ysites, feature_set);
 			
 			if(inference_algorithm == "features")
 			{
-				ImageData test_img = ResourceManager.UsingTestingBitmap(test_image_name, thingy => ImageData.FromImage(thingy));
+				ImageData test_img = ResourceManager.UsingTestingBitmap(test_image_name, thingy => idf.FromImage(thingy));
 				StreamWriter sw = new StreamWriter(outpath);
                 sw.WriteLine("Features at each site:");
 				for(int x = 0; x < test_img.XSites; x++)
@@ -190,7 +192,7 @@ namespace DRFCSharp
 					Console.WriteLine ("Importing "+k.ToString()+"th image");
 					string prefix = k.ToString("D3");
 					string suffix = prefix +".jpg";
-					ImageData img = resources.UsingBitmap(suffix, bmp => ImageData.FromImage(bmp));
+					ImageData img = resources.UsingBitmap(suffix, bmp => idf.FromImage(bmp));
 					//Console.WriteLine (img[0,2].features[2]);
 					Classification cfc = Classification.FromLabeling(resources_builder.LabelPath+prefix+".txt", img.XSites, img.YSites);
 					imgs[count] = img;
@@ -207,7 +209,7 @@ namespace DRFCSharp
 			for (int i = image_num; i <= end_image_num; i++)
 			{
 				string imagename = i.ToString("D3");
-				ImageData input = resources.UsingBitmap(imagename+".jpg", bmp => ImageData.FromImage(bmp));
+				ImageData input = resources.UsingBitmap(imagename+".jpg", bmp => idf.FromImage(bmp));
 				
 				Classification out_classed; //See what I did there?
 				if(inference_algorithm == "logistic")
