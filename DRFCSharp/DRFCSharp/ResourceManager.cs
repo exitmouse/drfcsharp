@@ -11,23 +11,26 @@ namespace DRFCSharp
 
         public class Builder
         {		
-            public string ImgPath { get; set; }
-            public string LabelPath { get; set; }
+            public string ImgPath { get; private set; }
+            public string LabelPath { get; private set; }
             public Builder()
             {
                 ImgPath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
                 LabelPath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
             }
+            public Builder ImgPath(string val) { ImgPath = val; return this; }
+            public Builder LabelPath(string val) { LabelPath = val; return this; }
             public ResourceManager Build(){
-                return new ResourceManager(ImgPath, LabelPath);
+                return new ResourceManager(this);
             }
         }
 
-		public ResourceManager(string img_path, string label_path)
+		private ResourceManager(Builder builder)
 		{
-			ImgPath = img_path;
-			LabelPath = label_path;
+			ImgPath = builder.ImgPath;
+			LabelPath = builder.LabelPath;
 		}
+
 		public static T UsingTestingBitmap<T>(string name, Func<Bitmap,T> block)
 		{
 			using (Bitmap bmp = new Bitmap(feature_test_path + name))

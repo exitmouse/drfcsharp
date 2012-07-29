@@ -12,10 +12,10 @@ namespace DRFCSharp
 	{
 		private List<Feature> Features { get; set; }
 		public int Length { get; private set; }
-		private FeatureSet(List<Feature> features, int len)
+		private FeatureSet(Builder builder)
 		{
-			Features = features;
-			Length = len;
+            Features = builder.Features;
+            Length = builder.Length;
 		}
 
         public class Builder
@@ -33,7 +33,7 @@ namespace DRFCSharp
             }
             public FeatureSet Build()
             {
-                return new FeatureSet(Features, Length);
+                return new FeatureSet(this);
                 //TODO assert the length was calculated right?
             }
         }
