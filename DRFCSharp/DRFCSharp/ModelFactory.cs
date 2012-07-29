@@ -10,7 +10,7 @@ namespace DRFCSharp
 	/// <summary>
 	/// Stores all necessary "hyperparameters" needed to train and thereby build models.
 	/// </summary>
-	public class ModelBuilder
+	public class ModelFactory
 	{
 		public CrossFeatureStrategy Crosser { get; private set; }
 		public TransformFeatureStrategy Transformer { get; private set; }
@@ -18,16 +18,54 @@ namespace DRFCSharp
 		public int MaxIters { get; private set; }
 		public double StartStepLength { get; private set; }
 		public double LikelihoodConvergence { get; private set; }
-		public ModelBuilder(CrossFeatureStrategy crosser, TransformFeatureStrategy transformer, double tau, int max_iters, double start_len, double likelihood_converge)
+		public ModelFactory(Builder builder)
 		{
-			if(tau <= 0) throw new ArgumentException("Tau must be positive");
-			this.Crosser = crosser;
-			this.Transformer = transformer;
-			this.Tau = tau;
-			this.MaxIters = max_iters;
-			this.StartStepLength = start_len;
-			this.LikelihoodConvergence = likelihood_converge;
+			this.Crosser = builder.Crosser;
+			this.Transformer = builder.Transformer;
+			this.Tau = builder.Tau;
+			this.MaxIters = builder.MaxIters;
+			this.StartStepLength = builder.StartStepLength;
+			this.LikelihoodConvergence = builder.LikelihoodConvergence;
 		}
+
+        public class Builder
+        {
+            public CrossFeatureStrategy Crosser { get; private set; }
+            public TransformFeatureStrategy Transformer { get; private set; }
+            public double Tau { get; private set; }
+            public int MaxIters { get; private set; }
+            public double StartStepLength { get; private set; }
+            public double LikelihoodConvergence { get; private set; }
+
+            public Builder(){
+                Crosser = ConcatenateFeatures.INSTANCE;
+                Transformer = LinearBasis.INSTANCE;
+                Tau = 0.0001d;
+                MaxIters = 3000;
+                StartStepLength = 1d;
+                LikelihoodConvergence = 1d;
+            }
+            
+            public Builder Crosser(CrossFeatureStrategy val) { Crosser = val; return this; }
+            
+            public Builder Transformer(TransformFeatureStrategy val) { Transformer = val; return this; }
+
+            public Builder Tau(double val)
+            { 
+                if(val <= 0) throw new ArgumentException("Tau must be positive");
+                Tau = val; 
+                return this; 
+            }
+
+            public Builder MaxIters(int val) { MaxIters = val; return this; }
+
+            public Builder StartStepLength(double val) { StartStepLength = val; return this; }
+
+            public Builder LikelihoodConvergence(double val) { LikelihoodConvergence = val; return this; }
+
+            public ModelFactory Build() { return new ModelFactory(this); }
+        }
+
 		public Model PseudoLikelihoodTrain(string params_in, string params_out, ImageData[] training_inputs, Classification[] training_outputs)
 		{
 			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
