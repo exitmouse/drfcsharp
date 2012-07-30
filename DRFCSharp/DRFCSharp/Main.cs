@@ -36,11 +36,11 @@ namespace DRFCSharp
 			string write_model_path = "";
 			string test_image_name = "";
 			ResourceManager.Builder resources_builder = new ResourceManager.Builder();
+            ModelFactory.Builder mfb = new ModelFactory.Builder();
 			string outpath = "";
 			bool deserialize_only = false;
 			int image_num = 192;
 			int end_image_num = -1; // infer between image_num and this inclusive, -1 indicates a single image rather than a range
-			double tau = 0.0001d;
 			int range = 80;
 			int xsites = 24;
 			int ysites = 16;
@@ -120,11 +120,13 @@ namespace DRFCSharp
 				}
 				else if(args[i] == "-t" || args[i] == "--tau")
 				{
+                    double tau;
 					if(!double.TryParse(args[i+1], out tau))
 					{
 						PrintUsage();
 						return;
 					}
+                    mfb.SetTau(tau);
 					i++;
 				}
 				else if(args[i] == "-n" || args[i] == "--notraining")
@@ -133,12 +135,12 @@ namespace DRFCSharp
 				}
 				else if(args[i] == "--imgdir")
 				{
-					resources_builder.ImgPath = args[i+1];
+					resources_builder.SetImgPath(args[i+1]);
 					i++;
 				}
 				else if(args[i] == "--labeldir")
 				{
-					resources_builder.LabelPath = args[i+1];
+					resources_builder.SetLabelPath(args[i+1]);
 					i++;
 				}
 				else
@@ -183,7 +185,7 @@ namespace DRFCSharp
 			Model mfm;
 			if(deserialize_only)
 			{
-				mfm = ModelBuilder.Deserialize(saved_model_path);
+				mfm = ModelFactory.Deserialize(saved_model_path);
 			}
 			else
 			{
@@ -200,8 +202,8 @@ namespace DRFCSharp
 					//if (k == 5) Console.WriteLine (SiteFeatureSet.TransformedFeatureVector(img[0,2]));
 					count++;
 				}
-				ModelBuilder mbr = new ModelBuilder(ConcatenateFeatures.INSTANCE, LinearBasis.INSTANCE, tau, 3000, 1d, 1d);
-				mfm = mbr.PseudoLikelihoodTrain(saved_model_path, write_model_path, imgs,cfcs);
+				ModelFactory model_factory = mfb.Build();
+				mfm = model_factory.PseudoLikelihoodTrain(saved_model_path, write_model_path, imgs,cfcs);
 				Console.WriteLine("Model converged! Estimating image ...");
 			}
 			
