@@ -25,6 +25,7 @@ namespace DRFCSharp
             public Builder()
             {
                 Features = new List<Feature>();
+                Length = 0;
             }
             public Builder AddFeature(Feature f)
             {
