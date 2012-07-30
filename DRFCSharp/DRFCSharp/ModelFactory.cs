@@ -46,22 +46,22 @@ namespace DRFCSharp
                 LikelihoodConvergence = 1d;
             }
             
-            public Builder Crosser(CrossFeatureStrategy val) { Crosser = val; return this; }
+            public Builder SetCrosser(CrossFeatureStrategy val) { Crosser = val; return this; }
             
-            public Builder Transformer(TransformFeatureStrategy val) { Transformer = val; return this; }
+            public Builder SetTransformer(TransformFeatureStrategy val) { Transformer = val; return this; }
 
-            public Builder Tau(double val)
+            public Builder SetTau(double val)
             { 
                 if(val <= 0) throw new ArgumentException("Tau must be positive");
                 Tau = val; 
                 return this; 
             }
 
-            public Builder MaxIters(int val) { MaxIters = val; return this; }
+            public Builder SetMaxIters(int val) { MaxIters = val; return this; }
 
-            public Builder StartStepLength(double val) { StartStepLength = val; return this; }
+            public Builder SetStartStepLength(double val) { StartStepLength = val; return this; }
 
-            public Builder LikelihoodConvergence(double val) { LikelihoodConvergence = val; return this; }
+            public Builder SetLikelihoodConvergence(double val) { LikelihoodConvergence = val; return this; }
 
             public ModelFactory Build() { return new ModelFactory(this); }
         }

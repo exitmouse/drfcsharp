@@ -20,7 +20,7 @@ namespace DRFCSharp
 
         public class Builder
         {
-            private List<Feature> Features { get; set; }
+            public List<Feature> Features { get; private set; }
             public int Length { get; private set; }
             public Builder()
             {

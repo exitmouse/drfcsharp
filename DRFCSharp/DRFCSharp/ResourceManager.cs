@@ -18,8 +18,8 @@ namespace DRFCSharp
                 ImgPath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
                 LabelPath = string.Format("{0}../../../../Dataset/",AppDomain.CurrentDomain.BaseDirectory);
             }
-            public Builder ImgPath(string val) { ImgPath = val; return this; }
-            public Builder LabelPath(string val) { LabelPath = val; return this; }
+            public Builder SetImgPath(string val) { ImgPath = val; return this; }
+            public Builder SetLabelPath(string val) { LabelPath = val; return this; }
             public ResourceManager Build(){
                 return new ResourceManager(this);
             }
