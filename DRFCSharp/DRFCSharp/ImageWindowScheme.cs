@@ -10,12 +10,12 @@ namespace DRFCSharp
 		public int ImageWidth { get; private set; }
 		public int ImageHeight { get; private set; }
 		public int NumScales { get; private set; }
-		public int NumXs {
+		public int XSites {
 			get{
 				return ((ImageWidth-1)/WindowWidth)+1; //TODO Unit test this
 			}
 		}
-		public int NumYs {
+		public int YSites {
 			get{
 				return ((ImageHeight-1)/WindowHeight)+1;
 			}

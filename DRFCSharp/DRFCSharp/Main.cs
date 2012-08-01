@@ -14,7 +14,6 @@ namespace DRFCSharp
 				"\n printed to a csv file." +
 				"\n Usage: DRFCSharp [logistic | ICM | MAP | features <filename>] outfile" +
 				"\n Options:" +
-				"\n --xsites, --ysites: Set the number of x and y sites in the images. Defaults to 24 and 16 respectively" +
 				"\n -n/--notraining: Skips training step" +
 				"\n -l/--load <load_training_from_here>: Loads training from a file" +
 				"\n -s/--save <save_training_here>: Saves training to a file" +
@@ -42,8 +41,6 @@ namespace DRFCSharp
 			int image_num = 192;
 			int end_image_num = -1; // infer between image_num and this inclusive, -1 indicates a single image rather than a range
 			int range = 80;
-			int xsites = 24;
-			int ysites = 16;
 			
 			if(args.Length < 1)
 			{
@@ -100,24 +97,6 @@ namespace DRFCSharp
 					}
 					i++;
 				}
-				else if(args[i] == "-x" || args[i] == "--xsites")
-				{
-					if(!Int32.TryParse(args[i+1], out xsites) || xsites < 1)
-					{
-						PrintUsage();
-						return;
-					}
-					i++;
-				}
-				else if(args[i] == "-y" || args[i] == "--ysites")
-				{
-					if(!Int32.TryParse(args[i+1], out ysites) || ysites < 1)
-					{
-						PrintUsage();
-						return;
-					}
-					i++;
-				}
 				else if(args[i] == "-t" || args[i] == "--tau")
 				{
                     double tau;
@@ -157,8 +136,11 @@ namespace DRFCSharp
 			ImageData.y_sites = ysites;
 			Console.WriteLine("{0} X Sites", ImageData.x_sites);
 			Console.WriteLine("{0} Y Sites", ImageData.y_sites);*/
-            FeatureSet feature_set = new FeatureSet.Builder().Build();
-            ImageData.Factory idf = new ImageData.Factory(xsites, ysites, feature_set);
+            ImageWindowScheme iws = new ImageWindowScheme(16, 16, 256, 256, 3);
+            FeatureSet.Builder feature_set_builder = new FeatureSet.Builder();
+            feature_set_builder.AddFeature(new AverageRGBFeature(iws));
+            FeatureSet feature_set = feature_set_builder.Build();
+            ImageData.Factory idf = new ImageData.Factory(iws.XSites, iws.YSites, feature_set);
 			
 			if(inference_algorithm == "features")
 			{

@@ -91,8 +91,8 @@ namespace DRFCSharp
 		}
 		public static ImageData FromImage(Bitmap img, ImageWindowScheme iws, FeatureSet feature_set)
 		{
-            SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[iws.NumXs, iws.NumYs];
-			for(int x = 0; x < iws.NumXs; x++) for(int y = 0; y < iws.NumYs; y++)
+            SiteFeatureSet[,] sitefeatures = new SiteFeatureSet[iws.XSites, iws.YSites];
+			for(int x = 0; x < iws.XSites; x++) for(int y = 0; y < iws.YSites; y++)
 			{
 				sitefeatures[x,y] = new SiteFeatureSet(feature_set.ApplyToBitmap(img, x, y), feature_set);
 			}
