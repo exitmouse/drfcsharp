@@ -15,3 +15,5 @@ predicted*.txt
 *.swp
 *~
 *.vim
+*.dll
+*.mdb
