@@ -17,15 +17,18 @@ namespace DRFCSharp
             public string TrainingImgPath { get; private set; }
 			public string TestImgPath { get; private set; }
             public string CSVPath { get; private set; }
+            public string OutputCSVPath { get; private set; }
             public Builder()
             {
                 TrainingImgPath = string.Format("{0}../../../../Dataset/TrainingImages/",AppDomain.CurrentDomain.BaseDirectory);
 				TestImgPath = string.Format ("{0}../../../../Dataset/TestImages/",AppDomain.CurrentDomain.BaseDirectory);
                 CSVPath = string.Format("{0}../../../../Dataset/CSVs/",AppDomain.CurrentDomain.BaseDirectory);
+                OutputCSVPath = string.Format("{0}../../../../Dataset/OutputCSVs/",AppDomain.CurrentDomain.BaseDirectory);
             }
             public Builder SetTrainingImgPath(string val) { TrainingImgPath = val; return this; }
 			public Builder SetTestImgPath(string val) { TestImgPath = val; return this; }
             public Builder SetCSVPath(string val) { CSVPath = val; return this; }
+            public Builder SetOutputCSVPath(string val) { OutputCSVPath = val; return this; }
             public ResourceManager Build(){
                 return new ResourceManager(this);
             }
@@ -36,6 +39,7 @@ namespace DRFCSharp
 			TrainingImgPath = builder.TrainingImgPath;
 			TestImgPath = builder.TestImgPath;
 			CSVPath = builder.CSVPath;
+            OutputCSVPath = builder.OutputCSVPath;
 		}
 
 		public static T UsingDebugBitmap<T>(string name, Func<Bitmap,T> block)
@@ -52,6 +56,14 @@ namespace DRFCSharp
 				return block(bmp);
 			}
 		}
+        
+        public void UsingOutputCSV(string name, Action<StreamWriter> block)
+        {
+            using (StreamWriter sw = new StreamWriter(OutputCSVPath + name))
+            {
+                block(sw);
+            }
+        }
         
         public List<T> EachTrainingImage<T>(Func<Bitmap,T> block)
         {

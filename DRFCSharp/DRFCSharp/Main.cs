@@ -38,35 +38,30 @@ namespace DRFCSharp
             mfm = model_factory.PseudoLikelihoodTrain(saved_model_path, write_model_path, imgs,cfcs);
             Console.WriteLine("Model converged! Estimating image ...");
 
-            end_image_num = Math.Max(end_image_num, image_num);
-            for (int i = image_num; i <= end_image_num; i++)
+            string imagename = 192.ToString("D3"); //I still like 192
+            ImageData input = resources.UsingBitmap(imagename+".jpg", bmp => idf.FromImage(bmp));
+
+            Classification out_classed; //See what I did there?
+            string inference_algorithm = "logistic";
+            if(inference_algorithm == "logistic")
             {
-                string imagename = i.ToString("D3");
-                ImageData input = resources.UsingBitmap(imagename+".jpg", bmp => idf.FromImage(bmp));
-
-                Classification out_classed; //See what I did there?
-                if(inference_algorithm == "logistic")
-                {
-                    Console.WriteLine("Inferring with Logistic classifier...");
-                    out_classed = mfm.LogisticInfer(input);
-                }
-                else if (inference_algorithm == "map")
-                {
-                    Console.WriteLine("Inferring with MAP classifier...");
-                    out_classed = mfm.MaximumAPosterioriInfer(input);
-                }
-                else
-                {
-                    Console.WriteLine("Inferring with ICM classifier...");
-                    out_classed = mfm.ICMInfer(input);
-                }
-
-                outpath = resources_builder.ImgPath+"predicted"+i.ToString("D3")+".txt";
-
-                StreamWriter sw = new StreamWriter(outpath);
-                sw.Write(out_classed.ToString());
-                sw.Close();
+                Console.WriteLine("Inferring with Logistic classifier...");
+                out_classed = mfm.LogisticInfer(input);
             }
+            else if (inference_algorithm == "map")
+            {
+                Console.WriteLine("Inferring with MAP classifier...");
+                out_classed = mfm.MaximumAPosterioriInfer(input);
+            }
+            else
+            {
+                Console.WriteLine("Inferring with ICM classifier...");
+                out_classed = mfm.ICMInfer(input);
+            }
+
+            resources.UsingOutputCSV("192.txt", (sw) => {
+                    sw.Write(out_classed.ToString());
+                    });
         }
     }
 }
