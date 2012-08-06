@@ -68,7 +68,7 @@ namespace DRFCSharp
 
 		public Model PseudoLikelihoodTrain(string params_in, string params_out, List<ImageData> training_inputs, List<Classification> training_outputs)
 		{
-			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
+			if(training_inputs.Count != training_outputs.Count) throw new ArgumentException("Different number of training inputs and outputs");
 
 			//TODO: Assert that these are all the same across the entire ImageData array--do it by having a class that's a wrapper around ImageData[]s and
 			//one that's a wrapper around Classification[]s.
@@ -103,7 +103,7 @@ namespace DRFCSharp
 				//Compute gradients
 				for(int k = 0; k < wgrad.Count; k++)
 				{
-					for(int m = 0; m < training_inputs.Length; m++)
+					for(int m = 0; m < training_inputs.Count; m++)
 					{
 						for(int horz = 0; horz < training_inputs[m].XSites; horz++)
 						{
@@ -165,7 +165,7 @@ namespace DRFCSharp
 				}
 				for(int k = 0; k < vgrad.Count; k++)
 				{
-					for(int m = 0; m < training_inputs.Length; m++)
+					for(int m = 0; m < training_inputs.Count; m++)
 					{
 						for(int horz = 0; horz < training_inputs[m].XSites; horz++)
 						{
@@ -281,10 +281,10 @@ namespace DRFCSharp
 			return new Model(w,v,iter_count, 0, 10, Crosser, Transformer);
 			
 		}
-		public double PseudoLikelihood(DenseVector wtest, DenseVector vtest, ImageData[] training_inputs, Classification[] training_outputs)
+		public double PseudoLikelihood(DenseVector wtest, DenseVector vtest, List<ImageData> training_inputs, List<Classification> training_outputs)
 		{
 			double first_term = 0;
-			for(int m = 0; m < training_inputs.Length; m++)
+			for(int m = 0; m < training_inputs.Count; m++)
 			{
 				for(int horz = 0; horz < training_inputs[m].XSites; horz++)
 				{

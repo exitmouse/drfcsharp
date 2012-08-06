@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Drawing;
 using MathNet.Numerics.LinearAlgebra.Double;
 using NDesk.Options;
@@ -27,7 +28,7 @@ namespace DRFCSharp
             ModelFactory model_factory = mfb.Build();
 
             Console.WriteLine("Importing ImageDatas:");
-            List<ImageData> imgs = resources.EachImage((Bitmap bmp) => {
+            List<ImageData> images = resources.EachTrainingImage((Bitmap bmp) => {
                     return idf.FromImage(bmp);
                     });
             Console.WriteLine("Importing Classifications:");
@@ -35,11 +36,11 @@ namespace DRFCSharp
                     return Classification.FromLabeling(csv, iws.XSites, iws.YSites);
                     });
 
-            mfm = model_factory.PseudoLikelihoodTrain(saved_model_path, write_model_path, imgs,cfcs);
+            Model mfm = model_factory.PseudoLikelihoodTrain("", "", images,classifications);
             Console.WriteLine("Model converged! Estimating image ...");
 
             string imagename = 192.ToString("D3"); //I still like 192
-            ImageData input = resources.UsingBitmap(imagename+".jpg", bmp => idf.FromImage(bmp));
+            ImageData input = resources.UsingTrainingBitmap(imagename+".jpg", bmp => idf.FromImage(bmp));
 
             Classification out_classed; //See what I did there?
             string inference_algorithm = "logistic";

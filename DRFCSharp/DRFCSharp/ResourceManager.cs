@@ -10,6 +10,7 @@ namespace DRFCSharp
 		public string TrainingImgPath { get; private set; }
 		public string TestImgPath { get; private set; }
 		public string CSVPath { get; private set; }
+        public string OutputCSVPath { get; private set; }
 		private static string feature_debug_path = string.Format("{0}/../../../../TestImages/",AppDomain.CurrentDomain.BaseDirectory); //Added first forward slash to make it work on linux.
 
         public class Builder
@@ -73,7 +74,7 @@ namespace DRFCSharp
                 Console.WriteLine(path);
                 using (Bitmap bmp = new Bitmap(path))
                 {
-                    result.Append(block(bmp));
+                    result.Add(block(bmp));
                 }
             }
             return result;
@@ -87,7 +88,7 @@ namespace DRFCSharp
                 Console.WriteLine(path);
 				using (Bitmap bmp = new Bitmap(path))
 				{
-					result.Append(block(bmp));
+					result.Add(block(bmp));
 				}
 			}
 			return result;
@@ -101,7 +102,7 @@ namespace DRFCSharp
                 Console.WriteLine(path);
                 using (StreamReader csvfile = new StreamReader(path))
                 {
-                    result.Append(block(csvfile));
+                    result.Add(block(csvfile));
                 }
             }
             return result;
