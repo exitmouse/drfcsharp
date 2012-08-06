@@ -66,7 +66,7 @@ namespace DRFCSharp
             public ModelFactory Build() { return new ModelFactory(this); }
         }
 
-		public Model PseudoLikelihoodTrain(string params_in, string params_out, ImageData[] training_inputs, Classification[] training_outputs)
+		public Model PseudoLikelihoodTrain(string params_in, string params_out, List<ImageData> training_inputs, List<Classification> training_outputs)
 		{
 			if(training_inputs.Length != training_outputs.Length) throw new ArgumentException("Different number of training inputs and outputs");
 
