@@ -16,9 +16,10 @@ namespace DRFCSharp
             ResourceManager resources = resources_builder.Build();
 
             ImageWindowScheme iws = new ImageWindowScheme(16, 16, 256, 256, 3);
-
+            GradientArrayMaker gm = new GradientArrayMaker(0.5);
+            HogsMaker hm = new HogsMaker(gm, 50);
             FeatureSet.Builder feature_set_builder = new FeatureSet.Builder();
-            feature_set_builder.AddFeature(new AverageRGBFeature(iws));
+            feature_set_builder.AddFeature(new MomentFeature(hm, iws, 2));
             FeatureSet feature_set = feature_set_builder.Build();
 
             ImageData.Factory idf = new ImageData.Factory(iws.XSites, iws.YSites, feature_set);
@@ -32,7 +33,7 @@ namespace DRFCSharp
                     return idf.FromImage(bmp);
                     });
             Console.WriteLine("Importing Classifications:");
-            List<Classification> classifications = resources.EachCSV((StreamReader csv) => {
+            List<Classification> classifications = resources.EachTrainingCSV((StreamReader csv) => {
                     return Classification.FromLabeling(csv, iws.XSites, iws.YSites);
                     });
 

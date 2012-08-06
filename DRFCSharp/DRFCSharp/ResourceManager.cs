@@ -9,7 +9,8 @@ namespace DRFCSharp
 	{
 		public string TrainingImgPath { get; private set; }
 		public string TestImgPath { get; private set; }
-		public string CSVPath { get; private set; }
+		public string TrainingCSVPath { get; private set; }
+        public string TestCSVPath { get; private set; }
         public string OutputCSVPath { get; private set; }
 		private static string feature_debug_path = string.Format("{0}/../../../../TestImages/",AppDomain.CurrentDomain.BaseDirectory); //Added first forward slash to make it work on linux.
 
@@ -17,18 +18,21 @@ namespace DRFCSharp
         {		
             public string TrainingImgPath { get; private set; }
 			public string TestImgPath { get; private set; }
-            public string CSVPath { get; private set; }
+            public string TrainingCSVPath { get; private set; }
+            public string TestCSVPath { get; private set; }
             public string OutputCSVPath { get; private set; }
             public Builder()
             {
                 TrainingImgPath = string.Format("{0}../../../../Dataset/TrainingImages/",AppDomain.CurrentDomain.BaseDirectory);
 				TestImgPath = string.Format ("{0}../../../../Dataset/TestImages/",AppDomain.CurrentDomain.BaseDirectory);
-                CSVPath = string.Format("{0}../../../../Dataset/CSVs/",AppDomain.CurrentDomain.BaseDirectory);
+                TrainingCSVPath = string.Format("{0}../../../../Dataset/TrainingCSVs/",AppDomain.CurrentDomain.BaseDirectory);
+                TestCSVPath = string.Format("{0}../../../../Dataset/TestCSVs/",AppDomain.CurrentDomain.BaseDirectory);
                 OutputCSVPath = string.Format("{0}../../../../Dataset/OutputCSVs/",AppDomain.CurrentDomain.BaseDirectory);
             }
             public Builder SetTrainingImgPath(string val) { TrainingImgPath = val; return this; }
 			public Builder SetTestImgPath(string val) { TestImgPath = val; return this; }
-            public Builder SetCSVPath(string val) { CSVPath = val; return this; }
+            public Builder SetTrainingCSVPath(string val) { TrainingCSVPath = val; return this; }
+            public Builder SetTestCSVPath(string val) { TestCSVPath = val; return this; }
             public Builder SetOutputCSVPath(string val) { OutputCSVPath = val; return this; }
             public ResourceManager Build(){
                 return new ResourceManager(this);
@@ -39,7 +43,8 @@ namespace DRFCSharp
 		{
 			TrainingImgPath = builder.TrainingImgPath;
 			TestImgPath = builder.TestImgPath;
-			CSVPath = builder.CSVPath;
+			TrainingCSVPath = builder.TrainingCSVPath;
+            TestCSVPath = builder.TestCSVPath;
             OutputCSVPath = builder.OutputCSVPath;
 		}
 
@@ -94,10 +99,24 @@ namespace DRFCSharp
 			return result;
 		}
 
-        public List<T> EachCSV<T>(Func<StreamReader,T> block)
+        public List<T> EachTrainingCSV<T>(Func<StreamReader,T> block)
         {
             List<T> result = new List<T>();
-            foreach(string path in Directory.GetFiles(CSVPath))
+            foreach(string path in Directory.GetFiles(TrainingCSVPath))
+            {
+                Console.WriteLine(path);
+                using (StreamReader csvfile = new StreamReader(path))
+                {
+                    result.Add(block(csvfile));
+                }
+            }
+            return result;
+        }
+
+        public List<T> EachTestCSV<T>(Func<StreamReader,T> block)
+        {
+            List<T> result = new List<T>();
+            foreach(string path in Directory.GetFiles(TestCSVPath))
             {
                 Console.WriteLine(path);
                 using (StreamReader csvfile = new StreamReader(path))
