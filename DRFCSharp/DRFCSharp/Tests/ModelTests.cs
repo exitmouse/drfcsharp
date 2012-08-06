@@ -26,7 +26,7 @@ namespace DRFCSharp
 		[Test]
 		public void ModelTrainingConverges ()
 		{
-			ImageData img = ResourceManager.UsingTestingBitmap("testgrid1px.png", (bmp) => {
+			ImageData img = ResourceManager.UsingDebugBitmap("testgrid1px.png", (bmp) => {
 				return ImageData.FromImage(bmp);
 			});
 			Label[,] labels = new Label[img.XSites,img.YSites];
@@ -38,7 +38,7 @@ namespace DRFCSharp
 		[Test]
 		public void CanClassify ()
 		{
-			ImageData img = ResourceManager.UsingTestingBitmap("testgrid1px.png", (bmp) => {
+			ImageData img = ResourceManager.UsingDebugBitmap("testgrid1px.png", (bmp) => {
 				return ImageData.FromImage(bmp);
 			});
 			Label[,] labels = new Label[img.XSites,img.YSites];

@@ -25,7 +25,7 @@ namespace DRFCSharp
 		public void NumPeaksLargerThanNumOrientationsTest()
 		{
 			RightAngleFeature raftoobig = new RightAngleFeature(hm2, iws, 60);
-			List<double> result = ResourceManager.UsingTestingBitmap("testgrid1px.png", (bmp) => {
+			List<double> result = ResourceManager.UsingDebugBitmap("testgrid1px.png", (bmp) => {
 				return raftoobig.Calculate(bmp, 6, 6);
 			});
 			Assert.AreEqual(raftoobig.Length, result.Count);

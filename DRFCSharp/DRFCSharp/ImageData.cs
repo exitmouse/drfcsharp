@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Text;
 using System.Collections.Generic;
 using MathNet.Numerics.LinearAlgebra.Double;
 
@@ -26,6 +27,21 @@ namespace DRFCSharp
 				return this.site_features[value1,value2];
 			}
 		}
+
+        public override string ToString()
+        {
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine ("[ImageData XSites: {0}, YSites: {1}, FeatureCount: {2}]", XSites, YSites, FeatureCount);
+            for(int x = 0; x < XSites; x++)
+            {
+                sb.AppendLine("    X: {0}", x);
+                for(int y = 0; y < YSites; y++)
+                {
+                            sb.AppendLine("        Y: {0}\n            {1}", y, test_img[x,y].ToString());
+                }
+            }
+			return sb.ToString();
+        }
 
         public class Factory
         {

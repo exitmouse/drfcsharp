@@ -24,7 +24,7 @@ namespace DRFCSharp
 		[Test]
 		public void PeaksLengthTest()
 		{
-			List<double> result = ResourceManager.UsingTestingBitmap("testgrid1px.png", (bmp) => {
+			List<double> result = ResourceManager.UsingDebugBitmap("testgrid1px.png", (bmp) => {
 				return pf50.Calculate(bmp, 6, 6);
 			});
 			Assert.AreEqual(pf50.Length, result.Count);

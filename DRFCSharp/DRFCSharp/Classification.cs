@@ -52,26 +52,22 @@ namespace DRFCSharp
 			}
 			return sb.ToString();
 		}
-		public static Classification FromLabeling(string filename, int x_sites, int y_sites)
+		public static Classification FromLabeling(StreamReader csvfile, int x_sites, int y_sites)
 		{
 			Label[,] labels = new Label[x_sites, y_sites];
-			using(StreamReader csvfile = new StreamReader(filename))
-			{
-
-				for(int col = 0; col < y_sites; col++)
-				{
-					string line = csvfile.ReadLine();
-					string[] vals = line.Split(',');
-					for(int row = 0; row < x_sites; row++)
-					{
-						int val = Int32.Parse(vals[row]);
-						if(val > 0)
-							labels[row,col] = Label.ON;
-						else
-							labels[row,col] = Label.OFF;
-					}
-				}
-			}
+            for(int col = 0; col < y_sites; col++)
+            {
+                string line = csvfile.ReadLine();
+                string[] vals = line.Split(',');
+                for(int row = 0; row < x_sites; row++)
+                {
+                    int val = Int32.Parse(vals[row]);
+                    if(val > 0)
+                        labels[row,col] = Label.ON;
+                    else
+                        labels[row,col] = Label.OFF;
+                }
+            }
 			return new Classification(labels);
 		}
 	}

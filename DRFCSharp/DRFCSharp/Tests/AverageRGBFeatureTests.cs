@@ -18,7 +18,7 @@ namespace DRFCSharp
 		[Test]
 		public void AverageRGBLengthTest()
 		{
-			List<double> result = ResourceManager.UsingTestingBitmap("testgrid1px.png", (bmp) => {
+			List<double> result = ResourceManager.UsingDebugBitmap("testgrid1px.png", (bmp) => {
 				return a50.Calculate(bmp, 6, 6);
 			});
 			Assert.AreEqual(a50.Length, result.Count);
