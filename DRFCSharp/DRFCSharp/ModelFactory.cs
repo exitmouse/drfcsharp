@@ -152,12 +152,11 @@ namespace DRFCSharp
 
                             //h_i(y):
                             DenseVector h = Transformer.Transform(TrainingInputs[m][horz,vert]);
+                            if(double.IsNaN(h[k])) throw new NotFiniteNumberException();
 
                             //x_i
                             int x = (int)(TrainingOutputs[m][horz,vert])*2 - 1;
-                            double hk = h[k];
 
-                            if(double.IsNaN(hk)) throw new NotFiniteNumberException();
 
                             //sigma term that keeps reappearing
                             double sig = MathWrapper.Sigma(x * W.DotProduct(h));
@@ -277,58 +276,7 @@ namespace DRFCSharp
             }
             return vgrad;
         }
-        //Iterates the model, and returns false if the iteration has converged.
-        private bool Iterate()
-        {
-            if(Iters >= MaxIters) return false;
-            Iters++;
-            
-            DenseVector wgrad = CalculateWGradient();
-            DenseVector vgrad = CalculateVGradient();
-
-            double normwgrad = wgrad.Norm(2d);
-            double normvgrad = vgrad.Norm(2d);
-            double sumofnorms = normwgrad + normvgrad;
-            Console.WriteLine("\t\t\t\t\tL2 Norms Summed: {0}",sumofnorms);
-
-            //Compute best step length
-            double a = StartStepLength;
-            double oldlikelihood = PseudoLikelihood(W,V);
-            double newlikelihood = 0;
-            while(true)
-            {
-                newlikelihood = PseudoLikelihood(W + (DenseVector)wgrad.Multiply(a), V + (DenseVector)vgrad.Multiply(a));
-                if(newlikelihood > oldlikelihood)
-                {
-                    Console.WriteLine ("Likelihood after this step: {0}", newlikelihood);
-                    break;
-                }
-                a = a/2;
-                if(a*sumofnorms < double.Epsilon)
-                {
-                    //Well, we can't go any lower. Numerical error; we should break and quit training.
-                    break;
-                }
-            }
-            //Console.WriteLine ("Step length: {0}",a*sumofnorms);
-            /*if( a*sumofnorms < CONVERGENCE_CONSTANT) //Not quite correct; it should be the sqrt(squared sum of norms), but should be a fine approx.
-              {
-              break;
-              }*/
-            //Step
-            W += (DenseVector)wgrad.Multiply(a);
-            V += (DenseVector)vgrad.Multiply(a);
-
-            if(newlikelihood - oldlikelihood < LikelihoodConvergence)
-            {
-                Console.WriteLine("New likelihood - Old likelihood is {0}; Converged.",newlikelihood-oldlikelihood);
-                return false;
-            }
-
-            return true;
-
-        }
-        public double PseudoLikelihood(DenseVector wtest, DenseVector vtest)
+        private double PseudoLikelihood(DenseVector wtest, DenseVector vtest)
         {
             double first_term = 0;
             for(int m = 0; m < TrainingInputs.Count; m++)
@@ -371,6 +319,52 @@ namespace DRFCSharp
                 }
             }
             return first_term - vtest.DotProduct(vtest)/(2*Math.Pow(Tau,2d));
+        }
+        //Iterates the model, and returns false if the iteration has converged.
+        private bool Iterate()
+        {
+            if(Iters >= MaxIters) return false;
+            Iters++;
+            
+            DenseVector wgrad = CalculateWGradient();
+            DenseVector vgrad = CalculateVGradient();
+
+            double normwgrad = wgrad.Norm(2d);
+            double normvgrad = vgrad.Norm(2d);
+            double sumofnorms = normwgrad + normvgrad;
+            Console.WriteLine("\t\t\t\t\tL2 Norms Summed: {0}",sumofnorms);
+
+            //Compute best step length
+            double a = StartStepLength;
+            double oldlikelihood = PseudoLikelihood(W,V);
+            double newlikelihood = 0;
+            while(true)
+            {
+                newlikelihood = PseudoLikelihood(W + (DenseVector)wgrad.Multiply(a), V + (DenseVector)vgrad.Multiply(a));
+                if(newlikelihood > oldlikelihood)
+                {
+                    Console.WriteLine ("Likelihood after this step: {0}", newlikelihood);
+                    break;
+                }
+                a = a/2;
+                if(a*sumofnorms < double.Epsilon)
+                {
+                    //Well, we can't go any lower. Numerical error; we should break and quit training.
+                    break;
+                }
+            }
+
+            W += (DenseVector)wgrad.Multiply(a);
+            V += (DenseVector)vgrad.Multiply(a);
+
+            if(newlikelihood - oldlikelihood < LikelihoodConvergence)
+            {
+                Console.WriteLine("New likelihood - Old likelihood is {0}; Converged.",newlikelihood-oldlikelihood);
+                return false;
+            }
+
+            return true;
+
         }
     }
 }
