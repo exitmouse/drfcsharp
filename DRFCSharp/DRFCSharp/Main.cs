@@ -24,9 +24,6 @@ namespace DRFCSharp
 
             ImageData.Factory idf = new ImageData.Factory(iws.XSites, iws.YSites, feature_set);
 
-            ModelFactory.Builder mfb = new ModelFactory.Builder();
-            //Set hyperparameters here
-            ModelFactory model_factory = mfb.Build();
 
             Console.WriteLine("Importing ImageDatas:");
             List<ImageData> images = resources.EachTrainingImage((Bitmap bmp) => {
@@ -37,7 +34,10 @@ namespace DRFCSharp
                     return Classification.FromLabeling(csv, iws.XSites, iws.YSites);
                     });
 
-            Model mfm = model_factory.PseudoLikelihoodTrain("", "", images,classifications);
+            ModelFactory.Builder mfb = new ModelFactory.Builder(images, classifications);
+            //Set hyperparameters here
+            ModelFactory model_factory = mfb.Build();
+            Model mfm = model_factory.PseudoLikelihoodTrain();
             Console.WriteLine("Model converged! Estimating image ...");
 
             string imagename = 192.ToString("D3"); //I still like 192

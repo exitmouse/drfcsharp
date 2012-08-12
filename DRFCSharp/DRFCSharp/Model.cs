@@ -15,15 +15,15 @@ namespace DRFCSharp
 		public CrossFeatureStrategy Crosser { get; private set; }
 		public TransformFeatureStrategy Transformer { get; private set; }
 		
-		public Model (DenseVector w, DenseVector v, int iter_count, int ons_seen, int sites_seen, CrossFeatureStrategy crosser, TransformFeatureStrategy transformer)
+		public Model (ModelFactory factory) //TODO make private when ModelFactory nests
 		{
-			this.W = w;
-			this.V = v;
-			this.TimeToConverge = iter_count;
-			this.OnsSeen = ons_seen;
-			this.SitesSeen = sites_seen;
-			this.Crosser = crosser;
-			this.Transformer = transformer;
+			this.W = factory.W;
+			this.V = factory.V;
+			this.TimeToConverge = factory.Iters;
+			this.OnsSeen = 0; //TODO FIXME
+			this.SitesSeen = 10; //TODO FIXME
+			this.Crosser = factory.Crosser;
+			this.Transformer = factory.Transformer;
 		}
 		public Classification LogisticInfer(ImageData test_input)
 		{
