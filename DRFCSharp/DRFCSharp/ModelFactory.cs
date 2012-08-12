@@ -130,20 +130,17 @@ namespace DRFCSharp
             return new Model(this);
         }
 
-
-        //Iterates the model, and returns false if the iteration has converged.
-        private bool Iterate()
+        public Model PseudoLikelihoodTrainAndSave(string path)
         {
-            if(Iters >= MaxIters) return false;
-            Iters++;
-            
+            while(Iterate()) Serialize(path);
+            return new Model(this);
+        }
+
+        private DenseVector CalculateWGradient()
+        {
             DenseVector wgrad = new DenseVector(W.Count);
-            DenseVector vgrad = new DenseVector(V.Count);
+            wgrad.Clear(); //TODO test if this is necessary
 
-            wgrad.Clear(); //TODO test if these are necessary
-            vgrad.Clear();
-
-            //Compute gradients
             for(int k = 0; k < wgrad.Count; k++)
             {
                 for(int m = 0; m < TrainingInputs.Count; m++)
@@ -206,6 +203,13 @@ namespace DRFCSharp
                     }
                 }
             }
+            return wgrad;
+        }
+
+        private DenseVector CalculateVGradient()
+        {
+            DenseVector vgrad = new DenseVector(V.Count);
+            vgrad.Clear(); //TODO test if this is necessary
             for(int k = 0; k < vgrad.Count; k++)
             {
                 for(int m = 0; m < TrainingInputs.Count; m++)
@@ -271,6 +275,17 @@ namespace DRFCSharp
                 }
                 vgrad[k] -= V[k]/(Math.Pow (Tau,2));
             }
+            return vgrad;
+        }
+        //Iterates the model, and returns false if the iteration has converged.
+        private bool Iterate()
+        {
+            if(Iters >= MaxIters) return false;
+            Iters++;
+            
+            DenseVector wgrad = CalculateWGradient();
+            DenseVector vgrad = CalculateVGradient();
+
             double normwgrad = wgrad.Norm(2d);
             double normvgrad = vgrad.Norm(2d);
             double sumofnorms = normwgrad + normvgrad;
