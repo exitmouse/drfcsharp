@@ -13,6 +13,7 @@ DataLabeler/.pydevproject
 Dataset/tmp.jpg
 predicted*.txt
 *.swp
+*.swo
 *~
 *.vim
 *.dll
