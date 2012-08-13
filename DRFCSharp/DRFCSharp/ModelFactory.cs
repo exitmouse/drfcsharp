@@ -32,6 +32,8 @@ namespace DRFCSharp
             this.Iters = 0;
             this.StartStepLength = builder.StartStepLength;
             this.LikelihoodConvergence = builder.LikelihoodConvergence;
+			this.TrainingInputs = builder.TrainingInputs;
+			this.TrainingOutputs = builder.TrainingOutputs;
             this.W = builder.W;
             this.V = builder.V;
         }/*}}}*/
