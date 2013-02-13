@@ -139,9 +139,6 @@ with 50 orientations.
 You can adjust the smoothing of the histogram by adjusting
 ImageData.SMOOTHING_KERNEL_BANDWIDTH.
 
-Adjusting which features to use, however, is pretty tough.
-You have to adjust SiteFeatureSet.NUM_FEATURES, and then modify
-ImageData.FromImage by hand. All of the methods to make the various
-features are there, but especially with multiple scales it's fairly
-difficult to automate the process. Still, I plan to after this class
-ends.
+Finally, to adjust which features to use, create a Feature object and
+add it to the FeatureSet.Builder used in Main. It's pretty easy, but
+look at the RGB features for examples.
