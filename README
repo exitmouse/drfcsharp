@@ -1,7 +1,11 @@
 DRFCSharp
 -------------------------------------
 
-A C# library to train and infer with Discriminative Random Fields.
+A C# library to train and infer with Discriminative Random Fields. It implements the system described in:
+
+Kumar, Sanjiv and Hebert, Martial, "Discriminative Random Fields: A
+Discriminative Framework for Contextual Interaction in Classification" (2003).
+Robotics Institute. Paper 438.  http://repository.cmu.edu/robotics/438
 
 Authors
 --------------
@@ -19,63 +23,3 @@ features. To run it, you will need to make sure you have:
 MathNet.Numerics http://numerics.mathdotnet.com/
 NUnit (for unit tests)
 
-Subdirectories
---------------
-
-    /DataLabeler/
-    --------------
-    
-    Contains the Python 2.7 script we use to view and edit labelings;
-    it also provides statistics on the accuracy of predicted
-    classifications.
-    
-    /Dataset/
-    --------------
-    
-    Contains our Maryland GIS dataset. Make sure to pass --xsites 16
-    to the program if you run it on this dataset.
-    
-    Also contains all of the XML files that contain stored model
-    parameters.
-    
-    /DatasetKH/
-    --------------
-    
-    Contains the dataset from Kumar and Hebert (2006).
-    
-    /DRFCSharp/
-    --------------
-    
-    Contains the actual C# code, and the compiled executables.
-    
-    /EdgeWeightDerivation/
-    --------------
-    
-    Contains LaTeX code for our derivation of the log-likelihood ratio
-    of a classification at a single site, for use in transforming the
-    problem to a graph. It turned out this was not useful for
-    transforming the problem to a graph.
-    
-    /GradientDerivation/
-    --------------
-    
-    Contains LaTeX code for our derivation of the gradient of the
-    log-likelihood of the parameters given a dataset. We use these
-    equations to gradient ascend to train the model.
-    
-    /KumarAndHebertLabelConverter/
-    --------------
-    
-    Contains a Python script, which we ran once, to convert Kumar and
-    Hebert's data into our csv-based format.
-    
-    /Montgomery County Government GIS Internet Map Disclaimer/
-    --------------
-    
-    Contains the disclaimer for our dataset.
-    
-    /Papers/
-    --------------
-    
-    Contains the pdf copies of the papers we consulted in working on
-    this project.
