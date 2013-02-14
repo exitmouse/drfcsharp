@@ -3,6 +3,12 @@ DRFCSharp
 
 A C# library to train and infer with Discriminative Random Fields.
 
+Authors
+--------------
+
+Daniel Denton (ddenton)
+Jesse Selover (exitmouse)
+
 Prerequisites
 --------------
 
