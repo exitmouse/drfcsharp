@@ -35,8 +35,7 @@ Subdirectories
     /DatasetKH/
     --------------
     
-    Contains the dataset from Kumar and Hebert (2006). There are 24 x
-    sites in these images, but the program defaults to 24 x sites.
+    Contains the dataset from Kumar and Hebert (2006).
     
     /DRFCSharp/
     --------------
