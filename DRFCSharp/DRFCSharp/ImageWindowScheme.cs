@@ -3,6 +3,11 @@ using System;
 namespace DRFCSharp
 {
 	//TODO make this take a scale parameter or something.
+        /// <summary>
+        /// An ImageWindowScheme is a type of FeatureApplicationScheme
+        /// particularly suited to dividing an image into windows. It keeps
+        /// track of the pixel boundaries for each site index.
+        /// </summary>
 	public class ImageWindowScheme : FeatureApplicationScheme
 	{
 		public int WindowWidth { get; private set; }
