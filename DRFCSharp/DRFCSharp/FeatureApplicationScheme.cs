@@ -4,11 +4,13 @@ using System.Collections.Generic;
 namespace DRFCSharp
 {
     /// <summary>
-    /// A FeatureApplicationScheme is a pairing between site coordinates and <see cref="Window"/>s in the image.
-    /// Essentially, it tells a <see cref="FeatureSet"/> the image window it should be looking at for the feature
-    /// it's trying to apply at a site. The FeatureSet object knows that it wants to apply, say, the RightAngleFinder
-    /// to the <3,4>th site in the image, but in order to know the exact pixel window it should take the HOGS of,
-    /// it needs one of these FeatureApplicationSchemes.
+    /// A FeatureApplicationScheme is a pairing between site coordinates and
+    /// <see cref="Window"/>s in the image.  Essentially, it allows a
+    /// <see cref="Feature"/> to easily figure out he image window it should be
+    /// looking at for the feature it's trying to apply at a site. The
+    /// Feature's calculate method has been called on, say, the <3,4>th site in
+    /// the image, but in order to know the exact pixel window it should take
+    /// the HOGS of, a FeatureApplicationScheme translates.
     /// </summary>
     public interface FeatureApplicationScheme
     {

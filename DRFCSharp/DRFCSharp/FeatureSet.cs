@@ -6,10 +6,11 @@ using MathNet.Numerics.LinearAlgebra.Double;
 namespace DRFCSharp
 {
     /// <summary>
-    /// A feature set is a list of features to be calculated for every
-    /// site in the FeatureApplicationScheme. This class is responsible for making sure that
-    /// although the features may be vector-valued, the length of the
-    /// final output vector is easily calculable and correct.
+    /// A feature set is a list of features to be calculated at a site
+    /// (deciding where to evaluate a feature set is not the responsibility of
+    /// this class). This class is responsible for making sure that although the
+    /// features may be vector-valued, the length of the final output vector is
+    /// easily calculable and correct.
     /// </summary>
     public sealed class FeatureSet
     {
@@ -71,7 +72,7 @@ namespace DRFCSharp
                 List<double> feature_results = new List<double>();
                 foreach(Feature f in Features)
                 {
-                        //Evaluate the feature on the bitmap over the window dictated by the scheme.
+                        //Evaluate the feature on the bitmap, at site coordinates x and y.
                         feature_results.AddRange(f.Calculate(bmp, x, y));
                 }
                 DenseVector dv = new DenseVector(feature_results.ToArray());
